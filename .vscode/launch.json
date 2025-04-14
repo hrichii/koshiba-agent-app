@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "main dev",
+      "type": "dart",
+      "request": "launch",
+      "args": ["--dart-define-from-file=env/dev.env"],
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "main stg",
+      "type": "dart",
+      "request": "launch",
+      "args": ["--dart-define-from-file=env/stg.env"],
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "main prd",
+      "type": "dart",
+      "request": "launch",
+      "args": ["--dart-define-from-file=env/prd.env"],
+      "program": "lib/main.dart"
+    }
+  ]
+}

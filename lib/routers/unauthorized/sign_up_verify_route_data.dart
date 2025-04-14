@@ -1,0 +1,17 @@
+part of 'package:koshiba_agent_app/routers/router.dart';
+
+@TypedGoRoute<SignUpVerifyRouteData>(
+  path: AppRoutePath.signUpVerify,
+  name: AppRoutePath.signUpVerify,
+)
+class SignUpVerifyRouteData extends GoRouteData {
+  const SignUpVerifyRouteData({
+    required this.email,
+  });
+  final String email;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return ConnectedSignUpVerifyPage();
+  }
+}

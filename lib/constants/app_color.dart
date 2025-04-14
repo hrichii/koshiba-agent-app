@@ -1,0 +1,136 @@
+import 'dart:ui';
+
+class AppColor {
+  // purple
+  static const purple0 = Color(0xFF000000);
+  static const purple1 = Color(0xFF060009);
+  static const purple2 = Color(0xFF0D0113);
+  static const purple3 = Color(0xFF13021D);
+  static const purple4 = Color(0xFF1A0327);
+  static const purple5 = Color(0xFF210431);
+  static const purple10 = Color(0xFF2D0B3C);
+  static const purple15 = Color(0xFF381647);
+  static const purple20 = Color(0xFF442253);
+  static const purple25 = Color(0xFF502D5E);
+  static const purple30 = Color(0xFF5C386B);
+  static const purple35 = Color(0xFF694478);
+  static const purple40 = Color(0xFF765085);
+  static const purple50 = Color(0xFF90689F);
+  static const purple60 = Color(0xFFAB82BA);
+  static const purple70 = Color(0xFFC79CD6);
+  static const purple80 = Color(0xFFE4B7F3);
+  static const purple85 = Color(0xFFF0CDF9);
+  static const purple90 = Color(0xFFF7D8FF);
+  static const purple95 = Color(0xFFFFEBF9);
+  static const purple96 = Color(0xFFFFF1FA);
+  static const purple97 = Color(0xFFFFF5FB);
+  static const purple98 = Color(0xFFFFF7FB);
+  static const purple99 = Color(0xFFFFFBFF);
+  static const purple100 = Color(0xFFFFFFFF);
+
+  // green
+  static const green0 = Color(0xFF000000);
+  static const green1 = Color(0xFF000401);
+  static const green2 = Color(0xFF000802);
+  static const green3 = Color(0xFF000C03);
+  static const green4 = Color(0xFF001004);
+  static const green5 = Color(0xFF001405);
+  static const green10 = Color(0xFF00210A);
+  static const green15 = Color(0xFF012D10);
+  static const green20 = Color(0xFF013917);
+  static const green25 = Color(0xFF0D4520);
+  static const green30 = Color(0xFF1A512A);
+  static const green35 = Color(0xFF265D35);
+  static const green40 = Color(0xFF336940);
+  static const green50 = Color(0xFF4C8357);
+  static const green60 = Color(0xFF669D6F);
+  static const green70 = Color(0xFF7FB888);
+  static const green80 = Color(0xFF9AD4A1);
+  static const green85 = Color(0xFFA9D9AB);
+  static const green90 = Color(0xFFB5F1BC);
+  static const green95 = Color(0xFFC5FDCA);
+  static const green96 = Color(0xFFCCFDD2);
+  static const green97 = Color(0xFFD4FDD9);
+  static const green98 = Color(0xFFEAFEE8);
+  static const green99 = Color(0xFFF6FFF2);
+  static const green100 = Color(0xFFFFFFFF);
+
+  // gray
+  static const gray0 = Color(0xFF000000);
+  static const gray1 = Color(0xFF020202);
+  static const gray2 = Color(0xFF050505);
+  static const gray3 = Color(0xFF070707);
+  static const gray4 = Color(0xFF0A0A0A);
+  static const gray5 = Color(0xFF0D0D0D);
+  static const gray10 = Color(0xFF1A1A1A);
+  static const gray15 = Color(0xFF262626);
+  static const gray20 = Color(0xFF333333);
+  static const gray25 = Color(0xFF404040);
+  static const gray30 = Color(0xFF4D4D4D);
+  static const gray35 = Color(0xFF595959);
+  static const gray40 = Color(0xFF666666);
+  static const gray50 = Color(0xFF808080);
+  static const gray60 = Color(0xFF999999);
+  static const gray70 = Color(0xFFB3B3B3);
+  static const gray80 = Color(0xFFCCCCCC);
+  static const gray85 = Color(0xFFD9D9D9);
+  static const gray90 = Color(0xFFE6E6E6);
+  static const gray95 = Color(0xFFF2F2F2);
+  static const gray96 = Color(0xFFF4F4F4);
+  static const gray97 = Color(0xFFF6F6F6);
+  static const gray98 = Color(0xFFFAFAFA);
+  static const gray99 = Color(0xFFFCFCFC);
+  static const gray100 = Color(0xFFFFFFFF);
+
+  // yellow
+  static const yellow0 = Color(0xFF000000);
+  static const yellow10 = Color(0xFF211B00);
+  static const yellow20 = Color(0xFF393000);
+  static const yellow25 = Color(0xFF453B00);
+  static const yellow30 = Color(0xFF524700);
+  static const yellow35 = Color(0xFF5F5200);
+  static const yellow40 = Color(0xFF6D5E00);
+  static const yellow50 = Color(0xFF897700);
+  static const yellow60 = Color(0xFFA69000);
+  static const yellow70 = Color(0xFFC4AB00);
+  static const yellow80 = Color(0xFFE3C600);
+  static const yellow85 = Color(0xFFEDDF33);
+  static const yellow90 = Color(0xFFFFE244);
+  static const yellow95 = Color(0xFFFFF1B7);
+  static const yellow96 = Color(0xFFFFF4D0);
+  static const yellow97 = Color(0xFFFFF7E3);
+  static const yellow98 = Color(0xFFFFF9EC);
+  static const yellow99 = Color(0xFFFFFBFF);
+  static const yellow100 = Color(0xFFFFFFFF);
+
+  // red
+  static const red0 = Color(0xFF000000);
+  static const red1 = Color(0xFF410002);
+  static const red2 = Color(0xFF690005);
+  static const red3 = Color(0xFF7E0007);
+  static const red4 = Color(0xFF93000A);
+  static const red5 = Color(0xFFA80710);
+  static const red10 = Color(0xFFBA1A1A);
+  static const red15 = Color(0xFFDE3730);
+  static const red20 = Color(0xFFFF5449);
+  static const red21 = Color(0xFFFF665D);
+  static const red22 = Color(0xFFFF7871);
+  static const red23 = Color(0xFFFF9A85);
+  static const red24 = Color(0xFFFF9B79);
+  static const red25 = Color(0xFFFF897D);
+  static const red30 = Color(0xFFFFB4AB);
+  static const red35 = Color(0xFFFFC9C3);
+  static const red40 = Color(0xFFFFDAD6);
+  static const red50 = Color(0xFFFFEDEA);
+  static const red60 = Color(0xFFFFF8F7);
+  static const red70 = Color(0xFFFFFBFF);
+  static const red80 = Color(0xFFFFFFFF);
+  static const red85 = Color(0xFFFFFFFF);
+  static const red90 = Color(0xFFFFFFFF);
+  static const red95 = Color(0xFFFFFFFF);
+  static const red96 = Color(0xFFFFFFFF);
+  static const red97 = Color(0xFFFFFFFF);
+  static const red98 = Color(0xFFFFFFFF);
+  static const red99 = Color(0xFFFFFFFF);
+  static const red100 = Color(0xFFFFFFFF);
+}
