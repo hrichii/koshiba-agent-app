@@ -1,4 +1,14 @@
-{
+{  
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
     "husky": "^8.0.0",
     "lint-staged": "^13.0.0"
