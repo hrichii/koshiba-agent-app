@@ -8,7 +8,6 @@ class ResetPasswordSendRouteData extends GoRouteData {
   const ResetPasswordSendRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ConnectedResetPasswordSendPage();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ConnectedResetPasswordSendPage();
 }

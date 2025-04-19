@@ -11,7 +11,6 @@ class SignUpVerifyRouteData extends GoRouteData {
   final String email;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return ConnectedSignUpVerifyPage();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ConnectedSignUpVerifyPage();
 }

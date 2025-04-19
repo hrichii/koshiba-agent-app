@@ -20,11 +20,8 @@ class AppColorScheme {
     onError: AppColor.red50,
     errorContainer: AppColor.red10,
     onErrorContainer: AppColor.red95,
-    background: AppColor.purple2, //背景色
-    onBackground: AppColor.gray80,
     surface: AppColor.gray0, //SearchBarやNavigationRailなどの背景色
     onSurface: AppColor.gray90, //Textの色
-    surfaceVariant: AppColor.gray30, //SliderやDialogの背景色
     onSurfaceVariant: AppColor.gray90, //アイコンやラジオボタンの枠の色
     outline: AppColor.gray60, //OutlineButtonの枠やTextFieldの下線の色
     onInverseSurface: AppColor.gray10,

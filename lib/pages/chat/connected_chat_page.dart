@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ConnectedSignUpVerifyPage extends StatelessWidget {
-  const ConnectedSignUpVerifyPage({super.key});
+class ConnectedChatPage extends StatelessWidget {
+  const ConnectedChatPage({super.key});
 
   @override
   Widget build(BuildContext context) => const Placeholder();

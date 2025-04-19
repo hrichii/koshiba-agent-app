@@ -4,7 +4,5 @@ class ConnectedSettingPage extends StatelessWidget {
   const ConnectedSettingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
+  Widget build(BuildContext context) => const Placeholder();
 }

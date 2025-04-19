@@ -11,10 +11,12 @@ class AuthorizedStatefulShellRouteData extends StatefulShellRouteData {
   const AuthorizedStatefulShellRouteData();
 
   @override
-  Widget builder(BuildContext context, GoRouterState state,
-      StatefulNavigationShell navigationShell) {
-    return Scaffold(
-      body: navigationShell,
-    );
-  }
+  Widget builder(
+    BuildContext context,
+    GoRouterState state,
+    StatefulNavigationShell navigationShell,
+  ) =>
+      Scaffold(
+        body: navigationShell,
+      );
 }

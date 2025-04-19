@@ -46,6 +46,7 @@ dev_dependencies:
   reactive_forms_generator: ^6.1.1
   flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.4.6
+  dartdoc: ^8.3.3
 
 flutter_launcher_icons:
   android: true

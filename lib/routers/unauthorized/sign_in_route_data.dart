@@ -8,7 +8,6 @@ class SignInRouteData extends GoRouteData {
   const SignInRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ConnectedSignInPage();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ConnectedSignInPage();
 }

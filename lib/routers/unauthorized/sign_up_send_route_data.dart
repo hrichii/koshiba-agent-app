@@ -1,12 +1,13 @@
 part of 'package:koshiba_agent_app/routers/router.dart';
 
 @TypedGoRoute<SignUpSendRouteData>(
-    path: AppRoutePath.signUpSend, name: AppRoutePath.signUpSend)
+  path: AppRoutePath.signUpSend,
+  name: AppRoutePath.signUpSend,
+)
 class SignUpSendRouteData extends GoRouteData {
   const SignUpSendRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ConnectedSignUpSendPage();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ConnectedSignUpSendPage();
 }

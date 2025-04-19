@@ -6,7 +6,7 @@ const _homeTypedStatefulShellBranch = TypedStatefulShellBranch(
       name: AppRoutePath.home,
       path: AppRoutePath.home,
       routes: [],
-    )
+    ),
   ],
 );
 
@@ -14,7 +14,6 @@ class HomeRouteData extends GoRouteData {
   const HomeRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ConnectedHomePage();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ConnectedHomePage();
 }

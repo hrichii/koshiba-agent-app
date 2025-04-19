@@ -7,24 +7,54 @@ class AppTextTheme {
   static const _fontWeight = FontWeight.w600;
   static const _default = TextTheme(
     displayMedium: TextStyle(
-        fontSize: 48, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 48,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     titleLarge: TextStyle(
-        fontSize: 32, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 32,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     titleMedium: TextStyle(
-        fontSize: 24, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 24,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     titleSmall: TextStyle(
-        fontSize: 20, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 20,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     bodyLarge: TextStyle(
-        fontSize: 16, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 16,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     bodyMedium: TextStyle(
-        fontSize: 14, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 14,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     bodySmall: TextStyle(
-        fontSize: 12, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 12,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     labelLarge: TextStyle(
-        fontSize: 10, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 10,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     labelMedium: TextStyle(
-        fontSize: 8, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 8,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
     labelSmall: TextStyle(
-        fontSize: 6, overflow: _textOverflow, fontWeight: _fontWeight),
+      fontSize: 6,
+      overflow: _textOverflow,
+      fontWeight: _fontWeight,
+    ),
   );
 }
