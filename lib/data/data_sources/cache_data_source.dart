@@ -1,4 +1,4 @@
-import 'package:koshiba_agent_app/models/chat_room/chat_room.dart';
+import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 
 class Cache {
   Cache._();

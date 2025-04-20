@@ -1,9 +1,9 @@
-import 'package:koshiba_agent_app/data_sources/api_data_source.dart';
-import 'package:koshiba_agent_app/data_sources/cache_data_source.dart';
-import 'package:koshiba_agent_app/exceptions/app_exception.dart';
-import 'package:koshiba_agent_app/extensions/list_ext.dart';
-import 'package:koshiba_agent_app/models/chat_room/chat_room.dart';
-import 'package:koshiba_agent_app/models/result/result.dart';
+import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
+import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
+import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
+import 'package:koshiba_agent_app/core/extensions/list_ext.dart';
+import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
+import 'package:koshiba_agent_app/logic/models/result/result.dart';
 
 class ChatListRepository {
   ChatListRepository({

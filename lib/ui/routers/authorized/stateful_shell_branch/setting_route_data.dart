@@ -1,4 +1,4 @@
-part of 'package:koshiba_agent_app/routers/router.dart';
+part of 'package:koshiba_agent_app/ui/routers/router.dart';
 
 const _settingTypedStatefulShellBranch = TypedStatefulShellBranch(
   routes: <TypedRoute<RouteData>>[

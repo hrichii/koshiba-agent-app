@@ -15,10 +15,11 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$ChatRoom {
+// TODO IDをextension typeにする
   String get id;
   String get title;
-  DateTime get createdAt;
   List<Chat> get chatList;
+  DateTime get createdAt;
 
   /// Create a copy of ChatRoom
   /// with the given fields replaced by the non-null parameter values.
@@ -37,19 +38,19 @@ mixin _$ChatRoom {
             other is ChatRoom &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other.chatList, chatList) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            const DeepCollectionEquality().equals(other.chatList, chatList));
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, createdAt,
-      const DeepCollectionEquality().hash(chatList));
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(chatList), createdAt);
 
   @override
   String toString() {
-    return 'ChatRoom(id: $id, title: $title, createdAt: $createdAt, chatList: $chatList)';
+    return 'ChatRoom(id: $id, title: $title, chatList: $chatList, createdAt: $createdAt)';
   }
 }
 
@@ -58,7 +59,7 @@ abstract mixin class $ChatRoomCopyWith<$Res> {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) _then) =
       _$ChatRoomCopyWithImpl;
   @useResult
-  $Res call({String id, String title, DateTime createdAt, List<Chat> chatList});
+  $Res call({String id, String title, List<Chat> chatList, DateTime createdAt});
 }
 
 /// @nodoc
@@ -75,8 +76,8 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? createdAt = null,
     Object? chatList = null,
+    Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -87,14 +88,14 @@ class _$ChatRoomCopyWithImpl<$Res> implements $ChatRoomCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       chatList: null == chatList
           ? _self.chatList
           : chatList // ignore: cast_nullable_to_non_nullable
               as List<Chat>,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -105,19 +106,18 @@ class _ChatRoom extends ChatRoom {
   const _ChatRoom(
       {required this.id,
       required this.title,
-      required this.createdAt,
-      required final List<Chat> chatList})
+      required final List<Chat> chatList,
+      required this.createdAt})
       : _chatList = chatList,
         super._();
   factory _ChatRoom.fromJson(Map<String, dynamic> json) =>
       _$ChatRoomFromJson(json);
 
+// TODO IDをextension typeにする
   @override
   final String id;
   @override
   final String title;
-  @override
-  final DateTime createdAt;
   final List<Chat> _chatList;
   @override
   List<Chat> get chatList {
@@ -125,6 +125,9 @@ class _ChatRoom extends ChatRoom {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_chatList);
   }
+
+  @override
+  final DateTime createdAt;
 
   /// Create a copy of ChatRoom
   /// with the given fields replaced by the non-null parameter values.
@@ -148,19 +151,19 @@ class _ChatRoom extends ChatRoom {
             other is _ChatRoom &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._chatList, _chatList) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            const DeepCollectionEquality().equals(other._chatList, _chatList));
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, createdAt,
-      const DeepCollectionEquality().hash(_chatList));
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(_chatList), createdAt);
 
   @override
   String toString() {
-    return 'ChatRoom(id: $id, title: $title, createdAt: $createdAt, chatList: $chatList)';
+    return 'ChatRoom(id: $id, title: $title, chatList: $chatList, createdAt: $createdAt)';
   }
 }
 
@@ -171,7 +174,7 @@ abstract mixin class _$ChatRoomCopyWith<$Res>
       __$ChatRoomCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String title, DateTime createdAt, List<Chat> chatList});
+  $Res call({String id, String title, List<Chat> chatList, DateTime createdAt});
 }
 
 /// @nodoc
@@ -188,8 +191,8 @@ class __$ChatRoomCopyWithImpl<$Res> implements _$ChatRoomCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? createdAt = null,
     Object? chatList = null,
+    Object? createdAt = null,
   }) {
     return _then(_ChatRoom(
       id: null == id
@@ -200,14 +203,14 @@ class __$ChatRoomCopyWithImpl<$Res> implements _$ChatRoomCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       chatList: null == chatList
           ? _self._chatList
           : chatList // ignore: cast_nullable_to_non_nullable
               as List<Chat>,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }

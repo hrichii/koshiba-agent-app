@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/constants/app_color.dart';
+import 'package:koshiba_agent_app/core/constants/app_color.dart';
 
 class AppColorScheme {
   static const dark = ColorScheme(

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:koshiba_agent_app/models/chat/chat.dart';
+import 'package:koshiba_agent_app/logic/models/chat/chat.dart';
 
 part 'chat_room.freezed.dart';
 part 'chat_room.g.dart';
