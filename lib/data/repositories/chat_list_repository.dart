@@ -1,16 +1,25 @@
-import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
-import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/core/extensions/list_ext.dart';
+import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
+import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
+import 'package:koshiba_agent_app/logic/usecases/chat_list/chat_list_repository_interface.dart';
+import 'package:riverpod/riverpod.dart';
 
-class ChatListRepository {
+final chatListRepositoryProvider = Provider(
+  (ref) => ChatListRepository(
+    apiDataSource: ref.read(apiDataSourceProvider),
+    chatRoomListCacheDataSource: ref.read(chatRoomListCacheDataSourceProvider),
+  ),
+);
+
+class ChatListRepository implements ChatListRepositoryInterface {
   ChatListRepository({
     required ApiDataSource apiDataSource,
-    required ChatRoomListCacheDataSource cacheDataSource,
+    required ChatRoomListCacheDataSource chatRoomListCacheDataSource,
   })  : _apiDataSource = apiDataSource,
-        _cacheDataSource = cacheDataSource;
+        _cacheDataSource = chatRoomListCacheDataSource;
 
   final ApiDataSource _apiDataSource;
   final ChatRoomListCacheDataSource _cacheDataSource;

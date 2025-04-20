@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
+import 'package:riverpod/riverpod.dart';
 
+final _cacheProvider = Provider<Cache>((ref) => Cache());
+
+@visibleForTesting
 class Cache {
-  Cache._();
-  static final Cache instance = Cache._();
+  Cache();
 
   final Map<CacheKeyType, dynamic> _cache = {};
   // キャッシュに保存
@@ -20,6 +24,7 @@ class Cache {
   void deleteAll() => _cache.clear();
 }
 
+@visibleForTesting
 extension type CacheKeyType<T>._(String value) {
   CacheKeyType(this.value);
 }
@@ -43,11 +48,23 @@ class _CacheKey {
   static final accessToken = CacheKeyType<String>('accessToken');
 }
 
+final chatRoomListCacheDataSourceProvider = Provider(
+  (ref) => ChatRoomListCacheDataSource(
+    ref.read(_cacheProvider),
+  ),
+);
+
 class ChatRoomListCacheDataSource
     extends _SingleKeyCacheDataSource<List<ChatRoom>> {
   ChatRoomListCacheDataSource(Cache cache)
       : super(key: _CacheKey.chatRoomList, cache: cache);
 }
+
+final accessTokenCacheDataSourceProvider = Provider(
+  (ref) => ChatRoomListCacheDataSource(
+    ref.read(_cacheProvider),
+  ),
+);
 
 class AccessTokenCacheDataSource extends _SingleKeyCacheDataSource<String> {
   AccessTokenCacheDataSource(Cache cache)

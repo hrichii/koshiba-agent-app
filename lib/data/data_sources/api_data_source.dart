@@ -1,6 +1,11 @@
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
+import 'package:riverpod/riverpod.dart';
+
+final apiDataSourceProvider = Provider(
+  (ref) => ApiDataSource(),
+);
 
 class ApiDataSource {
   Future<Result<List<ChatRoom>, AppException>> getChatRoomList() async {
