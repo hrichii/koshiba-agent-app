@@ -24,7 +24,12 @@ class ChatListRepository implements ChatListRepositoryInterface {
   final ApiDataSource _apiDataSource;
   final ChatRoomListCacheDataSource _cacheDataSource;
 
+  @override
   Future<Result<List<ChatRoom>, AppException>> getChatList() async {
+    final resultByCache = _cacheDataSource.get();
+    if (resultByCache != null) {
+      return ResultSuccess(value: resultByCache);
+    }
     final result = await _apiDataSource.getChatRoomList();
     switch (result) {
       case final ResultSuccess<List<ChatRoom>, AppException> success:
@@ -35,6 +40,7 @@ class ChatListRepository implements ChatListRepositoryInterface {
     }
   }
 
+  @override
   Future<Result<void, AppException>> addChatRoom(ChatRoom chatRoom) async {
     final result = await _apiDataSource.addChatRoom(chatRoom);
     switch (result) {
@@ -49,6 +55,7 @@ class ChatListRepository implements ChatListRepositoryInterface {
     }
   }
 
+  @override
   Future<Result<void, AppException>> deleteChatRoom(String chatRoomId) async {
     final result = await _apiDataSource.deleteChatRoom(chatRoomId);
     switch (result) {
@@ -64,6 +71,7 @@ class ChatListRepository implements ChatListRepositoryInterface {
     }
   }
 
+  @override
   Future<Result<void, AppException>> updateChatRoom(ChatRoom chatRoom) async {
     final result = await _apiDataSource.updateChatRoom(chatRoom);
     switch (result) {
@@ -82,5 +90,6 @@ class ChatListRepository implements ChatListRepositoryInterface {
     }
   }
 
+  @override
   void clearCache() => _cacheDataSource.delete();
 }

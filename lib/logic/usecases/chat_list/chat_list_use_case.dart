@@ -19,7 +19,9 @@ class ChatListUseCase extends _$ChatListUseCase {
 
   Future<Result<void, AppException>> getChatRoomListWithClearCache() async {
     _chatListRepository.clearCache();
-    return _getChatRoomList(stateAtInProgress: state);
+    return _getChatRoomList(
+      stateAtInProgress: const ResourceInProgress<List<ChatRoom>>(),
+    );
   }
 
   Future<Result<void, AppException>> getChatRoomList() => _getChatRoomList(
