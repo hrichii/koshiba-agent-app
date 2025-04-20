@@ -30,9 +30,9 @@ RouteBase get $authorizedStatefulShellRouteData =>
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
-              path: '/histories',
-              name: '/histories',
-              factory: $HistoryRouteDataExtension._fromState,
+              path: '/chats',
+              name: '/chats',
+              factory: $ChatRouteDataExtension._fromState,
             ),
           ],
         ),
@@ -71,12 +71,11 @@ extension $HomeRouteDataExtension on HomeRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $HistoryRouteDataExtension on HistoryRouteData {
-  static HistoryRouteData _fromState(GoRouterState state) =>
-      const HistoryRouteData();
+extension $ChatRouteDataExtension on ChatRouteData {
+  static ChatRouteData _fromState(GoRouterState state) => const ChatRouteData();
 
   String get location => GoRouteData.$location(
-        '/histories',
+        '/chats',
       );
 
   void go(BuildContext context) => context.go(location);
