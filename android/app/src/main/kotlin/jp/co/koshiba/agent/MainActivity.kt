@@ -1,4 +1,4 @@
-package com.example.koshiba_agent_app
+package jp.co.koshiba.agent
 
 import io.flutter.embedding.android.FlutterActivity
 

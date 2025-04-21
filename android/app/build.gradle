@@ -19,7 +19,7 @@ if (project.hasProperty('dart-defines')) {
 }
 
 android {
-    namespace = "com.example.koshiba_agent_app"
+    namespace = "jp.co.koshiba.agent"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

@@ -12,14 +12,14 @@
       "name": "main stg",
       "type": "dart",
       "request": "launch",
-      "args": ["--dart-define-from-file=env/stg.env"],
+      "args": ["--dart-define-from-file=env/stg.env", "--web-port", "8080"],
       "program": "lib/main.dart"
     },
     {
       "name": "main prd",
       "type": "dart",
       "request": "launch",
-      "args": ["--dart-define-from-file=env/prd.env"],
+      "args": ["--dart-define-from-file=env/prd.env", "--web-port", "8080"],
       "program": "lib/main.dart"
     }
   ]
