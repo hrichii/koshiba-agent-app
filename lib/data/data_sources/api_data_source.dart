@@ -46,7 +46,8 @@ class ApiDataSource {
   }
 
   Future<Result<ChatRoom, AppException>> updateChatRoom(
-      ChatRoom chatRoom) async {
+    ChatRoom chatRoom,
+  ) async {
     await Future.delayed(const Duration(seconds: 1));
     return ResultSuccess(
       value: ChatRoom(

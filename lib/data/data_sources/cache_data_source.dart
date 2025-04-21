@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:riverpod/riverpod.dart';
 
-final _cacheProvider = Provider<Cache>((ref) => Cache());
+final cacheProvider = Provider<Cache>((ref) => Cache());
 
 @visibleForTesting
 class Cache {
@@ -50,7 +50,7 @@ class _CacheKey {
 
 final chatRoomListCacheDataSourceProvider = Provider(
   (ref) => ChatRoomListCacheDataSource(
-    ref.read(_cacheProvider),
+    ref.read(cacheProvider),
   ),
 );
 
@@ -62,7 +62,7 @@ class ChatRoomListCacheDataSource
 
 final accessTokenCacheDataSourceProvider = Provider(
   (ref) => ChatRoomListCacheDataSource(
-    ref.read(_cacheProvider),
+    ref.read(cacheProvider),
   ),
 );
 

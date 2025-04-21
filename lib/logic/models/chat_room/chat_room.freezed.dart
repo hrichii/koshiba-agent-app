@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$ChatRoom {
-// TODO IDをextension typeにする
+// TODOIDをextension typeにする
   String get id;
   String get title;
   List<Chat> get chatList;
@@ -113,7 +113,7 @@ class _ChatRoom extends ChatRoom {
   factory _ChatRoom.fromJson(Map<String, dynamic> json) =>
       _$ChatRoomFromJson(json);
 
-// TODO IDをextension typeにする
+// TODOIDをextension typeにする
   @override
   final String id;
   @override

@@ -7,7 +7,7 @@ part 'chat_room.g.dart';
 @freezed
 abstract class ChatRoom with _$ChatRoom {
   const factory ChatRoom({
-    // TODO IDをextension typeにする
+    // TODOIDをextension typeにする
     required String id,
     required String title,
     required List<Chat> chatList,
