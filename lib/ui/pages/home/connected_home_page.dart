@@ -12,9 +12,7 @@ class ConnectedHomePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(
       () {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(chatListUseCaseProvider.notifier).getChatRoomList();
-        });
+        Future(ref.read(chatListUseCaseProvider.notifier).getChatRoomList);
         return null;
       },
       [],
