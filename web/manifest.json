@@ -1,6 +1,6 @@
 {
-    "name": "koshiba_agent_app",
-    "short_name": "koshiba_agent_app",
+    "name": "koshiba",
+    "short_name": "koshiba",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

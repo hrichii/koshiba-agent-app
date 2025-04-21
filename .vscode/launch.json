@@ -5,7 +5,7 @@
       "name": "main dev",
       "type": "dart",
       "request": "launch",
-      "args": ["--dart-define-from-file=env/dev.env"],
+      "args": ["--dart-define-from-file=env/dev.env", "--web-port", "8080"],
       "program": "lib/main.dart"
     },
     {
