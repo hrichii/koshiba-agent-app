@@ -1,4 +1,4 @@
-.PHONY: setup clean dev stg prd build-android build-ios
+.PHONY: setup-dev setup-stg setup-prd build-android build-ios
 
 
 # 開発環境のセットアップ
@@ -29,8 +29,3 @@ build-android:
 # iOSビルド
 build-ios:
 	flutter build ios
-
-# クリーンアップ
-clean:
-	flutter clean
-	flutter pub get
