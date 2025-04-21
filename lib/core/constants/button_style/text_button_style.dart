@@ -39,7 +39,8 @@ class TextButtonStyle {
     const Color overlayColor = Colors.transparent;
     return styleForm(color: color).copyWith(
       overlayColor: WidgetStateProperty.resolveWith<Color>(
-          (Set<WidgetState> states) => overlayColor),
+        (Set<WidgetState> states) => overlayColor,
+      ),
     );
   }
 

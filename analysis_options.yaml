@@ -113,3 +113,5 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - lib/l10n/**/intl_*.dart
+    - lib/generated/**

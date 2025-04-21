@@ -51,11 +51,9 @@ class AppColor {
   static Color get onError => _colorScheme.onError;
   static Color get errorContainer => _colorScheme.errorContainer;
   static Color get onErrorContainer => _colorScheme.onErrorContainer;
-  static Color get background => _colorScheme.background;
-  static Color get onBackground => _colorScheme.onBackground;
   static Color get surface => _colorScheme.surface;
   static Color get onSurface => _colorScheme.onSurface;
-  static Color get surfaceVariant => _colorScheme.surfaceVariant;
+  static Color get surfaceVariant => _colorScheme.surfaceContainerHighest;
   static Color get onSurfaceVariant => _colorScheme.onSurfaceVariant;
   static Color get outline => _colorScheme.outline;
   static Color get onInverseSurface => _colorScheme.onInverseSurface;
@@ -151,31 +149,11 @@ class _Colors {
   static const purple100 = Color(0xFFFFFFFF);
 
   // green
-  static const green0 = Color(0xFF000000);
-  static const green1 = Color(0xFF000401);
-  static const green2 = Color(0xFF000802);
-  static const green3 = Color(0xFF000C03);
-  static const green4 = Color(0xFF001004);
-  static const green5 = Color(0xFF001405);
   static const green10 = Color(0xFF00210A);
-  static const green15 = Color(0xFF012D10);
   static const green20 = Color(0xFF013917);
-  static const green25 = Color(0xFF0D4520);
-  static const green30 = Color(0xFF1A512A);
-  static const green35 = Color(0xFF265D35);
-  static const green40 = Color(0xFF336940);
-  static const green50 = Color(0xFF4C8357);
   static const green60 = Color(0xFF669D6F);
-  static const green70 = Color(0xFF7FB888);
-  static const green80 = Color(0xFF9AD4A1);
-  static const green85 = Color(0xFFA9D9AB);
   static const green90 = Color(0xFFB5F1BC);
   static const green95 = Color(0xFFC5FDCA);
-  static const green96 = Color(0xFFCCFDD2);
-  static const green97 = Color(0xFFD4FDD9);
-  static const green98 = Color(0xFFEAFEE8);
-  static const green99 = Color(0xFFF6FFF2);
-  static const green100 = Color(0xFFFFFFFF);
 
   // gray
   static const gray0 = Color(0xFF000000);
@@ -205,54 +183,14 @@ class _Colors {
   static const gray100 = Color(0xFFFFFFFF);
 
   // yellow
-  static const yellow0 = Color(0xFF000000);
   static const yellow10 = Color(0xFF211B00);
-  static const yellow20 = Color(0xFF393000);
-  static const yellow25 = Color(0xFF453B00);
   static const yellow30 = Color(0xFF524700);
-  static const yellow35 = Color(0xFF5F5200);
-  static const yellow40 = Color(0xFF6D5E00);
-  static const yellow50 = Color(0xFF897700);
-  static const yellow60 = Color(0xFFA69000);
   static const yellow70 = Color(0xFFC4AB00);
-  static const yellow80 = Color(0xFFE3C600);
-  static const yellow85 = Color(0xFFEDDF33);
-  static const yellow90 = Color(0xFFFFE244);
   static const yellow95 = Color(0xFFFFF1B7);
-  static const yellow96 = Color(0xFFFFF4D0);
-  static const yellow97 = Color(0xFFFFF7E3);
-  static const yellow98 = Color(0xFFFFF9EC);
-  static const yellow99 = Color(0xFFFFFBFF);
-  static const yellow100 = Color(0xFFFFFFFF);
 
   // red
-  static const red0 = Color(0xFF000000);
-  static const red1 = Color(0xFF410002);
-  static const red2 = Color(0xFF690005);
-  static const red3 = Color(0xFF7E0007);
-  static const red4 = Color(0xFF93000A);
-  static const red5 = Color(0xFFA80710);
   static const red10 = Color(0xFFBA1A1A);
-  static const red15 = Color(0xFFDE3730);
-  static const red20 = Color(0xFFFF5449);
-  static const red21 = Color(0xFFFF665D);
   static const red22 = Color(0xFFFF7871);
-  static const red23 = Color(0xFFFF9A85);
-  static const red24 = Color(0xFFFF9B79);
-  static const red25 = Color(0xFFFF897D);
-  static const red30 = Color(0xFFFFB4AB);
-  static const red35 = Color(0xFFFFC9C3);
-  static const red40 = Color(0xFFFFDAD6);
   static const red50 = Color(0xFFFFEDEA);
-  static const red60 = Color(0xFFFFF8F7);
-  static const red70 = Color(0xFFFFFBFF);
-  static const red80 = Color(0xFFFFFFFF);
-  static const red85 = Color(0xFFFFFFFF);
-  static const red90 = Color(0xFFFFFFFF);
   static const red95 = Color(0xFFFFFFFF);
-  static const red96 = Color(0xFFFFFFFF);
-  static const red97 = Color(0xFFFFFFFF);
-  static const red98 = Color(0xFFFFFFFF);
-  static const red99 = Color(0xFFFFFFFF);
-  static const red100 = Color(0xFFFFFFFF);
 }

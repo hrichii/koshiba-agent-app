@@ -35,8 +35,8 @@ class OutlinedButtonStyle {
   }
 
   static ButtonStyle get primary => _getStyle(mainColor: AppColor.primary);
-  static ButtonStyle get primaryWithBackground => _getStyle(
-      mainColor: AppColor.primary, backgroundColor: AppColor.background);
+  static ButtonStyle get primaryWithBackground =>
+      _getStyle(mainColor: AppColor.primary, backgroundColor: AppColor.surface);
   static ButtonStyle get secondary => _getStyle(mainColor: AppColor.secondary);
   static ButtonStyle get tertiary => _getStyle(mainColor: AppColor.tertiary);
   static ButtonStyle get error => _getStyle(mainColor: AppColor.error);

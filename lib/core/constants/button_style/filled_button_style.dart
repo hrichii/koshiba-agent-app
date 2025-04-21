@@ -6,8 +6,10 @@ import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/extensions/color_extension.dart';
 
 class FilledButtonStyle {
-  static ButtonStyle _getStyle(
-          {required Color color, required Color onColor}) =>
+  static ButtonStyle _getStyle({
+    required Color color,
+    required Color onColor,
+  }) =>
       FilledButton.styleFrom(
         foregroundColor: onColor,
         backgroundColor: color,

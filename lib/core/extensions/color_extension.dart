@@ -8,7 +8,7 @@ extension ColorExtension on Color {
   Color withColorBlend(Color blendColor, double amount) {
     final double normalizedAmount = min(max(0, amount), 1);
     return Color.alphaBlend(
-      blendColor.withOpacity(normalizedAmount),
+      blendColor.withValues(alpha: normalizedAmount),
       this,
     );
   }
