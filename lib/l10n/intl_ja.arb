@@ -1,12 +1,12 @@
 {
-    "@@locale": "en",
-    "field_email": "Email",
+    "@@locale": "ja",
+    "field_email": "メールアドレス",
     "@field_email": {},
-    "field_password": "Password",
+    "field_password": "パスワード",
     "@field_password": {},
-    "unit_letter": "characters",
+    "unit_letter": "文字",
     "@unit_letter": {},
-    "validation_required": "Please enter {fieldName}",
+    "validation_required": "{fieldName}を入力してください",
     "@validation_required": {
       "placeholders": {
         "fieldName": {
@@ -14,7 +14,7 @@
         }
       }
     },
-    "validation_min_length": "Please enter at least {minLength} {unit} for {fieldName}",
+    "validation_min_length": "{fieldName}は{minLength}{unit}以上を入力してください",
     "@validation_min_length": {
       "placeholders": {
         "fieldName": {
@@ -28,7 +28,7 @@
         }
       }
     },
-    "validation_max_length": "Please enter no more than {maxLength} {unit} for {fieldName}",
+    "validation_max_length": "{fieldName}は{maxLength}{unit}以下で入力してください",
     "@validation_max_length": {
       "placeholders": {
         "fieldName": {
@@ -42,7 +42,7 @@
         }
       }
     },
-    "validation_only_length": "Please enter exactly {length} {unit} for {fieldName}",
+    "validation_only_length": "{fieldName}は{length}{unit}で入力してください",
     "@validation_only_length": {
       "placeholders": {
         "fieldName": {
@@ -56,7 +56,7 @@
         }
       }
     },
-    "validation_alpha_numeric": "Please enter alphanumeric characters for {fieldName}",
+    "validation_alpha_numeric": "{fieldName}は英数字を入力してください",
     "@validation_alpha_numeric": {
       "placeholders": {
         "fieldName": {
@@ -64,7 +64,7 @@
         }
       }
     },
-    "validation_valid": "Please enter a valid {fieldName}",
+    "validation_valid": "有効な{fieldName}を入力してください",
     "@validation_valid": {
       "placeholders": {
         "fieldName": {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/constants/app_env.dart';
+import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -10,13 +12,13 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => MaterialApp.router(
         title: AppEnv.appName,
         debugShowCheckedModeBanner: false,
-        // localizationsDelegates: const [
-        //   S.delegate,
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        // ],
-        // supportedLocales: S.delegate.supportedLocales,
+        localizationsDelegates: const [
+          AppMessage.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: AppMessage.delegate.supportedLocales,
         // theme: ThemeData(
         //   colorScheme: colorScheme,
         //   textTheme: textTheme,

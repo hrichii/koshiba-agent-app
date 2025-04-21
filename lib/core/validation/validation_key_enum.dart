@@ -1,4 +1,4 @@
-enum AppValidationKeyEnum {
+enum ValidationKeyEnum {
   requiredWithFieldName,
   maxLengthWithFieldName,
   minLengthWithFieldName,

@@ -73,9 +73,12 @@ flutter_native_splash:
     image: "assets/images/app_icon.png"
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
    - assets/images/
    
 flutter_intl:
   enabled: true
+  class_name: AppMessage
+  main_locale: ja
