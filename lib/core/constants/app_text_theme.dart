@@ -58,3 +58,17 @@ class AppTextTheme {
     ),
   );
 }
+
+class AppTextStyle {
+  static const TextTheme _textTheme = AppTextTheme.dark;
+  static TextStyle get displayMedium48 => _textTheme.displayMedium!;
+  static TextStyle get titleLarge32 => _textTheme.titleLarge!;
+  static TextStyle get titleMedium24 => _textTheme.titleMedium!;
+  static TextStyle get titleSmall20 => _textTheme.titleSmall!;
+  static TextStyle get bodyLarge16 => _textTheme.bodyLarge!;
+  static TextStyle get bodyMedium14 => _textTheme.bodyMedium!;
+  static TextStyle get bodySmall12 => _textTheme.bodySmall!;
+  static TextStyle get labelLarge10 => _textTheme.labelLarge!;
+  static TextStyle get labelMedium8 => _textTheme.labelMedium!;
+  static TextStyle get labelSmall6 => _textTheme.labelSmall!;
+}
