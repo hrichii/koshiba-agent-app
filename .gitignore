@@ -47,3 +47,7 @@ app.*.map.json
 
 ios/Flutter/Dart-Defines.xcconfig
 /android/app/.cxx
+/firebase.json
+/ios/Runner/GoogleService-Info.plist
+/lib/core/constants/firebase_options
+/android/app/google-services.json

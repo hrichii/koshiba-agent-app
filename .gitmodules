@@ -1,0 +1,4 @@
+[submodule "koshiba-agent-app-secret"]
+	path = koshiba-agent-app-secret
+	url = git@github.com:hrichii/koshiba-agent-app-secret.git
+	branch = main
