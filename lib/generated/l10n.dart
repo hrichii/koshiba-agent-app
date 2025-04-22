@@ -54,6 +54,11 @@ class AppMessage {
     return Localizations.of<AppMessage>(context, AppMessage);
   }
 
+  /// `サインイン`
+  String get common_sign_in {
+    return Intl.message('サインイン', name: 'common_sign_in', desc: '', args: []);
+  }
+
   /// `メールアドレス`
   String get field_email {
     return Intl.message('メールアドレス', name: 'field_email', desc: '', args: []);
@@ -126,6 +131,96 @@ class AppMessage {
       name: 'validation_valid',
       desc: '',
       args: [fieldName],
+    );
+  }
+
+  /// `有効なメールアドレスを入力してください`
+  String get exception_invalid_email {
+    return Intl.message(
+      '有効なメールアドレスを入力してください',
+      name: 'exception_invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `不明なエラーが発生しました`
+  String get exception_unknown {
+    return Intl.message(
+      '不明なエラーが発生しました',
+      name: 'exception_unknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `このメールアドレスは既に使用されています`
+  String get exception_email_already_in_use {
+    return Intl.message(
+      'このメールアドレスは既に使用されています',
+      name: 'exception_email_already_in_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `この操作は許可されていません`
+  String get exception_operation_not_allowed {
+    return Intl.message(
+      'この操作は許可されていません',
+      name: 'exception_operation_not_allowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `パスワードが脆弱です`
+  String get exception_weak_password {
+    return Intl.message(
+      'パスワードが脆弱です',
+      name: 'exception_weak_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが多すぎます。しばらく待ってから再試行してください`
+  String get exception_too_many_requests {
+    return Intl.message(
+      'リクエストが多すぎます。しばらく待ってから再試行してください',
+      name: 'exception_too_many_requests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ユーザートークンの有効期限が切れました`
+  String get exception_user_token_expired {
+    return Intl.message(
+      'ユーザートークンの有効期限が切れました',
+      name: 'exception_user_token_expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ネットワークリクエストが失敗しました`
+  String get exception_network_request_failed {
+    return Intl.message(
+      'ネットワークリクエストが失敗しました',
+      name: 'exception_network_request_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `アカウントが見つかりません`
+  String get exception_account_not_found {
+    return Intl.message(
+      'アカウントが見つかりません',
+      name: 'exception_account_not_found',
+      desc: '',
+      args: [],
     );
   }
 }

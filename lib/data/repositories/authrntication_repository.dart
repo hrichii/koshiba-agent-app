@@ -4,6 +4,7 @@ import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
 import 'package:koshiba_agent_app/logic/models/access_token/access_token.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
+import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/logic/models/user_credential/user_credential.dart';
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_repository_interface.dart';
@@ -24,26 +25,20 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
   final VoidCallback _clearCache;
 
   @override
-  Future<Result<UserCredential, AppException>> signUp({
-    required String email,
-    required String password,
-  }) =>
+  Future<Result<UserCredential, AppException>> signUp(SignIn signInModel) =>
       _handleAuth(
         () => _firebaseAuth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
+          email: signInModel.email!,
+          password: signInModel.password!,
         ),
       );
 
   @override
-  Future<Result<UserCredential, AppException>> signIn({
-    required String email,
-    required String password,
-  }) =>
+  Future<Result<UserCredential, AppException>> signIn(SignIn signInModel) =>
       _handleAuth(
         () => _firebaseAuth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
+          email: signInModel.email!,
+          password: signInModel.password!,
         ),
       );
 

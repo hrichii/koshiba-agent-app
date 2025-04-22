@@ -1,5 +1,7 @@
 {
     "@@locale": "ja",
+    "common_sign_in": "サインイン",
+    "@common_sign_in": {},
     "field_email": "メールアドレス",
     "@field_email": {},
     "field_password": "パスワード",
@@ -71,5 +73,23 @@
           "type": "String"
         }
       }
-    }
+    },
+    "exception_invalid_email": "有効なメールアドレスを入力してください",
+    "@exception_invalid_email": {},
+    "exception_unknown": "不明なエラーが発生しました",
+    "@exception_unknown": {},
+    "exception_email_already_in_use": "このメールアドレスは既に使用されています",
+    "@exception_email_already_in_use": {},
+    "exception_operation_not_allowed": "この操作は許可されていません",
+    "@exception_operation_not_allowed": {},
+    "exception_weak_password": "パスワードが脆弱です",
+    "@exception_weak_password": {},
+    "exception_too_many_requests": "リクエストが多すぎます。しばらく待ってから再試行してください",
+    "@exception_too_many_requests": {},
+    "exception_user_token_expired": "ユーザートークンの有効期限が切れました",
+    "@exception_user_token_expired": {},
+    "exception_network_request_failed": "ネットワークリクエストが失敗しました",
+    "@exception_network_request_failed": {},
+    "exception_account_not_found": "アカウントが見つかりません",
+    "@exception_account_not_found": {}
 }

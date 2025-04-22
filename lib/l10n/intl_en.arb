@@ -1,5 +1,7 @@
 {
     "@@locale": "en",
+    "common_sign_in": "Sign in",
+    "@common_sign_in": {},
     "field_email": "Email",
     "@field_email": {},
     "field_password": "Password",
@@ -71,5 +73,23 @@
           "type": "String"
         }
       }
-    }
+    },
+    "exception_unknown": "An unknown error has occurred",
+    "@exception_unknown": {},
+    "exception_email_already_in_use": "This email address is already in use",
+    "@exception_email_already_in_use": {},
+    "exception_invalid_email": "Please enter a valid email address",
+    "@exception_invalid_email": {},
+    "exception_operation_not_allowed": "This operation is not allowed",
+    "@exception_operation_not_allowed": {},
+    "exception_weak_password": "The password is too weak",
+    "@exception_weak_password": {},
+    "exception_too_many_requests": "Too many requests. Please try again later",
+    "@exception_too_many_requests": {},
+    "exception_user_token_expired": "User token has expired",
+    "@exception_user_token_expired": {},
+    "exception_network_request_failed": "Network request failed",
+    "@exception_network_request_failed": {},
+    "exception_account_not_found": "Account not found",
+    "@exception_account_not_found": {}
 }

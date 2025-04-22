@@ -37,6 +37,34 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "common_sign_in": MessageLookupByLibrary.simpleMessage("サインイン"),
+        "exception_account_not_found": MessageLookupByLibrary.simpleMessage(
+          "アカウントが見つかりません",
+        ),
+        "exception_email_already_in_use": MessageLookupByLibrary.simpleMessage(
+          "このメールアドレスは既に使用されています",
+        ),
+        "exception_invalid_email": MessageLookupByLibrary.simpleMessage(
+          "有効なメールアドレスを入力してください",
+        ),
+        "exception_network_request_failed":
+            MessageLookupByLibrary.simpleMessage(
+          "ネットワークリクエストが失敗しました",
+        ),
+        "exception_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
+          "この操作は許可されていません",
+        ),
+        "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
+          "リクエストが多すぎます。しばらく待ってから再試行してください",
+        ),
+        "exception_unknown":
+            MessageLookupByLibrary.simpleMessage("不明なエラーが発生しました"),
+        "exception_user_token_expired": MessageLookupByLibrary.simpleMessage(
+          "ユーザートークンの有効期限が切れました",
+        ),
+        "exception_weak_password": MessageLookupByLibrary.simpleMessage(
+          "パスワードが脆弱です",
+        ),
         "field_email": MessageLookupByLibrary.simpleMessage("メールアドレス"),
         "field_password": MessageLookupByLibrary.simpleMessage("パスワード"),
         "unit_letter": MessageLookupByLibrary.simpleMessage("文字"),

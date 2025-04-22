@@ -38,6 +38,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "exception_account_not_found": MessageLookupByLibrary.simpleMessage(
+          "Account not found",
+        ),
+        "exception_email_already_in_use": MessageLookupByLibrary.simpleMessage(
+          "This email address is already in use",
+        ),
+        "exception_invalid_email": MessageLookupByLibrary.simpleMessage(
+          "Please enter a valid email address",
+        ),
+        "exception_network_request_failed":
+            MessageLookupByLibrary.simpleMessage(
+          "Network request failed",
+        ),
+        "exception_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
+          "This operation is not allowed",
+        ),
+        "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
+          "Too many requests. Please try again later",
+        ),
+        "exception_unknown": MessageLookupByLibrary.simpleMessage(
+          "An unknown error has occurred",
+        ),
+        "exception_user_token_expired": MessageLookupByLibrary.simpleMessage(
+          "User token has expired",
+        ),
+        "exception_weak_password": MessageLookupByLibrary.simpleMessage(
+          "The password is too weak",
+        ),
         "field_email": MessageLookupByLibrary.simpleMessage("Email"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),
         "unit_letter": MessageLookupByLibrary.simpleMessage("characters"),

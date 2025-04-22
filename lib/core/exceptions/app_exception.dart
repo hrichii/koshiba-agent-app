@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:koshiba_agent_app/generated/l10n.dart';
 
 part 'app_exception.freezed.dart';
 part 'app_exception.g.dart';
@@ -7,10 +8,12 @@ part 'app_exception.g.dart';
 abstract interface class AppException with _$AppException {
   const factory AppException() = _AppException;
 
-  const AppException._();
-
   factory AppException.fromJson(Map<String, dynamic> json) =>
       _$AppExceptionFromJson(json);
+
+  const AppException._();
+
+  String get message => AppMessage.current.exception_unknown;
 }
 
 // 不明な例外
@@ -23,6 +26,9 @@ abstract class UnknownException
 
   factory UnknownException.fromJson(Map<String, dynamic> json) =>
       _$UnknownExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_unknown;
 }
 
 // 認証関連の例外
@@ -35,6 +41,9 @@ abstract class EmailAlreadyInUseException
 
   factory EmailAlreadyInUseException.fromJson(Map<String, dynamic> json) =>
       _$EmailAlreadyInUseExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_email_already_in_use;
 }
 
 @freezed
@@ -46,6 +55,9 @@ abstract class InvalidEmailException
 
   factory InvalidEmailException.fromJson(Map<String, dynamic> json) =>
       _$InvalidEmailExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_invalid_email;
 }
 
 @freezed
@@ -57,6 +69,9 @@ abstract class OperationNotAllowedException
 
   factory OperationNotAllowedException.fromJson(Map<String, dynamic> json) =>
       _$OperationNotAllowedExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_operation_not_allowed;
 }
 
 @freezed
@@ -68,6 +83,9 @@ abstract class WeakPasswordException
 
   factory WeakPasswordException.fromJson(Map<String, dynamic> json) =>
       _$WeakPasswordExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_weak_password;
 }
 
 @freezed
@@ -79,6 +97,9 @@ abstract class TooManyRequestsException
 
   factory TooManyRequestsException.fromJson(Map<String, dynamic> json) =>
       _$TooManyRequestsExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_too_many_requests;
 }
 
 @freezed
@@ -90,6 +111,9 @@ abstract class UserTokenExpiredException
 
   factory UserTokenExpiredException.fromJson(Map<String, dynamic> json) =>
       _$UserTokenExpiredExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_user_token_expired;
 }
 
 @freezed
@@ -102,6 +126,9 @@ abstract class NetworkRequestFailedException
 
   factory NetworkRequestFailedException.fromJson(Map<String, dynamic> json) =>
       _$NetworkRequestFailedExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_network_request_failed;
 }
 
 // アカウント関連の例外
@@ -114,4 +141,7 @@ abstract class AccountNotFoundException
 
   factory AccountNotFoundException.fromJson(Map<String, dynamic> json) =>
       _$AccountNotFoundExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_account_not_found;
 }
