@@ -7,7 +7,7 @@ extension FutureResultExt<T> on Future<Result<T, AppException>> {
     final result = await this;
     switch (result) {
       case ResultFailure(value: final appException):
-        Toast().showError(message: appException.toString());
+        Toast().showError(message: appException.message);
       case ResultSuccess():
     }
     return result;

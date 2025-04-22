@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 
@@ -21,17 +22,35 @@ abstract interface class AppException with _$AppException {
 abstract class UnknownException
     with _$UnknownException
     implements AppException {
-  const factory UnknownException() = _UnknownException;
+  const factory UnknownException({
+    String? description,
+  }) = _UnknownException;
   const UnknownException._();
 
   factory UnknownException.fromJson(Map<String, dynamic> json) =>
       _$UnknownExceptionFromJson(json);
 
   @override
-  String get message => AppMessage.current.exception_unknown;
+  String get message =>
+      AppMessage.current.exception_unknown +
+      (kDebugMode ? 'description $description' : '');
 }
 
 // 認証関連の例外
+@freezed
+abstract class InvalidCredentialException
+    with _$InvalidCredentialException
+    implements AppException {
+  const factory InvalidCredentialException() = _InvalidCredentialException;
+  const InvalidCredentialException._();
+
+  factory InvalidCredentialException.fromJson(Map<String, dynamic> json) =>
+      _$InvalidCredentialExceptionFromJson(json);
+
+  @override
+  String get message => AppMessage.current.exception_invalid_credential;
+}
+
 @freezed
 abstract class EmailAlreadyInUseException
     with _$EmailAlreadyInUseException

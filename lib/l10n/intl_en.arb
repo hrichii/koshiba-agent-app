@@ -74,8 +74,8 @@
         }
       }
     },
-    "exception_unknown": "An unknown error has occurred",
-    "@exception_unknown": {},
+    "exception_incalid_credential": "This credential is invalid",
+    "@exception_incalid_credential": {},
     "exception_email_already_in_use": "This email address is already in use",
     "@exception_email_already_in_use": {},
     "exception_invalid_email": "Please enter a valid email address",

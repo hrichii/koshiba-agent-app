@@ -13,9 +13,21 @@ Map<String, dynamic> _$AppExceptionToJson(_AppException instance) =>
     <String, dynamic>{};
 
 _UnknownException _$UnknownExceptionFromJson(Map<String, dynamic> json) =>
-    _UnknownException();
+    _UnknownException(
+      description: json['description'] as String?,
+    );
 
 Map<String, dynamic> _$UnknownExceptionToJson(_UnknownException instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+    };
+
+_InvalidCredentialException _$InvalidCredentialExceptionFromJson(
+        Map<String, dynamic> json) =>
+    _InvalidCredentialException();
+
+Map<String, dynamic> _$InvalidCredentialExceptionToJson(
+        _InvalidCredentialException instance) =>
     <String, dynamic>{};
 
 _EmailAlreadyInUseException _$EmailAlreadyInUseExceptionFromJson(

@@ -44,6 +44,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "exception_email_already_in_use": MessageLookupByLibrary.simpleMessage(
           "このメールアドレスは既に使用されています",
         ),
+        "exception_invalid_credential": MessageLookupByLibrary.simpleMessage(
+          "この認証情報は無効です",
+        ),
         "exception_invalid_email": MessageLookupByLibrary.simpleMessage(
           "有効なメールアドレスを入力してください",
         ),

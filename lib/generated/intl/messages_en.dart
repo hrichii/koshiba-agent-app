@@ -58,9 +58,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
           "Too many requests. Please try again later",
         ),
-        "exception_unknown": MessageLookupByLibrary.simpleMessage(
-          "An unknown error has occurred",
-        ),
         "exception_user_token_expired": MessageLookupByLibrary.simpleMessage(
           "User token has expired",
         ),

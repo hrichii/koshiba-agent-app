@@ -74,6 +74,9 @@
         }
       }
     },
+    
+    "exception_invalid_credential": "この認証情報は無効です",
+    "@exception_invalid_credential": {},
     "exception_invalid_email": "有効なメールアドレスを入力してください",
     "@exception_invalid_email": {},
     "exception_unknown": "不明なエラーが発生しました",

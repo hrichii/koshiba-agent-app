@@ -134,6 +134,16 @@ class AppMessage {
     );
   }
 
+  /// `この認証情報は無効です`
+  String get exception_invalid_credential {
+    return Intl.message(
+      'この認証情報は無効です',
+      name: 'exception_invalid_credential',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `有効なメールアドレスを入力してください`
   String get exception_invalid_email {
     return Intl.message(

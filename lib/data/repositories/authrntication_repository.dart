@@ -112,13 +112,15 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
       return ResultFailure(value: _mapFirebaseErrorToAppException(e.code));
-    } catch (_) {
-      return const ResultFailure(value: UnknownException());
+    } catch (e) {
+      return ResultFailure(value: UnknownException(description: e.toString()));
     }
   }
 
   AppException _mapFirebaseErrorToAppException(String code) {
     switch (code) {
+      case 'invalid-credential':
+        return const InvalidCredentialException();
       case 'email-already-in-use':
         return const EmailAlreadyInUseException();
       case 'invalid-email':
@@ -134,7 +136,7 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
       case 'network-request-failed':
         return const NetworkRequestFailedException();
       default:
-        return const UnknownException();
+        return UnknownException(description: code);
     }
   }
 }
