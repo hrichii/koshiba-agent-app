@@ -93,3 +93,13 @@ _AccountNotFoundException _$AccountNotFoundExceptionFromJson(
 Map<String, dynamic> _$AccountNotFoundExceptionToJson(
         _AccountNotFoundException instance) =>
     <String, dynamic>{};
+
+_ServerException _$ServerExceptionFromJson(Map<String, dynamic> json) =>
+    _ServerException(
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$ServerExceptionToJson(_ServerException instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+    };

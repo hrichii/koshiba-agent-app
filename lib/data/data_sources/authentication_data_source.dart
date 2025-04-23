@@ -1,52 +1,43 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:flutter/foundation.dart';
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
-import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
 import 'package:koshiba_agent_app/logic/models/access_token/access_token.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
-import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/logic/models/user_credential/user_credential.dart';
-import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_repository_interface.dart';
 import 'package:riverpod/riverpod.dart';
 
-final authenticationRepositoryProvider = Provider(
-  (ref) => AuthrnticationRepository(
-    clearCache: ref.read(cacheProvider).deleteAll,
-  ),
+final authenticationDataSourceProvider = Provider(
+  (ref) => AuthenticationDataSource(),
 );
 
-class AuthrnticationRepository implements AuthenticationRepositoryInterface {
-  AuthrnticationRepository({
-    required VoidCallback clearCache,
-  }) : _clearCache = clearCache;
-
+class AuthenticationDataSource {
   final _firebaseAuth = firebase_auth.FirebaseAuth.instance;
-  final VoidCallback _clearCache;
 
-  @override
-  Future<Result<UserCredential, AppException>> signUp(SignIn signInModel) =>
+  Future<Result<UserCredential, AppException>> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) =>
       _handleAuth(
         () => _firebaseAuth.createUserWithEmailAndPassword(
-          email: signInModel.email!,
-          password: signInModel.password!,
+          email: email,
+          password: password,
         ),
       );
 
-  @override
-  Future<Result<UserCredential, AppException>> signIn(SignIn signInModel) =>
+  Future<Result<UserCredential, AppException>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) =>
       _handleAuth(
         () => _firebaseAuth.signInWithEmailAndPassword(
-          email: signInModel.email!,
-          password: signInModel.password!,
+          email: email,
+          password: password,
         ),
       );
 
-  @override
   Future<Result<void, AppException>> signOut() async {
     try {
       await _firebaseAuth.signOut();
-      _clearCache();
       return const ResultSuccess(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return ResultError(value: _mapFirebaseErrorToAppException(e.code));
@@ -55,8 +46,7 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
     }
   }
 
-  @override
-  Result<User, AppException> getMe() {
+  Result<User, AppException> getCurrentUser() {
     final user = _firebaseAuth.currentUser;
     if (user == null) {
       return const ResultError(value: AccountNotFoundException());
@@ -71,15 +61,13 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
     );
   }
 
-  @override
-  Future<Result<void, AppException>> deleteMe() async {
+  Future<Result<void, AppException>> deleteCurrentUser() async {
     try {
       final user = _firebaseAuth.currentUser;
       if (user == null) {
         return const ResultError(value: AccountNotFoundException());
       }
       await user.delete();
-      _clearCache();
       return const ResultSuccess(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
       return ResultError(value: _mapFirebaseErrorToAppException(e.code));

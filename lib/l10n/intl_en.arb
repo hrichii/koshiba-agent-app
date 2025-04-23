@@ -101,5 +101,7 @@
     "exception_network_request_failed": "Network request failed",
     "@exception_network_request_failed": {},
     "exception_account_not_found": "Account not found",
-    "@exception_account_not_found": {}
+    "@exception_account_not_found": {},
+    "exception_server_error": "Server error",
+    "@exception_server_error": {}
 }

@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
-import 'package:koshiba_agent_app/data/repositories/authrntication_repository.dart';
+import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
@@ -74,7 +74,7 @@ class HomePage extends HookConsumerWidget {
           ),
           FilledButton(
             onPressed: () => ref
-                .read(authenticationRepositoryProvider)
+                .read(accountRepositoryProvider)
                 .signOut()
                 .withLoaderOverlay()
                 .withToastAtError()
@@ -84,7 +84,7 @@ class HomePage extends HookConsumerWidget {
           ),
           FilledButton(
             onPressed: () => ref
-                .read(authenticationRepositoryProvider)
+                .read(accountRepositoryProvider)
                 .deleteMe()
                 .withLoaderOverlay()
                 .withToastAtError()

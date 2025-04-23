@@ -877,4 +877,165 @@ class _AccountNotFoundException extends AccountNotFoundException
   }
 }
 
+/// @nodoc
+mixin _$ServerException implements DiagnosticableTreeMixin {
+  String? get description;
+
+  /// Create a copy of ServerException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ServerExceptionCopyWith<ServerException> get copyWith =>
+      _$ServerExceptionCopyWithImpl<ServerException>(
+          this as ServerException, _$identity);
+
+  /// Serializes this ServerException to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ServerException'))
+      ..add(DiagnosticsProperty('description', description));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ServerException &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServerException(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ServerExceptionCopyWith<$Res>
+    implements $AppExceptionCopyWith<$Res> {
+  factory $ServerExceptionCopyWith(
+          ServerException value, $Res Function(ServerException) _then) =
+      _$ServerExceptionCopyWithImpl;
+  @useResult
+  $Res call({String? description});
+}
+
+/// @nodoc
+class _$ServerExceptionCopyWithImpl<$Res>
+    implements $ServerExceptionCopyWith<$Res> {
+  _$ServerExceptionCopyWithImpl(this._self, this._then);
+
+  final ServerException _self;
+  final $Res Function(ServerException) _then;
+
+  /// Create a copy of ServerException
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? description = freezed,
+  }) {
+    return _then(_self.copyWith(
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ServerException extends ServerException with DiagnosticableTreeMixin {
+  const _ServerException({this.description}) : super._();
+  factory _ServerException.fromJson(Map<String, dynamic> json) =>
+      _$ServerExceptionFromJson(json);
+
+  @override
+  final String? description;
+
+  /// Create a copy of ServerException
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ServerExceptionCopyWith<_ServerException> get copyWith =>
+      __$ServerExceptionCopyWithImpl<_ServerException>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ServerExceptionToJson(
+      this,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'ServerException'))
+      ..add(DiagnosticsProperty('description', description));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ServerException &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, description);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ServerException(description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ServerExceptionCopyWith<$Res>
+    implements $ServerExceptionCopyWith<$Res> {
+  factory _$ServerExceptionCopyWith(
+          _ServerException value, $Res Function(_ServerException) _then) =
+      __$ServerExceptionCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? description});
+}
+
+/// @nodoc
+class __$ServerExceptionCopyWithImpl<$Res>
+    implements _$ServerExceptionCopyWith<$Res> {
+  __$ServerExceptionCopyWithImpl(this._self, this._then);
+
+  final _ServerException _self;
+  final $Res Function(_ServerException) _then;
+
+  /// Create a copy of ServerException
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? description = freezed,
+  }) {
+    return _then(_ServerException(
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
 // dart format on

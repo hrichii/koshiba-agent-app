@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:koshiba_agent_app/core/constants/app_route_path.dart';
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
-import 'package:koshiba_agent_app/data/repositories/authrntication_repository.dart';
+import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/ui/pages/chat/connected_chat_page.dart';
@@ -36,7 +36,7 @@ class Router extends _$Router {
             .contains(routerState.matchedLocation)) {
           return null;
         }
-        final resultUser = ref.read(authenticationRepositoryProvider).getMe();
+        final resultUser = ref.read(accountRepositoryProvider).getMe();
         switch (resultUser) {
           case ResultSuccess<User, AppException>():
             return null;

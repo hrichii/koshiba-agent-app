@@ -273,6 +273,16 @@ class AppMessage {
       args: [],
     );
   }
+
+  /// `サーバーに問題が発生しました`
+  String get exception_server_error {
+    return Intl.message(
+      'サーバーに問題が発生しました',
+      name: 'exception_server_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppMessage> {

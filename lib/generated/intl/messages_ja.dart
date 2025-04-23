@@ -62,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "exception_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
           "この操作は許可されていません",
         ),
+        "exception_server_error": MessageLookupByLibrary.simpleMessage(
+          "サーバーに問題が発生しました",
+        ),
         "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
           "リクエストが多すぎます。しばらく待ってから再試行してください",
         ),

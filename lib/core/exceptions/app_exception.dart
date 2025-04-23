@@ -164,3 +164,19 @@ abstract class AccountNotFoundException
   @override
   String get message => AppMessage.current.exception_account_not_found;
 }
+
+@freezed
+abstract class ServerException with _$ServerException implements AppException {
+  const factory ServerException({
+    String? description,
+  }) = _ServerException;
+  const ServerException._();
+
+  factory ServerException.fromJson(Map<String, dynamic> json) =>
+      _$ServerExceptionFromJson(json);
+
+  @override
+  String get message =>
+      AppMessage.current.exception_server_error +
+      (kDebugMode ? 'description $description' : '');
+}

@@ -104,5 +104,7 @@
     "exception_network_request_failed": "ネットワークリクエストが失敗しました",
     "@exception_network_request_failed": {},
     "exception_account_not_found": "アカウントが見つかりません",
-    "@exception_account_not_found": {}
+    "@exception_account_not_found": {},
+    "exception_server_error": "サーバーに問題が発生しました",
+    "@exception_server_error": {}
 }

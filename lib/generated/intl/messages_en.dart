@@ -60,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "exception_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
           "This operation is not allowed",
         ),
+        "exception_server_error": MessageLookupByLibrary.simpleMessage(
+          "Server error",
+        ),
         "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
           "Too many requests. Please try again later",
         ),

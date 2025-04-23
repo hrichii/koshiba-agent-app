@@ -1,5 +1,5 @@
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
-import 'package:koshiba_agent_app/data/repositories/authrntication_repository.dart';
+import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
@@ -11,7 +11,7 @@ part 'authentication_use_case.g.dart';
 @riverpod
 class AuthenticationUseCase extends _$AuthenticationUseCase {
   AuthenticationRepositoryInterface get _authenticationRepository =>
-      ref.read(authenticationRepositoryProvider);
+      ref.read(accountRepositoryProvider);
 
   @override
   void build() {}
