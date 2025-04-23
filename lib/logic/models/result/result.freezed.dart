@@ -161,18 +161,18 @@ class __$ResultSuccessCopyWithImpl<S, E, $Res>
 }
 
 /// @nodoc
-mixin _$ResultFailure<S, E> {
+mixin _$ResultError<S, E> {
   E get value;
 
-  /// Create a copy of ResultFailure
+  /// Create a copy of ResultError
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ResultFailureCopyWith<S, E, ResultFailure<S, E>> get copyWith =>
-      _$ResultFailureCopyWithImpl<S, E, ResultFailure<S, E>>(
-          this as ResultFailure<S, E>, _$identity);
+  $ResultErrorCopyWith<S, E, ResultError<S, E>> get copyWith =>
+      _$ResultErrorCopyWithImpl<S, E, ResultError<S, E>>(
+          this as ResultError<S, E>, _$identity);
 
-  /// Serializes this ResultFailure to a JSON map.
+  /// Serializes this ResultError to a JSON map.
   Map<String, dynamic> toJson(
       Object? Function(S) toJsonS, Object? Function(E) toJsonE);
 
@@ -180,7 +180,7 @@ mixin _$ResultFailure<S, E> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ResultFailure<S, E> &&
+            other is ResultError<S, E> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -191,28 +191,28 @@ mixin _$ResultFailure<S, E> {
 
   @override
   String toString() {
-    return 'ResultFailure<$S, $E>(value: $value)';
+    return 'ResultError<$S, $E>(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class $ResultFailureCopyWith<S, E, $Res> {
-  factory $ResultFailureCopyWith(
-          ResultFailure<S, E> value, $Res Function(ResultFailure<S, E>) _then) =
-      _$ResultFailureCopyWithImpl;
+abstract mixin class $ResultErrorCopyWith<S, E, $Res> {
+  factory $ResultErrorCopyWith(
+          ResultError<S, E> value, $Res Function(ResultError<S, E>) _then) =
+      _$ResultErrorCopyWithImpl;
   @useResult
   $Res call({E value});
 }
 
 /// @nodoc
-class _$ResultFailureCopyWithImpl<S, E, $Res>
-    implements $ResultFailureCopyWith<S, E, $Res> {
-  _$ResultFailureCopyWithImpl(this._self, this._then);
+class _$ResultErrorCopyWithImpl<S, E, $Res>
+    implements $ResultErrorCopyWith<S, E, $Res> {
+  _$ResultErrorCopyWithImpl(this._self, this._then);
 
-  final ResultFailure<S, E> _self;
-  final $Res Function(ResultFailure<S, E>) _then;
+  final ResultError<S, E> _self;
+  final $Res Function(ResultError<S, E>) _then;
 
-  /// Create a copy of ResultFailure
+  /// Create a copy of ResultError
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -230,35 +230,34 @@ class _$ResultFailureCopyWithImpl<S, E, $Res>
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _ResultFailure<S, E> extends ResultFailure<S, E> {
-  const _ResultFailure({required this.value}) : super._();
-  factory _ResultFailure.fromJson(Map<String, dynamic> json,
+class _ResultError<S, E> extends ResultError<S, E> {
+  const _ResultError({required this.value}) : super._();
+  factory _ResultError.fromJson(Map<String, dynamic> json,
           S Function(Object?) fromJsonS, E Function(Object?) fromJsonE) =>
-      _$ResultFailureFromJson(json, fromJsonS, fromJsonE);
+      _$ResultErrorFromJson(json, fromJsonS, fromJsonE);
 
   @override
   final E value;
 
-  /// Create a copy of ResultFailure
+  /// Create a copy of ResultError
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ResultFailureCopyWith<S, E, _ResultFailure<S, E>> get copyWith =>
-      __$ResultFailureCopyWithImpl<S, E, _ResultFailure<S, E>>(
-          this, _$identity);
+  _$ResultErrorCopyWith<S, E, _ResultError<S, E>> get copyWith =>
+      __$ResultErrorCopyWithImpl<S, E, _ResultError<S, E>>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson(
       Object? Function(S) toJsonS, Object? Function(E) toJsonE) {
-    return _$ResultFailureToJson<S, E>(this, toJsonS, toJsonE);
+    return _$ResultErrorToJson<S, E>(this, toJsonS, toJsonE);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResultFailure<S, E> &&
+            other is _ResultError<S, E> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -269,36 +268,37 @@ class _ResultFailure<S, E> extends ResultFailure<S, E> {
 
   @override
   String toString() {
-    return 'ResultFailure<$S, $E>(value: $value)';
+    return 'ResultError<$S, $E>(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$ResultFailureCopyWith<S, E, $Res>
-    implements $ResultFailureCopyWith<S, E, $Res> {
-  factory _$ResultFailureCopyWith(_ResultFailure<S, E> value,
-      $Res Function(_ResultFailure<S, E>) _then) = __$ResultFailureCopyWithImpl;
+abstract mixin class _$ResultErrorCopyWith<S, E, $Res>
+    implements $ResultErrorCopyWith<S, E, $Res> {
+  factory _$ResultErrorCopyWith(
+          _ResultError<S, E> value, $Res Function(_ResultError<S, E>) _then) =
+      __$ResultErrorCopyWithImpl;
   @override
   @useResult
   $Res call({E value});
 }
 
 /// @nodoc
-class __$ResultFailureCopyWithImpl<S, E, $Res>
-    implements _$ResultFailureCopyWith<S, E, $Res> {
-  __$ResultFailureCopyWithImpl(this._self, this._then);
+class __$ResultErrorCopyWithImpl<S, E, $Res>
+    implements _$ResultErrorCopyWith<S, E, $Res> {
+  __$ResultErrorCopyWithImpl(this._self, this._then);
 
-  final _ResultFailure<S, E> _self;
-  final $Res Function(_ResultFailure<S, E>) _then;
+  final _ResultError<S, E> _self;
+  final $Res Function(_ResultError<S, E>) _then;
 
-  /// Create a copy of ResultFailure
+  /// Create a copy of ResultError
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_ResultFailure<S, E>(
+    return _then(_ResultError<S, E>(
       value: freezed == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable

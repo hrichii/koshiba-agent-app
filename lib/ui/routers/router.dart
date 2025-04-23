@@ -7,13 +7,12 @@ import 'package:koshiba_agent_app/data/repositories/authrntication_repository.da
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/ui/pages/chat/connected_chat_page.dart';
-import 'package:koshiba_agent_app/ui/pages/home/connected_home_page.dart';
+import 'package:koshiba_agent_app/ui/pages/home/home_page.dart';
 import 'package:koshiba_agent_app/ui/pages/reset_password_send/connected_reset_password_send_page.dart';
 import 'package:koshiba_agent_app/ui/pages/setting/connected_setting_page.dart';
 import 'package:koshiba_agent_app/ui/pages/sign_in/connected_sign_in_page.dart';
 import 'package:koshiba_agent_app/ui/pages/sign_up_send/connected_sign_up_send_page.dart';
 import 'package:koshiba_agent_app/ui/pages/sign_up_verify/connected_sign_up_verify_page.dart';
-import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'package:koshiba_agent_app/ui/routers/authorized/stateful_shell_branch/authorized_stateful_shell_route_data.dart';
@@ -33,11 +32,15 @@ class Router extends _$Router {
     final router = GoRouter(
       initialLocation: AppRoutePath.home,
       redirect: (_, routerState) {
+        if (AppRoutePath.unauthorizedPathList
+            .contains(routerState.matchedLocation)) {
+          return null;
+        }
         final resultUser = ref.read(authenticationRepositoryProvider).getMe();
         switch (resultUser) {
           case ResultSuccess<User, AppException>():
             return null;
-          case ResultFailure<User, AppException>():
+          case ResultError<User, AppException>():
             return AppRoutePath.singIn;
         }
       },

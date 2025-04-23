@@ -46,20 +46,21 @@ class Toast {
 
   void showSuccess({required String message}) {
     _show(
-        toastEntity:
-            _ToastEntity(message: message, toastEnum: _ToastEnum.success));
+      toastEntity:
+          _ToastEntity(message: message, toastEnum: _ToastEnum.success),
+    );
   }
 
   void showWarning({required String message}) {
     _show(
-        toastEntity:
-            _ToastEntity(message: message, toastEnum: _ToastEnum.warn));
+      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.warn),
+    );
   }
 
   void showError({required String message}) {
     _show(
-        toastEntity:
-            _ToastEntity(message: message, toastEnum: _ToastEnum.error));
+      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.error),
+    );
   }
 
   /// トーストを表示する。
@@ -118,10 +119,12 @@ class _ToastStateFulState extends State<_ToastStateful>
     _offsetAnimation = Tween<Offset>(
       begin: const Offset(0, -1),
       end: const Offset(0, 0),
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
     _animationController.forward();
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
@@ -187,28 +190,28 @@ class _ToastWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: AppSpace.xs4,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpace.xs4),
-                    child: Icon(
-                      iconData,
-                      color: iconColor,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppSpace.xs4,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(AppSpace.xs4),
+                  child: Icon(
+                    iconData,
+                    color: iconColor,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Text(
+                      label,
+                      style: AppTextStyle.bodyLarge16.withW300().withGray100(),
+                      maxLines: 3,
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 3),
-                      child: Text(
-                        label,
-                        style:
-                            AppTextStyle.bodyLarge16.withW300().withGray100(),
-                        maxLines: 3,
-                      ),
-                    ),
-                  )
-                ])
+                ),
+              ],
+            ),
           ],
         ),
       );

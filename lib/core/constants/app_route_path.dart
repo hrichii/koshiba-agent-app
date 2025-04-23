@@ -16,4 +16,14 @@ class AppRoutePath {
   static const String chatDetail = '/chats/:chatId';
   static const String setting = '/settings';
   static const String updateMyPassword = '/me/password';
+
+  static const List<String> unauthorizedPathList = [
+    singIn,
+    signUpSend,
+    signUpVerify,
+    signUpPassword,
+    resetPasswordSend,
+    resetPasswordVerify,
+    resetPasswordUpdate,
+  ];
 }

@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
-import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
-import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_for_password.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
 
-class ConnectedSignInPage extends ConsumerWidget {
-  const ConnectedSignInPage({super.key});
+class SignUpSendPage extends StatelessWidget {
+  const SignUpSendPage({
+    required this.onSubmit,
+    super.key,
+  });
+  final Future<void> Function(SignIn) onSubmit;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Future<void> onSubmit(signInModel) => ref
-        .read(authenticationUseCaseProvider.notifier)
-        .signIn(signInModel)
-        .withLoaderOverlay()
-        .withToastAtError()
-        .onSuccessWithoutValue(const HomeRouteData().go);
-    return Scaffold(
-      body: SignInFormBuilder(
+  Widget build(BuildContext context) => SignInFormBuilder(
         model: const SignIn(),
         builder: (context, form, _) => Column(
           children: [
@@ -47,16 +38,10 @@ class ConnectedSignInPage extends ConsumerWidget {
             ReactiveSignInFormConsumer(
               builder: (_, form, ___) => FilledButton(
                 onPressed: () => onSubmit(form.model),
-                child: Text(AppMessage.current.common_sign_in),
+                child: Text(AppMessage.current.common_sign_up),
               ),
-            ),
-            TextButton(
-              onPressed: () => const SignUpSendRouteData().go(context),
-              child: Text(AppMessage.current.common_sign_up),
             ),
           ],
         ),
-      ),
-    );
-  }
+      );
 }

@@ -37,14 +37,14 @@ class MeUseCase extends _$MeUseCase {
       case ResultSuccess<List<ChatRoom>, AppException>(:final value):
         state = ResourceDone<List<ChatRoom>>(value: value);
         return const ResultSuccess(value: null);
-      case ResultFailure<List<ChatRoom>, AppException>(:final value):
+      case ResultError<List<ChatRoom>, AppException>(:final value):
         state = switch (preState) {
           ResourceDone<List<ChatRoom>>() => preState,
           ResourceInProgress<List<ChatRoom>>() ||
           ResourceError<List<ChatRoom>>() =>
             ResourceError<List<ChatRoom>>(value: value),
         };
-        return ResultFailure(value: value);
+        return ResultError(value: value);
     }
   }
 
@@ -52,8 +52,8 @@ class MeUseCase extends _$MeUseCase {
     switch (await _chatListRepository.addChatRoom(chatRoom)) {
       case ResultSuccess<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultFailure<void, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<void, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 
@@ -61,8 +61,8 @@ class MeUseCase extends _$MeUseCase {
     switch (await _chatListRepository.deleteChatRoom(chatRoomId)) {
       case ResultSuccess<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultFailure<void, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<void, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 
@@ -70,8 +70,8 @@ class MeUseCase extends _$MeUseCase {
     switch (await _chatListRepository.updateChatRoom(chatRoom)) {
       case ResultSuccess<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultFailure<void, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<void, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 }

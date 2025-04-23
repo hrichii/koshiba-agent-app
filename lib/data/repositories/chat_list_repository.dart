@@ -35,7 +35,7 @@ class ChatListRepository implements ChatListRepositoryInterface {
       case final ResultSuccess<List<ChatRoom>, AppException> success:
         _cacheDataSource.save(success.value);
         return success;
-      case final ResultFailure<List<ChatRoom>, AppException> failure:
+      case final ResultError<List<ChatRoom>, AppException> failure:
         return failure;
     }
   }
@@ -50,8 +50,8 @@ class ChatListRepository implements ChatListRepositoryInterface {
           _cacheDataSource.save(newChatRoomList);
         }
         return const ResultSuccess(value: null);
-      case ResultFailure<ChatRoom, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<ChatRoom, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 
@@ -66,8 +66,8 @@ class ChatListRepository implements ChatListRepositoryInterface {
           _cacheDataSource.save(newChatRoomList);
         }
         return success;
-      case ResultFailure<void, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<void, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 
@@ -85,8 +85,8 @@ class ChatListRepository implements ChatListRepositoryInterface {
           _cacheDataSource.save(newChatRoomList);
         }
         return const ResultSuccess(value: null);
-      case ResultFailure<ChatRoom, AppException>(:final value):
-        return ResultFailure(value: value);
+      case ResultError<ChatRoom, AppException>(:final value):
+        return ResultError(value: value);
     }
   }
 

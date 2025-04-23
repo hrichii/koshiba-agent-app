@@ -211,7 +211,7 @@ extension $SignUpVerifyRouteDataExtension on SignUpVerifyRouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerHash() => r'ca85a6d1e9f2d9137cfd8958a164ee47ad9052d7';
+String _$routerHash() => r'8906bce3abf862de0d2d163e26163811698af6b3';
 
 /// See also [Router].
 @ProviderFor(Router)

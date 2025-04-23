@@ -27,19 +27,18 @@ abstract class ResultSuccess<S, E> extends Result<S, E>
 }
 
 @Freezed(genericArgumentFactories: true)
-abstract class ResultFailure<S, E> extends Result<S, E>
-    with _$ResultFailure<S, E> {
-  const factory ResultFailure({
+abstract class ResultError<S, E> extends Result<S, E> with _$ResultError<S, E> {
+  const factory ResultError({
     required E value,
-  }) = _ResultFailure;
-  const ResultFailure._();
+  }) = _ResultError;
+  const ResultError._();
 
-  factory ResultFailure.fromJson(
+  factory ResultError.fromJson(
     Map<String, dynamic> json,
     S Function(Object?) fromJsonS,
     E Function(Object?) fromJsonE,
   ) =>
-      _$ResultFailureFromJson(
+      _$ResultErrorFromJson(
         json,
         fromJsonS,
         fromJsonE,

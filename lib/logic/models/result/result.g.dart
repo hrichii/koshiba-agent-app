@@ -24,17 +24,17 @@ Map<String, dynamic> _$ResultSuccessToJson<S, E>(
       'value': toJsonS(instance.value),
     };
 
-_ResultFailure<S, E> _$ResultFailureFromJson<S, E>(
+_ResultError<S, E> _$ResultErrorFromJson<S, E>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
   E Function(Object? json) fromJsonE,
 ) =>
-    _ResultFailure<S, E>(
+    _ResultError<S, E>(
       value: fromJsonE(json['value']),
     );
 
-Map<String, dynamic> _$ResultFailureToJson<S, E>(
-  _ResultFailure<S, E> instance,
+Map<String, dynamic> _$ResultErrorToJson<S, E>(
+  _ResultError<S, E> instance,
   Object? Function(S value) toJsonS,
   Object? Function(E value) toJsonE,
 ) =>

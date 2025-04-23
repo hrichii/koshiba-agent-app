@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
+import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
+import 'package:koshiba_agent_app/data/repositories/authrntication_repository.dart';
+import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/logic/usecases/chat_list/chat_list_use_case.dart';
+import 'package:koshiba_agent_app/ui/routers/router.dart';
 
-class ConnectedHomePage extends HookConsumerWidget {
-  const ConnectedHomePage({super.key});
+class HomePage extends HookConsumerWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -66,6 +71,28 @@ class ConnectedHomePage extends HookConsumerWidget {
                       ),
                     ),
             child: const Text('updateChatRoom'),
+          ),
+          FilledButton(
+            onPressed: () => ref
+                .read(authenticationRepositoryProvider)
+                .signOut()
+                .withLoaderOverlay()
+                .withToastAtError()
+                .withToastAtSuccess((_) => AppMessage.current.sign_out_success)
+                .onSuccessWithoutValue(const SignInRouteData().go),
+            child: const Text('signOut'),
+          ),
+          FilledButton(
+            onPressed: () => ref
+                .read(authenticationRepositoryProvider)
+                .deleteMe()
+                .withLoaderOverlay()
+                .withToastAtError()
+                .withToastAtSuccess(
+                  (_) => AppMessage.current.account_delete_success,
+                )
+                .onSuccessWithoutValue(const SignInRouteData().go),
+            child: const Text('アカウント削除'),
           ),
         ],
       ),

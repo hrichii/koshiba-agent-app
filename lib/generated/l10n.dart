@@ -59,6 +59,46 @@ class AppMessage {
     return Intl.message('サインイン', name: 'common_sign_in', desc: '', args: []);
   }
 
+  /// `サインアウト`
+  String get common_sign_out {
+    return Intl.message('サインアウト', name: 'common_sign_out', desc: '', args: []);
+  }
+
+  /// `サインアップ`
+  String get common_sign_up {
+    return Intl.message('サインアップ', name: 'common_sign_up', desc: '', args: []);
+  }
+
+  /// `アカウント登録が完了しました`
+  String get sign_up_success {
+    return Intl.message(
+      'アカウント登録が完了しました',
+      name: 'sign_up_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `アカウントを削除しました`
+  String get account_delete_success {
+    return Intl.message(
+      'アカウントを削除しました',
+      name: 'account_delete_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `サインアウトしました`
+  String get sign_out_success {
+    return Intl.message(
+      'サインアウトしました',
+      name: 'sign_out_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `メールアドレス`
   String get field_email {
     return Intl.message('メールアドレス', name: 'field_email', desc: '', args: []);

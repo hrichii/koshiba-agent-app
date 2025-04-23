@@ -49,9 +49,9 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
       _clearCache();
       return const ResultSuccess(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultFailure(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
     } catch (_) {
-      return const ResultFailure(value: UnknownException());
+      return const ResultError(value: UnknownException());
     }
   }
 
@@ -59,7 +59,7 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
   Result<User, AppException> getMe() {
     final user = _firebaseAuth.currentUser;
     if (user == null) {
-      return const ResultFailure(value: AccountNotFoundException());
+      return const ResultError(value: AccountNotFoundException());
     }
     return ResultSuccess(
       value: User(
@@ -76,15 +76,15 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
     try {
       final user = _firebaseAuth.currentUser;
       if (user == null) {
-        return const ResultFailure(value: AccountNotFoundException());
+        return const ResultError(value: AccountNotFoundException());
       }
       await user.delete();
       _clearCache();
       return const ResultSuccess(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultFailure(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
     } catch (_) {
-      return const ResultFailure(value: UnknownException());
+      return const ResultError(value: UnknownException());
     }
   }
 
@@ -111,9 +111,9 @@ class AuthrnticationRepository implements AuthenticationRepositoryInterface {
         ),
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultFailure(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
     } catch (e) {
-      return ResultFailure(value: UnknownException(description: e.toString()));
+      return ResultError(value: UnknownException(description: e.toString()));
     }
   }
 

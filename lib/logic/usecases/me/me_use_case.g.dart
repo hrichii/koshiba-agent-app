@@ -6,7 +6,7 @@ part of 'me_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$meUseCaseHash() => r'3ff66e2a91a2f5c62e8bc1a20085a57466cccbda';
+String _$meUseCaseHash() => r'18d30c098bbfdb46f663c65241fbf99b861462c4';
 
 /// See also [MeUseCase].
 @ProviderFor(MeUseCase)

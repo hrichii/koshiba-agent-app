@@ -4,9 +4,9 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class ReactiveTextFieldWithScroll<T> extends HookWidget {
   const ReactiveTextFieldWithScroll({
-    super.key,
     required this.formControl,
     required this.decoration,
+    super.key,
     this.textInputAction,
     this.keyboardType,
     this.obscureText = false,

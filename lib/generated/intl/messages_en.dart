@@ -38,7 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account_delete_success": MessageLookupByLibrary.simpleMessage(
+          "Account deleted",
+        ),
         "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "common_sign_out": MessageLookupByLibrary.simpleMessage("Sign out"),
+        "common_sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "exception_account_not_found": MessageLookupByLibrary.simpleMessage(
           "Account not found",
         ),
@@ -66,6 +71,12 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
         "field_email": MessageLookupByLibrary.simpleMessage("Email"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "sign_out_success": MessageLookupByLibrary.simpleMessage(
+          "Sign out completed",
+        ),
+        "sign_up_success": MessageLookupByLibrary.simpleMessage(
+          "Account registration completed",
+        ),
         "unit_letter": MessageLookupByLibrary.simpleMessage("characters"),
         "validation_alpha_numeric": m0,
         "validation_max_length": m1,

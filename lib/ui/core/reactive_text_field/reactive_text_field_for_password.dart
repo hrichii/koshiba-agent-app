@@ -4,20 +4,19 @@ import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_fiel
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ReactiveTextFieldForPassword<T> extends StatefulWidget {
+  const ReactiveTextFieldForPassword({
+    required this.formControl,
+    required this.decoration,
+    super.key,
+    this.textInputAction,
+    this.keyboardType,
+    this.onSubmitted,
+  });
   final FormControl<T>? formControl;
   final InputDecoration decoration;
   final TextInputAction? textInputAction;
   final TextInputType? keyboardType;
   final ReactiveFormFieldCallback<T>? onSubmitted;
-
-  const ReactiveTextFieldForPassword({
-    super.key,
-    required this.formControl,
-    required this.decoration,
-    this.textInputAction,
-    this.keyboardType,
-    this.onSubmitted,
-  });
 
   @override
   State<ReactiveTextFieldForPassword<T>> createState() =>
