@@ -48,7 +48,7 @@ class AccountRepository implements AuthenticationRepositoryInterface {
         final accountCreateDto = AccountCreateDto(
           uid: userCredential.user!.id,
           email: userCredential.user!.email!,
-          // TODO name:
+          // TODO(hrichii): nameを追加する可能性がある
         );
         final createResult = await _accountDataSource.create(accountCreateDto);
         if (createResult case ResultError<void, AppException>()) {

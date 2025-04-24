@@ -17,3 +17,23 @@ docker compose up
 ```sh
 curl -N -H "Accept: text/event-stream" http://localhost:10000/.sse
 ```
+
+## Web
+
+アクセス先 https://koshiba-agent-bcc2e.web.app
+
+公開前に他のユーザーに表示したい場合は、プレビュー チャネルを使用できる。
+```sh
+CHANNEL_ID=hogehoge
+firebase hosting:channel:deploy ${CHANNEL_ID}
+```
+公開コマンド
+```sh
+firebase deploy
+```
+
+公開停止コマンド
+```sh
+firebase hosting:disable
+```
+
