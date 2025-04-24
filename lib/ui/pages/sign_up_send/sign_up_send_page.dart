@@ -12,36 +12,39 @@ class SignUpSendPage extends StatelessWidget {
   final Future<void> Function(SignIn) onSubmit;
 
   @override
-  Widget build(BuildContext context) => SignInFormBuilder(
-        model: const SignIn(),
-        builder: (context, form, _) => Column(
-          children: [
-            ReactiveTextFieldWithScroll<String>(
-              formControl: form.emailControl,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.email_outlined),
-                hintText: AppMessage.current.field_email,
+  Widget build(BuildContext context) => Center(
+        child: SignInFormBuilder(
+          model: const SignIn(),
+          builder: (context, form, _) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ReactiveTextFieldWithScroll<String>(
+                formControl: form.emailControl,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.email_outlined),
+                  hintText: AppMessage.current.field_email,
+                ),
               ),
-            ),
-            ReactiveTextFieldForPassword(
-              formControl: form.passwordControl,
-              onSubmitted: (_) {},
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.key_outlined),
-                hintText: AppMessage.current.field_password,
+              ReactiveTextFieldForPassword(
+                formControl: form.passwordControl,
+                onSubmitted: (_) {},
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.key_outlined),
+                  hintText: AppMessage.current.field_password,
+                ),
               ),
-            ),
-            ReactiveSignInFormConsumer(
-              builder: (_, form, ___) => FilledButton(
-                onPressed: () => onSubmit(form.model),
-                child: Text(AppMessage.current.common_sign_up),
+              ReactiveSignInFormConsumer(
+                builder: (_, form, ___) => FilledButton(
+                  onPressed: () => onSubmit(form.model),
+                  child: Text(AppMessage.current.common_sign_up),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }

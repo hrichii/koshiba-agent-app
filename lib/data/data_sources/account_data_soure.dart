@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
+import 'package:koshiba_agent_app/data/data_sources/firestore_util.dart';
 import 'package:koshiba_agent_app/data/dtos/account_create_dto/account_create_dto.dart';
 import 'package:koshiba_agent_app/data/dtos/account_dto/account_dto.dart';
 import 'package:koshiba_agent_app/data/dtos/account_update_dto/account_update_dto.dart';
-import 'package:koshiba_agent_app/data/extnsions/firestore_ext.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -13,7 +13,7 @@ final accountDataSourceProvider = Provider(
 
 class AccountDataSource {
   final _accountsRef =
-      FirebaseFirestore.instance.collectionFromEnum(CollectionEnum.accounts);
+      FirestoreUtil.collectionFromEnum(CollectionEnum.accounts);
 
   /// 共通のエラーハンドリングを行うヘルパーメソッド
   Future<Result<T, AppException>> _handleFirestoreOperation<T>(

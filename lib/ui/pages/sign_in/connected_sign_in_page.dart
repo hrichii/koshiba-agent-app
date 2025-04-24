@@ -21,40 +21,43 @@ class ConnectedSignInPage extends ConsumerWidget {
         .withToastAtError()
         .onSuccessWithoutValue(const HomeRouteData().go);
     return Scaffold(
-      body: SignInFormBuilder(
-        model: const SignIn(),
-        builder: (context, form, _) => Column(
-          children: [
-            ReactiveTextFieldWithScroll<String>(
-              formControl: form.emailControl,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.email_outlined),
-                hintText: AppMessage.current.field_email,
+      body: Center(
+        child: SignInFormBuilder(
+          model: const SignIn(),
+          builder: (context, form, _) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ReactiveTextFieldWithScroll<String>(
+                formControl: form.emailControl,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.email_outlined),
+                  hintText: AppMessage.current.field_email,
+                ),
               ),
-            ),
-            ReactiveTextFieldForPassword(
-              formControl: form.passwordControl,
-              onSubmitted: (_) {},
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.key_outlined),
-                hintText: AppMessage.current.field_password,
+              ReactiveTextFieldForPassword(
+                formControl: form.passwordControl,
+                onSubmitted: (_) {},
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.key_outlined),
+                  hintText: AppMessage.current.field_password,
+                ),
               ),
-            ),
-            ReactiveSignInFormConsumer(
-              builder: (_, form, ___) => FilledButton(
-                onPressed: () => onSubmit(form.model),
-                child: Text(AppMessage.current.common_sign_in),
+              ReactiveSignInFormConsumer(
+                builder: (_, form, ___) => FilledButton(
+                  onPressed: () => onSubmit(form.model),
+                  child: Text(AppMessage.current.common_sign_in),
+                ),
               ),
-            ),
-            TextButton(
-              onPressed: () => const SignUpSendRouteData().go(context),
-              child: Text(AppMessage.current.common_sign_up),
-            ),
-          ],
+              TextButton(
+                onPressed: () => const SignUpSendRouteData().go(context),
+                child: Text(AppMessage.current.common_sign_up),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -9,4 +9,5 @@ class AppEnv {
   static const aboutDialectUrl = String.fromEnvironment('ABOUT_DIALECT_URL');
   static const adIosAppId = String.fromEnvironment('AD_IOS_APP_ID');
   static const adAndroidAppId = String.fromEnvironment('AD_ANDROID_APP_ID');
+  static const databaseId = String.fromEnvironment('DATABASE_ID');
 }
