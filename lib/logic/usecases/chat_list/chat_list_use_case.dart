@@ -33,7 +33,7 @@ class ChatListUseCase extends _$ChatListUseCase {
   }) async {
     final preState = state;
     state = stateAtInProgress;
-    switch (await _chatListRepository.getChatList()) {
+    switch (await _chatListRepository.getChatRoomList()) {
       case ResultSuccess<List<ChatRoom>, AppException>(:final value):
         state = ResourceDone<List<ChatRoom>>(value: value);
         return const ResultSuccess(value: null);

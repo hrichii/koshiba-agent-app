@@ -3,11 +3,11 @@ import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:riverpod/riverpod.dart';
 
-final apiDataSourceProvider = Provider(
-  (ref) => ApiDataSource(),
+final chatDataSourceProvider = Provider(
+  (ref) => ChatDataSource(),
 );
 
-class ApiDataSource {
+class ChatDataSource {
   Future<Result<List<ChatRoom>, AppException>> getChatRoomList() async {
     await Future.delayed(const Duration(seconds: 2));
     return ResultSuccess(
