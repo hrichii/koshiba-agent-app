@@ -38,20 +38,20 @@ class AuthenticationDataSource {
   Future<Result<void, AppException>> signOut() async {
     try {
       await _firebaseAuth.signOut();
-      return const ResultSuccess(value: null);
+      return const ResultOk(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
     } catch (_) {
-      return const ResultError(value: UnknownException());
+      return const ResultNg(value: UnknownException());
     }
   }
 
   Result<User, AppException> getCurrentUser() {
     final user = _firebaseAuth.currentUser;
     if (user == null) {
-      return const ResultError(value: AccountNotFoundException());
+      return const ResultNg(value: AccountNotFoundException());
     }
-    return ResultSuccess(
+    return ResultOk(
       value: User(
         id: user.uid,
         email: user.email,
@@ -65,14 +65,14 @@ class AuthenticationDataSource {
     try {
       final user = _firebaseAuth.currentUser;
       if (user == null) {
-        return const ResultError(value: AccountNotFoundException());
+        return const ResultNg(value: AccountNotFoundException());
       }
       await user.delete();
-      return const ResultSuccess(value: null);
+      return const ResultOk(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
     } catch (_) {
-      return const ResultError(value: UnknownException());
+      return const ResultNg(value: UnknownException());
     }
   }
 
@@ -83,7 +83,7 @@ class AuthenticationDataSource {
       final userCredential = await authMethod();
       final user = userCredential.user;
 
-      return ResultSuccess(
+      return ResultOk(
         value: UserCredential(
           user: user == null
               ? null
@@ -99,9 +99,9 @@ class AuthenticationDataSource {
         ),
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultError(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
     } catch (e) {
-      return ResultError(value: UnknownException(description: e.toString()));
+      return ResultNg(value: UnknownException(description: e.toString()));
     }
   }
 

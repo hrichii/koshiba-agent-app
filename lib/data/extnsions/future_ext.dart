@@ -10,13 +10,13 @@ extension FutureExt<T> on Future<T> {
   }) async {
     try {
       final result = await this;
-      return ResultSuccess(value: map(result));
+      return ResultOk(value: map(result));
     } on FirebaseException catch (e) {
-      return ResultError(
+      return ResultNg(
         value: ServerException(description: e.code + (e.message ?? '')),
       );
     } catch (e) {
-      return ResultError(value: UnknownException(description: e.toString()));
+      return ResultNg(value: UnknownException(description: e.toString()));
     }
   }
 }

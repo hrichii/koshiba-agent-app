@@ -18,6 +18,6 @@ _ChatRoom _$ChatRoomFromJson(Map<String, dynamic> json) => _ChatRoom(
 Map<String, dynamic> _$ChatRoomToJson(_ChatRoom instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'chatList': instance.chatList,
+      'chatList': instance.chatList.map((e) => e.toJson()).toList(),
       'createdAt': instance.createdAt.toIso8601String(),
     };

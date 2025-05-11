@@ -1,23 +1,16 @@
 {
     "@@locale": "ja",
     "common_sign_in": "サインイン",
-    "@common_sign_in": {},
     "common_sign_out": "サインアウト",
-    "@common_sign_out": {},
     "common_sign_up": "サインアップ",
-    "@common_sign_up": {},
     "sign_up_success": "アカウント登録が完了しました",
-    "@sign_up_success": {},
     "account_delete_success": "アカウントを削除しました",
-    "@account_delete_success": {},
     "sign_out_success": "サインアウトしました",
-    "@sign_out_success": {},
+    "meeting_register_success": "ミーティング登録が完了しました",
     "field_email": "メールアドレス",
-    "@field_email": {},
     "field_password": "パスワード",
-    "@field_password": {},
+    "field_meeting_url": "ミーティングURL",
     "unit_letter": "文字",
-    "@unit_letter": {},
     "validation_required": "{fieldName}を入力してください",
     "@validation_required": {
       "placeholders": {
@@ -84,27 +77,36 @@
         }
       }
     },
-    
+
+    "i200001": "リクエストに成功しました",
+
+    "e410001": "この認証情報は無効です",
+    "e410002": "ユーザートークンの有効期限が切れました",
+    "e410003": "アカウントが見つかりません",
+    "e410004": "この操作は許可されていません",
+  
+    "e420001": "有効なメールアドレスを入力してください",
+    "e420002": "このメールアドレスは既に使用されています",
+    "e420003": "パスワードが脆弱です",
+  
+    "e430001": "想定外のレスポンスを取得しました",
+    "e430002": "ネットワークリクエストが失敗しました",
+    "e430003": "リクエストが多すぎます。しばらく待ってから再試行してください",
+    "e430004": "リクエストが不正です",
+    "e430005": "リソースが既に存在します",
+  
+    "e500001": "サーバーに問題が発生しました",
+  
+    "ec00001": "不明なエラーが発生しました",
     "exception_invalid_credential": "この認証情報は無効です",
-    "@exception_invalid_credential": {},
     "exception_invalid_email": "有効なメールアドレスを入力してください",
-    "@exception_invalid_email": {},
     "exception_unknown": "不明なエラーが発生しました",
-    "@exception_unknown": {},
     "exception_email_already_in_use": "このメールアドレスは既に使用されています",
-    "@exception_email_already_in_use": {},
     "exception_operation_not_allowed": "この操作は許可されていません",
-    "@exception_operation_not_allowed": {},
     "exception_weak_password": "パスワードが脆弱です",
-    "@exception_weak_password": {},
     "exception_too_many_requests": "リクエストが多すぎます。しばらく待ってから再試行してください",
-    "@exception_too_many_requests": {},
     "exception_user_token_expired": "ユーザートークンの有効期限が切れました",
-    "@exception_user_token_expired": {},
     "exception_network_request_failed": "ネットワークリクエストが失敗しました",
-    "@exception_network_request_failed": {},
     "exception_account_not_found": "アカウントが見つかりません",
-    "@exception_account_not_found": {},
-    "exception_server_error": "サーバーに問題が発生しました",
-    "@exception_server_error": {}
+    "exception_server_error": "サーバーに問題が発生しました"
 }

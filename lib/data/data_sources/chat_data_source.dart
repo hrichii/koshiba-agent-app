@@ -10,7 +10,7 @@ final chatDataSourceProvider = Provider(
 class ChatDataSource {
   Future<Result<List<ChatRoom>, AppException>> getChatRoomList() async {
     await Future.delayed(const Duration(seconds: 2));
-    return ResultSuccess(
+    return ResultOk(
       value: [
         ChatRoom(
           id: '1',
@@ -30,7 +30,7 @@ class ChatDataSource {
 
   Future<Result<ChatRoom, AppException>> addChatRoom(ChatRoom chatRoom) async {
     await Future.delayed(const Duration(seconds: 2));
-    return ResultSuccess(
+    return ResultOk(
       value: ChatRoom(
         id: '3',
         title: 'Chat Room 3',
@@ -42,14 +42,14 @@ class ChatDataSource {
 
   Future<Result<void, AppException>> deleteChatRoom(String chatRoomId) async {
     await Future.delayed(const Duration(seconds: 1));
-    return const ResultSuccess(value: null);
+    return const ResultOk(value: null);
   }
 
   Future<Result<ChatRoom, AppException>> updateChatRoom(
     ChatRoom chatRoom,
   ) async {
     await Future.delayed(const Duration(seconds: 1));
-    return ResultSuccess(
+    return ResultOk(
       value: ChatRoom(
         id: chatRoom.id,
         title: chatRoom.title,

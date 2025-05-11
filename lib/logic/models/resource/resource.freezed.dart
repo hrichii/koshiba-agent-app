@@ -12,27 +12,80 @@ part of 'resource.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+Resource<S> _$ResourceFromJson<S>(
+    Map<String, dynamic> json, S Function(Object?) fromJsonS) {
+  switch (json['runtimeType']) {
+    case 'done':
+      return ResourceDone<S>.fromJson(json, fromJsonS);
+    case 'inProgress':
+      return ResourceInProgress<S>.fromJson(json, fromJsonS);
+    case 'error':
+      return ResourceError<S>.fromJson(json, fromJsonS);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Resource',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
 
 /// @nodoc
-mixin _$ResourceDone<D> {
-  D get value;
+mixin _$Resource<S> {
+  /// Serializes this Resource to a JSON map.
+  Map<String, dynamic> toJson(Object? Function(S) toJsonS);
 
-  /// Create a copy of ResourceDone
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Resource<S>);
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'Resource<$S>()';
+  }
+}
+
+/// @nodoc
+class $ResourceCopyWith<S, $Res> {
+  $ResourceCopyWith(Resource<S> _, $Res Function(Resource<S>) __);
+}
+
+/// @nodoc
+@JsonSerializable(genericArgumentFactories: true)
+class ResourceDone<S> extends Resource<S> {
+  const ResourceDone({required this.value, final String? $type})
+      : $type = $type ?? 'done',
+        super._();
+  factory ResourceDone.fromJson(
+          Map<String, dynamic> json, S Function(Object?) fromJsonS) =>
+      _$ResourceDoneFromJson(json, fromJsonS);
+
+  final S value;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ResourceDoneCopyWith<D, ResourceDone<D>> get copyWith =>
-      _$ResourceDoneCopyWithImpl<D, ResourceDone<D>>(
-          this as ResourceDone<D>, _$identity);
+  $ResourceDoneCopyWith<S, ResourceDone<S>> get copyWith =>
+      _$ResourceDoneCopyWithImpl<S, ResourceDone<S>>(this, _$identity);
 
-  /// Serializes this ResourceDone to a JSON map.
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD);
+  @override
+  Map<String, dynamic> toJson(Object? Function(S) toJsonS) {
+    return _$ResourceDoneToJson<S>(this, toJsonS);
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ResourceDone<D> &&
+            other is ResourceDone<S> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -43,130 +96,65 @@ mixin _$ResourceDone<D> {
 
   @override
   String toString() {
-    return 'ResourceDone<$D>(value: $value)';
+    return 'Resource<$S>.done(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class $ResourceDoneCopyWith<D, $Res> {
+abstract mixin class $ResourceDoneCopyWith<S, $Res>
+    implements $ResourceCopyWith<S, $Res> {
   factory $ResourceDoneCopyWith(
-          ResourceDone<D> value, $Res Function(ResourceDone<D>) _then) =
+          ResourceDone<S> value, $Res Function(ResourceDone<S>) _then) =
       _$ResourceDoneCopyWithImpl;
   @useResult
-  $Res call({D value});
+  $Res call({S value});
 }
 
 /// @nodoc
-class _$ResourceDoneCopyWithImpl<D, $Res>
-    implements $ResourceDoneCopyWith<D, $Res> {
+class _$ResourceDoneCopyWithImpl<S, $Res>
+    implements $ResourceDoneCopyWith<S, $Res> {
   _$ResourceDoneCopyWithImpl(this._self, this._then);
 
-  final ResourceDone<D> _self;
-  final $Res Function(ResourceDone<D>) _then;
+  final ResourceDone<S> _self;
+  final $Res Function(ResourceDone<S>) _then;
 
-  /// Create a copy of ResourceDone
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_self.copyWith(
+    return _then(ResourceDone<S>(
       value: freezed == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
-              as D,
+              as S,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _ResourceDone<D> extends ResourceDone<D> {
-  const _ResourceDone({required this.value}) : super._();
-  factory _ResourceDone.fromJson(
-          Map<String, dynamic> json, D Function(Object?) fromJsonD) =>
-      _$ResourceDoneFromJson(json, fromJsonD);
+class ResourceInProgress<S> extends Resource<S> {
+  const ResourceInProgress({final String? $type})
+      : $type = $type ?? 'inProgress',
+        super._();
+  factory ResourceInProgress.fromJson(
+          Map<String, dynamic> json, S Function(Object?) fromJsonS) =>
+      _$ResourceInProgressFromJson(json, fromJsonS);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
-  final D value;
-
-  /// Create a copy of ResourceDone
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ResourceDoneCopyWith<D, _ResourceDone<D>> get copyWith =>
-      __$ResourceDoneCopyWithImpl<D, _ResourceDone<D>>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD) {
-    return _$ResourceDoneToJson<D>(this, toJsonD);
+  Map<String, dynamic> toJson(Object? Function(S) toJsonS) {
+    return _$ResourceInProgressToJson<S>(this, toJsonS);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ResourceDone<D> &&
-            const DeepCollectionEquality().equals(other.value, value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
-
-  @override
-  String toString() {
-    return 'ResourceDone<$D>(value: $value)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$ResourceDoneCopyWith<D, $Res>
-    implements $ResourceDoneCopyWith<D, $Res> {
-  factory _$ResourceDoneCopyWith(
-          _ResourceDone<D> value, $Res Function(_ResourceDone<D>) _then) =
-      __$ResourceDoneCopyWithImpl;
-  @override
-  @useResult
-  $Res call({D value});
-}
-
-/// @nodoc
-class __$ResourceDoneCopyWithImpl<D, $Res>
-    implements _$ResourceDoneCopyWith<D, $Res> {
-  __$ResourceDoneCopyWithImpl(this._self, this._then);
-
-  final _ResourceDone<D> _self;
-  final $Res Function(_ResourceDone<D>) _then;
-
-  /// Create a copy of ResourceDone
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? value = freezed,
-  }) {
-    return _then(_ResourceDone<D>(
-      value: freezed == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as D,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$ResourceInProgress<D> {
-  /// Serializes this ResourceInProgress to a JSON map.
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ResourceInProgress<D>);
+        (other.runtimeType == runtimeType && other is ResourceInProgress<S>);
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -175,65 +163,42 @@ mixin _$ResourceInProgress<D> {
 
   @override
   String toString() {
-    return 'ResourceInProgress<$D>()';
+    return 'Resource<$S>.inProgress()';
   }
-}
-
-/// @nodoc
-class $ResourceInProgressCopyWith<D, $Res> {
-  $ResourceInProgressCopyWith(
-      ResourceInProgress<D> _, $Res Function(ResourceInProgress<D>) __);
 }
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _ResourceInProgress<D> extends ResourceInProgress<D> {
-  const _ResourceInProgress() : super._();
-  factory _ResourceInProgress.fromJson(
-          Map<String, dynamic> json, D Function(Object?) fromJsonD) =>
-      _$ResourceInProgressFromJson(json, fromJsonD);
+class ResourceError<S> extends Resource<S> {
+  const ResourceError({required this.value, final String? $type})
+      : $type = $type ?? 'error',
+        super._();
+  factory ResourceError.fromJson(
+          Map<String, dynamic> json, S Function(Object?) fromJsonS) =>
+      _$ResourceErrorFromJson(json, fromJsonS);
 
-  @override
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD) {
-    return _$ResourceInProgressToJson<D>(this, toJsonD);
-  }
+  final AppException value;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ResourceInProgress<D>);
-  }
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  String toString() {
-    return 'ResourceInProgress<$D>()';
-  }
-}
-
-/// @nodoc
-mixin _$ResourceError<D> {
-  AppException get value;
-
-  /// Create a copy of ResourceError
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ResourceErrorCopyWith<D, ResourceError<D>> get copyWith =>
-      _$ResourceErrorCopyWithImpl<D, ResourceError<D>>(
-          this as ResourceError<D>, _$identity);
+  $ResourceErrorCopyWith<S, ResourceError<S>> get copyWith =>
+      _$ResourceErrorCopyWithImpl<S, ResourceError<S>>(this, _$identity);
 
-  /// Serializes this ResourceError to a JSON map.
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD);
+  @override
+  Map<String, dynamic> toJson(Object? Function(S) toJsonS) {
+    return _$ResourceErrorToJson<S>(this, toJsonS);
+  }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ResourceError<D> &&
+            other is ResourceError<S> &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -243,14 +208,15 @@ mixin _$ResourceError<D> {
 
   @override
   String toString() {
-    return 'ResourceError<$D>(value: $value)';
+    return 'Resource<$S>.error(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class $ResourceErrorCopyWith<D, $Res> {
+abstract mixin class $ResourceErrorCopyWith<S, $Res>
+    implements $ResourceCopyWith<S, $Res> {
   factory $ResourceErrorCopyWith(
-          ResourceError<D> value, $Res Function(ResourceError<D>) _then) =
+          ResourceError<S> value, $Res Function(ResourceError<S>) _then) =
       _$ResourceErrorCopyWithImpl;
   @useResult
   $Res call({AppException value});
@@ -259,21 +225,20 @@ abstract mixin class $ResourceErrorCopyWith<D, $Res> {
 }
 
 /// @nodoc
-class _$ResourceErrorCopyWithImpl<D, $Res>
-    implements $ResourceErrorCopyWith<D, $Res> {
+class _$ResourceErrorCopyWithImpl<S, $Res>
+    implements $ResourceErrorCopyWith<S, $Res> {
   _$ResourceErrorCopyWithImpl(this._self, this._then);
 
-  final ResourceError<D> _self;
-  final $Res Function(ResourceError<D>) _then;
+  final ResourceError<S> _self;
+  final $Res Function(ResourceError<S>) _then;
 
-  /// Create a copy of ResourceError
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? value = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(ResourceError<S>(
       value: null == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -281,97 +246,7 @@ class _$ResourceErrorCopyWithImpl<D, $Res>
     ));
   }
 
-  /// Create a copy of ResourceError
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppExceptionCopyWith<$Res> get value {
-    return $AppExceptionCopyWith<$Res>(_self.value, (value) {
-      return _then(_self.copyWith(value: value));
-    });
-  }
-}
-
-/// @nodoc
-@JsonSerializable(genericArgumentFactories: true)
-class _ResourceError<D> extends ResourceError<D> {
-  const _ResourceError({required this.value}) : super._();
-  factory _ResourceError.fromJson(
-          Map<String, dynamic> json, D Function(Object?) fromJsonD) =>
-      _$ResourceErrorFromJson(json, fromJsonD);
-
-  @override
-  final AppException value;
-
-  /// Create a copy of ResourceError
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ResourceErrorCopyWith<D, _ResourceError<D>> get copyWith =>
-      __$ResourceErrorCopyWithImpl<D, _ResourceError<D>>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson(Object? Function(D) toJsonD) {
-    return _$ResourceErrorToJson<D>(this, toJsonD);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ResourceError<D> &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @override
-  String toString() {
-    return 'ResourceError<$D>(value: $value)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$ResourceErrorCopyWith<D, $Res>
-    implements $ResourceErrorCopyWith<D, $Res> {
-  factory _$ResourceErrorCopyWith(
-          _ResourceError<D> value, $Res Function(_ResourceError<D>) _then) =
-      __$ResourceErrorCopyWithImpl;
-  @override
-  @useResult
-  $Res call({AppException value});
-
-  @override
-  $AppExceptionCopyWith<$Res> get value;
-}
-
-/// @nodoc
-class __$ResourceErrorCopyWithImpl<D, $Res>
-    implements _$ResourceErrorCopyWith<D, $Res> {
-  __$ResourceErrorCopyWithImpl(this._self, this._then);
-
-  final _ResourceError<D> _self;
-  final $Res Function(_ResourceError<D>) _then;
-
-  /// Create a copy of ResourceError
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_ResourceError<D>(
-      value: null == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as AppException,
-    ));
-  }
-
-  /// Create a copy of ResourceError
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')

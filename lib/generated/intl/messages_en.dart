@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
           "The password is too weak",
         ),
         "field_email": MessageLookupByLibrary.simpleMessage("Email"),
+        "field_meeting_url":
+            MessageLookupByLibrary.simpleMessage("Meeting URL"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),
         "sign_out_success": MessageLookupByLibrary.simpleMessage(
           "Sign out completed",

@@ -8,21 +8,21 @@ extension FutureResultExt<T> on Future<Result<T, AppException>> {
   Future<Result<T, AppException>> withToastAtError() async {
     final result = await this;
     switch (result) {
-      case ResultError(value: final appException):
+      case ResultNg(value: final appException):
         Toast().showError(message: appException.message);
-      case ResultSuccess():
+      case ResultOk():
     }
     return result;
   }
 
   Future<Result<T, AppException>> withToastAtSuccess(
-    String Function(T value) messageBuilder,
+    String Function(Result<T, AppException> value) messageBuilder,
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess(:final value):
-        Toast().showSuccess(message: messageBuilder(value));
-      case ResultError():
+      case ResultOk():
+        Toast().showSuccess(message: messageBuilder(result));
+      case ResultNg():
     }
     return result;
   }
@@ -32,14 +32,14 @@ extension FutureResultExt<T> on Future<Result<T, AppException>> {
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess(value: final value):
+      case ResultOk(value: final value):
         if (GlobalContext.context.mounted) {
           builderAtSuccess(
             GlobalContext.context,
             value,
           );
         }
-      case ResultError():
+      case ResultNg():
     }
     return result;
   }
@@ -49,11 +49,11 @@ extension FutureResultExt<T> on Future<Result<T, AppException>> {
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess():
+      case ResultOk():
         if (GlobalContext.context.mounted) {
           builderAtSuccess(GlobalContext.context);
         }
-      case ResultError():
+      case ResultNg():
     }
     return result;
   }
@@ -63,9 +63,9 @@ extension FutureResultExt<T> on Future<Result<T, AppException>> {
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess():
+      case ResultOk():
         break;
-      case ResultError(:final value):
+      case ResultNg(:final value):
         if (GlobalContext.context.mounted) {
           builderAtError(
             GlobalContext.context,

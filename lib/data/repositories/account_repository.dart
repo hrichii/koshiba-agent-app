@@ -42,20 +42,18 @@ class AccountRepository implements AuthenticationRepositoryInterface {
       password: signUpModel.password!,
     );
     switch (authenticationResult) {
-      case ResultSuccess<UserCredential, AppException>(
-          value: final userCredential
-        ):
+      case ResultOk<UserCredential, AppException>(value: final userCredential):
         final accountCreateDto = AccountCreateDto(
           uid: userCredential.user!.id,
           email: userCredential.user!.email!,
           // TODO(hrichii): nameを追加する可能性がある
         );
         final createResult = await _accountDataSource.create(accountCreateDto);
-        if (createResult case ResultError<void, AppException>()) {
-          return ResultError(value: createResult.value);
+        if (createResult case ResultNg<void, AppException>()) {
+          return ResultNg(value: createResult.value);
         }
         return authenticationResult;
-      case ResultError<UserCredential, AppException>():
+      case ResultNg<UserCredential, AppException>():
         return authenticationResult;
     }
   }
@@ -70,7 +68,7 @@ class AccountRepository implements AuthenticationRepositoryInterface {
   @override
   Future<Result<void, AppException>> signOut() async {
     final result = await _authenticationDataSource.signOut();
-    if (result case ResultSuccess<void, AppException>()) {
+    if (result case ResultOk<void, AppException>()) {
       _clearCache();
     }
     return result;
@@ -83,20 +81,20 @@ class AccountRepository implements AuthenticationRepositoryInterface {
   @override
   Future<Result<void, AppException>> deleteMe() async {
     final uid = switch (getMe()) {
-      ResultSuccess<User, AppException>(value: final user) => user.id,
-      ResultError<User, AppException>() => null,
+      ResultOk<User, AppException>(value: final user) => user.id,
+      ResultNg<User, AppException>() => null,
     };
     if (uid == null) {
-      return const ResultError(value: AccountNotFoundException());
+      return const ResultNg(value: AccountNotFoundException());
     }
 
     final authenticationResult =
         await _authenticationDataSource.deleteCurrentUser();
     switch (authenticationResult) {
-      case ResultSuccess<void, AppException>():
+      case ResultOk<void, AppException>():
         _clearCache();
         await _accountDataSource.delete(uid);
-      case ResultError<void, AppException>():
+      case ResultNg<void, AppException>():
     }
     return authenticationResult;
   }

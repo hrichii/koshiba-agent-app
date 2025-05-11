@@ -6,7 +6,7 @@
       "type": "dart",
       "request": "launch",
       // "preLaunchTask": "setup-dev",
-      "args": ["--dart-define-from-file=env/dev.env", "--web-port", "8080"],
+      "args": ["--dart-define-from-file=env/dev.env", "--web-port", "3000"],
       "program": "lib/main.dart"
     },
     {
@@ -14,7 +14,7 @@
       "type": "dart",
       "request": "launch",
       // "preLaunchTask": "setup-stg",
-      "args": ["--dart-define-from-file=env/stg.env", "--web-port", "8080"],
+      "args": ["--dart-define-from-file=env/stg.env", "--web-port", "3000"],
       "program": "lib/main.dart"
     },
     {
@@ -23,7 +23,7 @@
       
       "request": "launch",
       // "preLaunchTask": "setup-prd",
-      "args": ["--dart-define-from-file=env/prd.env", "--web-port", "8080"],
+      "args": ["--dart-define-from-file=env/prd.env", "--web-port", "3000"],
       "program": "lib/main.dart"
     }
   ]

@@ -99,6 +99,16 @@ class AppMessage {
     );
   }
 
+  /// `ミーティング登録が完了しました`
+  String get meeting_register_success {
+    return Intl.message(
+      'ミーティング登録が完了しました',
+      name: 'meeting_register_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `メールアドレス`
   String get field_email {
     return Intl.message('メールアドレス', name: 'field_email', desc: '', args: []);
@@ -107,6 +117,16 @@ class AppMessage {
   /// `パスワード`
   String get field_password {
     return Intl.message('パスワード', name: 'field_password', desc: '', args: []);
+  }
+
+  /// `ミーティングURL`
+  String get field_meeting_url {
+    return Intl.message(
+      'ミーティングURL',
+      name: 'field_meeting_url',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `文字`
@@ -172,6 +192,106 @@ class AppMessage {
       desc: '',
       args: [fieldName],
     );
+  }
+
+  /// `リクエストに成功しました`
+  String get i200001 {
+    return Intl.message('リクエストに成功しました', name: 'i200001', desc: '', args: []);
+  }
+
+  /// `この認証情報は無効です`
+  String get e410001 {
+    return Intl.message('この認証情報は無効です', name: 'e410001', desc: '', args: []);
+  }
+
+  /// `ユーザートークンの有効期限が切れました`
+  String get e410002 {
+    return Intl.message(
+      'ユーザートークンの有効期限が切れました',
+      name: 'e410002',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `アカウントが見つかりません`
+  String get e410003 {
+    return Intl.message('アカウントが見つかりません', name: 'e410003', desc: '', args: []);
+  }
+
+  /// `この操作は許可されていません`
+  String get e410004 {
+    return Intl.message('この操作は許可されていません', name: 'e410004', desc: '', args: []);
+  }
+
+  /// `有効なメールアドレスを入力してください`
+  String get e420001 {
+    return Intl.message(
+      '有効なメールアドレスを入力してください',
+      name: 'e420001',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `このメールアドレスは既に使用されています`
+  String get e420002 {
+    return Intl.message(
+      'このメールアドレスは既に使用されています',
+      name: 'e420002',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `パスワードが脆弱です`
+  String get e420003 {
+    return Intl.message('パスワードが脆弱です', name: 'e420003', desc: '', args: []);
+  }
+
+  /// `想定外のレスポンスを取得しました`
+  String get e430001 {
+    return Intl.message(
+      '想定外のレスポンスを取得しました',
+      name: 'e430001',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ネットワークリクエストが失敗しました`
+  String get e430002 {
+    return Intl.message(
+      'ネットワークリクエストが失敗しました',
+      name: 'e430002',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが多すぎます。しばらく待ってから再試行してください`
+  String get e430003 {
+    return Intl.message(
+      'リクエストが多すぎます。しばらく待ってから再試行してください',
+      name: 'e430003',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが不正です`
+  String get e430004 {
+    return Intl.message('リクエストが不正です', name: 'e430004', desc: '', args: []);
+  }
+
+  /// `サーバーに問題が発生しました`
+  String get e500001 {
+    return Intl.message('サーバーに問題が発生しました', name: 'e500001', desc: '', args: []);
+  }
+
+  /// `不明なエラーが発生しました`
+  String get ec00001 {
+    return Intl.message('不明なエラーが発生しました', name: 'ec00001', desc: '', args: []);
   }
 
   /// `この認証情報は無効です`

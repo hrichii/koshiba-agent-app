@@ -16,6 +16,8 @@
     "@field_email": {},
     "field_password": "Password",
     "@field_password": {},
+    "field_meeting_url": "Meeting URL",
+    "@field_meeting_url": {},
     "unit_letter": "characters",
     "@unit_letter": {},
     "validation_required": "Please enter {fieldName}",
@@ -84,6 +86,8 @@
         }
       }
     },
+    "exception_deseriarize_error": "Unexpected response received",
+    "@exception_deseriarize_error": {},
     "exception_incalid_credential": "This credential is invalid",
     "@exception_incalid_credential": {},
     "exception_email_already_in_use": "This email address is already in use",

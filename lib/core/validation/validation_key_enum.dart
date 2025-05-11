@@ -5,4 +5,5 @@ enum ValidationKeyEnum {
   onlyLengthWithFieldName,
   alphaNumericWithFieldName,
   emailWithFieldName,
+  urlWithFieldName,
 }

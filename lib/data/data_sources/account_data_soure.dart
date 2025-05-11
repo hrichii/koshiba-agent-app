@@ -35,12 +35,11 @@ class AccountDataSource {
   Future<Result<void, AppException>> update(AccountUpdateDto dto) async {
     final getResult = await get(dto.uid);
     switch (getResult) {
-      case ResultError<AccountDto?, AppException>(:final value):
-        return ResultError(value: value);
-      case ResultSuccess<AccountDto?, AppException>(:final value)
-          when value == null:
-        return const ResultError(value: AccountNotFoundException());
-      case ResultSuccess<AccountDto?, AppException>(:final value):
+      case ResultNg<AccountDto?, AppException>(:final value):
+        return ResultNg(value: value);
+      case ResultOk<AccountDto?, AppException>(:final value) when value == null:
+        return const ResultNg(value: AccountNotFoundException());
+      case ResultOk<AccountDto?, AppException>(:final value):
         return _accountsRef
             .doc(dto.uid)
             .update(value!.updated(dto).toJson())

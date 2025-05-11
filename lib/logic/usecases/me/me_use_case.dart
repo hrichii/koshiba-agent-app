@@ -34,44 +34,44 @@ class MeUseCase extends _$MeUseCase {
     final preState = state;
     state = stateAtInProgress;
     switch (await _chatListRepository.getChatRoomList()) {
-      case ResultSuccess<List<ChatRoom>, AppException>(:final value):
+      case ResultOk<List<ChatRoom>, AppException>(:final value):
         state = ResourceDone<List<ChatRoom>>(value: value);
-        return const ResultSuccess(value: null);
-      case ResultError<List<ChatRoom>, AppException>(:final value):
+        return const ResultOk(value: null);
+      case ResultNg<List<ChatRoom>, AppException>(:final value):
         state = switch (preState) {
           ResourceDone<List<ChatRoom>>() => preState,
           ResourceInProgress<List<ChatRoom>>() ||
           ResourceError<List<ChatRoom>>() =>
             ResourceError<List<ChatRoom>>(value: value),
         };
-        return ResultError(value: value);
+        return ResultNg(value: value);
     }
   }
 
   Future<Result<void, AppException>> addChatRoom(ChatRoom chatRoom) async {
     switch (await _chatListRepository.addChatRoom(chatRoom)) {
-      case ResultSuccess<void, AppException>():
+      case ResultOk<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultError<void, AppException>(:final value):
-        return ResultError(value: value);
+      case ResultNg<void, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 
   Future<Result<void, AppException>> deleteChatRoom(String chatRoomId) async {
     switch (await _chatListRepository.deleteChatRoom(chatRoomId)) {
-      case ResultSuccess<void, AppException>():
+      case ResultOk<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultError<void, AppException>(:final value):
-        return ResultError(value: value);
+      case ResultNg<void, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 
   Future<Result<void, AppException>> updateChatRoom(ChatRoom chatRoom) async {
     switch (await _chatListRepository.updateChatRoom(chatRoom)) {
-      case ResultSuccess<void, AppException>():
+      case ResultOk<void, AppException>():
         return _getChatRoomList(stateAtInProgress: state);
-      case ResultError<void, AppException>(:final value):
-        return ResultError(value: value);
+      case ResultNg<void, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 }

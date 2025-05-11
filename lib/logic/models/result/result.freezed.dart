@@ -12,20 +12,25 @@ part of 'result.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+Result<S, E> _$ResultFromJson<S, E>(Map<String, dynamic> json,
+    S Function(Object?) fromJsonS, E Function(Object?) fromJsonE) {
+  switch (json['runtimeType']) {
+    case 'ok':
+      return ResultOk<S, E>.fromJson(json, fromJsonS, fromJsonE);
+    case 'ng':
+      return ResultNg<S, E>.fromJson(json, fromJsonS, fromJsonE);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Result',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
 
 /// @nodoc
-mixin _$ResultSuccess<S, E> {
-  S get value;
+mixin _$Result<S, E> {
+  Object? get value;
 
-  /// Create a copy of ResultSuccess
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $ResultSuccessCopyWith<S, E, ResultSuccess<S, E>> get copyWith =>
-      _$ResultSuccessCopyWithImpl<S, E, ResultSuccess<S, E>>(
-          this as ResultSuccess<S, E>, _$identity);
-
-  /// Serializes this ResultSuccess to a JSON map.
+  /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson(
       Object? Function(S) toJsonS, Object? Function(E) toJsonE);
 
@@ -33,7 +38,7 @@ mixin _$ResultSuccess<S, E> {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ResultSuccess<S, E> &&
+            other is Result<S, E> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -44,74 +49,49 @@ mixin _$ResultSuccess<S, E> {
 
   @override
   String toString() {
-    return 'ResultSuccess<$S, $E>(value: $value)';
+    return 'Result<$S, $E>(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class $ResultSuccessCopyWith<S, E, $Res> {
-  factory $ResultSuccessCopyWith(
-          ResultSuccess<S, E> value, $Res Function(ResultSuccess<S, E>) _then) =
-      _$ResultSuccessCopyWithImpl;
-  @useResult
-  $Res call({S value});
-}
-
-/// @nodoc
-class _$ResultSuccessCopyWithImpl<S, E, $Res>
-    implements $ResultSuccessCopyWith<S, E, $Res> {
-  _$ResultSuccessCopyWithImpl(this._self, this._then);
-
-  final ResultSuccess<S, E> _self;
-  final $Res Function(ResultSuccess<S, E>) _then;
-
-  /// Create a copy of ResultSuccess
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = freezed,
-  }) {
-    return _then(_self.copyWith(
-      value: freezed == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as S,
-    ));
-  }
+class $ResultCopyWith<S, E, $Res> {
+  $ResultCopyWith(Result<S, E> _, $Res Function(Result<S, E>) __);
 }
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _ResultSuccess<S, E> extends ResultSuccess<S, E> {
-  const _ResultSuccess({required this.value}) : super._();
-  factory _ResultSuccess.fromJson(Map<String, dynamic> json,
+class ResultOk<S, E> extends Result<S, E> {
+  const ResultOk({required this.value, final String? $type})
+      : $type = $type ?? 'ok',
+        super._();
+  factory ResultOk.fromJson(Map<String, dynamic> json,
           S Function(Object?) fromJsonS, E Function(Object?) fromJsonE) =>
-      _$ResultSuccessFromJson(json, fromJsonS, fromJsonE);
+      _$ResultOkFromJson(json, fromJsonS, fromJsonE);
 
   @override
   final S value;
 
-  /// Create a copy of ResultSuccess
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ResultSuccessCopyWith<S, E, _ResultSuccess<S, E>> get copyWith =>
-      __$ResultSuccessCopyWithImpl<S, E, _ResultSuccess<S, E>>(
-          this, _$identity);
+  $ResultOkCopyWith<S, E, ResultOk<S, E>> get copyWith =>
+      _$ResultOkCopyWithImpl<S, E, ResultOk<S, E>>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson(
       Object? Function(S) toJsonS, Object? Function(E) toJsonE) {
-    return _$ResultSuccessToJson<S, E>(this, toJsonS, toJsonE);
+    return _$ResultOkToJson<S, E>(this, toJsonS, toJsonE);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResultSuccess<S, E> &&
+            other is ResultOk<S, E> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -122,36 +102,35 @@ class _ResultSuccess<S, E> extends ResultSuccess<S, E> {
 
   @override
   String toString() {
-    return 'ResultSuccess<$S, $E>(value: $value)';
+    return 'Result<$S, $E>.ok(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$ResultSuccessCopyWith<S, E, $Res>
-    implements $ResultSuccessCopyWith<S, E, $Res> {
-  factory _$ResultSuccessCopyWith(_ResultSuccess<S, E> value,
-      $Res Function(_ResultSuccess<S, E>) _then) = __$ResultSuccessCopyWithImpl;
-  @override
+abstract mixin class $ResultOkCopyWith<S, E, $Res>
+    implements $ResultCopyWith<S, E, $Res> {
+  factory $ResultOkCopyWith(
+          ResultOk<S, E> value, $Res Function(ResultOk<S, E>) _then) =
+      _$ResultOkCopyWithImpl;
   @useResult
   $Res call({S value});
 }
 
 /// @nodoc
-class __$ResultSuccessCopyWithImpl<S, E, $Res>
-    implements _$ResultSuccessCopyWith<S, E, $Res> {
-  __$ResultSuccessCopyWithImpl(this._self, this._then);
+class _$ResultOkCopyWithImpl<S, E, $Res>
+    implements $ResultOkCopyWith<S, E, $Res> {
+  _$ResultOkCopyWithImpl(this._self, this._then);
 
-  final _ResultSuccess<S, E> _self;
-  final $Res Function(_ResultSuccess<S, E>) _then;
+  final ResultOk<S, E> _self;
+  final $Res Function(ResultOk<S, E>) _then;
 
-  /// Create a copy of ResultSuccess
+  /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_ResultSuccess<S, E>(
+    return _then(ResultOk<S, E>(
       value: freezed == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -161,103 +140,39 @@ class __$ResultSuccessCopyWithImpl<S, E, $Res>
 }
 
 /// @nodoc
-mixin _$ResultError<S, E> {
-  E get value;
-
-  /// Create a copy of ResultError
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $ResultErrorCopyWith<S, E, ResultError<S, E>> get copyWith =>
-      _$ResultErrorCopyWithImpl<S, E, ResultError<S, E>>(
-          this as ResultError<S, E>, _$identity);
-
-  /// Serializes this ResultError to a JSON map.
-  Map<String, dynamic> toJson(
-      Object? Function(S) toJsonS, Object? Function(E) toJsonE);
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ResultError<S, E> &&
-            const DeepCollectionEquality().equals(other.value, value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
-
-  @override
-  String toString() {
-    return 'ResultError<$S, $E>(value: $value)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $ResultErrorCopyWith<S, E, $Res> {
-  factory $ResultErrorCopyWith(
-          ResultError<S, E> value, $Res Function(ResultError<S, E>) _then) =
-      _$ResultErrorCopyWithImpl;
-  @useResult
-  $Res call({E value});
-}
-
-/// @nodoc
-class _$ResultErrorCopyWithImpl<S, E, $Res>
-    implements $ResultErrorCopyWith<S, E, $Res> {
-  _$ResultErrorCopyWithImpl(this._self, this._then);
-
-  final ResultError<S, E> _self;
-  final $Res Function(ResultError<S, E>) _then;
-
-  /// Create a copy of ResultError
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = freezed,
-  }) {
-    return _then(_self.copyWith(
-      value: freezed == value
-          ? _self.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as E,
-    ));
-  }
-}
-
-/// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _ResultError<S, E> extends ResultError<S, E> {
-  const _ResultError({required this.value}) : super._();
-  factory _ResultError.fromJson(Map<String, dynamic> json,
+class ResultNg<S, E> extends Result<S, E> {
+  const ResultNg({required this.value, final String? $type})
+      : $type = $type ?? 'ng',
+        super._();
+  factory ResultNg.fromJson(Map<String, dynamic> json,
           S Function(Object?) fromJsonS, E Function(Object?) fromJsonE) =>
-      _$ResultErrorFromJson(json, fromJsonS, fromJsonE);
+      _$ResultNgFromJson(json, fromJsonS, fromJsonE);
 
   @override
   final E value;
 
-  /// Create a copy of ResultError
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ResultErrorCopyWith<S, E, _ResultError<S, E>> get copyWith =>
-      __$ResultErrorCopyWithImpl<S, E, _ResultError<S, E>>(this, _$identity);
+  $ResultNgCopyWith<S, E, ResultNg<S, E>> get copyWith =>
+      _$ResultNgCopyWithImpl<S, E, ResultNg<S, E>>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson(
       Object? Function(S) toJsonS, Object? Function(E) toJsonE) {
-    return _$ResultErrorToJson<S, E>(this, toJsonS, toJsonE);
+    return _$ResultNgToJson<S, E>(this, toJsonS, toJsonE);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ResultError<S, E> &&
+            other is ResultNg<S, E> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -268,37 +183,35 @@ class _ResultError<S, E> extends ResultError<S, E> {
 
   @override
   String toString() {
-    return 'ResultError<$S, $E>(value: $value)';
+    return 'Result<$S, $E>.ng(value: $value)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$ResultErrorCopyWith<S, E, $Res>
-    implements $ResultErrorCopyWith<S, E, $Res> {
-  factory _$ResultErrorCopyWith(
-          _ResultError<S, E> value, $Res Function(_ResultError<S, E>) _then) =
-      __$ResultErrorCopyWithImpl;
-  @override
+abstract mixin class $ResultNgCopyWith<S, E, $Res>
+    implements $ResultCopyWith<S, E, $Res> {
+  factory $ResultNgCopyWith(
+          ResultNg<S, E> value, $Res Function(ResultNg<S, E>) _then) =
+      _$ResultNgCopyWithImpl;
   @useResult
   $Res call({E value});
 }
 
 /// @nodoc
-class __$ResultErrorCopyWithImpl<S, E, $Res>
-    implements _$ResultErrorCopyWith<S, E, $Res> {
-  __$ResultErrorCopyWithImpl(this._self, this._then);
+class _$ResultNgCopyWithImpl<S, E, $Res>
+    implements $ResultNgCopyWith<S, E, $Res> {
+  _$ResultNgCopyWithImpl(this._self, this._then);
 
-  final _ResultError<S, E> _self;
-  final $Res Function(_ResultError<S, E>) _then;
+  final ResultNg<S, E> _self;
+  final $Res Function(ResultNg<S, E>) _then;
 
-  /// Create a copy of ResultError
+  /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @pragma('vm:prefer-inline')
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_ResultError<S, E>(
+    return _then(ResultNg<S, E>(
       value: freezed == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable

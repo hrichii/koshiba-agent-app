@@ -38,9 +38,9 @@ class Router extends _$Router {
         }
         final resultUser = ref.read(accountRepositoryProvider).getMe();
         switch (resultUser) {
-          case ResultSuccess<User, AppException>():
+          case ResultOk<User, AppException>():
             return null;
-          case ResultError<User, AppException>():
+          case ResultNg<User, AppException>():
             return AppRoutePath.singIn;
         }
       },

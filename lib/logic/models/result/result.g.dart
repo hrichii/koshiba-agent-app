@@ -6,38 +6,42 @@ part of 'result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ResultSuccess<S, E> _$ResultSuccessFromJson<S, E>(
+ResultOk<S, E> _$ResultOkFromJson<S, E>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
   E Function(Object? json) fromJsonE,
 ) =>
-    _ResultSuccess<S, E>(
+    ResultOk<S, E>(
       value: fromJsonS(json['value']),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$ResultSuccessToJson<S, E>(
-  _ResultSuccess<S, E> instance,
+Map<String, dynamic> _$ResultOkToJson<S, E>(
+  ResultOk<S, E> instance,
   Object? Function(S value) toJsonS,
   Object? Function(E value) toJsonE,
 ) =>
     <String, dynamic>{
       'value': toJsonS(instance.value),
+      'runtimeType': instance.$type,
     };
 
-_ResultError<S, E> _$ResultErrorFromJson<S, E>(
+ResultNg<S, E> _$ResultNgFromJson<S, E>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
   E Function(Object? json) fromJsonE,
 ) =>
-    _ResultError<S, E>(
+    ResultNg<S, E>(
       value: fromJsonE(json['value']),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$ResultErrorToJson<S, E>(
-  _ResultError<S, E> instance,
+Map<String, dynamic> _$ResultNgToJson<S, E>(
+  ResultNg<S, E> instance,
   Object? Function(S value) toJsonS,
   Object? Function(E value) toJsonE,
 ) =>
     <String, dynamic>{
       'value': toJsonE(instance.value),
+      'runtimeType': instance.$type,
     };

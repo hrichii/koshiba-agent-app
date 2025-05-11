@@ -28,13 +28,13 @@ class ChatListRepository implements ChatListRepositoryInterface {
   Future<Result<List<ChatRoom>, AppException>> getChatRoomList() async {
     final resultByCache = _cacheDataSource.get();
     if (resultByCache != null) {
-      return ResultSuccess(value: resultByCache);
+      return ResultOk(value: resultByCache);
     }
     switch (await _chatDataSource.getChatRoomList()) {
-      case final ResultSuccess<List<ChatRoom>, AppException> success:
+      case final ResultOk<List<ChatRoom>, AppException> success:
         _cacheDataSource.save(success.value);
         return success;
-      case final ResultError<List<ChatRoom>, AppException> failure:
+      case final ResultNg<List<ChatRoom>, AppException> failure:
         return failure;
     }
   }
@@ -42,36 +42,36 @@ class ChatListRepository implements ChatListRepositoryInterface {
   @override
   Future<Result<void, AppException>> addChatRoom(ChatRoom chatRoom) async {
     switch (await _chatDataSource.addChatRoom(chatRoom)) {
-      case ResultSuccess<ChatRoom, AppException>(:final value):
+      case ResultOk<ChatRoom, AppException>(:final value):
         final newChatRoomList = _cacheDataSource.get()?..add(value);
         if (newChatRoomList != null) {
           _cacheDataSource.save(newChatRoomList);
         }
-        return const ResultSuccess(value: null);
-      case ResultError<ChatRoom, AppException>(:final value):
-        return ResultError(value: value);
+        return const ResultOk(value: null);
+      case ResultNg<ChatRoom, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 
   @override
   Future<Result<void, AppException>> deleteChatRoom(String chatRoomId) async {
     switch (await _chatDataSource.deleteChatRoom(chatRoomId)) {
-      case final ResultSuccess<void, AppException> success:
+      case final ResultOk<void, AppException> success:
         final newChatRoomList = _cacheDataSource.get()
           ?..removeWhere((chatRoom) => chatRoom.id == chatRoomId);
         if (newChatRoomList != null) {
           _cacheDataSource.save(newChatRoomList);
         }
         return success;
-      case ResultError<void, AppException>(:final value):
-        return ResultError(value: value);
+      case ResultNg<void, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 
   @override
   Future<Result<void, AppException>> updateChatRoom(ChatRoom chatRoom) async {
     switch (await _chatDataSource.updateChatRoom(chatRoom)) {
-      case final ResultSuccess<ChatRoom, AppException> success:
+      case final ResultOk<ChatRoom, AppException> success:
         final newChatRoomList = _cacheDataSource.get()
           ?..updateFirstWhere(
             where: (chatRoom) => chatRoom.id == success.value.id,
@@ -80,9 +80,9 @@ class ChatListRepository implements ChatListRepositoryInterface {
         if (newChatRoomList != null) {
           _cacheDataSource.save(newChatRoomList);
         }
-        return const ResultSuccess(value: null);
-      case ResultError<ChatRoom, AppException>(:final value):
-        return ResultError(value: value);
+        return const ResultOk(value: null);
+      case ResultNg<ChatRoom, AppException>(:final value):
+        return ResultNg(value: value);
     }
   }
 

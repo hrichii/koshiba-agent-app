@@ -115,3 +115,4 @@ analyzer:
     - "**/*.freezed.dart"
     - lib/l10n/**/intl_*.dart
     - lib/generated/**
+    - lib/l10n/**
