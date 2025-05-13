@@ -112,16 +112,19 @@ class HomePage extends HookConsumerWidget {
                 ),
                 ReactiveMeetingFormConsumer(
                   builder: (_, form, ___) => FilledButton(
-                    onPressed: () => ref
-                        .read(meetingRepositoryProvider)
-                        .registerMeeting(
-                          meeting: form.model,
-                        )
-                        .withLoaderOverlay()
-                        .withToastAtError()
-                        .withToastAtSuccess(
-                          (_) => AppMessage.current.meeting_register_success,
-                        ),
+                    onPressed: form.form.valid
+                        ? () => ref
+                            .read(meetingRepositoryProvider)
+                            .registerMeeting(
+                              meeting: form.model,
+                            )
+                            .withLoaderOverlay()
+                            .withToastAtError()
+                            .withToastAtSuccess(
+                              (_) =>
+                                  AppMessage.current.meeting_register_success,
+                            )
+                        : null,
                     child: Text(AppMessage.current.meeting_register),
                   ),
                 ),

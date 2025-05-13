@@ -39,6 +39,9 @@ class AppValidation {
   ];
 
   static const List<Validator> uri = [
+    RequiredWithFieldNameValidator(
+      fieldNameEnum: FieldNameEnum.meetingUrl,
+    ),
     UriWithFieldNameValidator(
       fieldNameEnum: FieldNameEnum.meetingUrl,
     ),
