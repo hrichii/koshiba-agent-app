@@ -151,9 +151,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_out_success": MessageLookupByLibrary.simpleMessage(
           "Sign out completed",
         ),
-        "sign_up_success": MessageLookupByLibrary.simpleMessage(
-          "Account registration completed",
-        ),
+        "sign_up_success":
+            MessageLookupByLibrary.simpleMessage("Invite the bot"),
         "unit_letter": MessageLookupByLibrary.simpleMessage("characters"),
         "validation_alpha_numeric": m0,
         "validation_email": m1,

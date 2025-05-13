@@ -99,10 +99,10 @@ class AppMessage {
     );
   }
 
-  /// `ミーティングを登録する`
+  /// `Botを参加させる`
   String get meeting_register {
     return Intl.message(
-      'ミーティングを登録する',
+      'Botを参加させる',
       name: 'meeting_register',
       desc: '',
       args: [],
