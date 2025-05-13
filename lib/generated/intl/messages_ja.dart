@@ -22,18 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(fieldName) => "${fieldName}は英数字を入力してください";
 
-  static String m1(fieldName, maxLength, unit) =>
+  static String m1(fieldName) => "メールアドレスの形式に不正があります。有効な${fieldName}を入力してください";
+
+  static String m2(fieldName, maxLength, unit) =>
       "${fieldName}は${maxLength}${unit}以下で入力してください";
 
-  static String m2(fieldName, minLength, unit) =>
+  static String m3(fieldName, minLength, unit) =>
       "${fieldName}は${minLength}${unit}以上を入力してください";
-
-  static String m3(fieldName, length, unit) =>
-      "${fieldName}は${length}${unit}で入力してください";
 
   static String m4(fieldName) => "${fieldName}を入力してください";
 
-  static String m5(fieldName) => "有効な${fieldName}を入力してください";
+  static String m5(fieldName) => "URLの形式に不正があります。有効な${fieldName}を入力してください";
+
+  static String m6(fieldName) => "有効な${fieldName}を入力してください";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -148,10 +149,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("アカウント登録が完了しました"),
         "unit_letter": MessageLookupByLibrary.simpleMessage("文字"),
         "validation_alpha_numeric": m0,
-        "validation_max_length": m1,
-        "validation_min_length": m2,
-        "validation_only_length": m3,
+        "validation_email": m1,
+        "validation_max_length": m2,
+        "validation_min_length": m3,
         "validation_required": m4,
-        "validation_valid": m5,
+        "validation_url": m5,
+        "validation_valid": m6,
       };
 }

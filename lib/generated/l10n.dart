@@ -174,21 +174,31 @@ class AppMessage {
     );
   }
 
-  /// `{fieldName}は{length}{unit}で入力してください`
-  String validation_only_length(String fieldName, int length, String unit) {
-    return Intl.message(
-      '$fieldNameは$length$unitで入力してください',
-      name: 'validation_only_length',
-      desc: '',
-      args: [fieldName, length, unit],
-    );
-  }
-
   /// `{fieldName}は英数字を入力してください`
   String validation_alpha_numeric(String fieldName) {
     return Intl.message(
       '$fieldNameは英数字を入力してください',
       name: 'validation_alpha_numeric',
+      desc: '',
+      args: [fieldName],
+    );
+  }
+
+  /// `メールアドレスの形式に不正があります。有効な{fieldName}を入力してください`
+  String validation_email(String fieldName) {
+    return Intl.message(
+      'メールアドレスの形式に不正があります。有効な$fieldNameを入力してください',
+      name: 'validation_email',
+      desc: '',
+      args: [fieldName],
+    );
+  }
+
+  /// `URLの形式に不正があります。有効な{fieldName}を入力してください`
+  String validation_url(String fieldName) {
+    return Intl.message(
+      'URLの形式に不正があります。有効な$fieldNameを入力してください',
+      name: 'validation_url',
       desc: '',
       args: [fieldName],
     );

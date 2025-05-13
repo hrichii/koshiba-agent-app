@@ -6,9 +6,11 @@ import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
 import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
+import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/usecases/chat_list/chat_list_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
@@ -104,27 +106,17 @@ class HomePage extends HookConsumerWidget {
               children: [
                 ReactiveTextFieldWithScroll<String>(
                   formControl: form.uriControl,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.url,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     hintText: AppMessage.current.field_meeting_url,
                   ),
+                  onSubmitted: (_) => onSubmitted(ref, form),
                 ),
                 ReactiveMeetingFormConsumer(
                   builder: (_, form, ___) => FilledButton(
-                    onPressed: form.form.valid
-                        ? () => ref
-                            .read(meetingRepositoryProvider)
-                            .registerMeeting(
-                              meeting: form.model,
-                            )
-                            .withLoaderOverlay()
-                            .withToastAtError()
-                            .withToastAtSuccess(
-                              (_) =>
-                                  AppMessage.current.meeting_register_success,
-                            )
-                        : null,
+                    onPressed:
+                        !form.form.valid ? null : () => onSubmitted(ref, form),
                     child: Text(AppMessage.current.meeting_register),
                   ),
                 ),
@@ -135,4 +127,19 @@ class HomePage extends HookConsumerWidget {
       ),
     );
   }
+
+  Future<Result<Meeting, AppMessageCode>> onSubmitted(
+    WidgetRef ref,
+    MeetingForm form,
+  ) =>
+      ref
+          .read(meetingRepositoryProvider)
+          .registerMeeting(
+            meeting: form.model,
+          )
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess(
+            (_) => AppMessage.current.meeting_register_success,
+          );
 }

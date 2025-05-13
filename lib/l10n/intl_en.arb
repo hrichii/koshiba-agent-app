@@ -47,22 +47,24 @@
         }
       }
     },
-    "validation_only_length": "Please enter exactly {length} {unit} for {fieldName}",
-    "@validation_only_length": {
+    "validation_alpha_numeric": "Please enter alphanumeric characters for {fieldName}",
+    "@validation_alpha_numeric": {
       "placeholders": {
         "fieldName": {
-          "type": "String"
-        },
-        "length": {
-          "type": "int"
-        },
-        "unit": {
           "type": "String"
         }
       }
     },
-    "validation_alpha_numeric": "Please enter alphanumeric characters for {fieldName}",
-    "@validation_alpha_numeric": {
+    "validation_email": "The email format is invalid. Please enter a valid {fieldName}",
+    "@validation_email": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    }, 
+    "validation_url": "The URL format is invalid. Please enter a valid {fieldName}",
+    "@validation_url": {
       "placeholders": {
         "fieldName": {
           "type": "String"

@@ -23,18 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(fieldName) =>
       "Please enter alphanumeric characters for ${fieldName}";
 
-  static String m1(fieldName, maxLength, unit) =>
+  static String m1(fieldName) =>
+      "The email format is invalid. Please enter a valid ${fieldName}";
+
+  static String m2(fieldName, maxLength, unit) =>
       "Please enter no more than ${maxLength} ${unit} for ${fieldName}";
 
-  static String m2(fieldName, minLength, unit) =>
+  static String m3(fieldName, minLength, unit) =>
       "Please enter at least ${minLength} ${unit} for ${fieldName}";
-
-  static String m3(fieldName, length, unit) =>
-      "Please enter exactly ${length} ${unit} for ${fieldName}";
 
   static String m4(fieldName) => "Please enter ${fieldName}";
 
-  static String m5(fieldName) => "Please enter a valid ${fieldName}";
+  static String m5(fieldName) =>
+      "The URL format is invalid. Please enter a valid ${fieldName}";
+
+  static String m6(fieldName) => "Please enter a valid ${fieldName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -153,10 +156,11 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
         "unit_letter": MessageLookupByLibrary.simpleMessage("characters"),
         "validation_alpha_numeric": m0,
-        "validation_max_length": m1,
-        "validation_min_length": m2,
-        "validation_only_length": m3,
+        "validation_email": m1,
+        "validation_max_length": m2,
+        "validation_min_length": m3,
         "validation_required": m4,
-        "validation_valid": m5,
+        "validation_url": m5,
+        "validation_valid": m6,
       };
 }

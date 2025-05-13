@@ -1,9 +1,8 @@
 enum ValidationKeyEnum {
-  requiredWithFieldName,
-  maxLengthWithFieldName,
-  minLengthWithFieldName,
-  onlyLengthWithFieldName,
   alphaNumericWithFieldName,
   emailWithFieldName,
+  maxLengthWithFieldName,
+  minLengthWithFieldName,
+  requiredWithFieldName,
   urlWithFieldName,
 }

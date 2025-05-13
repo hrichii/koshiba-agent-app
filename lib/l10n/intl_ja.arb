@@ -48,22 +48,24 @@
         }
       }
     },
-    "validation_only_length": "{fieldName}は{length}{unit}で入力してください",
-    "@validation_only_length": {
+    "validation_alpha_numeric": "{fieldName}は英数字を入力してください",
+    "@validation_alpha_numeric": {
       "placeholders": {
         "fieldName": {
-          "type": "String"
-        },
-        "length": {
-          "type": "int"
-        },
-        "unit": {
           "type": "String"
         }
       }
     },
-    "validation_alpha_numeric": "{fieldName}は英数字を入力してください",
-    "@validation_alpha_numeric": {
+    "validation_email": "メールアドレスの形式に不正があります。有効な{fieldName}を入力してください",
+    "@validation_email": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    },    
+    "validation_url": "URLの形式に不正があります。有効な{fieldName}を入力してください",
+    "@validation_url": {
       "placeholders": {
         "fieldName": {
           "type": "String"
