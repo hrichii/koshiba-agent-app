@@ -195,210 +195,300 @@ class AppMessage {
   }
 
   /// `リクエストに成功しました`
-  String get i200001 {
-    return Intl.message('リクエストに成功しました', name: 'i200001', desc: '', args: []);
+  String get info_api_request_success {
+    return Intl.message(
+      'リクエストに成功しました',
+      name: 'info_api_request_success',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `この認証情報は無効です`
-  String get e410001 {
-    return Intl.message('この認証情報は無効です', name: 'e410001', desc: '', args: []);
+  String get error_api_authentication_invalid {
+    return Intl.message(
+      'この認証情報は無効です',
+      name: 'error_api_authentication_invalid',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `ユーザートークンの有効期限が切れました`
-  String get e410002 {
+  String get error_api_token_expired {
     return Intl.message(
       'ユーザートークンの有効期限が切れました',
-      name: 'e410002',
+      name: 'error_api_token_expired',
       desc: '',
       args: [],
     );
   }
 
   /// `アカウントが見つかりません`
-  String get e410003 {
-    return Intl.message('アカウントが見つかりません', name: 'e410003', desc: '', args: []);
-  }
-
-  /// `この操作は許可されていません`
-  String get e410004 {
-    return Intl.message('この操作は許可されていません', name: 'e410004', desc: '', args: []);
-  }
-
-  /// `有効なメールアドレスを入力してください`
-  String get e420001 {
+  String get error_api_account_not_found {
     return Intl.message(
-      '有効なメールアドレスを入力してください',
-      name: 'e420001',
+      'アカウントが見つかりません',
+      name: 'error_api_account_not_found',
       desc: '',
       args: [],
     );
   }
 
-  /// `このメールアドレスは既に使用されています`
-  String get e420002 {
+  /// `この操作は許可されていません`
+  String get error_api_operation_not_allowed {
     return Intl.message(
-      'このメールアドレスは既に使用されています',
-      name: 'e420002',
+      'この操作は許可されていません',
+      name: 'error_api_operation_not_allowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `有効なメールアドレスを入力してください`
+  String get error_api_invalid_email {
+    return Intl.message(
+      '有効なメールアドレスを入力してください',
+      name: 'error_api_invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `メールアドレスは既に使用されています`
+  String get error_api_email_already_used {
+    return Intl.message(
+      'メールアドレスは既に使用されています',
+      name: 'error_api_email_already_used',
       desc: '',
       args: [],
     );
   }
 
   /// `パスワードが脆弱です`
-  String get e420003 {
-    return Intl.message('パスワードが脆弱です', name: 'e420003', desc: '', args: []);
+  String get error_api_weak_password {
+    return Intl.message(
+      'パスワードが脆弱です',
+      name: 'error_api_weak_password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `想定外のレスポンスを取得しました`
-  String get e430001 {
+  String get error_api_unexpected_response {
     return Intl.message(
       '想定外のレスポンスを取得しました',
-      name: 'e430001',
+      name: 'error_api_unexpected_response',
       desc: '',
       args: [],
     );
   }
 
   /// `ネットワークリクエストが失敗しました`
-  String get e430002 {
+  String get error_api_network_request_failed {
     return Intl.message(
       'ネットワークリクエストが失敗しました',
-      name: 'e430002',
+      name: 'error_api_network_request_failed',
       desc: '',
       args: [],
     );
   }
 
   /// `リクエストが多すぎます。しばらく待ってから再試行してください`
-  String get e430003 {
+  String get error_api_too_many_requests {
     return Intl.message(
       'リクエストが多すぎます。しばらく待ってから再試行してください',
-      name: 'e430003',
+      name: 'error_api_too_many_requests',
       desc: '',
       args: [],
     );
   }
 
   /// `リクエストが不正です`
-  String get e430004 {
-    return Intl.message('リクエストが不正です', name: 'e430004', desc: '', args: []);
-  }
-
-  /// `サーバーに問題が発生しました`
-  String get e500001 {
-    return Intl.message('サーバーに問題が発生しました', name: 'e500001', desc: '', args: []);
-  }
-
-  /// `不明なエラーが発生しました`
-  String get ec00001 {
-    return Intl.message('不明なエラーが発生しました', name: 'ec00001', desc: '', args: []);
-  }
-
-  /// `この認証情報は無効です`
-  String get exception_invalid_credential {
+  String get error_api_bad_request {
     return Intl.message(
-      'この認証情報は無効です',
-      name: 'exception_invalid_credential',
+      'リクエストが不正です',
+      name: 'error_api_bad_request',
       desc: '',
       args: [],
     );
   }
 
-  /// `有効なメールアドレスを入力してください`
-  String get exception_invalid_email {
+  /// `リソースが既に存在します`
+  String get error_api_resource_already_exists {
     return Intl.message(
-      '有効なメールアドレスを入力してください',
-      name: 'exception_invalid_email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `不明なエラーが発生しました`
-  String get exception_unknown {
-    return Intl.message(
-      '不明なエラーが発生しました',
-      name: 'exception_unknown',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `このメールアドレスは既に使用されています`
-  String get exception_email_already_in_use {
-    return Intl.message(
-      'このメールアドレスは既に使用されています',
-      name: 'exception_email_already_in_use',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `この操作は許可されていません`
-  String get exception_operation_not_allowed {
-    return Intl.message(
-      'この操作は許可されていません',
-      name: 'exception_operation_not_allowed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `パスワードが脆弱です`
-  String get exception_weak_password {
-    return Intl.message(
-      'パスワードが脆弱です',
-      name: 'exception_weak_password',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `リクエストが多すぎます。しばらく待ってから再試行してください`
-  String get exception_too_many_requests {
-    return Intl.message(
-      'リクエストが多すぎます。しばらく待ってから再試行してください',
-      name: 'exception_too_many_requests',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `ユーザートークンの有効期限が切れました`
-  String get exception_user_token_expired {
-    return Intl.message(
-      'ユーザートークンの有効期限が切れました',
-      name: 'exception_user_token_expired',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `ネットワークリクエストが失敗しました`
-  String get exception_network_request_failed {
-    return Intl.message(
-      'ネットワークリクエストが失敗しました',
-      name: 'exception_network_request_failed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `アカウントが見つかりません`
-  String get exception_account_not_found {
-    return Intl.message(
-      'アカウントが見つかりません',
-      name: 'exception_account_not_found',
+      'リソースが既に存在します',
+      name: 'error_api_resource_already_exists',
       desc: '',
       args: [],
     );
   }
 
   /// `サーバーに問題が発生しました`
-  String get exception_server_error {
+  String get error_api_server_issue {
     return Intl.message(
       'サーバーに問題が発生しました',
-      name: 'exception_server_error',
+      name: 'error_api_server_issue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `不明なエラーが発生しました`
+  String get error_client_unknow {
+    return Intl.message(
+      '不明なエラーが発生しました',
+      name: 'error_client_unknow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `想定外のレスポンスを取得しました`
+  String get error_client_unexpected_response {
+    return Intl.message(
+      '想定外のレスポンスを取得しました',
+      name: 'error_client_unexpected_response',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `タイムアウトが発生しました`
+  String get error_client_dio_timeout {
+    return Intl.message(
+      'タイムアウトが発生しました',
+      name: 'error_client_dio_timeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `キャンセルされました`
+  String get error_client_dio_cancel {
+    return Intl.message(
+      'キャンセルされました',
+      name: 'error_client_dio_cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ネットワークの接続に問題があります。`
+  String get error_client_dio_connection {
+    return Intl.message(
+      'ネットワークの接続に問題があります。',
+      name: 'error_client_dio_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストに成功しました。`
+  String get error_client_status_code_2XX {
+    return Intl.message(
+      'リクエストに成功しました。',
+      name: 'error_client_status_code_2XX',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `不正なリクエストです。`
+  String get error_client_status_code_4XX {
+    return Intl.message(
+      '不正なリクエストです。',
+      name: 'error_client_status_code_4XX',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `認証情報が必要です。`
+  String get error_client_status_code_401 {
+    return Intl.message(
+      '認証情報が必要です。',
+      name: 'error_client_status_code_401',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `プロキシ認証が必要です。`
+  String get error_client_status_code_407 {
+    return Intl.message(
+      'プロキシ認証が必要です。',
+      name: 'error_client_status_code_407',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストタイムアウトが発生しました。`
+  String get error_client_status_code_408 {
+    return Intl.message(
+      'リクエストタイムアウトが発生しました。',
+      name: 'error_client_status_code_408',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが競合しています。`
+  String get error_client_status_code_409 {
+    return Intl.message(
+      'リクエストが競合しています。',
+      name: 'error_client_status_code_409',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが大きすぎます。`
+  String get error_client_status_code_413 {
+    return Intl.message(
+      'リクエストが大きすぎます。',
+      name: 'error_client_status_code_413',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `URIが長すぎます。`
+  String get error_client_status_code_414 {
+    return Intl.message(
+      'URIが長すぎます。',
+      name: 'error_client_status_code_414',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `リクエストが多すぎます。`
+  String get error_client_status_code_429 {
+    return Intl.message(
+      'リクエストが多すぎます。',
+      name: 'error_client_status_code_429',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `サーバー内部でエラーが発生しました。`
+  String get error_client_status_code_5XX {
+    return Intl.message(
+      'サーバー内部でエラーが発生しました。',
+      name: 'error_client_status_code_5XX',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ゲートウェイタイムアウトが発生しました。`
+  String get error_client_status_code_504 {
+    return Intl.message(
+      'ゲートウェイタイムアウトが発生しました。',
+      name: 'error_client_status_code_504',
       desc: '',
       args: [],
     );

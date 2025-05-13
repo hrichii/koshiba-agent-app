@@ -1,5 +1,5 @@
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
@@ -20,15 +20,14 @@ class MeetingRepository implements MeetingRepositoryInterface {
   final ApiDataSource _apiDataSource;
 
   @override
-  Future<Result<Meeting, AppException>> registerMeeting({
+  Future<Result<Meeting, AppMessageCode>> registerMeeting({
     required Meeting meeting,
   }) async {
     switch (await _apiDataSource.registerMeeting()) {
       case ApiResponseOk<Meeting>(:final data):
         return ResultOk(value: data);
-      case ApiResponseNg<Meeting>():
-        // TODO(hrichii): エラーハンドリング
-        return const ResultNg(value: UnknownException());
+      case ApiResponseNg<Meeting>(:final messageCode):
+        return ResultNg(value: messageCode);
     }
   }
 }

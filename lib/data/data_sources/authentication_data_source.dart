@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/access_token/access_token.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
@@ -13,18 +13,19 @@ final authenticationDataSourceProvider = Provider(
 class AuthenticationDataSource {
   final _firebaseAuth = firebase_auth.FirebaseAuth.instance;
 
-  Future<Result<UserCredential, AppException>> createUserWithEmailAndPassword({
+  Future<Result<UserCredential, AppMessageCode>>
+      createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) =>
-      _handleAuth(
-        () => _firebaseAuth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        ),
-      );
+          _handleAuth(
+            () => _firebaseAuth.createUserWithEmailAndPassword(
+              email: email,
+              password: password,
+            ),
+          );
 
-  Future<Result<UserCredential, AppException>> signInWithEmailAndPassword({
+  Future<Result<UserCredential, AppMessageCode>> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) =>
@@ -35,21 +36,21 @@ class AuthenticationDataSource {
         ),
       );
 
-  Future<Result<void, AppException>> signOut() async {
+  Future<Result<void, AppMessageCode>> signOut() async {
     try {
       await _firebaseAuth.signOut();
       return const ResultOk(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
     } catch (_) {
-      return const ResultNg(value: UnknownException());
+      return const ResultNg(value: AppMessageCode.errorClientUnknown());
     }
   }
 
-  Result<User, AppException> getCurrentUser() {
+  Result<User, AppMessageCode> getCurrentUser() {
     final user = _firebaseAuth.currentUser;
     if (user == null) {
-      return const ResultNg(value: AccountNotFoundException());
+      return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
     }
     return ResultOk(
       value: User(
@@ -61,22 +62,22 @@ class AuthenticationDataSource {
     );
   }
 
-  Future<Result<void, AppException>> deleteCurrentUser() async {
+  Future<Result<void, AppMessageCode>> deleteCurrentUser() async {
     try {
       final user = _firebaseAuth.currentUser;
       if (user == null) {
-        return const ResultNg(value: AccountNotFoundException());
+        return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
       }
       await user.delete();
       return const ResultOk(value: null);
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
     } catch (_) {
-      return const ResultNg(value: UnknownException());
+      return const ResultNg(value: AppMessageCode.errorClientUnknown());
     }
   }
 
-  Future<Result<UserCredential, AppException>> _handleAuth(
+  Future<Result<UserCredential, AppMessageCode>> _handleAuth(
     Future<firebase_auth.UserCredential> Function() authMethod,
   ) async {
     try {
@@ -99,32 +100,34 @@ class AuthenticationDataSource {
         ),
       );
     } on firebase_auth.FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppException(e.code));
+      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
     } catch (e) {
-      return ResultNg(value: UnknownException(description: e.toString()));
+      return ResultNg(
+        value: AppMessageCode.errorClientUnknown(message: e.toString()),
+      );
     }
   }
 
-  AppException _mapFirebaseErrorToAppException(String code) {
+  AppMessageCode _mapFirebaseErrorToAppMessageCode(String code) {
     switch (code) {
       case 'invalid-credential':
-        return const InvalidCredentialException();
+        return const AppMessageCode.errorApiAuthenticationInvalid();
       case 'email-already-in-use':
-        return const EmailAlreadyInUseException();
+        return const AppMessageCode.errorApiEmailAlreadyUsed();
       case 'invalid-email':
-        return const InvalidEmailException();
+        return const AppMessageCode.errorApiInvalidEmail();
       case 'operation-not-allowed':
-        return const OperationNotAllowedException();
+        return const AppMessageCode.errorApiOperationNotAllowed();
       case 'weak-password':
-        return const WeakPasswordException();
+        return const AppMessageCode.errorApiWeakPassword();
       case 'too-many-requests':
-        return const TooManyRequestsException();
+        return const AppMessageCode.errorApiTooManyRequests();
       case 'user-token-expired':
-        return const UserTokenExpiredException();
+        return const AppMessageCode.errorApiTokenExpired();
       case 'network-request-failed':
-        return const NetworkRequestFailedException();
+        return const AppMessageCode.errorApiNetworkRequestFailed();
       default:
-        return UnknownException(description: code);
+        return const AppMessageCode.errorClientUnknown();
     }
   }
 }

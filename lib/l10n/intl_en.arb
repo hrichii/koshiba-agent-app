@@ -86,26 +86,38 @@
         }
       }
     },
-    "exception_deseriarize_error": "Unexpected response received",
-    "@exception_deseriarize_error": {},
-    "exception_incalid_credential": "This credential is invalid",
-    "@exception_incalid_credential": {},
-    "exception_email_already_in_use": "This email address is already in use",
-    "@exception_email_already_in_use": {},
-    "exception_invalid_email": "Please enter a valid email address",
-    "@exception_invalid_email": {},
-    "exception_operation_not_allowed": "This operation is not allowed",
-    "@exception_operation_not_allowed": {},
-    "exception_weak_password": "The password is too weak",
-    "@exception_weak_password": {},
-    "exception_too_many_requests": "Too many requests. Please try again later",
-    "@exception_too_many_requests": {},
-    "exception_user_token_expired": "User token has expired",
-    "@exception_user_token_expired": {},
-    "exception_network_request_failed": "Network request failed",
-    "@exception_network_request_failed": {},
-    "exception_account_not_found": "Account not found",
-    "@exception_account_not_found": {},
-    "exception_server_error": "Server error",
-    "@exception_server_error": {}
+    "i200001": "Request succeeded",
+
+    "e410001": "Invalid credentials",
+    "e410002": "User token has expired",
+    "e410003": "Account not found",
+    "e410004": "This operation is not permitted",
+
+    "e420001": "Please enter a valid ${fieldName}",
+    "@e420001": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    },
+    "e420002": "${fieldName} is already in use",
+    "@e420002": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    },
+    "e420003": "The password is too weak",
+
+    "e430001": "An unexpected response was received",
+    "e430002": "Network request failed",
+    "e430003": "Too many requests. Please try again later",
+    "e430004": "Invalid request",
+    "e430005": "Resource already exists",
+
+    "e500001": "A server error has occurred",
+    "ec00001": "An unknown error has occurred",
+    "ec00002": "An unexpected response was received"
 }

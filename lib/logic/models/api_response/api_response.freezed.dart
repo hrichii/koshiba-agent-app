@@ -28,7 +28,8 @@ ApiResponse<S> _$ApiResponseFromJson<S>(
 
 /// @nodoc
 mixin _$ApiResponse<S> {
-  Meta get meta;
+  @JsonKey(name: 'meta')
+  AppMessageCode get messageCode;
 
   /// Create a copy of ApiResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -46,16 +47,17 @@ mixin _$ApiResponse<S> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ApiResponse<S> &&
-            (identical(other.meta, meta) || other.meta == meta));
+            (identical(other.messageCode, messageCode) ||
+                other.messageCode == messageCode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, meta);
+  int get hashCode => Object.hash(runtimeType, messageCode);
 
   @override
   String toString() {
-    return 'ApiResponse<$S>(meta: $meta)';
+    return 'ApiResponse<$S>(messageCode: $messageCode)';
   }
 }
 
@@ -65,9 +67,9 @@ abstract mixin class $ApiResponseCopyWith<S, $Res> {
           ApiResponse<S> value, $Res Function(ApiResponse<S>) _then) =
       _$ApiResponseCopyWithImpl;
   @useResult
-  $Res call({Meta meta});
+  $Res call({@JsonKey(name: 'meta') AppMessageCode messageCode});
 
-  $MetaCopyWith<$Res> get meta;
+  $AppMessageCodeCopyWith<$Res> get messageCode;
 }
 
 /// @nodoc
@@ -83,13 +85,13 @@ class _$ApiResponseCopyWithImpl<S, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? meta = null,
+    Object? messageCode = null,
   }) {
     return _then(_self.copyWith(
-      meta: null == meta
-          ? _self.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Meta,
+      messageCode: null == messageCode
+          ? _self.messageCode
+          : messageCode // ignore: cast_nullable_to_non_nullable
+              as AppMessageCode,
     ));
   }
 
@@ -97,9 +99,9 @@ class _$ApiResponseCopyWithImpl<S, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetaCopyWith<$Res> get meta {
-    return $MetaCopyWith<$Res>(_self.meta, (value) {
-      return _then(_self.copyWith(meta: value));
+  $AppMessageCodeCopyWith<$Res> get messageCode {
+    return $AppMessageCodeCopyWith<$Res>(_self.messageCode, (value) {
+      return _then(_self.copyWith(messageCode: value));
     });
   }
 }
@@ -108,7 +110,9 @@ class _$ApiResponseCopyWithImpl<S, $Res>
 @JsonSerializable(genericArgumentFactories: true)
 class ApiResponseOk<S> extends ApiResponse<S> {
   const ApiResponseOk(
-      {required this.data, required this.meta, final String? $type})
+      {required this.data,
+      @JsonKey(name: 'meta') required this.messageCode,
+      final String? $type})
       : $type = $type ?? 'ok',
         super._();
   factory ApiResponseOk.fromJson(
@@ -117,7 +121,8 @@ class ApiResponseOk<S> extends ApiResponse<S> {
 
   final S data;
   @override
-  final Meta meta;
+  @JsonKey(name: 'meta')
+  final AppMessageCode messageCode;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -141,17 +146,18 @@ class ApiResponseOk<S> extends ApiResponse<S> {
         (other.runtimeType == runtimeType &&
             other is ApiResponseOk<S> &&
             const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.meta, meta) || other.meta == meta));
+            (identical(other.messageCode, messageCode) ||
+                other.messageCode == messageCode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(data), meta);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(data), messageCode);
 
   @override
   String toString() {
-    return 'ApiResponse<$S>.ok(data: $data, meta: $meta)';
+    return 'ApiResponse<$S>.ok(data: $data, messageCode: $messageCode)';
   }
 }
 
@@ -163,10 +169,10 @@ abstract mixin class $ApiResponseOkCopyWith<S, $Res>
       _$ApiResponseOkCopyWithImpl;
   @override
   @useResult
-  $Res call({S data, Meta meta});
+  $Res call({S data, @JsonKey(name: 'meta') AppMessageCode messageCode});
 
   @override
-  $MetaCopyWith<$Res> get meta;
+  $AppMessageCodeCopyWith<$Res> get messageCode;
 }
 
 /// @nodoc
@@ -183,17 +189,17 @@ class _$ApiResponseOkCopyWithImpl<S, $Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? data = freezed,
-    Object? meta = null,
+    Object? messageCode = null,
   }) {
     return _then(ApiResponseOk<S>(
       data: freezed == data
           ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as S,
-      meta: null == meta
-          ? _self.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Meta,
+      messageCode: null == messageCode
+          ? _self.messageCode
+          : messageCode // ignore: cast_nullable_to_non_nullable
+              as AppMessageCode,
     ));
   }
 
@@ -201,9 +207,9 @@ class _$ApiResponseOkCopyWithImpl<S, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetaCopyWith<$Res> get meta {
-    return $MetaCopyWith<$Res>(_self.meta, (value) {
-      return _then(_self.copyWith(meta: value));
+  $AppMessageCodeCopyWith<$Res> get messageCode {
+    return $AppMessageCodeCopyWith<$Res>(_self.messageCode, (value) {
+      return _then(_self.copyWith(messageCode: value));
     });
   }
 }
@@ -211,7 +217,8 @@ class _$ApiResponseOkCopyWithImpl<S, $Res>
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
 class ApiResponseNg<S> extends ApiResponse<S> {
-  const ApiResponseNg({required this.meta, final String? $type})
+  const ApiResponseNg(
+      {@JsonKey(name: 'meta') required this.messageCode, final String? $type})
       : $type = $type ?? 'ng',
         super._();
   factory ApiResponseNg.fromJson(
@@ -219,7 +226,8 @@ class ApiResponseNg<S> extends ApiResponse<S> {
       _$ApiResponseNgFromJson(json, fromJsonS);
 
   @override
-  final Meta meta;
+  @JsonKey(name: 'meta')
+  final AppMessageCode messageCode;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -242,16 +250,17 @@ class ApiResponseNg<S> extends ApiResponse<S> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ApiResponseNg<S> &&
-            (identical(other.meta, meta) || other.meta == meta));
+            (identical(other.messageCode, messageCode) ||
+                other.messageCode == messageCode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, meta);
+  int get hashCode => Object.hash(runtimeType, messageCode);
 
   @override
   String toString() {
-    return 'ApiResponse<$S>.ng(meta: $meta)';
+    return 'ApiResponse<$S>.ng(messageCode: $messageCode)';
   }
 }
 
@@ -263,10 +272,10 @@ abstract mixin class $ApiResponseNgCopyWith<S, $Res>
       _$ApiResponseNgCopyWithImpl;
   @override
   @useResult
-  $Res call({Meta meta});
+  $Res call({@JsonKey(name: 'meta') AppMessageCode messageCode});
 
   @override
-  $MetaCopyWith<$Res> get meta;
+  $AppMessageCodeCopyWith<$Res> get messageCode;
 }
 
 /// @nodoc
@@ -282,13 +291,13 @@ class _$ApiResponseNgCopyWithImpl<S, $Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? meta = null,
+    Object? messageCode = null,
   }) {
     return _then(ApiResponseNg<S>(
-      meta: null == meta
-          ? _self.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Meta,
+      messageCode: null == messageCode
+          ? _self.messageCode
+          : messageCode // ignore: cast_nullable_to_non_nullable
+              as AppMessageCode,
     ));
   }
 
@@ -296,162 +305,10 @@ class _$ApiResponseNgCopyWithImpl<S, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetaCopyWith<$Res> get meta {
-    return $MetaCopyWith<$Res>(_self.meta, (value) {
-      return _then(_self.copyWith(meta: value));
+  $AppMessageCodeCopyWith<$Res> get messageCode {
+    return $AppMessageCodeCopyWith<$Res>(_self.messageCode, (value) {
+      return _then(_self.copyWith(messageCode: value));
     });
-  }
-}
-
-/// @nodoc
-mixin _$Meta {
-  AppMessageCodeEnum get code;
-  String? get message;
-
-  /// Create a copy of Meta
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $MetaCopyWith<Meta> get copyWith =>
-      _$MetaCopyWithImpl<Meta>(this as Meta, _$identity);
-
-  /// Serializes this Meta to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Meta &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, code, message);
-
-  @override
-  String toString() {
-    return 'Meta(code: $code, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $MetaCopyWith<$Res> {
-  factory $MetaCopyWith(Meta value, $Res Function(Meta) _then) =
-      _$MetaCopyWithImpl;
-  @useResult
-  $Res call({AppMessageCodeEnum code, String? message});
-}
-
-/// @nodoc
-class _$MetaCopyWithImpl<$Res> implements $MetaCopyWith<$Res> {
-  _$MetaCopyWithImpl(this._self, this._then);
-
-  final Meta _self;
-  final $Res Function(Meta) _then;
-
-  /// Create a copy of Meta
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? code = null,
-    Object? message = freezed,
-  }) {
-    return _then(_self.copyWith(
-      code: null == code
-          ? _self.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as AppMessageCodeEnum,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _Meta implements Meta {
-  const _Meta({required this.code, required this.message});
-  factory _Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
-
-  @override
-  final AppMessageCodeEnum code;
-  @override
-  final String? message;
-
-  /// Create a copy of Meta
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$MetaCopyWith<_Meta> get copyWith =>
-      __$MetaCopyWithImpl<_Meta>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$MetaToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Meta &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, code, message);
-
-  @override
-  String toString() {
-    return 'Meta(code: $code, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$MetaCopyWith<$Res> implements $MetaCopyWith<$Res> {
-  factory _$MetaCopyWith(_Meta value, $Res Function(_Meta) _then) =
-      __$MetaCopyWithImpl;
-  @override
-  @useResult
-  $Res call({AppMessageCodeEnum code, String? message});
-}
-
-/// @nodoc
-class __$MetaCopyWithImpl<$Res> implements _$MetaCopyWith<$Res> {
-  __$MetaCopyWithImpl(this._self, this._then);
-
-  final _Meta _self;
-  final $Res Function(_Meta) _then;
-
-  /// Create a copy of Meta
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? code = null,
-    Object? message = freezed,
-  }) {
-    return _then(_Meta(
-      code: null == code
-          ? _self.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as AppMessageCodeEnum,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
   }
 }
 

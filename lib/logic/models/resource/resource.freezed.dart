@@ -177,7 +177,7 @@ class ResourceError<S> extends Resource<S> {
           Map<String, dynamic> json, S Function(Object?) fromJsonS) =>
       _$ResourceErrorFromJson(json, fromJsonS);
 
-  final AppException value;
+  final AppMessageCode value;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -219,9 +219,9 @@ abstract mixin class $ResourceErrorCopyWith<S, $Res>
           ResourceError<S> value, $Res Function(ResourceError<S>) _then) =
       _$ResourceErrorCopyWithImpl;
   @useResult
-  $Res call({AppException value});
+  $Res call({AppMessageCode value});
 
-  $AppExceptionCopyWith<$Res> get value;
+  $AppMessageCodeCopyWith<$Res> get value;
 }
 
 /// @nodoc
@@ -242,7 +242,7 @@ class _$ResourceErrorCopyWithImpl<S, $Res>
       value: null == value
           ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
-              as AppException,
+              as AppMessageCode,
     ));
   }
 
@@ -250,8 +250,8 @@ class _$ResourceErrorCopyWithImpl<S, $Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AppExceptionCopyWith<$Res> get value {
-    return $AppExceptionCopyWith<$Res>(_self.value, (value) {
+  $AppMessageCodeCopyWith<$Res> get value {
+    return $AppMessageCodeCopyWith<$Res>(_self.value, (value) {
       return _then(_self.copyWith(value: value));
     });
   }

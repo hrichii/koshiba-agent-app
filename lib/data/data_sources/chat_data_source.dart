@@ -1,4 +1,4 @@
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:riverpod/riverpod.dart';
@@ -8,7 +8,7 @@ final chatDataSourceProvider = Provider(
 );
 
 class ChatDataSource {
-  Future<Result<List<ChatRoom>, AppException>> getChatRoomList() async {
+  Future<Result<List<ChatRoom>, AppMessageCode>> getChatRoomList() async {
     await Future.delayed(const Duration(seconds: 2));
     return ResultOk(
       value: [
@@ -28,7 +28,9 @@ class ChatDataSource {
     );
   }
 
-  Future<Result<ChatRoom, AppException>> addChatRoom(ChatRoom chatRoom) async {
+  Future<Result<ChatRoom, AppMessageCode>> addChatRoom(
+    ChatRoom chatRoom,
+  ) async {
     await Future.delayed(const Duration(seconds: 2));
     return ResultOk(
       value: ChatRoom(
@@ -40,12 +42,12 @@ class ChatDataSource {
     );
   }
 
-  Future<Result<void, AppException>> deleteChatRoom(String chatRoomId) async {
+  Future<Result<void, AppMessageCode>> deleteChatRoom(String chatRoomId) async {
     await Future.delayed(const Duration(seconds: 1));
     return const ResultOk(value: null);
   }
 
-  Future<Result<ChatRoom, AppException>> updateChatRoom(
+  Future<Result<ChatRoom, AppMessageCode>> updateChatRoom(
     ChatRoom chatRoom,
   ) async {
     await Future.delayed(const Duration(seconds: 1));

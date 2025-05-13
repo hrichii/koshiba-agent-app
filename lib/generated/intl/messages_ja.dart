@@ -43,58 +43,102 @@ class MessageLookup extends MessageLookupByLibrary {
         "common_sign_in": MessageLookupByLibrary.simpleMessage("サインイン"),
         "common_sign_out": MessageLookupByLibrary.simpleMessage("サインアウト"),
         "common_sign_up": MessageLookupByLibrary.simpleMessage("サインアップ"),
-        "e410001": MessageLookupByLibrary.simpleMessage("この認証情報は無効です"),
-        "e410002": MessageLookupByLibrary.simpleMessage("ユーザートークンの有効期限が切れました"),
-        "e410003": MessageLookupByLibrary.simpleMessage("アカウントが見つかりません"),
-        "e410004": MessageLookupByLibrary.simpleMessage("この操作は許可されていません"),
-        "e420001": MessageLookupByLibrary.simpleMessage("有効なメールアドレスを入力してください"),
-        "e420002": MessageLookupByLibrary.simpleMessage("このメールアドレスは既に使用されています"),
-        "e420003": MessageLookupByLibrary.simpleMessage("パスワードが脆弱です"),
-        "e430001": MessageLookupByLibrary.simpleMessage("想定外のレスポンスを取得しました"),
-        "e430002": MessageLookupByLibrary.simpleMessage("ネットワークリクエストが失敗しました"),
-        "e430003": MessageLookupByLibrary.simpleMessage(
-          "リクエストが多すぎます。しばらく待ってから再試行してください",
-        ),
-        "e430004": MessageLookupByLibrary.simpleMessage("リクエストが不正です"),
-        "e500001": MessageLookupByLibrary.simpleMessage("サーバーに問題が発生しました"),
-        "ec00001": MessageLookupByLibrary.simpleMessage("不明なエラーが発生しました"),
-        "exception_account_not_found": MessageLookupByLibrary.simpleMessage(
+        "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
           "アカウントが見つかりません",
         ),
-        "exception_email_already_in_use": MessageLookupByLibrary.simpleMessage(
-          "このメールアドレスは既に使用されています",
-        ),
-        "exception_invalid_credential": MessageLookupByLibrary.simpleMessage(
+        "error_api_authentication_invalid":
+            MessageLookupByLibrary.simpleMessage(
           "この認証情報は無効です",
         ),
-        "exception_invalid_email": MessageLookupByLibrary.simpleMessage(
+        "error_api_bad_request":
+            MessageLookupByLibrary.simpleMessage("リクエストが不正です"),
+        "error_api_email_already_used": MessageLookupByLibrary.simpleMessage(
+          "メールアドレスは既に使用されています",
+        ),
+        "error_api_invalid_email": MessageLookupByLibrary.simpleMessage(
           "有効なメールアドレスを入力してください",
         ),
-        "exception_network_request_failed":
+        "error_api_network_request_failed":
             MessageLookupByLibrary.simpleMessage(
           "ネットワークリクエストが失敗しました",
         ),
-        "exception_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
+        "error_api_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
           "この操作は許可されていません",
         ),
-        "exception_server_error": MessageLookupByLibrary.simpleMessage(
+        "error_api_resource_already_exists":
+            MessageLookupByLibrary.simpleMessage(
+          "リソースが既に存在します",
+        ),
+        "error_api_server_issue": MessageLookupByLibrary.simpleMessage(
           "サーバーに問題が発生しました",
         ),
-        "exception_too_many_requests": MessageLookupByLibrary.simpleMessage(
-          "リクエストが多すぎます。しばらく待ってから再試行してください",
-        ),
-        "exception_unknown":
-            MessageLookupByLibrary.simpleMessage("不明なエラーが発生しました"),
-        "exception_user_token_expired": MessageLookupByLibrary.simpleMessage(
+        "error_api_token_expired": MessageLookupByLibrary.simpleMessage(
           "ユーザートークンの有効期限が切れました",
         ),
-        "exception_weak_password": MessageLookupByLibrary.simpleMessage(
+        "error_api_too_many_requests": MessageLookupByLibrary.simpleMessage(
+          "リクエストが多すぎます。しばらく待ってから再試行してください",
+        ),
+        "error_api_unexpected_response": MessageLookupByLibrary.simpleMessage(
+          "想定外のレスポンスを取得しました",
+        ),
+        "error_api_weak_password": MessageLookupByLibrary.simpleMessage(
           "パスワードが脆弱です",
+        ),
+        "error_client_dio_cancel": MessageLookupByLibrary.simpleMessage(
+          "キャンセルされました",
+        ),
+        "error_client_dio_connection": MessageLookupByLibrary.simpleMessage(
+          "ネットワークの接続に問題があります。",
+        ),
+        "error_client_dio_timeout": MessageLookupByLibrary.simpleMessage(
+          "タイムアウトが発生しました",
+        ),
+        "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
+          "リクエストに成功しました。",
+        ),
+        "error_client_status_code_401": MessageLookupByLibrary.simpleMessage(
+          "認証情報が必要です。",
+        ),
+        "error_client_status_code_407": MessageLookupByLibrary.simpleMessage(
+          "プロキシ認証が必要です。",
+        ),
+        "error_client_status_code_408": MessageLookupByLibrary.simpleMessage(
+          "リクエストタイムアウトが発生しました。",
+        ),
+        "error_client_status_code_409": MessageLookupByLibrary.simpleMessage(
+          "リクエストが競合しています。",
+        ),
+        "error_client_status_code_413": MessageLookupByLibrary.simpleMessage(
+          "リクエストが大きすぎます。",
+        ),
+        "error_client_status_code_414": MessageLookupByLibrary.simpleMessage(
+          "URIが長すぎます。",
+        ),
+        "error_client_status_code_429": MessageLookupByLibrary.simpleMessage(
+          "リクエストが多すぎます。",
+        ),
+        "error_client_status_code_4XX": MessageLookupByLibrary.simpleMessage(
+          "不正なリクエストです。",
+        ),
+        "error_client_status_code_504": MessageLookupByLibrary.simpleMessage(
+          "ゲートウェイタイムアウトが発生しました。",
+        ),
+        "error_client_status_code_5XX": MessageLookupByLibrary.simpleMessage(
+          "サーバー内部でエラーが発生しました。",
+        ),
+        "error_client_unexpected_response":
+            MessageLookupByLibrary.simpleMessage(
+          "想定外のレスポンスを取得しました",
+        ),
+        "error_client_unknow": MessageLookupByLibrary.simpleMessage(
+          "不明なエラーが発生しました",
         ),
         "field_email": MessageLookupByLibrary.simpleMessage("メールアドレス"),
         "field_meeting_url": MessageLookupByLibrary.simpleMessage("ミーティングURL"),
         "field_password": MessageLookupByLibrary.simpleMessage("パスワード"),
-        "i200001": MessageLookupByLibrary.simpleMessage("リクエストに成功しました"),
+        "info_api_request_success": MessageLookupByLibrary.simpleMessage(
+          "リクエストに成功しました",
+        ),
         "meeting_register_success": MessageLookupByLibrary.simpleMessage(
           "ミーティング登録が完了しました",
         ),

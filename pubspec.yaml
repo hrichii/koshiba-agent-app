@@ -47,6 +47,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^3.0.6
   go_router_builder: ^2.8.2
+  intl_utils: ^2.8.10
   json_serializable: ^6.9.4
   reactive_forms_generator: ^6.1.1
   retrofit_generator: ^9.1.9

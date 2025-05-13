@@ -21,11 +21,19 @@ class _ApiDataSource implements ApiDataSource {
   Future<ApiResponse<Meeting>> registerMeeting() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'accept': 'application/json'};
+    final _headers = <String, dynamic>{
+      r'accept': 'application/json',
+      r'content-type': 'application/json',
+    };
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<Meeting>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(
+        method: 'POST',
+        headers: _headers,
+        extra: _extra,
+        contentType: 'application/json',
+      )
           .compose(
             _dio.options,
             '/meetings',

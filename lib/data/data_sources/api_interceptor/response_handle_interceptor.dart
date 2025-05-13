@@ -1,19 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:koshiba_agent_app/logic/enums/app_message_code_enum.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
 
 class ResponseHandleInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO(hrichii): エラーハンドリング
-    final appMessageCodeEnum =
-        AppMessageCodeEnum.fromString(response.data['code']);
-    final message = response.data['message'];
+    final appMessageCode = _getAppMessageCode(response: response);
     final apiResponseOk = ApiResponseOk(
-      meta: Meta(
-        code: appMessageCodeEnum,
-        message: message,
-      ),
+      messageCode: appMessageCode,
       data: response.data['data'],
     );
     handler.next(
@@ -31,21 +25,40 @@ class ResponseHandleInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    // TODO(hrichii): エラーハンドリング
-    final appMessageCodeEnum =
-        AppMessageCodeEnum.fromString(err.response?.data['code']);
-    final message = err.response?.data['message'];
-    final apiResponseNg = ApiResponseNg(
-      meta: Meta(
-        code: appMessageCodeEnum,
-        message: message,
-      ),
-    );
+    final appMessageCode =
+        _getAppMessageCode(response: err.response, dioExceptionType: err.type);
     handler.resolve(
       Response(
-        data: apiResponseNg.toJson((json) => json),
+        data: ApiResponseNg(messageCode: appMessageCode).toJson((json) => json),
         requestOptions: err.requestOptions,
       ),
     );
+  }
+
+  AppMessageCode _getAppMessageCode({
+    required Response? response,
+    DioExceptionType? dioExceptionType,
+  }) {
+    // メタ情報が存在する場合
+    try {
+      if (response?.data['meta'] case final Map<String, dynamic> meta) {
+        return AppMessageCode.fromJson(meta);
+      }
+    } catch (_) {}
+
+    // DioExceptionによるエラーの場合
+    if (dioExceptionType != null) {
+      return AppMessageCode.fromDioExceptionType(dioExceptionType);
+    }
+
+    // ステータスコードを元にエラーを生成
+    if (response?.statusCode case final int statusCode) {
+      return AppMessageCode.fromStatusCode(
+        statusCode: statusCode,
+        message: response?.data?.toString(),
+      );
+    }
+
+    return AppMessageCode.errorClientUnknown(message: response.toString());
   }
 }

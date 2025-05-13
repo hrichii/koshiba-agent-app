@@ -45,7 +45,7 @@ ResourceError<S> _$ResourceErrorFromJson<S>(
   S Function(Object? json) fromJsonS,
 ) =>
     ResourceError<S>(
-      value: AppException.fromJson(json['value'] as Map<String, dynamic>),
+      value: AppMessageCode.fromJson(json['value'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 

@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/data/data_sources/account_data_soure.dart';
 import 'package:koshiba_agent_app/data/data_sources/authentication_data_source.dart';
 import 'package:koshiba_agent_app/data/data_sources/cache_data_source.dart';
 import 'package:koshiba_agent_app/data/dtos/account_create_dto/account_create_dto.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
@@ -33,7 +33,7 @@ class AccountRepository implements AuthenticationRepositoryInterface {
   final VoidCallback _clearCache;
 
   @override
-  Future<Result<UserCredential, AppException>> signUp(
+  Future<Result<UserCredential, AppMessageCode>> signUp(
     SignIn signUpModel,
   ) async {
     final authenticationResult =
@@ -42,59 +42,61 @@ class AccountRepository implements AuthenticationRepositoryInterface {
       password: signUpModel.password!,
     );
     switch (authenticationResult) {
-      case ResultOk<UserCredential, AppException>(value: final userCredential):
+      case ResultOk<UserCredential, AppMessageCode>(
+          value: final userCredential
+        ):
         final accountCreateDto = AccountCreateDto(
           uid: userCredential.user!.id,
           email: userCredential.user!.email!,
           // TODO(hrichii): nameを追加する可能性がある
         );
         final createResult = await _accountDataSource.create(accountCreateDto);
-        if (createResult case ResultNg<void, AppException>()) {
+        if (createResult case ResultNg<void, AppMessageCode>()) {
           return ResultNg(value: createResult.value);
         }
         return authenticationResult;
-      case ResultNg<UserCredential, AppException>():
+      case ResultNg<UserCredential, AppMessageCode>():
         return authenticationResult;
     }
   }
 
   @override
-  Future<Result<UserCredential, AppException>> signIn(SignIn signInModel) =>
+  Future<Result<UserCredential, AppMessageCode>> signIn(SignIn signInModel) =>
       _authenticationDataSource.signInWithEmailAndPassword(
         email: signInModel.email!,
         password: signInModel.password!,
       );
 
   @override
-  Future<Result<void, AppException>> signOut() async {
+  Future<Result<void, AppMessageCode>> signOut() async {
     final result = await _authenticationDataSource.signOut();
-    if (result case ResultOk<void, AppException>()) {
+    if (result case ResultOk<void, AppMessageCode>()) {
       _clearCache();
     }
     return result;
   }
 
   @override
-  Result<User, AppException> getMe() =>
+  Result<User, AppMessageCode> getMe() =>
       _authenticationDataSource.getCurrentUser();
 
   @override
-  Future<Result<void, AppException>> deleteMe() async {
+  Future<Result<void, AppMessageCode>> deleteMe() async {
     final uid = switch (getMe()) {
-      ResultOk<User, AppException>(value: final user) => user.id,
-      ResultNg<User, AppException>() => null,
+      ResultOk<User, AppMessageCode>(value: final user) => user.id,
+      ResultNg<User, AppMessageCode>() => null,
     };
     if (uid == null) {
-      return const ResultNg(value: AccountNotFoundException());
+      return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
     }
 
     final authenticationResult =
         await _authenticationDataSource.deleteCurrentUser();
     switch (authenticationResult) {
-      case ResultOk<void, AppException>():
+      case ResultOk<void, AppMessageCode>():
         _clearCache();
         await _accountDataSource.delete(uid);
-      case ResultNg<void, AppException>():
+      case ResultNg<void, AppMessageCode>():
     }
     return authenticationResult;
   }
