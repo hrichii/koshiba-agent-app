@@ -6,6 +6,7 @@
     "sign_up_success": "アカウント登録が完了しました",
     "account_delete_success": "アカウントを削除しました",
     "sign_out_success": "サインアウトしました",
+    "meeting_register": "ミーティングを登録する",
     "meeting_register_success": "ミーティング登録が完了しました",
     "field_email": "メールアドレス",
     "field_password": "パスワード",

@@ -6,6 +6,7 @@
     "sign_up_success": "Account registration completed",
     "account_delete_success": "Account deleted",
     "sign_out_success": "Sign out completed",
+    "meeting_register": "Register meeting",
     "field_email": "Email",
     "field_password": "Password",
     "field_meeting_url": "Meeting URL",

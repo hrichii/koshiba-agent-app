@@ -122,7 +122,7 @@ class HomePage extends HookConsumerWidget {
                         .withToastAtSuccess(
                           (_) => AppMessage.current.meeting_register_success,
                         ),
-                    child: Text(AppMessage.current.common_sign_in),
+                    child: Text(AppMessage.current.meeting_register),
                   ),
                 ),
               ],

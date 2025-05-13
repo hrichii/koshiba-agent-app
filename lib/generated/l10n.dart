@@ -99,6 +99,16 @@ class AppMessage {
     );
   }
 
+  /// `ミーティングを登録する`
+  String get meeting_register {
+    return Intl.message(
+      'ミーティングを登録する',
+      name: 'meeting_register',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ミーティング登録が完了しました`
   String get meeting_register_success {
     return Intl.message(

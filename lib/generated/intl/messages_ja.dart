@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(
           "リクエストに成功しました",
         ),
+        "meeting_register": MessageLookupByLibrary.simpleMessage("ミーティングを登録する"),
         "meeting_register_success": MessageLookupByLibrary.simpleMessage(
           "ミーティング登録が完了しました",
         ),

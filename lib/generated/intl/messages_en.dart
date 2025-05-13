@@ -142,6 +142,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(
           "Request was successful",
         ),
+        "meeting_register": MessageLookupByLibrary.simpleMessage(
+          "Register meeting",
+        ),
         "sign_out_success": MessageLookupByLibrary.simpleMessage(
           "Sign out completed",
         ),
