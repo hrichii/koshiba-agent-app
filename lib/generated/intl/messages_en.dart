@@ -44,10 +44,104 @@ class MessageLookup extends MessageLookupByLibrary {
         "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
         "common_sign_out": MessageLookupByLibrary.simpleMessage("Sign out"),
         "common_sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
+          "Account not found",
+        ),
+        "error_api_authentication_invalid":
+            MessageLookupByLibrary.simpleMessage(
+          "These authentication credentials are invalid",
+        ),
+        "error_api_bad_request": MessageLookupByLibrary.simpleMessage(
+          "Bad request",
+        ),
+        "error_api_email_already_used": MessageLookupByLibrary.simpleMessage(
+          "This email address is already in use",
+        ),
+        "error_api_invalid_email": MessageLookupByLibrary.simpleMessage(
+          "Please enter a valid email address",
+        ),
+        "error_api_network_request_failed":
+            MessageLookupByLibrary.simpleMessage(
+          "Network request failed",
+        ),
+        "error_api_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
+          "This operation is not allowed",
+        ),
+        "error_api_resource_already_exists":
+            MessageLookupByLibrary.simpleMessage(
+          "The resource already exists",
+        ),
+        "error_api_server_issue": MessageLookupByLibrary.simpleMessage(
+          "A server issue has occurred",
+        ),
+        "error_api_token_expired": MessageLookupByLibrary.simpleMessage(
+          "The user token has expired",
+        ),
+        "error_api_too_many_requests": MessageLookupByLibrary.simpleMessage(
+          "Too many requests. Please try again later",
+        ),
+        "error_api_unexpected_response": MessageLookupByLibrary.simpleMessage(
+          "An unexpected response was received",
+        ),
+        "error_api_weak_password": MessageLookupByLibrary.simpleMessage(
+          "The password is too weak",
+        ),
+        "error_client_dio_cancel": MessageLookupByLibrary.simpleMessage(
+          "The request was canceled",
+        ),
+        "error_client_dio_connection": MessageLookupByLibrary.simpleMessage(
+          "There is a problem with the network connection",
+        ),
+        "error_client_dio_timeout": MessageLookupByLibrary.simpleMessage(
+          "A timeout has occurred",
+        ),
+        "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
+          "The request was successful",
+        ),
+        "error_client_status_code_401": MessageLookupByLibrary.simpleMessage(
+          "Authentication is required",
+        ),
+        "error_client_status_code_407": MessageLookupByLibrary.simpleMessage(
+          "Proxy authentication is required",
+        ),
+        "error_client_status_code_408": MessageLookupByLibrary.simpleMessage(
+          "The request timed out",
+        ),
+        "error_client_status_code_409": MessageLookupByLibrary.simpleMessage(
+          "The request has a conflict",
+        ),
+        "error_client_status_code_413": MessageLookupByLibrary.simpleMessage(
+          "The request is too large",
+        ),
+        "error_client_status_code_414": MessageLookupByLibrary.simpleMessage(
+          "The URI is too long",
+        ),
+        "error_client_status_code_429": MessageLookupByLibrary.simpleMessage(
+          "Too many requests",
+        ),
+        "error_client_status_code_4XX": MessageLookupByLibrary.simpleMessage(
+          "The request is invalid",
+        ),
+        "error_client_status_code_504": MessageLookupByLibrary.simpleMessage(
+          "A gateway timeout has occurred",
+        ),
+        "error_client_status_code_5XX": MessageLookupByLibrary.simpleMessage(
+          "An internal server error has occurred",
+        ),
+        "error_client_unexpected_response":
+            MessageLookupByLibrary.simpleMessage(
+          "An unexpected response was received",
+        ),
+        "error_client_unknow": MessageLookupByLibrary.simpleMessage(
+          "An unknown error has occurred",
+        ),
         "field_email": MessageLookupByLibrary.simpleMessage("Email"),
         "field_meeting_url":
             MessageLookupByLibrary.simpleMessage("Meeting URL"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "info_api_request_success": MessageLookupByLibrary.simpleMessage(
+          "Request was successful",
+        ),
         "sign_out_success": MessageLookupByLibrary.simpleMessage(
           "Sign out completed",
         ),
