@@ -1,23 +1,17 @@
 {
     "@@locale": "ja",
     "common_sign_in": "サインイン",
-    "@common_sign_in": {},
     "common_sign_out": "サインアウト",
-    "@common_sign_out": {},
     "common_sign_up": "サインアップ",
-    "@common_sign_up": {},
     "sign_up_success": "アカウント登録が完了しました",
-    "@sign_up_success": {},
     "account_delete_success": "アカウントを削除しました",
-    "@account_delete_success": {},
     "sign_out_success": "サインアウトしました",
-    "@sign_out_success": {},
+    "meeting_register": "Botを参加させる",
+    "meeting_register_success": "ミーティング登録が完了しました",
     "field_email": "メールアドレス",
-    "@field_email": {},
     "field_password": "パスワード",
-    "@field_password": {},
+    "field_meeting_url": "ミーティングURL",
     "unit_letter": "文字",
-    "@unit_letter": {},
     "validation_required": "{fieldName}を入力してください",
     "@validation_required": {
       "placeholders": {
@@ -54,22 +48,24 @@
         }
       }
     },
-    "validation_only_length": "{fieldName}は{length}{unit}で入力してください",
-    "@validation_only_length": {
+    "validation_alpha_numeric": "{fieldName}は英数字を入力してください",
+    "@validation_alpha_numeric": {
       "placeholders": {
         "fieldName": {
-          "type": "String"
-        },
-        "length": {
-          "type": "int"
-        },
-        "unit": {
           "type": "String"
         }
       }
     },
-    "validation_alpha_numeric": "{fieldName}は英数字を入力してください",
-    "@validation_alpha_numeric": {
+    "validation_email": "メールアドレスの形式に不正があります。有効な{fieldName}を入力してください",
+    "@validation_email": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    },    
+    "validation_url": "URLの形式に不正があります。有効な{fieldName}を入力してください",
+    "@validation_url": {
       "placeholders": {
         "fieldName": {
           "type": "String"
@@ -84,27 +80,39 @@
         }
       }
     },
-    
-    "exception_invalid_credential": "この認証情報は無効です",
-    "@exception_invalid_credential": {},
-    "exception_invalid_email": "有効なメールアドレスを入力してください",
-    "@exception_invalid_email": {},
-    "exception_unknown": "不明なエラーが発生しました",
-    "@exception_unknown": {},
-    "exception_email_already_in_use": "このメールアドレスは既に使用されています",
-    "@exception_email_already_in_use": {},
-    "exception_operation_not_allowed": "この操作は許可されていません",
-    "@exception_operation_not_allowed": {},
-    "exception_weak_password": "パスワードが脆弱です",
-    "@exception_weak_password": {},
-    "exception_too_many_requests": "リクエストが多すぎます。しばらく待ってから再試行してください",
-    "@exception_too_many_requests": {},
-    "exception_user_token_expired": "ユーザートークンの有効期限が切れました",
-    "@exception_user_token_expired": {},
-    "exception_network_request_failed": "ネットワークリクエストが失敗しました",
-    "@exception_network_request_failed": {},
-    "exception_account_not_found": "アカウントが見つかりません",
-    "@exception_account_not_found": {},
-    "exception_server_error": "サーバーに問題が発生しました",
-    "@exception_server_error": {}
+
+    "info_api_request_success": "リクエストに成功しました",
+
+    "error_api_authentication_invalid": "この認証情報は無効です",
+    "error_api_token_expired": "ユーザートークンの有効期限が切れました",
+    "error_api_account_not_found": "アカウントが見つかりません",
+    "error_api_operation_not_allowed": "この操作は許可されていません",
+    "error_api_invalid_email": "有効なメールアドレスを入力してください",
+    "error_api_email_already_used": "メールアドレスは既に使用されています",
+    "error_api_weak_password": "パスワードが脆弱です",
+    "error_api_unexpected_response": "想定外のレスポンスを取得しました",
+    "error_api_network_request_failed": "ネットワークリクエストが失敗しました",
+    "error_api_too_many_requests": "リクエストが多すぎます。しばらく待ってから再試行してください",
+    "error_api_bad_request": "リクエストが不正です",
+    "error_api_resource_already_exists": "リソースが既に存在します",
+    "error_api_server_issue": "サーバーに問題が発生しました",
+  
+    "error_client_unknow": "不明なエラーが発生しました",
+    "error_client_unexpected_response": "想定外のレスポンスを取得しました",
+
+    "error_client_dio_timeout": "タイムアウトが発生しました",
+    "error_client_dio_cancel": "キャンセルされました",
+    "error_client_dio_connection": "ネットワークの接続に問題があります。",
+
+    "error_client_status_code_2XX": "リクエストに成功しました。",
+    "error_client_status_code_4XX": "不正なリクエストです。",
+    "error_client_status_code_401": "認証情報が必要です。",
+    "error_client_status_code_407": "プロキシ認証が必要です。",
+    "error_client_status_code_408": "リクエストタイムアウトが発生しました。",
+    "error_client_status_code_409": "リクエストが競合しています。",
+    "error_client_status_code_413": "リクエストが大きすぎます。",
+    "error_client_status_code_414": "URIが長すぎます。",
+    "error_client_status_code_429": "リクエストが多すぎます。",
+    "error_client_status_code_5XX": "サーバー内部でエラーが発生しました。",
+    "error_client_status_code_504": "ゲートウェイタイムアウトが発生しました。"
 }

@@ -1,23 +1,16 @@
 {
     "@@locale": "en",
     "common_sign_in": "Sign in",
-    "@common_sign_in": {},
     "common_sign_out": "Sign out",
-    "@common_sign_out": {},
     "common_sign_up": "Sign up",
-    "@common_sign_up": {},
-    "sign_up_success": "Account registration completed",
-    "@sign_up_success": {},
+    "sign_up_success": "Invite the bot",
     "account_delete_success": "Account deleted",
-    "@account_delete_success": {},
     "sign_out_success": "Sign out completed",
-    "@sign_out_success": {},
+    "meeting_register": "Register meeting",
     "field_email": "Email",
-    "@field_email": {},
     "field_password": "Password",
-    "@field_password": {},
+    "field_meeting_url": "Meeting URL",
     "unit_letter": "characters",
-    "@unit_letter": {},
     "validation_required": "Please enter {fieldName}",
     "@validation_required": {
       "placeholders": {
@@ -54,22 +47,24 @@
         }
       }
     },
-    "validation_only_length": "Please enter exactly {length} {unit} for {fieldName}",
-    "@validation_only_length": {
+    "validation_alpha_numeric": "Please enter alphanumeric characters for {fieldName}",
+    "@validation_alpha_numeric": {
       "placeholders": {
         "fieldName": {
-          "type": "String"
-        },
-        "length": {
-          "type": "int"
-        },
-        "unit": {
           "type": "String"
         }
       }
     },
-    "validation_alpha_numeric": "Please enter alphanumeric characters for {fieldName}",
-    "@validation_alpha_numeric": {
+    "validation_email": "The email format is invalid. Please enter a valid {fieldName}",
+    "@validation_email": {
+      "placeholders": {
+        "fieldName": {
+          "type": "String"
+        }
+      }
+    }, 
+    "validation_url": "The URL format is invalid. Please enter a valid {fieldName}",
+    "@validation_url": {
       "placeholders": {
         "fieldName": {
           "type": "String"
@@ -84,24 +79,38 @@
         }
       }
     },
-    "exception_incalid_credential": "This credential is invalid",
-    "@exception_incalid_credential": {},
-    "exception_email_already_in_use": "This email address is already in use",
-    "@exception_email_already_in_use": {},
-    "exception_invalid_email": "Please enter a valid email address",
-    "@exception_invalid_email": {},
-    "exception_operation_not_allowed": "This operation is not allowed",
-    "@exception_operation_not_allowed": {},
-    "exception_weak_password": "The password is too weak",
-    "@exception_weak_password": {},
-    "exception_too_many_requests": "Too many requests. Please try again later",
-    "@exception_too_many_requests": {},
-    "exception_user_token_expired": "User token has expired",
-    "@exception_user_token_expired": {},
-    "exception_network_request_failed": "Network request failed",
-    "@exception_network_request_failed": {},
-    "exception_account_not_found": "Account not found",
-    "@exception_account_not_found": {},
-    "exception_server_error": "Server error",
-    "@exception_server_error": {}
+    "info_api_request_success": "Request was successful",
+
+    "error_api_authentication_invalid": "These authentication credentials are invalid",
+    "error_api_token_expired": "The user token has expired",
+    "error_api_account_not_found": "Account not found",
+    "error_api_operation_not_allowed": "This operation is not allowed",
+    "error_api_invalid_email": "Please enter a valid email address",
+    "error_api_email_already_used": "This email address is already in use",
+    "error_api_weak_password": "The password is too weak",
+    "error_api_unexpected_response": "An unexpected response was received",
+    "error_api_network_request_failed": "Network request failed",
+    "error_api_too_many_requests": "Too many requests. Please try again later",
+    "error_api_bad_request": "Bad request",
+    "error_api_resource_already_exists": "The resource already exists",
+    "error_api_server_issue": "A server issue has occurred",
+
+    "error_client_unknow": "An unknown error has occurred",
+    "error_client_unexpected_response": "An unexpected response was received",
+
+    "error_client_dio_timeout": "A timeout has occurred",
+    "error_client_dio_cancel": "The request was canceled",
+    "error_client_dio_connection": "There is a problem with the network connection",
+
+    "error_client_status_code_2XX": "The request was successful",
+    "error_client_status_code_4XX": "The request is invalid",
+    "error_client_status_code_401": "Authentication is required",
+    "error_client_status_code_407": "Proxy authentication is required",
+    "error_client_status_code_408": "The request timed out",
+    "error_client_status_code_409": "The request has a conflict",
+    "error_client_status_code_413": "The request is too large",
+    "error_client_status_code_414": "The URI is too long",
+    "error_client_status_code_429": "Too many requests",
+    "error_client_status_code_5XX": "An internal server error has occurred",
+    "error_client_status_code_504": "A gateway timeout has occurred"
 }

@@ -1,71 +1,71 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/ui/core/toast/toast.dart';
 
-extension FutureResultExt<T> on Future<Result<T, AppException>> {
-  Future<Result<T, AppException>> withToastAtError() async {
+extension FutureResultExt<T> on Future<Result<T, AppMessageCode>> {
+  Future<Result<T, AppMessageCode>> withToastAtError() async {
     final result = await this;
     switch (result) {
-      case ResultError(value: final appException):
-        Toast().showError(message: appException.message);
-      case ResultSuccess():
+      case ResultNg(value: final value):
+        Toast().showError(value.localizedMessage);
+      case ResultOk():
     }
     return result;
   }
 
-  Future<Result<T, AppException>> withToastAtSuccess(
-    String Function(T value) messageBuilder,
+  Future<Result<T, AppMessageCode>> withToastAtSuccess(
+    String Function(Result<T, AppMessageCode> value) messageCodeBuilder,
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess(:final value):
-        Toast().showSuccess(message: messageBuilder(value));
-      case ResultError():
+      case ResultOk():
+        Toast().showSuccess(messageCodeBuilder(result));
+      case ResultNg():
     }
     return result;
   }
 
-  Future<Result<T, AppException>> onSuccess(
+  Future<Result<T, AppMessageCode>> onSuccess(
     Function(BuildContext, T) builderAtSuccess,
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess(value: final value):
+      case ResultOk(value: final value):
         if (GlobalContext.context.mounted) {
           builderAtSuccess(
             GlobalContext.context,
             value,
           );
         }
-      case ResultError():
+      case ResultNg():
     }
     return result;
   }
 
-  Future<Result<T, AppException>> onSuccessWithoutValue(
+  Future<Result<T, AppMessageCode>> onSuccessWithoutValue(
     Function(BuildContext) builderAtSuccess,
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess():
+      case ResultOk():
         if (GlobalContext.context.mounted) {
           builderAtSuccess(GlobalContext.context);
         }
-      case ResultError():
+      case ResultNg():
     }
     return result;
   }
 
-  Future<Result<T, AppException>> onError(
-    Function(BuildContext, AppException) builderAtError,
+  Future<Result<T, AppMessageCode>> onError(
+    Function(BuildContext, AppMessageCode) builderAtError,
   ) async {
     final result = await this;
     switch (result) {
-      case ResultSuccess():
+      case ResultOk():
         break;
-      case ResultError(:final value):
+      case ResultNg(:final value):
         if (GlobalContext.context.mounted) {
           builderAtError(
             GlobalContext.context,

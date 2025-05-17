@@ -110,8 +110,10 @@ analyzer:
     unused_import: error
     unused_local_variable: error
     dead_code: error
+    invalid_annotation_target: ignore
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - lib/l10n/**/intl_*.dart
     - lib/generated/**
+    - lib/l10n/**

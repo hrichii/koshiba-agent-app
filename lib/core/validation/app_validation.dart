@@ -4,6 +4,7 @@ import 'package:koshiba_agent_app/core/validation/valiators/email_with_field_nam
 import 'package:koshiba_agent_app/core/validation/valiators/max_length_with_field_name_validator.dart';
 import 'package:koshiba_agent_app/core/validation/valiators/min_length_with_field_name_validator.dart';
 import 'package:koshiba_agent_app/core/validation/valiators/required_with_field_name_validator.dart';
+import 'package:koshiba_agent_app/core/validation/valiators/uri_with_field_name_validator.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AppValidation {
@@ -34,6 +35,15 @@ class AppValidation {
     ),
     AlphaNumericWithFieldNameValidator(
       fieldNameEnum: FieldNameEnum.password,
+    ),
+  ];
+
+  static const List<Validator> uri = [
+    RequiredWithFieldNameValidator(
+      fieldNameEnum: FieldNameEnum.meetingUrl,
+    ),
+    UriWithFieldNameValidator(
+      fieldNameEnum: FieldNameEnum.meetingUrl,
     ),
   ];
 }

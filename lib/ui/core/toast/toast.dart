@@ -44,22 +44,30 @@ class Toast {
 
   BuildContext get context => GlobalContext.context;
 
-  void showSuccess({required String message}) {
+  void showSuccess(String message) {
     _show(
-      toastEntity:
-          _ToastEntity(message: message, toastEnum: _ToastEnum.success),
+      toastEntity: _ToastEntity(
+        message: message,
+        toastEnum: _ToastEnum.success,
+      ),
     );
   }
 
-  void showWarning({required String message}) {
+  void showWarning(String message) {
     _show(
-      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.warn),
+      toastEntity: _ToastEntity(
+        message: message,
+        toastEnum: _ToastEnum.warn,
+      ),
     );
   }
 
-  void showError({required String message}) {
+  void showError(String message) {
     _show(
-      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.error),
+      toastEntity: _ToastEntity(
+        message: message,
+        toastEnum: _ToastEnum.error,
+      ),
     );
   }
 

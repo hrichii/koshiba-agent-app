@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:koshiba_agent_app/core/constants/app_route_path.dart';
-import 'package:koshiba_agent_app/core/exceptions/app_exception.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
 import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/ui/pages/chat/connected_chat_page.dart';
@@ -38,9 +38,9 @@ class Router extends _$Router {
         }
         final resultUser = ref.read(accountRepositoryProvider).getMe();
         switch (resultUser) {
-          case ResultSuccess<User, AppException>():
+          case ResultOk<User, AppMessageCode>():
             return null;
-          case ResultError<User, AppException>():
+          case ResultNg<User, AppMessageCode>():
             return AppRoutePath.singIn;
         }
       },

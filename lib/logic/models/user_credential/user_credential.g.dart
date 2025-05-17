@@ -18,6 +18,6 @@ _UserCredential _$UserCredentialFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserCredentialToJson(_UserCredential instance) =>
     <String, dynamic>{
-      'user': instance.user,
-      'accessToken': instance.accessToken,
+      'user': instance.user?.toJson(),
+      'accessToken': instance.accessToken?.toJson(),
     };

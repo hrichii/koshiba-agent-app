@@ -1,47 +1,47 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'result.dart';
+part of 'api_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResultOk<S, E> _$ResultOkFromJson<S, E>(
+ApiResponseOk<S> _$ApiResponseOkFromJson<S>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
-  E Function(Object? json) fromJsonE,
 ) =>
-    ResultOk<S, E>(
-      value: fromJsonS(json['value']),
+    ApiResponseOk<S>(
+      data: fromJsonS(json['data']),
+      messageCode:
+          AppMessageCode.fromJson(json['meta'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$ResultOkToJson<S, E>(
-  ResultOk<S, E> instance,
+Map<String, dynamic> _$ApiResponseOkToJson<S>(
+  ApiResponseOk<S> instance,
   Object? Function(S value) toJsonS,
-  Object? Function(E value) toJsonE,
 ) =>
     <String, dynamic>{
-      'value': toJsonS(instance.value),
+      'data': toJsonS(instance.data),
+      'meta': instance.messageCode.toJson(),
       'runtimeType': instance.$type,
     };
 
-ResultNg<S, E> _$ResultNgFromJson<S, E>(
+ApiResponseNg<S> _$ApiResponseNgFromJson<S>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
-  E Function(Object? json) fromJsonE,
 ) =>
-    ResultNg<S, E>(
-      value: fromJsonE(json['value']),
+    ApiResponseNg<S>(
+      messageCode:
+          AppMessageCode.fromJson(json['meta'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$ResultNgToJson<S, E>(
-  ResultNg<S, E> instance,
+Map<String, dynamic> _$ApiResponseNgToJson<S>(
+  ApiResponseNg<S> instance,
   Object? Function(S value) toJsonS,
-  Object? Function(E value) toJsonE,
 ) =>
     <String, dynamic>{
-      'value': toJsonE(instance.value),
+      'meta': instance.messageCode.toJson(),
       'runtimeType': instance.$type,
     };
