@@ -135,6 +135,9 @@ class MessageLookup extends MessageLookupByLibrary {
           "不明なエラーが発生しました",
         ),
         "field_email": MessageLookupByLibrary.simpleMessage("メールアドレス"),
+        "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(
+          "ミーティング開始時刻",
+        ),
         "field_meeting_url": MessageLookupByLibrary.simpleMessage("ミーティングURL"),
         "field_password": MessageLookupByLibrary.simpleMessage("パスワード"),
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(

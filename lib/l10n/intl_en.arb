@@ -10,6 +10,7 @@
     "field_email": "Email",
     "field_password": "Password",
     "field_meeting_url": "Meeting URL",
+    "field_meeting_started_at": "Meeting start time",
     "unit_letter": "characters",
     "validation_required": "Please enter {fieldName}",
     "@validation_required": {

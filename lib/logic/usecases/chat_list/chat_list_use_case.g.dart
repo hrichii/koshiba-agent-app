@@ -6,7 +6,7 @@ part of 'chat_list_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chatListUseCaseHash() => r'829db0b04afd1d53ebe2093db7c61cc9ed42e59c';
+String _$chatListUseCaseHash() => r'f2d2f7539e85df771750485421adb75e72d50c8e';
 
 /// See also [ChatListUseCase].
 @ProviderFor(ChatListUseCase)

@@ -139,6 +139,9 @@ class MessageLookup extends MessageLookupByLibrary {
           "An unknown error has occurred",
         ),
         "field_email": MessageLookupByLibrary.simpleMessage("Email"),
+        "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(
+          "Meeting start time",
+        ),
         "field_meeting_url":
             MessageLookupByLibrary.simpleMessage("Meeting URL"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),

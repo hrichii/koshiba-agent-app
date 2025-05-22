@@ -38,11 +38,17 @@ class AppValidation {
     ),
   ];
 
-  static const List<Validator> uri = [
+  static const List<Validator> meetingUri = [
     RequiredWithFieldNameValidator(
       fieldNameEnum: FieldNameEnum.meetingUrl,
     ),
     UriWithFieldNameValidator(
+      fieldNameEnum: FieldNameEnum.meetingUrl,
+    ),
+  ];
+
+  static const List<Validator> meetingStartedAt = [
+    RequiredWithFieldNameValidator(
       fieldNameEnum: FieldNameEnum.meetingUrl,
     ),
   ];

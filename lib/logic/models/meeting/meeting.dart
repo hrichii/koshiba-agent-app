@@ -10,7 +10,8 @@ part 'meeting.gform.dart';
 @Rf()
 abstract class Meeting with _$Meeting {
   const factory Meeting({
-    @RfControl(validators: AppValidation.uri) String? uri,
+    @RfControl(validators: AppValidation.meetingUri) String? uri,
+    @RfControl(validators: AppValidation.meetingStartedAt) DateTime? startedAt,
   }) = _Meeting;
 
   const Meeting._();

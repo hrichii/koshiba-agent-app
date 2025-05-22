@@ -15,8 +15,10 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Meeting {
-  @RfControl(validators: AppValidation.uri)
+  @RfControl(validators: AppValidation.meetingUri)
   String? get uri;
+  @RfControl(validators: AppValidation.meetingStartedAt)
+  DateTime? get startedAt;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -33,16 +35,18 @@ mixin _$Meeting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Meeting &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.uri, uri) || other.uri == uri) &&
+            (identical(other.startedAt, startedAt) ||
+                other.startedAt == startedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri);
+  int get hashCode => Object.hash(runtimeType, uri, startedAt);
 
   @override
   String toString() {
-    return 'Meeting(uri: $uri)';
+    return 'Meeting(uri: $uri, startedAt: $startedAt)';
   }
 }
 
@@ -51,7 +55,10 @@ abstract mixin class $MeetingCopyWith<$Res> {
   factory $MeetingCopyWith(Meeting value, $Res Function(Meeting) _then) =
       _$MeetingCopyWithImpl;
   @useResult
-  $Res call({@RfControl(validators: AppValidation.uri) String? uri});
+  $Res call(
+      {@RfControl(validators: AppValidation.meetingUri) String? uri,
+      @RfControl(validators: AppValidation.meetingStartedAt)
+      DateTime? startedAt});
 }
 
 /// @nodoc
@@ -67,12 +74,17 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
   @override
   $Res call({
     Object? uri = freezed,
+    Object? startedAt = freezed,
   }) {
     return _then(_self.copyWith(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String?,
+      startedAt: freezed == startedAt
+          ? _self.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -80,14 +92,19 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _Meeting extends Meeting {
-  const _Meeting({@RfControl(validators: AppValidation.uri) this.uri})
+  const _Meeting(
+      {@RfControl(validators: AppValidation.meetingUri) this.uri,
+      @RfControl(validators: AppValidation.meetingStartedAt) this.startedAt})
       : super._();
   factory _Meeting.fromJson(Map<String, dynamic> json) =>
       _$MeetingFromJson(json);
 
   @override
-  @RfControl(validators: AppValidation.uri)
+  @RfControl(validators: AppValidation.meetingUri)
   final String? uri;
+  @override
+  @RfControl(validators: AppValidation.meetingStartedAt)
+  final DateTime? startedAt;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -109,16 +126,18 @@ class _Meeting extends Meeting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Meeting &&
-            (identical(other.uri, uri) || other.uri == uri));
+            (identical(other.uri, uri) || other.uri == uri) &&
+            (identical(other.startedAt, startedAt) ||
+                other.startedAt == startedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri);
+  int get hashCode => Object.hash(runtimeType, uri, startedAt);
 
   @override
   String toString() {
-    return 'Meeting(uri: $uri)';
+    return 'Meeting(uri: $uri, startedAt: $startedAt)';
   }
 }
 
@@ -128,7 +147,10 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
       __$MeetingCopyWithImpl;
   @override
   @useResult
-  $Res call({@RfControl(validators: AppValidation.uri) String? uri});
+  $Res call(
+      {@RfControl(validators: AppValidation.meetingUri) String? uri,
+      @RfControl(validators: AppValidation.meetingStartedAt)
+      DateTime? startedAt});
 }
 
 /// @nodoc
@@ -144,12 +166,17 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? uri = freezed,
+    Object? startedAt = freezed,
   }) {
     return _then(_Meeting(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String?,
+      startedAt: freezed == startedAt
+          ? _self.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }

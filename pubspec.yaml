@@ -27,6 +27,7 @@ dependencies:
   json_annotation: ^4.9.0
   logger: ^2.5.0
   page_transition: ^2.2.1
+  reactive_date_time_picker: ^5.0.0
   reactive_forms: ^17.0.1
   reactive_forms_annotations: ^6.0.0
   retrofit: ^4.4.2

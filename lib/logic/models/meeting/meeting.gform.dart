@@ -220,6 +220,8 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
 
   static const String uriControlName = "uri";
 
+  static const String startedAtControlName = "startedAt";
+
   final FormGroup form;
 
   final String? path;
@@ -228,9 +230,15 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
 
   String uriControlPath() => pathBuilder(uriControlName);
 
+  String startedAtControlPath() => pathBuilder(startedAtControlName);
+
   String? get _uriValue => uriControl.value;
 
+  DateTime? get _startedAtValue => startedAtControl.value;
+
   String? get _uriRawValue => uriControl.value;
+
+  DateTime? get _startedAtRawValue => startedAtControl.value;
 
   @Deprecated(
       'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
@@ -243,9 +251,24 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
     }
   }
 
+  @Deprecated(
+      'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
+  bool get containsStartedAt {
+    try {
+      form.control(startedAtControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Map<String, Object>? get uriErrors => uriControl.errors;
 
+  Map<String, Object>? get startedAtErrors => startedAtControl.errors;
+
   void get uriFocus => form.focus(uriControlPath());
+
+  void get startedAtFocus => form.focus(startedAtControlPath());
 
   @Deprecated(
       'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
@@ -275,6 +298,34 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
     }
   }
 
+  @Deprecated(
+      'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
+  void startedAtRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsStartedAt) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          startedAtControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            startedAtControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
   void uriValueUpdate(
     String? value, {
     bool updateParent = true,
@@ -284,12 +335,30 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
+  void startedAtValueUpdate(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    startedAtControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
   void uriValuePatch(
     String? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
     uriControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void startedAtValuePatch(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    startedAtControl.patchValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -308,8 +377,26 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
         disabled: disabled,
       );
 
+  void startedAtValueReset(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      startedAtControl.reset(
+        value: value,
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+        removeFocus: removeFocus,
+        disabled: disabled,
+      );
+
   FormControl<String> get uriControl =>
       form.control(uriControlPath()) as FormControl<String>;
+
+  FormControl<DateTime> get startedAtControl =>
+      form.control(startedAtControlPath()) as FormControl<DateTime>;
 
   void uriSetDisabled(
     bool disabled, {
@@ -329,6 +416,24 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
     }
   }
 
+  void startedAtSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      startedAtControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      startedAtControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
   @override
   Meeting get model {
     final isValid = !currentForm.hasErrors && currentForm.errors.isEmpty;
@@ -340,12 +445,12 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
         StackTrace.current,
       );
     }
-    return Meeting(uri: _uriValue);
+    return Meeting(uri: _uriValue, startedAt: _startedAtValue);
   }
 
   @override
   Meeting get rawModel {
-    return Meeting(uri: _uriRawValue);
+    return Meeting(uri: _uriRawValue, startedAt: _startedAtRawValue);
   }
 
   @override
@@ -437,7 +542,14 @@ class MeetingForm implements FormModel<Meeting, Meeting> {
   static FormGroup formElements(Meeting? meeting) => FormGroup({
         uriControlName: FormControl<String>(
             value: meeting?.uri,
-            validators: AppValidation.uri,
+            validators: AppValidation.meetingUri,
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        startedAtControlName: FormControl<DateTime>(
+            value: meeting?.startedAt,
+            validators: AppValidation.meetingStartedAt,
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,

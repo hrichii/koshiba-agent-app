@@ -1,4 +1,4 @@
-.PHONY: setup-dev setup-stg setup-prd build-android build-ios build-web
+.PHONY: setup-dev setup-stg setup-prd build-android-dev build-ios-dev build-web-dev build-web
 
 
 # 開発環境のセットアップ
@@ -23,13 +23,16 @@ setup-prd:
 	cp -r koshiba-agent-app-secret/google_service/prd/GoogleService-Info.plist ios/Runner/GoogleService-Info.plist
 
 # Androidビルド
-build-android:
+build-android-dev:
 	flutter build apk --release --dart-define-from-file=env/dev.env
 
 # iOSビルド
-build-ios:
+build-ios-dev:
 	flutter build ios --release --dart-define-from-file=env/dev.env
 
 # Webビルド
-build-web:
+build-web-dev:
 	flutter build web --release --dart-define-from-file=env/dev.env
+
+build-web:
+	flutter build web --release --dart-define-from-file=env/prd.env
