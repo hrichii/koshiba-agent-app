@@ -3,7 +3,8 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
 @TypedStatefulShellRoute<AuthorizedStatefulShellRouteData>(
   branches: [
     _homeTypedStatefulShellBranch,
-    _historyTypedStatefulShellBranch,
+    _calenderTypedStatefulShellBranch,
+    _documentTypedStatefulShellBranch,
     _settingTypedStatefulShellBranch,
   ],
 )

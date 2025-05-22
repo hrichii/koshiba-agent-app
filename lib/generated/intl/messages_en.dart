@@ -44,6 +44,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_delete_success": MessageLookupByLibrary.simpleMessage(
           "Account deleted",
         ),
+        "common_navigation_calendar": MessageLookupByLibrary.simpleMessage(
+          "Calendar",
+        ),
+        "common_navigation_document": MessageLookupByLibrary.simpleMessage(
+          "Document",
+        ),
+        "common_navigation_home": MessageLookupByLibrary.simpleMessage("Home"),
+        "common_navigation_settings": MessageLookupByLibrary.simpleMessage(
+          "Settings",
+        ),
         "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
         "common_sign_out": MessageLookupByLibrary.simpleMessage("Sign out"),
         "common_sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ConnectedChatPage extends StatelessWidget {
-  const ConnectedChatPage({super.key});
+class ConnectedDocumentPage extends StatelessWidget {
+  const ConnectedDocumentPage({super.key});
 
   @override
   Widget build(BuildContext context) => const Placeholder();

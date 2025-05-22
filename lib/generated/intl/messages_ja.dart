@@ -41,6 +41,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_delete_success": MessageLookupByLibrary.simpleMessage(
           "アカウントを削除しました",
         ),
+        "common_navigation_calendar":
+            MessageLookupByLibrary.simpleMessage("カレンダー"),
+        "common_navigation_document": MessageLookupByLibrary.simpleMessage(
+          "ドキュメント",
+        ),
+        "common_navigation_home": MessageLookupByLibrary.simpleMessage("ホーム"),
+        "common_navigation_settings":
+            MessageLookupByLibrary.simpleMessage("設定"),
         "common_sign_in": MessageLookupByLibrary.simpleMessage("サインイン"),
         "common_sign_out": MessageLookupByLibrary.simpleMessage("サインアウト"),
         "common_sign_up": MessageLookupByLibrary.simpleMessage("サインアップ"),
