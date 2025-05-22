@@ -11,6 +11,7 @@
     "field_email": "メールアドレス",
     "field_password": "パスワード",
     "field_meeting_url": "ミーティングURL",
+    "field_meeting_started_at": "ミーティング開始時刻",
     "unit_letter": "文字",
     "validation_required": "{fieldName}を入力してください",
     "@validation_required": {

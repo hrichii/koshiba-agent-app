@@ -139,6 +139,16 @@ class AppMessage {
     );
   }
 
+  /// `ミーティング開始時刻`
+  String get field_meeting_started_at {
+    return Intl.message(
+      'ミーティング開始時刻',
+      name: 'field_meeting_started_at',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `文字`
   String get unit_letter {
     return Intl.message('文字', name: 'unit_letter', desc: '', args: []);

@@ -9,11 +9,14 @@ import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/usecases/chat_list/chat_list_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -113,6 +116,12 @@ class HomePage extends HookConsumerWidget {
                   ),
                   onSubmitted: (_) => onSubmitted(ref, form),
                 ),
+                ReactiveDateTimePicker(
+                  formControl: form.startedAtControl,
+                  decoration: InputDecoration(
+                    hintText: AppMessage.current.field_meeting_started_at,
+                  ),
+                ),
                 ReactiveMeetingFormConsumer(
                   builder: (_, form, ___) => FilledButton(
                     onPressed:
@@ -135,7 +144,10 @@ class HomePage extends HookConsumerWidget {
       ref
           .read(meetingRepositoryProvider)
           .registerMeeting(
-            meeting: form.model,
+            dto: MeetingCreateRequestDto(
+              url: Uri.parse(form.model.uri!),
+              startedAt: form.model.startedAt!,
+            ),
           )
           .withLoaderOverlay()
           .withToastAtError()
