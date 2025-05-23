@@ -1,0 +1,38 @@
+name: "[Prd] Upload to TestFlight and PlayConsole"
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  upload_prd_app_store:
+    name: "[Prd] Upload to TestFlight"
+    runs-on: macos-14
+    steps:
+      - name: Checkout triggered branch
+        uses: actions/checkout@v2
+      - name: Extract version and build number from tag
+        id: extract_version_ios
+        run: |
+          TAG_NAME=${GITHUB_REF_NAME}
+          VERSION=$(echo $TAG_NAME | sed 's/^v\([0-9]*\.[0-9]*\.[0-9]*\).*/\1/')
+          BUILD_NUMBER=$(echo $TAG_NAME | sed 's/^v[0-9]*\.[0-9]*\.[0-9]*+\([0-9]*\)/\1/')
+          if [ -z "$BUILD_NUMBER" ]; then
+            BUILD_NUMBER=1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Upload to TestFlight
+        uses: ./.github/workflows/upload_ios
+        with:
+          env: prd
+          version: ${{ steps.extract_version_ios.outputs.version }}
+          build_number: ${{ steps.extract_version_ios.outputs.build_number }}
+          fastlane_user: ${{ secrets.FASTLANE_USER }}
+          fastlane_apple_application_specific_password: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          certificate_name: "appstore.p12"
+          certificate_content: ${{ secrets.CERTIFICATE_APPSTORE_P12 }}
+          profile_name: "appstore.mobileprovision"
+          profile_content: ${{ secrets.PRD_APPSTORE_PROFILE }}

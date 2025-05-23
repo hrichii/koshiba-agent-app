@@ -1,0 +1,69 @@
+name: Upload to TestFlight
+description: Automates the process of uploading an iOS build to TestFlight, including importing certificates and provisioning profiles, setting up dependencies, and executing Fastlane for deployment.
+inputs:
+  env:
+    required: true
+    description: The build environment (e.g., development, production).
+  version:
+    required: true
+    description: The version of the app to be uploaded.
+  build_number:
+    required: true
+    description: The build number for the app version.
+  fastlane_user:
+    required: true
+    description: Apple ID email address for Fastlane authentication.
+  fastlane_apple_application_specific_password:
+    required: true
+    description: Application-specific password for Fastlane.
+  certificate_content:
+    required: true
+    description: Base64-encoded content of the iOS distribution certificate.
+  certificate_name:
+    required: true
+    description: Name of the iOS distribution certificate file.
+  profile_content:
+    required: true
+    description: Base64-encoded content of the provisioning profile.
+  profile_name:
+    required: true
+    description: Name of the provisioning profile file.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Import Certificate And Profile
+      shell: bash
+      run: |
+        mkdir -p koshiba-agent-app-secret/certificate
+        mkdir -p koshiba-agent-app-secret/profile/${{ inputs.env }}
+        echo -n ${{ inputs.certificate_content }} | base64 -d > koshiba-agent-app-secret/certificate/${{ inputs.certificate_name }}
+        echo -n ${{ inputs.profile_content }} | base64 -d > koshiba-agent-app-secret/profile/${{ inputs.env }}/${{ inputs.profile_name }}
+
+    - name: Install Flutter
+      shell: bash
+      run: |
+        git clone https://github.com/flutter/flutter.git
+        cd flutter
+        git checkout 3.24.4
+        cd ..
+
+    - name: Add path
+      shell: bash
+      run: echo "$(pwd)/flutter/bin" >> $GITHUB_PATH
+
+    - name: Download Flutter packages
+      shell: bash
+      run: dart pub global activate flutterfire_cli
+
+    - name: Upload Testflight
+      shell: bash
+      env:
+        FASTLANE_USER: ${{ inputs.fastlane_user }}
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ inputs.fastlane_apple_application_specific_password }}
+        USE_CI: "true"
+      run: |
+        cd ios
+        bundle install
+        bundle exec fastlane import_certificate_and_profile env:${{inputs.env}} build_type:appstore
+        bundle exec fastlane upload_internal_test env:${{inputs.env}} version:${{inputs.version}} build_number:${{inputs.build_number}}
