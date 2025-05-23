@@ -1,0 +1,144 @@
+default_platform(:ios)
+
+platform :ios do
+    def get_use_ci
+        ENV["USE_CI"] ||= "false"
+        return ENV["USE_CI"] == "true"
+    end
+
+    def get_bundle_id(env)
+        case env
+        when "prd" then
+            ENV['PRD_BUNDLE_ID']
+        else
+            nil
+        end
+    end
+
+    def get_apple_id(env)
+        case env
+        when "prd" then
+            ENV['PRD_APPLE_ID']
+        else
+            nil
+        end
+    end
+
+    def get_ipa_file_name(env)
+        case env
+        when "prd" then
+            ENV['PRD_IPA_FILE_NAME']
+        else
+            nil
+        end
+    end
+
+    def get_profile_name(env, build_type)
+        case env
+        when "prd" then
+            case build_type
+            when "appstore" then
+                ENV['PRD_APP_STORE_PROFILE_NAME']
+            else
+                nil
+            end
+        else
+            nil
+        end
+    end
+
+    def get_profile_path(env, build_type)
+        case env
+        when "prd" then
+            case build_type
+            when "appstore" then
+                ENV['PRD_APP_STORE_PROFILE_PATH']
+            else
+                nil
+            end
+        else
+            nil
+        end
+    end
+
+    def install_profile(env, build_type)
+        path = get_profile_path(env, build_type)
+        return if path.nil?
+        install_provisioning_profile(
+            path: "../#{path}"
+        )
+    end
+
+    lane :import_certificate_and_profile_all do
+        import_certificate_and_profile(env: "prd", build_type: "appstore")
+    end
+
+    lane :import_certificate_and_profile do |options|
+        env = options[:env] || "prd"
+        build_type = options[:build_type] || "appstore"
+        
+        certificate_path = "../#{ENV["APP_STORE_CERT_PATH"]}"
+        
+        if get_use_ci == true
+            keychain_name = "tmp.keychain-db"
+            keychain_password = ""
+            create_keychain(
+                name: keychain_name,
+                password: keychain_password,
+                timeout: 1800,
+                default_keychain: true,
+                unlock: true,
+            )
+            import_certificate(
+                certificate_path: certificate_path,
+                keychain_name: keychain_name,
+                keychain_password: keychain_password,
+            )
+            install_profile(env, build_type)
+        else
+            import_certificate(
+                certificate_path: certificate_path,
+                keychain_name: "login.keychain-db",
+            )
+            install_profile(env, build_type)
+        end
+    end
+
+    lane :use_profile do |options|
+        env = options[:env] || "prd"
+        build_type = options[:build_type] || "appstore"
+        bundle_identifier = get_bundle_id(env)
+        profile_name = get_profile_name(env, build_type)
+        
+        return if bundle_identifier.nil? || profile_name.nil?
+        
+        code_sign_identity = "iPhone Distribution"
+        update_code_signing_settings(
+            bundle_identifier: bundle_identifier,
+            code_sign_identity: code_sign_identity,
+            use_automatic_signing: false,
+            team_id: ENV['TEAM_ID'],
+            profile_name: profile_name,
+        )
+    end
+
+    lane :upload_internal_test do |options|
+        env = options[:env] || "prd"
+        version = options[:version] || "1.0.0"
+        build_number = options[:build_number] || "1"
+        dart_define_file = "env/#{env}.env"
+
+        use_profile(env:env, build_type:"appstore")
+        sh("flutter clean")
+        sh("cd ../../ && flutter build ipa --export-options-plist=ios/config/#{env}/ExportOptions.plist --release --dart-define-from-file=#{dart_define_file} --build-name=#{version} --build-number=#{build_number}")
+
+        upload_to_testflight(
+            apple_id: get_apple_id(env),
+            app_version: version,
+            build_number: build_number,
+            skip_submission: true,
+            skip_waiting_for_build_processing: true,
+            ipa: "../build/ios/ipa/#{get_ipa_file_name(env)}",
+        )
+    end
+end
