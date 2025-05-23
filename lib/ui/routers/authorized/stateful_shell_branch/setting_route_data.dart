@@ -15,5 +15,5 @@ class SettingRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const ConnectedSettingPage();
+      const SettingPage();
 }
