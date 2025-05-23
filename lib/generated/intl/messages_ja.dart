@@ -41,6 +41,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_delete_success": MessageLookupByLibrary.simpleMessage(
           "アカウントを削除しました",
         ),
+        "common_add_schedule": MessageLookupByLibrary.simpleMessage("スケジュール作成"),
+        "common_delete_account":
+            MessageLookupByLibrary.simpleMessage("アカウント削除"),
+        "common_invite_bot": MessageLookupByLibrary.simpleMessage("Botを招待"),
         "common_navigation_calendar":
             MessageLookupByLibrary.simpleMessage("カレンダー"),
         "common_navigation_document": MessageLookupByLibrary.simpleMessage(

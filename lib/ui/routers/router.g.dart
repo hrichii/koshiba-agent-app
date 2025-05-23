@@ -8,6 +8,8 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
       $authorizedStatefulShellRouteData,
+      $scheduleAddRoute,
+      $botInviteRoute,
       $resetPasswordSendRouteData,
       $signInRouteData,
       $signUpSendRouteData,
@@ -122,6 +124,54 @@ extension $SettingRouteDataExtension on SettingRouteData {
 
   String get location => GoRouteData.$location(
         '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $scheduleAddRoute => GoRouteData.$route(
+      path: '/schedule/add',
+      name: '/schedule/add',
+      factory: $ScheduleAddRouteExtension._fromState,
+    );
+
+extension $ScheduleAddRouteExtension on ScheduleAddRoute {
+  static ScheduleAddRoute _fromState(GoRouterState state) =>
+      const ScheduleAddRoute();
+
+  String get location => GoRouteData.$location(
+        '/schedule/add',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $botInviteRoute => GoRouteData.$route(
+      path: '/bot/invite',
+      name: '/bot/invite',
+      factory: $BotInviteRouteExtension._fromState,
+    );
+
+extension $BotInviteRouteExtension on BotInviteRoute {
+  static BotInviteRoute _fromState(GoRouterState state) =>
+      const BotInviteRoute();
+
+  String get location => GoRouteData.$location(
+        '/bot/invite',
       );
 
   void go(BuildContext context) => context.go(location);

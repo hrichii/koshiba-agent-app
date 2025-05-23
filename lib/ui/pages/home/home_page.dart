@@ -1,157 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
-import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
-import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
-import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
+import 'package:koshiba_agent_app/core/constants/app_color.dart';
+import 'package:koshiba_agent_app/core/constants/app_radius.dart';
+import 'package:koshiba_agent_app/core/constants/app_space.dart';
+import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
+import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
-import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
-import 'package:koshiba_agent_app/logic/models/chat_room/chat_room.dart';
-import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
-import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
-import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
-import 'package:koshiba_agent_app/logic/models/result/result.dart';
-import 'package:koshiba_agent_app/logic/usecases/chat_list/chat_list_use_case.dart';
-import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
-import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    useEffect(
-      () {
-        Future(ref.read(chatListUseCaseProvider.notifier).getChatRoomList);
-        return null;
-      },
-      [],
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Connected Home'),
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text('data'),
-          ...switch (ref.watch(chatListUseCaseProvider)) {
-            ResourceDone<List<ChatRoom>>(value: final chatRoomList) =>
-              chatRoomList.map((chatRoom) => Text(chatRoom.id)).toList(),
-            ResourceInProgress<List<ChatRoom>>() => [const Text('InProgress')],
-            ResourceError<List<ChatRoom>>() => [const Text('Error')],
-          },
-          FilledButton(
-            onPressed: ref
-                .read(chatListUseCaseProvider.notifier)
-                .getChatRoomListWithClearCache,
-            child: const Text('refresh'),
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppMessage.current.common_navigation_home,
+            style: AppTextStyle.bodyLarge16.withGray100(),
           ),
-          FilledButton(
-            onPressed: () =>
-                ref.read(chatListUseCaseProvider.notifier).deleteChatRoom('1'),
-            child: const Text('deleteChatRoom'),
-          ),
-          FilledButton(
-            onPressed: () =>
-                ref.read(chatListUseCaseProvider.notifier).addChatRoom(
-                      ChatRoom(
-                        id: 'id',
-                        title: 'title',
-                        chatList: [],
-                        createdAt: DateTime.now(),
-                      ),
-                    ),
-            child: const Text('addChatRoom'),
-          ),
-          FilledButton(
-            onPressed: () =>
-                ref.read(chatListUseCaseProvider.notifier).updateChatRoom(
-                      ChatRoom(
-                        id: 'id',
-                        title: 'title',
-                        chatList: [],
-                        createdAt: DateTime.now(),
-                      ),
-                    ),
-            child: const Text('updateChatRoom'),
-          ),
-          FilledButton(
-            onPressed: () => ref
-                .read(accountRepositoryProvider)
-                .signOut()
-                .withLoaderOverlay()
-                .withToastAtError()
-                .withToastAtSuccess((_) => AppMessage.current.sign_out_success)
-                .onSuccessWithoutValue(const SignInRouteData().go),
-            child: const Text('signOut'),
-          ),
-          FilledButton(
-            onPressed: () => ref
-                .read(accountRepositoryProvider)
-                .deleteMe()
-                .withLoaderOverlay()
-                .withToastAtError()
-                .withToastAtSuccess(
-                  (_) => AppMessage.current.account_delete_success,
-                )
-                .onSuccessWithoutValue(const SignInRouteData().go),
-            child: const Text('アカウント削除'),
-          ),
-          MeetingFormBuilder(
-            model: const Meeting(),
-            builder: (context, form, _) => Column(
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: AppSpace.lg16,
               children: [
-                ReactiveTextFieldWithScroll<String>(
-                  formControl: form.uriControl,
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    hintText: AppMessage.current.field_meeting_url,
+                Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppRadius.xll32),
+                    color: AppColor.onPrimary,
                   ),
-                  onSubmitted: (_) => onSubmitted(ref, form),
-                ),
-                ReactiveDateTimePicker(
-                  formControl: form.startedAtControl,
-                  decoration: InputDecoration(
-                    hintText: AppMessage.current.field_meeting_started_at,
+                  child: IconButton(
+                    onPressed: () => const BotInviteRoute().push(context),
+                    icon: SizedBox(
+                      width: 80,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.smart_toy_outlined,
+                          ),
+                          Text(
+                            AppMessage.current.common_invite_bot,
+                            style: Theme.of(context).textTheme.labelLarge,
+                            overflow: TextOverflow.visible,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                ReactiveMeetingFormConsumer(
-                  builder: (_, form, ___) => FilledButton(
-                    onPressed:
-                        !form.form.valid ? null : () => onSubmitted(ref, form),
-                    child: Text(AppMessage.current.meeting_register),
+                Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppRadius.xll32),
+                    color: AppColor.onPrimary,
+                  ),
+                  child: IconButton(
+                    onPressed: () => const ScheduleAddRoute().push(context),
+                    icon: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.event_outlined,
+                        ),
+                        Text(
+                          AppMessage.current.common_add_schedule,
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<Result<Meeting, AppMessageCode>> onSubmitted(
-    WidgetRef ref,
-    MeetingForm form,
-  ) =>
-      ref
-          .read(meetingRepositoryProvider)
-          .registerMeeting(
-            dto: MeetingCreateRequestDto(
-              url: Uri.parse(form.model.uri!),
-              startedAt: form.model.startedAt!,
-            ),
-          )
-          .withLoaderOverlay()
-          .withToastAtError()
-          .withToastAtSuccess(
-            (_) => AppMessage.current.meeting_register_success,
-          );
+            const SizedBox(height: AppSpace.xl24),
+            const Divider(),
+          ],
+        ),
+      );
 }

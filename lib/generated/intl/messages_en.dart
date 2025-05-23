@@ -44,6 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "account_delete_success": MessageLookupByLibrary.simpleMessage(
           "Account deleted",
         ),
+        "common_add_schedule":
+            MessageLookupByLibrary.simpleMessage("Add schedule"),
+        "common_delete_account": MessageLookupByLibrary.simpleMessage(
+          "Delete account",
+        ),
+        "common_invite_bot": MessageLookupByLibrary.simpleMessage("Invite bot"),
         "common_navigation_calendar": MessageLookupByLibrary.simpleMessage(
           "Calendar",
         ),

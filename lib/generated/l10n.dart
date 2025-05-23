@@ -69,6 +69,36 @@ class AppMessage {
     return Intl.message('サインアップ', name: 'common_sign_up', desc: '', args: []);
   }
 
+  /// `アカウント削除`
+  String get common_delete_account {
+    return Intl.message(
+      'アカウント削除',
+      name: 'common_delete_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botを招待`
+  String get common_invite_bot {
+    return Intl.message(
+      'Botを招待',
+      name: 'common_invite_bot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `スケジュール作成`
+  String get common_add_schedule {
+    return Intl.message(
+      'スケジュール作成',
+      name: 'common_add_schedule',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ホーム`
   String get common_navigation_home {
     return Intl.message(
