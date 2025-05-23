@@ -12,7 +12,8 @@ class AppRoutePath {
 
   // Authorized
   static const String home = '/home';
-  static const String chat = '/chats';
+  static const String calender = '/calenders';
+  static const String document = '/documents';
   static const String chatDetail = '/chats/:chatId';
   static const String setting = '/settings';
   static const String updateMyPassword = '/me/password';

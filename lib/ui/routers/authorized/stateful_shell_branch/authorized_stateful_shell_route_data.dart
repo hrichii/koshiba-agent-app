@@ -3,7 +3,8 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
 @TypedStatefulShellRoute<AuthorizedStatefulShellRouteData>(
   branches: [
     _homeTypedStatefulShellBranch,
-    _historyTypedStatefulShellBranch,
+    _calenderTypedStatefulShellBranch,
+    _documentTypedStatefulShellBranch,
     _settingTypedStatefulShellBranch,
   ],
 )
@@ -16,7 +17,9 @@ class AuthorizedStatefulShellRouteData extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) =>
-      Scaffold(
+      ScaffoldWithNavigation(
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: navigationShell.goBranch,
         body: navigationShell,
       );
 }

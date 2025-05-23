@@ -69,6 +69,46 @@ class AppMessage {
     return Intl.message('サインアップ', name: 'common_sign_up', desc: '', args: []);
   }
 
+  /// `ホーム`
+  String get common_navigation_home {
+    return Intl.message(
+      'ホーム',
+      name: 'common_navigation_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `カレンダー`
+  String get common_navigation_calendar {
+    return Intl.message(
+      'カレンダー',
+      name: 'common_navigation_calendar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ドキュメント`
+  String get common_navigation_document {
+    return Intl.message(
+      'ドキュメント',
+      name: 'common_navigation_document',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `設定`
+  String get common_navigation_settings {
+    return Intl.message(
+      '設定',
+      name: 'common_navigation_settings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `アカウント登録が完了しました`
   String get sign_up_success {
     return Intl.message(
