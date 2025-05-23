@@ -17,7 +17,9 @@ class AuthorizedStatefulShellRouteData extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) =>
-      Scaffold(
+      ScaffoldWithNavigation(
+        selectedIndex: navigationShell.currentIndex,
+        onDestinationSelected: navigationShell.goBranch,
         body: navigationShell,
       );
 }

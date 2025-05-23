@@ -26,6 +26,8 @@ class AppNavigationRail extends HookWidget {
 
   @override
   Widget build(BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           NavigationRail(
             selectedIndex: selectedIndex,
@@ -55,6 +57,11 @@ class AppNavigationRail extends HookWidget {
             ],
           ),
           Expanded(child: child),
+          // Container(
+          //   width: 1000,
+          //   color: Colors.red,
+          //   child: child,
+          // ),
         ],
       );
 }

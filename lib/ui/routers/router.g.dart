@@ -30,6 +30,15 @@ RouteBase get $authorizedStatefulShellRouteData =>
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
+              path: '/calenders',
+              name: '/calenders',
+              factory: $CalenderRouteDataExtension._fromState,
+            ),
+          ],
+        ),
+        StatefulShellBranchData.$branch(
+          routes: [
+            GoRouteData.$route(
               path: '/documents',
               name: '/documents',
               factory: $DocumentRouteDataExtension._fromState,
@@ -59,6 +68,24 @@ extension $HomeRouteDataExtension on HomeRouteData {
 
   String get location => GoRouteData.$location(
         '/home',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $CalenderRouteDataExtension on CalenderRouteData {
+  static CalenderRouteData _fromState(GoRouterState state) =>
+      const CalenderRouteData();
+
+  String get location => GoRouteData.$location(
+        '/calenders',
       );
 
   void go(BuildContext context) => context.go(location);
