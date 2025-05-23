@@ -15,10 +15,16 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Meeting {
-  @RfControl(validators: AppValidation.meetingUri)
-  String? get uri;
-  @RfControl(validators: AppValidation.meetingStartedAt)
-  DateTime? get startedAt;
+  String? get id;
+  Uri? get url;
+  @JsonKey(name: 'deploy_status')
+  DeployStatus get deployStatus;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt;
+  @JsonKey(name: 'start_at')
+  DateTime? get startAt;
+  @JsonKey(name: 'completed_at')
+  DateTime? get completedAt;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -35,18 +41,25 @@ mixin _$Meeting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Meeting &&
-            (identical(other.uri, uri) || other.uri == uri) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.deployStatus, deployStatus) ||
+                other.deployStatus == deployStatus) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.startAt, startAt) || other.startAt == startAt) &&
+            (identical(other.completedAt, completedAt) ||
+                other.completedAt == completedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri, startedAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, url, deployStatus, createdAt, startAt, completedAt);
 
   @override
   String toString() {
-    return 'Meeting(uri: $uri, startedAt: $startedAt)';
+    return 'Meeting(id: $id, url: $url, deployStatus: $deployStatus, createdAt: $createdAt, startAt: $startAt, completedAt: $completedAt)';
   }
 }
 
@@ -56,9 +69,12 @@ abstract mixin class $MeetingCopyWith<$Res> {
       _$MeetingCopyWithImpl;
   @useResult
   $Res call(
-      {@RfControl(validators: AppValidation.meetingUri) String? uri,
-      @RfControl(validators: AppValidation.meetingStartedAt)
-      DateTime? startedAt});
+      {String? id,
+      Uri? url,
+      @JsonKey(name: 'deploy_status') DeployStatus deployStatus,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'start_at') DateTime? startAt,
+      @JsonKey(name: 'completed_at') DateTime? completedAt});
 }
 
 /// @nodoc
@@ -73,17 +89,37 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uri = freezed,
-    Object? startedAt = freezed,
+    Object? id = freezed,
+    Object? url = freezed,
+    Object? deployStatus = null,
+    Object? createdAt = freezed,
+    Object? startAt = freezed,
+    Object? completedAt = freezed,
   }) {
     return _then(_self.copyWith(
-      uri: freezed == uri
-          ? _self.uri
-          : uri // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      startedAt: freezed == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as Uri?,
+      deployStatus: null == deployStatus
+          ? _self.deployStatus
+          : deployStatus // ignore: cast_nullable_to_non_nullable
+              as DeployStatus,
+      createdAt: freezed == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      startAt: freezed == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      completedAt: freezed == completedAt
+          ? _self.completedAt
+          : completedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -93,18 +129,32 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
 @JsonSerializable()
 class _Meeting extends Meeting {
   const _Meeting(
-      {@RfControl(validators: AppValidation.meetingUri) this.uri,
-      @RfControl(validators: AppValidation.meetingStartedAt) this.startedAt})
+      {this.id,
+      this.url,
+      @JsonKey(name: 'deploy_status') required this.deployStatus,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'start_at') this.startAt,
+      @JsonKey(name: 'completed_at') this.completedAt})
       : super._();
   factory _Meeting.fromJson(Map<String, dynamic> json) =>
       _$MeetingFromJson(json);
 
   @override
-  @RfControl(validators: AppValidation.meetingUri)
-  final String? uri;
+  final String? id;
   @override
-  @RfControl(validators: AppValidation.meetingStartedAt)
-  final DateTime? startedAt;
+  final Uri? url;
+  @override
+  @JsonKey(name: 'deploy_status')
+  final DeployStatus deployStatus;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @override
+  @JsonKey(name: 'start_at')
+  final DateTime? startAt;
+  @override
+  @JsonKey(name: 'completed_at')
+  final DateTime? completedAt;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -126,18 +176,25 @@ class _Meeting extends Meeting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Meeting &&
-            (identical(other.uri, uri) || other.uri == uri) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.deployStatus, deployStatus) ||
+                other.deployStatus == deployStatus) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.startAt, startAt) || other.startAt == startAt) &&
+            (identical(other.completedAt, completedAt) ||
+                other.completedAt == completedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri, startedAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, url, deployStatus, createdAt, startAt, completedAt);
 
   @override
   String toString() {
-    return 'Meeting(uri: $uri, startedAt: $startedAt)';
+    return 'Meeting(id: $id, url: $url, deployStatus: $deployStatus, createdAt: $createdAt, startAt: $startAt, completedAt: $completedAt)';
   }
 }
 
@@ -148,9 +205,12 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@RfControl(validators: AppValidation.meetingUri) String? uri,
-      @RfControl(validators: AppValidation.meetingStartedAt)
-      DateTime? startedAt});
+      {String? id,
+      Uri? url,
+      @JsonKey(name: 'deploy_status') DeployStatus deployStatus,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'start_at') DateTime? startAt,
+      @JsonKey(name: 'completed_at') DateTime? completedAt});
 }
 
 /// @nodoc
@@ -165,17 +225,37 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? uri = freezed,
-    Object? startedAt = freezed,
+    Object? id = freezed,
+    Object? url = freezed,
+    Object? deployStatus = null,
+    Object? createdAt = freezed,
+    Object? startAt = freezed,
+    Object? completedAt = freezed,
   }) {
     return _then(_Meeting(
-      uri: freezed == uri
-          ? _self.uri
-          : uri // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      startedAt: freezed == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as Uri?,
+      deployStatus: null == deployStatus
+          ? _self.deployStatus
+          : deployStatus // ignore: cast_nullable_to_non_nullable
+              as DeployStatus,
+      createdAt: freezed == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      startAt: freezed == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      completedAt: freezed == completedAt
+          ? _self.completedAt
+          : completedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
