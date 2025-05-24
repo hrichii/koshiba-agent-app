@@ -16,30 +16,14 @@ inputs:
   fastlane_apple_application_specific_password:
     required: true
     description: Application-specific password for Fastlane.
-  certificate_content:
-    required: true
-    description: Base64-encoded content of the iOS distribution certificate.
-  certificate_name:
-    required: true
-    description: Name of the iOS distribution certificate file.
-  profile_content:
-    required: true
-    description: Base64-encoded content of the provisioning profile.
-  profile_name:
-    required: true
-    description: Name of the provisioning profile file.
 
 runs:
   using: "composite"
   steps:
-    - name: Import Certificate And Profile
+    - name: Generate secret files
       shell: bash
       run: |
-        mkdir -p koshiba-agent-app-secret/certificate
-        mkdir -p koshiba-agent-app-secret/profile/${{ inputs.env }}
-        echo -n ${{ inputs.certificate_content }} | base64 -d > koshiba-agent-app-secret/certificate/${{ inputs.certificate_name }}
-        echo -n ${{ inputs.profile_content }} | base64 -d > koshiba-agent-app-secret/profile/${{ inputs.env }}/${{ inputs.profile_name }}
-
+        make setup-${{ inputs.env }}
     - name: Install Flutter
       shell: bash
       run: |
