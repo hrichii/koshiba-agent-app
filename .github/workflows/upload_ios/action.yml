@@ -45,7 +45,7 @@ runs:
       run: |
         git clone https://github.com/flutter/flutter.git
         cd flutter
-        git checkout 3.24.4
+        git checkout 3.29.2
         cd ..
 
     - name: Add path
