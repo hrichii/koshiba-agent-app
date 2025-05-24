@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout triggered branch
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.PAT_TOKEN }}
       - name: Extract version and build number from tag
         id: extract_version_android
         run: |
@@ -23,22 +26,23 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
-
       - name: Upload to AppDistribution
         uses: ./.github/workflows/upload_android
         with:
           env: prd
           version: ${{ steps.extract_version_android.outputs.version }}
           build_number: ${{ steps.extract_version_android.outputs.build_number }}
-          key_properties: ${{ secrets.PRD_KEY_PROPERTIES }}
-          upload_key: ${{ secrets.PRD_UPLOAD_KEY }}
-          service_account_key: ${{ secrets.PRD_SERVICE_ACCOUNT_KEY }}
   upload_prd_app_store:
     name: "[Prd] Upload to TestFlight"
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
       - name: Checkout triggered branch
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.PAT_TOKEN }}
       - name: Extract version and build number from tag
         id: extract_version_ios
         run: |
@@ -50,7 +54,6 @@ jobs:
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
-
       - name: Upload to TestFlight
         uses: ./.github/workflows/upload_ios
         with:
@@ -59,28 +62,20 @@ jobs:
           build_number: ${{ steps.extract_version_ios.outputs.build_number }}
           fastlane_user: ${{ secrets.FASTLANE_USER }}
           fastlane_apple_application_specific_password: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-          certificate_name: "appstore.p12"
-          certificate_content: ${{ secrets.CERTIFICATE_APPSTORE_P12 }}
-          profile_name: "appstore.mobileprovision"
-          profile_content: ${{ secrets.PRD_APPSTORE_PROFILE }}
-  deploy_prd_firebase_hosting:
+  upload_prd_web:
     name: "[Prd] Deploy to Firebase Hosting"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - name: Checkout triggered branch
+        uses: actions/checkout@v4
         with:
-          channel: 'stable'
-          flutter-version: 3.29.2
-      - name: Get Flutter dependencies
-        run: flutter pub get
-      - name: Build Flutter web
-        run: flutter build web
+          submodules: true
+          token: ${{ secrets.PAT_TOKEN }}
       - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: ./.github/workflows/upload_web
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KOSHIBA_AGENT_BCC2E }}'
-          channelId: live
-          projectId: koshiba-agent-bcc2e
+          env: prd
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          firebase_service_account: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KOSHIBA_AGENT_BCC2E }}'
+          channel_id: live
+          project_id: koshiba-agent-bcc2e

@@ -1,0 +1,52 @@
+name: 'Deploy to Firebase Hosting'
+description: 'Build and deploy Flutter web app to Firebase Hosting'
+
+inputs:
+  env:
+    description: 'Environment (dev, stg, prd)'
+    required: true
+  repo_token:
+    description: 'GitHub token'
+    required: true
+  firebase_service_account:
+    description: 'Firebase service account'
+    required: true
+  channel_id:
+    description: 'Firebase hosting channel ID'
+    default: 'live'
+  project_id:
+    description: 'Firebase project ID'
+    required: true
+  flutter_version:
+    description: 'Flutter version to use'
+    default: '3.29.2'
+  flutter_channel:
+    description: 'Flutter channel to use'
+    default: 'stable'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate secret files
+      shell: bash
+      run: |
+        make setup-${{ inputs.env }}
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: ${{ inputs.flutter_channel }}
+        flutter-version: ${{ inputs.flutter_version }}
+    - name: Get Flutter dependencies
+      shell: bash
+      run: flutter pub get
+    - name: Build Flutter web
+      shell: bash
+      run: flutter build web
+    
+    - name: Deploy to Firebase Hosting
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: ${{ inputs.repo_token }}
+        firebaseServiceAccount: ${{ inputs.firebase_service_account }}
+        channelId: ${{ inputs.channel_id }}
+        projectId: ${{ inputs.project_id }}

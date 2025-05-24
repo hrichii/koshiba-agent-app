@@ -10,15 +10,6 @@ inputs:
   build_number:
     required: true
     description: The build number for the app version.
-  key_properties:
-    required: true
-    description: Base64-encoded content of the key.properties file.
-  upload_key:
-    required: true
-    description: Base64-encoded content of the upload_key.jks file.
-  service_account_key:
-    required: true
-    description: Base64-encoded content of the service_account_key.json file.
 
 runs:
   using: "composite"
@@ -26,11 +17,7 @@ runs:
     - name: Generate secret files
       shell: bash
       run: |
-        mkdir -p koshiba-agent-app-secret/keystore/${{ inputs.env }}
-        mkdir -p koshiba-agent-app-secret/service_account/${{ inputs.env }}
-        echo -n ${{ inputs.key_properties }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/key.properties
-        echo -n ${{ inputs.upload_key }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/upload_key.jks
-        echo -n ${{ inputs.service_account_key }} | base64 -d > koshiba-agent-app-secret/service_account/${{ inputs.env }}/koshiba-firebase-distribution.json
+        make setup-${{ inputs.env }}
 
     - name: Set up Java 17
       uses: actions/setup-java@v2
