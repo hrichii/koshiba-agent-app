@@ -7,7 +7,7 @@ import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
-import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_form.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
@@ -28,8 +28,8 @@ class BotInvitePage extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            MeetingFormBuilder(
-              model: const Meeting(),
+            MeetingCreateFormFormBuilder(
+              model: const MeetingCreateForm(),
               builder: (context, form, _) => Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -40,7 +40,7 @@ class BotInvitePage extends ConsumerWidget {
                     decoration: InputDecoration(
                       hintText: AppMessage.current.field_meeting_url,
                     ),
-                    onSubmitted: (_) => onSubmitted(ref, form),
+                    onSubmitted: (_) => onSubmitted(ref, form.model),
                   ),
                   ReactiveDateTimePicker(
                     formControl: form.startedAtControl,
@@ -48,11 +48,20 @@ class BotInvitePage extends ConsumerWidget {
                       hintText: AppMessage.current.field_meeting_started_at,
                     ),
                   ),
-                  ReactiveMeetingFormConsumer(
+                  ReactiveMeetingCreateFormFormConsumer(
                     builder: (_, form, ___) => FilledButton(
                       onPressed: !form.form.valid
                           ? null
-                          : () => onSubmitted(ref, form),
+                          : () async {
+                              final result = await onSubmitted(ref, form.model);
+                              switch (result) {
+                                case ResultOk<void, AppMessageCode>():
+                                  if (context.mounted) {
+                                    Navigator.pop(context);
+                                  }
+                                case ResultNg<void, AppMessageCode>():
+                              }
+                            },
                       child: Text(AppMessage.current.meeting_register),
                     ),
                   ),
@@ -62,16 +71,16 @@ class BotInvitePage extends ConsumerWidget {
           ],
         ),
       );
-  Future<Result<Meeting, AppMessageCode>> onSubmitted(
+  Future<Result<void, AppMessageCode>> onSubmitted(
     WidgetRef ref,
-    MeetingForm form,
+    MeetingCreateForm form,
   ) =>
       ref
           .read(meetingRepositoryProvider)
           .registerMeeting(
             dto: MeetingCreateRequestDto(
-              url: Uri.parse(form.model.uri!),
-              startedAt: form.model.startedAt!,
+              url: Uri.parse(form.uri!),
+              startedAt: form.startedAt!,
             ),
           )
           .withLoaderOverlay()

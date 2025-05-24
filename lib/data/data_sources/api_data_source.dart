@@ -44,7 +44,7 @@ abstract class ApiDataSource {
 
   @POST('/meetings')
   @Headers(_headerMap)
-  Future<ApiResponse<Meeting>> registerMeeting(
+  Future<ApiResponse<void>> registerMeeting(
     @Body() MeetingCreateRequestDto dto,
   );
 

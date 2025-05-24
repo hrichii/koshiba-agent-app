@@ -1,17 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:koshiba_agent_app/core/validation/app_validation.dart';
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import 'package:koshiba_agent_app/logic/enums/deploy_status.dart';
 
 part 'meeting.freezed.dart';
 part 'meeting.g.dart';
-part 'meeting.gform.dart';
 
 @freezed
-@Rf()
 abstract class Meeting with _$Meeting {
   const factory Meeting({
-    @RfControl(validators: AppValidation.meetingUri) String? uri,
-    @RfControl(validators: AppValidation.meetingStartedAt) DateTime? startedAt,
+    String? id,
+    Uri? url,
+    @JsonKey(name: 'deploy_status') required DeployStatus deployStatus,
+    @JsonKey(name: 'created_at') DateTime? createdAt,
+    @JsonKey(name: 'start_at') DateTime? startAt,
+    @JsonKey(name: 'completed_at') DateTime? completedAt,
   }) = _Meeting;
 
   const Meeting._();
