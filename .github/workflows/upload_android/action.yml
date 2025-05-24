@@ -27,7 +27,7 @@ runs:
       shell: bash
       run: |
         mkdir -p koshiba-agent-app-secret/keystore/${{ inputs.env }}
-        mkdir -p pithecus-secret/android/service_account/${{ inputs.env }}
+        mkdir -p koshiba-agent-app-secret/service_account/${{ inputs.env }}
         echo -n ${{ inputs.key_properties }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/key.properties
         echo -n ${{ inputs.upload_key }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/upload_key.jks
         echo -n ${{ inputs.service_account_key }} | base64 -d > koshiba-agent-app-secret/service_account/${{ inputs.env }}/koshiba-firebase-distribution.json

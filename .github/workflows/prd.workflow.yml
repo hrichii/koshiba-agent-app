@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout triggered branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Extract version and build number from tag
         id: extract_version_android
         run: |
@@ -21,8 +21,8 @@ jobs:
           if [ -z "$BUILD_NUMBER" ]; then
             BUILD_NUMBER=1
           fi
-          echo "version=$VERSION" >> $GITHUB_ENV
-          echo "build_number=$BUILD_NUMBER" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
 
       - name: Upload to AppDistribution
         uses: ./.github/workflows/upload_android
@@ -38,7 +38,7 @@ jobs:
     runs-on: macos-14
     steps:
       - name: Checkout triggered branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Extract version and build number from tag
         id: extract_version_ios
         run: |
