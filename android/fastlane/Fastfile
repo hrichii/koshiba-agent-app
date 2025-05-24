@@ -1,0 +1,109 @@
+default_platform(:android)
+platform :android do
+    def get_package_name(env)
+        case env
+        when "prd" then
+            ENV['PRD_PACKAGE_NAME']
+        else
+            nil
+        end
+    end
+
+    def get_json_key_path(env)
+        case env
+        when "prd" then
+            ENV['PRD_JSON_KEY_PATH']
+        else
+            nil
+        end
+    end
+
+    def get_firebase_app_id(env)
+        case env
+        when "prd" then
+            ENV['FIREBASE_APP_ID']
+        else
+            nil
+        end
+    end
+
+    def get_firebase_groups(env)
+        case env
+        when "prd" then
+            ENV['GROUPS']
+        else
+            nil
+        end
+    end
+
+    lane :upload_internal_test do |options|
+        env = options[:env] || "prd"
+        version = options[:version] || "1.0.0"
+        build_number = options[:build_number] || "1"
+        track = "internal"
+        package_name=get_package_name(env)
+        json_key_path=get_json_key_path(env)
+        previous_build_number = google_play_track_version_codes(
+            package_name: package_name,
+            json_key: json_key_path,
+            track: track,
+        )[0]
+        new_version_code = previous_build_number + 1;
+        symbolsFolderPath = "build/app/intermediates/merged_native_libs/release/out"
+        symbolsFileName = "native_debug_symbols.zip"
+        mappingFilePath = "build/app/outputs/mapping/release/mapping.txt"
+
+        dart_define_file = "env/#{env}.env"
+        sh("flutter clean")
+        sh("flutter build appbundle --release --dart-define-from-file=#{dart_define_file} --build-name=#{version} --build-number=#{new_version_code}")
+        system("cd ../../#{symbolsFolderPath}/lib && zip -r ../#{symbolsFileName} .")
+
+        upload_to_play_store(
+            package_name:package_name,
+            json_key: json_key_path,
+            track: track,
+            version_name: "#{version}(#{build_number})",
+            aab: "../build/app/outputs/bundle/release/app-release.aab",
+            mapping_paths: ["../#{mappingFilePath}", "../#{symbolsFolderPath}/#{symbolsFileName}"],
+            release_status: "draft",
+            skip_upload_apk: true,
+            skip_upload_metadata: false,
+            skip_upload_images: true,
+            skip_upload_screenshots: true
+        )
+
+    end
+
+    lane :upload_firebase_distribution do |options|
+        env = options[:env] || "prd"
+        version = options[:version] || "1.0.0"
+        build_number = options[:build_number] || "1"
+        package_name = get_package_name(env)
+        json_key_path = get_json_key_path(env)
+        firebase_app_id = get_firebase_app_id(env)
+        firebase_groups = get_firebase_groups(env)
+        
+        # バージョンコードをユーザー指定値または直接設定した値を使用
+        new_version_code = build_number
+        
+        # Set paths for build artifacts
+        dart_define_file = "env/#{env}.env"
+        symbolsFolderPath = "build/app/intermediates/merged_native_libs/release/out"
+        symbolsFileName = "native_debug_symbols.zip"
+        mappingFilePath = "build/app/outputs/mapping/release/mapping.txt"
+        
+        # Clean and build APK for Firebase distribution
+        sh("flutter clean")
+        sh("flutter build apk --release --dart-define-from-file=#{dart_define_file} --build-name=#{version} --build-number=#{new_version_code}")
+        system("cd ../../#{symbolsFolderPath}/lib && zip -r ../#{symbolsFileName} .")
+        
+        # Upload to Firebase App Distribution
+        firebase_app_distribution(
+            app: firebase_app_id,
+            groups: firebase_groups,
+            release_notes: "Version #{version} (#{build_number})",
+            apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
+            service_credentials_file: json_key_path
+        )
+    end
+end

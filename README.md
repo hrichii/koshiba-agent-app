@@ -37,3 +37,15 @@ firebase deploy
 firebase hosting:disable
 ```
 
+## Android
+### Firebase
+```sh
+cd android
+fastlane upload_firebase_distribution version:1.0.0 build_number:1
+```
+
+### iOS
+```sh
+cd ios
+fastlane upload_internal_test version:1.0.0 build_number:1
+```
