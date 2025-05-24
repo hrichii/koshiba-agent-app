@@ -1,0 +1,67 @@
+name: Upload to App Distribution
+description: Automates the process of uploading an Android build to Google Play Console, including generating required secret files, setting up dependencies, and executing Fastlane for deployment.
+inputs:
+  env:
+    required: true
+    description: Environmental variable specifying the build environment (e.g., development, production).
+  version:
+    required: true
+    description: The version of the app to be uploaded.
+  build_number:
+    required: true
+    description: The build number for the app version.
+  key_properties:
+    required: true
+    description: Base64-encoded content of the key.properties file.
+  upload_key:
+    required: true
+    description: Base64-encoded content of the upload_key.jks file.
+  service_account_key:
+    required: true
+    description: Base64-encoded content of the service_account_key.json file.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate secret files
+      shell: bash
+      run: |
+        mkdir -p koshiba-agent-app-secret/keystore/${{ inputs.env }}
+        mkdir -p koshiba-agent-app-secret/service_account/${{ inputs.env }}
+        echo -n ${{ inputs.key_properties }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/key.properties
+        echo -n ${{ inputs.upload_key }} | base64 -d > koshiba-agent-app-secret/keystore/${{ inputs.env }}/upload_key.jks
+        echo -n ${{ inputs.service_account_key }} | base64 -d > koshiba-agent-app-secret/service_account/${{ inputs.env }}/koshiba-firebase-distribution.json
+
+    - name: Set up Java 17
+      uses: actions/setup-java@v2
+      with:
+        distribution: microsoft
+        java-version: 17
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.3.5"
+
+    - name: Install Flutter
+      shell: bash
+      run: |
+        git clone https://github.com/flutter/flutter.git
+        cd flutter
+        git checkout 3.29.2
+        cd ..
+
+    - name: Add path
+      shell: bash
+      run: echo "$(pwd)/flutter/bin" >> $GITHUB_PATH
+
+    - name: Download Flutter packages
+      shell: bash
+      run: dart pub global activate flutterfire_cli
+
+    - name: Upload App Distribution
+      shell: bash
+      run: |
+        cd android
+        bundle install
+        bundle exec fastlane upload_firebase_distribution env:${{inputs.env}} version:${{inputs.version}} build_number:${{inputs.build_number}}

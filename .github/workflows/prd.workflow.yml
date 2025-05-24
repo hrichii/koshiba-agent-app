@@ -1,4 +1,4 @@
-name: "[Prd] Upload to TestFlight and PlayConsole"
+name: "[Prd] Upload to TestFlight, AppDistribution and Firebase Hosting"
 
 on:
   push:
@@ -6,12 +6,39 @@ on:
       - 'v*'
 
 jobs:
+  upload_prd_app_distribution:
+    name: "[Prd] Upload to AppDistribution"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout triggered branch
+        uses: actions/checkout@v4
+      - name: Extract version and build number from tag
+        id: extract_version_android
+        run: |
+          TAG_NAME=${GITHUB_REF_NAME}
+          VERSION=$(echo $TAG_NAME | sed 's/^v\([0-9]*\.[0-9]*\.[0-9]*\).*/\1/')
+          BUILD_NUMBER=$(echo $TAG_NAME | sed 's/^v[0-9]*\.[0-9]*\.[0-9]*+\([0-9]*\)/\1/')
+          if [ -z "$BUILD_NUMBER" ]; then
+            BUILD_NUMBER=1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build_number=$BUILD_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Upload to AppDistribution
+        uses: ./.github/workflows/upload_android
+        with:
+          env: prd
+          version: ${{ steps.extract_version_android.outputs.version }}
+          build_number: ${{ steps.extract_version_android.outputs.build_number }}
+          key_properties: ${{ secrets.PRD_KEY_PROPERTIES }}
+          upload_key: ${{ secrets.PRD_UPLOAD_KEY }}
+          service_account_key: ${{ secrets.PRD_SERVICE_ACCOUNT_KEY }}
   upload_prd_app_store:
     name: "[Prd] Upload to TestFlight"
     runs-on: macos-14
     steps:
       - name: Checkout triggered branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Extract version and build number from tag
         id: extract_version_ios
         run: |
@@ -36,3 +63,24 @@ jobs:
           certificate_content: ${{ secrets.CERTIFICATE_APPSTORE_P12 }}
           profile_name: "appstore.mobileprovision"
           profile_content: ${{ secrets.PRD_APPSTORE_PROFILE }}
+  deploy_prd_firebase_hosting:
+    name: "[Prd] Deploy to Firebase Hosting"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: 3.29.2
+      - name: Get Flutter dependencies
+        run: flutter pub get
+      - name: Build Flutter web
+        run: flutter build web
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KOSHIBA_AGENT_BCC2E }}'
+          channelId: live
+          projectId: koshiba-agent-bcc2e
