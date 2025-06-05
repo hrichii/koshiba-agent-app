@@ -43,7 +43,8 @@ class BotInvitePage extends ConsumerWidget {
                     onSubmitted: (_) => onSubmitted(ref, form.model),
                   ),
                   ReactiveDateTimePicker(
-                    formControl: form.startedAtControl,
+                    type: ReactiveDatePickerFieldType.dateTime,
+                    formControl: form.startAtControl,
                     decoration: InputDecoration(
                       hintText: AppMessage.current.field_meeting_started_at,
                     ),
@@ -80,7 +81,7 @@ class BotInvitePage extends ConsumerWidget {
           .registerMeeting(
             dto: MeetingCreateRequestDto(
               url: Uri.parse(form.uri!),
-              startedAt: form.startedAt!,
+              startAt: form.startAt!,
             ),
           )
           .withLoaderOverlay()

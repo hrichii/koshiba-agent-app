@@ -18,9 +18,9 @@ mixin _$MeetingCreateForm {
   @JsonKey(name: 'url')
   @RfControl(validators: AppValidation.meetingUri)
   String? get uri;
-  @JsonKey(name: 'started_at')
-  @RfControl(validators: AppValidation.meetingStartedAt)
-  DateTime? get startedAt;
+  @JsonKey(name: 'start_at')
+  @RfControl(validators: AppValidation.meetingStartAt)
+  DateTime? get startAt;
 
   /// Create a copy of MeetingCreateForm
   /// with the given fields replaced by the non-null parameter values.
@@ -39,17 +39,16 @@ mixin _$MeetingCreateForm {
         (other.runtimeType == runtimeType &&
             other is MeetingCreateForm &&
             (identical(other.uri, uri) || other.uri == uri) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.startAt, startAt) || other.startAt == startAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri, startedAt);
+  int get hashCode => Object.hash(runtimeType, uri, startAt);
 
   @override
   String toString() {
-    return 'MeetingCreateForm(uri: $uri, startedAt: $startedAt)';
+    return 'MeetingCreateForm(uri: $uri, startAt: $startAt)';
   }
 }
 
@@ -63,9 +62,9 @@ abstract mixin class $MeetingCreateFormCopyWith<$Res> {
       {@JsonKey(name: 'url')
       @RfControl(validators: AppValidation.meetingUri)
       String? uri,
-      @JsonKey(name: 'started_at')
-      @RfControl(validators: AppValidation.meetingStartedAt)
-      DateTime? startedAt});
+      @JsonKey(name: 'start_at')
+      @RfControl(validators: AppValidation.meetingStartAt)
+      DateTime? startAt});
 }
 
 /// @nodoc
@@ -82,16 +81,16 @@ class _$MeetingCreateFormCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uri = freezed,
-    Object? startedAt = freezed,
+    Object? startAt = freezed,
   }) {
     return _then(_self.copyWith(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String?,
-      startedAt: freezed == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      startAt: freezed == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
@@ -104,9 +103,9 @@ class _MeetingCreateForm extends MeetingCreateForm {
       {@JsonKey(name: 'url')
       @RfControl(validators: AppValidation.meetingUri)
       this.uri,
-      @JsonKey(name: 'started_at')
-      @RfControl(validators: AppValidation.meetingStartedAt)
-      this.startedAt})
+      @JsonKey(name: 'start_at')
+      @RfControl(validators: AppValidation.meetingStartAt)
+      this.startAt})
       : super._();
   factory _MeetingCreateForm.fromJson(Map<String, dynamic> json) =>
       _$MeetingCreateFormFromJson(json);
@@ -116,9 +115,9 @@ class _MeetingCreateForm extends MeetingCreateForm {
   @RfControl(validators: AppValidation.meetingUri)
   final String? uri;
   @override
-  @JsonKey(name: 'started_at')
-  @RfControl(validators: AppValidation.meetingStartedAt)
-  final DateTime? startedAt;
+  @JsonKey(name: 'start_at')
+  @RfControl(validators: AppValidation.meetingStartAt)
+  final DateTime? startAt;
 
   /// Create a copy of MeetingCreateForm
   /// with the given fields replaced by the non-null parameter values.
@@ -141,17 +140,16 @@ class _MeetingCreateForm extends MeetingCreateForm {
         (other.runtimeType == runtimeType &&
             other is _MeetingCreateForm &&
             (identical(other.uri, uri) || other.uri == uri) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.startAt, startAt) || other.startAt == startAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, uri, startedAt);
+  int get hashCode => Object.hash(runtimeType, uri, startAt);
 
   @override
   String toString() {
-    return 'MeetingCreateForm(uri: $uri, startedAt: $startedAt)';
+    return 'MeetingCreateForm(uri: $uri, startAt: $startAt)';
   }
 }
 
@@ -167,9 +165,9 @@ abstract mixin class _$MeetingCreateFormCopyWith<$Res>
       {@JsonKey(name: 'url')
       @RfControl(validators: AppValidation.meetingUri)
       String? uri,
-      @JsonKey(name: 'started_at')
-      @RfControl(validators: AppValidation.meetingStartedAt)
-      DateTime? startedAt});
+      @JsonKey(name: 'start_at')
+      @RfControl(validators: AppValidation.meetingStartAt)
+      DateTime? startAt});
 }
 
 /// @nodoc
@@ -186,16 +184,16 @@ class __$MeetingCreateFormCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? uri = freezed,
-    Object? startedAt = freezed,
+    Object? startAt = freezed,
   }) {
     return _then(_MeetingCreateForm(
       uri: freezed == uri
           ? _self.uri
           : uri // ignore: cast_nullable_to_non_nullable
               as String?,
-      startedAt: freezed == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      startAt: freezed == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }

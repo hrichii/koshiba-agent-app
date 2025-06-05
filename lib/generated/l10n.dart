@@ -414,6 +414,46 @@ class AppMessage {
     );
   }
 
+  /// `リソースが見つかりません`
+  String get error_api_not_found {
+    return Intl.message(
+      'リソースが見つかりません',
+      name: 'error_api_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `認証に失敗しました`
+  String get error_api_resource_unauthorized {
+    return Intl.message(
+      '認証に失敗しました',
+      name: 'error_api_resource_unauthorized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ボット操作に失敗しました`
+  String get error_api_bot_operation_issue {
+    return Intl.message(
+      'ボット操作に失敗しました',
+      name: 'error_api_bot_operation_issue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `過去の開始時間は指定できません。未来の時間を指定してください`
+  String get error_api_bot_start_time_past {
+    return Intl.message(
+      '過去の開始時間は指定できません。未来の時間を指定してください',
+      name: 'error_api_bot_start_time_past',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `リソースが既に存在します`
   String get error_api_resource_already_exists {
     return Intl.message(

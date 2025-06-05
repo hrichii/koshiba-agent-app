@@ -38,12 +38,21 @@ sealed class AppMessageCode with _$AppMessageCode {
       _ErrorApiTooManyRequests;
   const factory AppMessageCode.errorApiBadRequest({String? message}) =
       _ErrorApiBadRequest;
+  const factory AppMessageCode.errorApiNotFound({String? message}) =
+      _ErrorApiNotFound;
   const factory AppMessageCode.errorApiResourceAlreadyExists({
     String? message,
   }) = _ErrorApiResourceAlreadyExists;
+  const factory AppMessageCode.errorApiResourceUnauthorized({
+    String? message,
+  }) = _ErrorApiResourceUnauthorized;
 
   const factory AppMessageCode.errorApiServerIssue({String? message}) =
       _ErrorApiServerIssue;
+  const factory AppMessageCode.errorApiBotOperationIssue({String? message}) =
+      _ErrorApiBotOperationIssue;
+  const factory AppMessageCode.errorApiBotStartTimePast({String? message}) =
+      _ErrorApiBotStartTimePast;
 
   // Dioエラー
   const factory AppMessageCode.errorClientUnknown({String? message}) =
@@ -155,6 +164,13 @@ extension AppMessageCodeExtension on AppMessageCode {
         _ErrorApiTooManyRequests() =>
           AppMessage.current.error_api_too_many_requests,
         _ErrorApiBadRequest() => AppMessage.current.error_api_bad_request,
+        _ErrorApiNotFound() => AppMessage.current.error_api_not_found,
+        _ErrorApiResourceUnauthorized() =>
+          AppMessage.current.error_api_resource_unauthorized,
+        _ErrorApiBotOperationIssue() =>
+          AppMessage.current.error_api_bot_operation_issue,
+        _ErrorApiBotStartTimePast() =>
+          AppMessage.current.error_api_bot_start_time_past,
         _ErrorApiResourceAlreadyExists() =>
           AppMessage.current.error_api_resource_already_exists,
         _ErrorApiServerIssue() => AppMessage.current.error_api_server_issue,

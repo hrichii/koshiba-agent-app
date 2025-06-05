@@ -38,10 +38,18 @@ AppMessageCode _$AppMessageCodeFromJson(Map<String, dynamic> json) {
       return _ErrorApiTooManyRequests.fromJson(json);
     case 'errorApiBadRequest':
       return _ErrorApiBadRequest.fromJson(json);
+    case 'errorApiNotFound':
+      return _ErrorApiNotFound.fromJson(json);
     case 'errorApiResourceAlreadyExists':
       return _ErrorApiResourceAlreadyExists.fromJson(json);
+    case 'errorApiResourceUnauthorized':
+      return _ErrorApiResourceUnauthorized.fromJson(json);
     case 'errorApiServerIssue':
       return _ErrorApiServerIssue.fromJson(json);
+    case 'errorApiBotOperationIssue':
+      return _ErrorApiBotOperationIssue.fromJson(json);
+    case 'errorApiBotStartTimePast':
+      return _ErrorApiBotStartTimePast.fromJson(json);
     case 'errorClientUnknown':
       return _ErrorClientUnknown.fromJson(json);
     case 'errorClientUnexpectedResponse':
@@ -1148,6 +1156,88 @@ class __$ErrorApiBadRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+class _ErrorApiNotFound implements AppMessageCode {
+  const _ErrorApiNotFound({this.message, final String? $type})
+      : $type = $type ?? 'errorApiNotFound';
+  factory _ErrorApiNotFound.fromJson(Map<String, dynamic> json) =>
+      _$ErrorApiNotFoundFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorApiNotFoundCopyWith<_ErrorApiNotFound> get copyWith =>
+      __$ErrorApiNotFoundCopyWithImpl<_ErrorApiNotFound>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorApiNotFoundToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorApiNotFound &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorApiNotFound(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorApiNotFoundCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorApiNotFoundCopyWith(
+          _ErrorApiNotFound value, $Res Function(_ErrorApiNotFound) _then) =
+      __$ErrorApiNotFoundCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorApiNotFoundCopyWithImpl<$Res>
+    implements _$ErrorApiNotFoundCopyWith<$Res> {
+  __$ErrorApiNotFoundCopyWithImpl(this._self, this._then);
+
+  final _ErrorApiNotFound _self;
+  final $Res Function(_ErrorApiNotFound) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorApiNotFound(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
 class _ErrorApiResourceAlreadyExists implements AppMessageCode {
   const _ErrorApiResourceAlreadyExists({this.message, final String? $type})
       : $type = $type ?? 'errorApiResourceAlreadyExists';
@@ -1232,6 +1322,90 @@ class __$ErrorApiResourceAlreadyExistsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+class _ErrorApiResourceUnauthorized implements AppMessageCode {
+  const _ErrorApiResourceUnauthorized({this.message, final String? $type})
+      : $type = $type ?? 'errorApiResourceUnauthorized';
+  factory _ErrorApiResourceUnauthorized.fromJson(Map<String, dynamic> json) =>
+      _$ErrorApiResourceUnauthorizedFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorApiResourceUnauthorizedCopyWith<_ErrorApiResourceUnauthorized>
+      get copyWith => __$ErrorApiResourceUnauthorizedCopyWithImpl<
+          _ErrorApiResourceUnauthorized>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorApiResourceUnauthorizedToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorApiResourceUnauthorized &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorApiResourceUnauthorized(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorApiResourceUnauthorizedCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorApiResourceUnauthorizedCopyWith(
+          _ErrorApiResourceUnauthorized value,
+          $Res Function(_ErrorApiResourceUnauthorized) _then) =
+      __$ErrorApiResourceUnauthorizedCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorApiResourceUnauthorizedCopyWithImpl<$Res>
+    implements _$ErrorApiResourceUnauthorizedCopyWith<$Res> {
+  __$ErrorApiResourceUnauthorizedCopyWithImpl(this._self, this._then);
+
+  final _ErrorApiResourceUnauthorized _self;
+  final $Res Function(_ErrorApiResourceUnauthorized) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorApiResourceUnauthorized(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
 class _ErrorApiServerIssue implements AppMessageCode {
   const _ErrorApiServerIssue({this.message, final String? $type})
       : $type = $type ?? 'errorApiServerIssue';
@@ -1305,6 +1479,173 @@ class __$ErrorApiServerIssueCopyWithImpl<$Res>
     Object? message = freezed,
   }) {
     return _then(_ErrorApiServerIssue(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ErrorApiBotOperationIssue implements AppMessageCode {
+  const _ErrorApiBotOperationIssue({this.message, final String? $type})
+      : $type = $type ?? 'errorApiBotOperationIssue';
+  factory _ErrorApiBotOperationIssue.fromJson(Map<String, dynamic> json) =>
+      _$ErrorApiBotOperationIssueFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorApiBotOperationIssueCopyWith<_ErrorApiBotOperationIssue>
+      get copyWith =>
+          __$ErrorApiBotOperationIssueCopyWithImpl<_ErrorApiBotOperationIssue>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorApiBotOperationIssueToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorApiBotOperationIssue &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorApiBotOperationIssue(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorApiBotOperationIssueCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorApiBotOperationIssueCopyWith(_ErrorApiBotOperationIssue value,
+          $Res Function(_ErrorApiBotOperationIssue) _then) =
+      __$ErrorApiBotOperationIssueCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorApiBotOperationIssueCopyWithImpl<$Res>
+    implements _$ErrorApiBotOperationIssueCopyWith<$Res> {
+  __$ErrorApiBotOperationIssueCopyWithImpl(this._self, this._then);
+
+  final _ErrorApiBotOperationIssue _self;
+  final $Res Function(_ErrorApiBotOperationIssue) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorApiBotOperationIssue(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ErrorApiBotStartTimePast implements AppMessageCode {
+  const _ErrorApiBotStartTimePast({this.message, final String? $type})
+      : $type = $type ?? 'errorApiBotStartTimePast';
+  factory _ErrorApiBotStartTimePast.fromJson(Map<String, dynamic> json) =>
+      _$ErrorApiBotStartTimePastFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorApiBotStartTimePastCopyWith<_ErrorApiBotStartTimePast> get copyWith =>
+      __$ErrorApiBotStartTimePastCopyWithImpl<_ErrorApiBotStartTimePast>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorApiBotStartTimePastToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorApiBotStartTimePast &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorApiBotStartTimePast(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorApiBotStartTimePastCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorApiBotStartTimePastCopyWith(_ErrorApiBotStartTimePast value,
+          $Res Function(_ErrorApiBotStartTimePast) _then) =
+      __$ErrorApiBotStartTimePastCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorApiBotStartTimePastCopyWithImpl<$Res>
+    implements _$ErrorApiBotStartTimePastCopyWith<$Res> {
+  __$ErrorApiBotStartTimePastCopyWithImpl(this._self, this._then);
+
+  final _ErrorApiBotStartTimePast _self;
+  final $Res Function(_ErrorApiBotStartTimePast) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorApiBotStartTimePast(
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable

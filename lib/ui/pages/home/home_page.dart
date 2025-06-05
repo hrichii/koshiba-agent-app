@@ -8,7 +8,6 @@ import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
-import 'package:koshiba_agent_app/logic/enums/deploy_status.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/ui/pages/home/home_page_provider.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
@@ -290,26 +289,23 @@ class MeetingCard extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: AppSpace.sm8),
-            // デプロイステータス
+            // Meeting BaaS ID情報
             Row(
               children: [
                 const Icon(
-                  Icons.info_outline,
+                  Icons.cloud_outlined,
                   size: 16,
                   color: Colors.grey,
                 ),
                 const SizedBox(width: AppSpace.sm8),
                 Text(
-                  'ステータス: ',
+                  'BaaS ID: ',
                   style: AppTextStyle.bodyMedium14,
                 ),
                 Text(
-                  meeting.deployStatus.name,
+                  meeting.meetingBaasId ?? '未設定',
                   style: AppTextStyle.bodyMedium14.withGray100(),
                 ),
-                const SizedBox(width: AppSpace.sm8),
-                // デプロイステータスに応じたアイコン表示
-                _buildStatusIndicator(meeting.deployStatus),
               ],
             ),
             const SizedBox(height: AppSpace.sm8),
@@ -349,42 +345,12 @@ class MeetingCard extends ConsumerWidget {
     );
   }
 
-  // デプロイステータスに応じたインジケーターを構築
-  Widget _buildStatusIndicator(DeployStatus status) {
-    switch (status) {
-      case DeployStatus.deploying:
-        return const SizedBox(
-          width: 16,
-          height: 16,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
-        );
-      case DeployStatus.running:
-        return Container(
-          width: 16,
-          height: 16,
-          decoration: const BoxDecoration(
-            color: Colors.green,
-            shape: BoxShape.circle,
-          ),
-        );
-      default:
-        return Container(
-          width: 16,
-          height: 16,
-          decoration: const BoxDecoration(
-            color: Colors.grey,
-            shape: BoxShape.circle,
-          ),
-        );
-    }
-  }
-
   // 会議を削除するメソッド
   void _deleteMeeting(
-      BuildContext context, WidgetRef ref, String meetingId) async {
+    BuildContext context,
+    WidgetRef ref,
+    String meetingId,
+  ) async {
     // 削除中を示すローディングインジケータを表示
     final scaffoldMessenger = ScaffoldMessenger.of(context);
 
