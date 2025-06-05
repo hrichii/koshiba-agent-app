@@ -231,7 +231,7 @@ class MeetingCreateFormForm
 
   static const String uriControlName = "uri";
 
-  static const String startedAtControlName = "startedAt";
+  static const String startAtControlName = "startAt";
 
   final FormGroup form;
 
@@ -241,15 +241,15 @@ class MeetingCreateFormForm
 
   String uriControlPath() => pathBuilder(uriControlName);
 
-  String startedAtControlPath() => pathBuilder(startedAtControlName);
+  String startAtControlPath() => pathBuilder(startAtControlName);
 
   String? get _uriValue => uriControl.value;
 
-  DateTime? get _startedAtValue => startedAtControl.value;
+  DateTime? get _startAtValue => startAtControl.value;
 
   String? get _uriRawValue => uriControl.value;
 
-  DateTime? get _startedAtRawValue => startedAtControl.value;
+  DateTime? get _startAtRawValue => startAtControl.value;
 
   @Deprecated(
       'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
@@ -264,9 +264,9 @@ class MeetingCreateFormForm
 
   @Deprecated(
       'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
-  bool get containsStartedAt {
+  bool get containsStartAt {
     try {
-      form.control(startedAtControlPath());
+      form.control(startAtControlPath());
       return true;
     } catch (e) {
       return false;
@@ -275,11 +275,11 @@ class MeetingCreateFormForm
 
   Map<String, Object>? get uriErrors => uriControl.errors;
 
-  Map<String, Object>? get startedAtErrors => startedAtControl.errors;
+  Map<String, Object>? get startAtErrors => startAtControl.errors;
 
   void get uriFocus => form.focus(uriControlPath());
 
-  void get startedAtFocus => form.focus(startedAtControlPath());
+  void get startAtFocus => form.focus(startAtControlPath());
 
   @Deprecated(
       'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
@@ -311,15 +311,15 @@ class MeetingCreateFormForm
 
   @Deprecated(
       'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
-  void startedAtRemove({
+  void startAtRemove({
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    if (containsStartedAt) {
+    if (containsStartAt) {
       final controlPath = path;
       if (controlPath == null) {
         form.removeControl(
-          startedAtControlName,
+          startAtControlName,
           updateParent: updateParent,
           emitEvent: emitEvent,
         );
@@ -328,7 +328,7 @@ class MeetingCreateFormForm
 
         if (formGroup is FormGroup) {
           formGroup.removeControl(
-            startedAtControlName,
+            startAtControlName,
             updateParent: updateParent,
             emitEvent: emitEvent,
           );
@@ -346,12 +346,12 @@ class MeetingCreateFormForm
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
-  void startedAtValueUpdate(
+  void startAtValueUpdate(
     DateTime? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    startedAtControl.updateValue(value,
+    startAtControl.updateValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -364,12 +364,12 @@ class MeetingCreateFormForm
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
-  void startedAtValuePatch(
+  void startAtValuePatch(
     DateTime? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    startedAtControl.patchValue(value,
+    startAtControl.patchValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -388,14 +388,14 @@ class MeetingCreateFormForm
         disabled: disabled,
       );
 
-  void startedAtValueReset(
+  void startAtValueReset(
     DateTime? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      startedAtControl.reset(
+      startAtControl.reset(
         value: value,
         updateParent: updateParent,
         emitEvent: emitEvent,
@@ -406,8 +406,8 @@ class MeetingCreateFormForm
   FormControl<String> get uriControl =>
       form.control(uriControlPath()) as FormControl<String>;
 
-  FormControl<DateTime> get startedAtControl =>
-      form.control(startedAtControlPath()) as FormControl<DateTime>;
+  FormControl<DateTime> get startAtControl =>
+      form.control(startAtControlPath()) as FormControl<DateTime>;
 
   void uriSetDisabled(
     bool disabled, {
@@ -427,18 +427,18 @@ class MeetingCreateFormForm
     }
   }
 
-  void startedAtSetDisabled(
+  void startAtSetDisabled(
     bool disabled, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
     if (disabled) {
-      startedAtControl.markAsDisabled(
+      startAtControl.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      startedAtControl.markAsEnabled(
+      startAtControl.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -456,12 +456,12 @@ class MeetingCreateFormForm
         StackTrace.current,
       );
     }
-    return MeetingCreateForm(uri: _uriValue, startedAt: _startedAtValue);
+    return MeetingCreateForm(uri: _uriValue, startAt: _startAtValue);
   }
 
   @override
   MeetingCreateForm get rawModel {
-    return MeetingCreateForm(uri: _uriRawValue, startedAt: _startedAtRawValue);
+    return MeetingCreateForm(uri: _uriRawValue, startAt: _startAtRawValue);
   }
 
   @override
@@ -559,9 +559,9 @@ class MeetingCreateFormForm
             asyncValidatorsDebounceTime: 250,
             disabled: false,
             touched: false),
-        startedAtControlName: FormControl<DateTime>(
-            value: meetingCreateForm?.startedAt,
-            validators: AppValidation.meetingStartedAt,
+        startAtControlName: FormControl<DateTime>(
+            value: meetingCreateForm?.startAt,
+            validators: AppValidation.meetingStartAt,
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,

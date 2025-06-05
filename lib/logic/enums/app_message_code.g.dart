@@ -172,6 +172,18 @@ Map<String, dynamic> _$ErrorApiBadRequestToJson(_ErrorApiBadRequest instance) =>
       'code': instance.$type,
     };
 
+_ErrorApiNotFound _$ErrorApiNotFoundFromJson(Map<String, dynamic> json) =>
+    _ErrorApiNotFound(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$ErrorApiNotFoundToJson(_ErrorApiNotFound instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
 _ErrorApiResourceAlreadyExists _$ErrorApiResourceAlreadyExistsFromJson(
         Map<String, dynamic> json) =>
     _ErrorApiResourceAlreadyExists(
@@ -186,6 +198,20 @@ Map<String, dynamic> _$ErrorApiResourceAlreadyExistsToJson(
       'code': instance.$type,
     };
 
+_ErrorApiResourceUnauthorized _$ErrorApiResourceUnauthorizedFromJson(
+        Map<String, dynamic> json) =>
+    _ErrorApiResourceUnauthorized(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$ErrorApiResourceUnauthorizedToJson(
+        _ErrorApiResourceUnauthorized instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
 _ErrorApiServerIssue _$ErrorApiServerIssueFromJson(Map<String, dynamic> json) =>
     _ErrorApiServerIssue(
       message: json['message'] as String?,
@@ -194,6 +220,34 @@ _ErrorApiServerIssue _$ErrorApiServerIssueFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ErrorApiServerIssueToJson(
         _ErrorApiServerIssue instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
+_ErrorApiBotOperationIssue _$ErrorApiBotOperationIssueFromJson(
+        Map<String, dynamic> json) =>
+    _ErrorApiBotOperationIssue(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$ErrorApiBotOperationIssueToJson(
+        _ErrorApiBotOperationIssue instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
+_ErrorApiBotStartTimePast _$ErrorApiBotStartTimePastFromJson(
+        Map<String, dynamic> json) =>
+    _ErrorApiBotStartTimePast(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$ErrorApiBotStartTimePastToJson(
+        _ErrorApiBotStartTimePast instance) =>
     <String, dynamic>{
       'message': instance.message,
       'code': instance.$type,

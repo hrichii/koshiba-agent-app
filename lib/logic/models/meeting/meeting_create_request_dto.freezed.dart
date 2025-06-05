@@ -16,8 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MeetingCreateRequestDto {
   Uri get url;
-  @JsonKey(name: 'started_at')
-  DateTime get startedAt;
+  @JsonKey(name: 'start_at')
+  DateTime get startAt;
 
   /// Create a copy of MeetingCreateRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -36,17 +36,16 @@ mixin _$MeetingCreateRequestDto {
         (other.runtimeType == runtimeType &&
             other is MeetingCreateRequestDto &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.startAt, startAt) || other.startAt == startAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, url, startedAt);
+  int get hashCode => Object.hash(runtimeType, url, startAt);
 
   @override
   String toString() {
-    return 'MeetingCreateRequestDto(url: $url, startedAt: $startedAt)';
+    return 'MeetingCreateRequestDto(url: $url, startAt: $startAt)';
   }
 }
 
@@ -56,7 +55,7 @@ abstract mixin class $MeetingCreateRequestDtoCopyWith<$Res> {
           $Res Function(MeetingCreateRequestDto) _then) =
       _$MeetingCreateRequestDtoCopyWithImpl;
   @useResult
-  $Res call({Uri url, @JsonKey(name: 'started_at') DateTime startedAt});
+  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime startAt});
 }
 
 /// @nodoc
@@ -73,16 +72,16 @@ class _$MeetingCreateRequestDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
-    Object? startedAt = null,
+    Object? startAt = null,
   }) {
     return _then(_self.copyWith(
       url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri,
-      startedAt: null == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      startAt: null == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -92,16 +91,15 @@ class _$MeetingCreateRequestDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _MeetingCreateRequestDto implements MeetingCreateRequestDto {
   const _MeetingCreateRequestDto(
-      {required this.url,
-      @JsonKey(name: 'started_at') required this.startedAt});
+      {required this.url, @JsonKey(name: 'start_at') required this.startAt});
   factory _MeetingCreateRequestDto.fromJson(Map<String, dynamic> json) =>
       _$MeetingCreateRequestDtoFromJson(json);
 
   @override
   final Uri url;
   @override
-  @JsonKey(name: 'started_at')
-  final DateTime startedAt;
+  @JsonKey(name: 'start_at')
+  final DateTime startAt;
 
   /// Create a copy of MeetingCreateRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -125,17 +123,16 @@ class _MeetingCreateRequestDto implements MeetingCreateRequestDto {
         (other.runtimeType == runtimeType &&
             other is _MeetingCreateRequestDto &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.startedAt, startedAt) ||
-                other.startedAt == startedAt));
+            (identical(other.startAt, startAt) || other.startAt == startAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, url, startedAt);
+  int get hashCode => Object.hash(runtimeType, url, startAt);
 
   @override
   String toString() {
-    return 'MeetingCreateRequestDto(url: $url, startedAt: $startedAt)';
+    return 'MeetingCreateRequestDto(url: $url, startAt: $startAt)';
   }
 }
 
@@ -147,7 +144,7 @@ abstract mixin class _$MeetingCreateRequestDtoCopyWith<$Res>
       __$MeetingCreateRequestDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({Uri url, @JsonKey(name: 'started_at') DateTime startedAt});
+  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime startAt});
 }
 
 /// @nodoc
@@ -164,16 +161,16 @@ class __$MeetingCreateRequestDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? url = null,
-    Object? startedAt = null,
+    Object? startAt = null,
   }) {
     return _then(_MeetingCreateRequestDto(
       url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri,
-      startedAt: null == startedAt
-          ? _self.startedAt
-          : startedAt // ignore: cast_nullable_to_non_nullable
+      startAt: null == startAt
+          ? _self.startAt
+          : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }

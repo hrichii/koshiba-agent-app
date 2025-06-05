@@ -73,6 +73,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_api_bad_request": MessageLookupByLibrary.simpleMessage(
           "Bad request",
         ),
+        "error_api_bot_operation_issue": MessageLookupByLibrary.simpleMessage(
+          "There was an issue with the bot operation",
+        ),
+        "error_api_bot_start_time_past": MessageLookupByLibrary.simpleMessage(
+          "You cannot specify a past start time. Please specify a future time",
+        ),
         "error_api_email_already_used": MessageLookupByLibrary.simpleMessage(
           "This email address is already in use",
         ),
@@ -83,12 +89,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
           "Network request failed",
         ),
+        "error_api_not_found": MessageLookupByLibrary.simpleMessage(
+          "The requested resource was not found",
+        ),
         "error_api_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
           "This operation is not allowed",
         ),
         "error_api_resource_already_exists":
             MessageLookupByLibrary.simpleMessage(
           "The resource already exists",
+        ),
+        "error_api_resource_unauthorized": MessageLookupByLibrary.simpleMessage(
+          "Authentication failed",
         ),
         "error_api_server_issue": MessageLookupByLibrary.simpleMessage(
           "A server issue has occurred",

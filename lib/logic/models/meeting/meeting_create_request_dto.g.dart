@@ -10,12 +10,12 @@ _MeetingCreateRequestDto _$MeetingCreateRequestDtoFromJson(
         Map<String, dynamic> json) =>
     _MeetingCreateRequestDto(
       url: Uri.parse(json['url'] as String),
-      startedAt: DateTime.parse(json['started_at'] as String),
+      startAt: DateTime.parse(json['start_at'] as String),
     );
 
 Map<String, dynamic> _$MeetingCreateRequestDtoToJson(
         _MeetingCreateRequestDto instance) =>
     <String, dynamic>{
       'url': instance.url.toString(),
-      'started_at': instance.startedAt.toIso8601String(),
+      'start_at': instance.startAt.toIso8601String(),
     };

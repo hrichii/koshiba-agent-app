@@ -13,9 +13,9 @@ abstract class MeetingCreateForm with _$MeetingCreateForm {
     @JsonKey(name: 'url')
     @RfControl(validators: AppValidation.meetingUri)
     String? uri,
-    @JsonKey(name: 'started_at')
-    @RfControl(validators: AppValidation.meetingStartedAt)
-    DateTime? startedAt,
+    @JsonKey(name: 'start_at')
+    @RfControl(validators: AppValidation.meetingStartAt)
+    DateTime? startAt,
   }) = _MeetingCreateForm;
 
   const MeetingCreateForm._();

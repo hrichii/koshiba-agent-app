@@ -65,6 +65,12 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
         "error_api_bad_request":
             MessageLookupByLibrary.simpleMessage("リクエストが不正です"),
+        "error_api_bot_operation_issue": MessageLookupByLibrary.simpleMessage(
+          "ボット操作に失敗しました",
+        ),
+        "error_api_bot_start_time_past": MessageLookupByLibrary.simpleMessage(
+          "過去の開始時間は指定できません。未来の時間を指定してください",
+        ),
         "error_api_email_already_used": MessageLookupByLibrary.simpleMessage(
           "メールアドレスは既に使用されています",
         ),
@@ -75,12 +81,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
           "ネットワークリクエストが失敗しました",
         ),
+        "error_api_not_found":
+            MessageLookupByLibrary.simpleMessage("リソースが見つかりません"),
         "error_api_operation_not_allowed": MessageLookupByLibrary.simpleMessage(
           "この操作は許可されていません",
         ),
         "error_api_resource_already_exists":
             MessageLookupByLibrary.simpleMessage(
           "リソースが既に存在します",
+        ),
+        "error_api_resource_unauthorized": MessageLookupByLibrary.simpleMessage(
+          "認証に失敗しました",
         ),
         "error_api_server_issue": MessageLookupByLibrary.simpleMessage(
           "サーバーに問題が発生しました",

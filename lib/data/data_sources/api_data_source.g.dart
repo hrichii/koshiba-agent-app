@@ -18,9 +18,7 @@ class _ApiDataSource implements ApiDataSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ApiResponse<Meeting>> registerMeeting(
-    MeetingCreateRequestDto dto,
-  ) async {
+  Future<ApiResponse<void>> registerMeeting(MeetingCreateRequestDto dto) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
@@ -29,7 +27,7 @@ class _ApiDataSource implements ApiDataSource {
     };
     _headers.removeWhere((k, v) => v == null);
     final _data = dto;
-    final _options = _setStreamType<ApiResponse<Meeting>>(
+    final _options = _setStreamType<ApiResponse<void>>(
       Options(
         method: 'POST',
         headers: _headers,
@@ -45,12 +43,9 @@ class _ApiDataSource implements ApiDataSource {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApiResponse<Meeting> _value;
+    late ApiResponse<void> _value;
     try {
-      _value = ApiResponse<Meeting>.fromJson(
-        _result.data!,
-        (json) => Meeting.fromJson(json as Map<String, dynamic>),
-      );
+      _value = ApiResponse<void>.fromJson(_result.data!, (json) => () {}());
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -17,14 +17,12 @@ T _$identity<T>(T value) => value;
 mixin _$Meeting {
   String? get id;
   Uri? get url;
-  @JsonKey(name: 'deploy_status')
-  DeployStatus get deployStatus;
   @JsonKey(name: 'created_at')
   DateTime? get createdAt;
   @JsonKey(name: 'start_at')
   DateTime? get startAt;
-  @JsonKey(name: 'completed_at')
-  DateTime? get completedAt;
+  @JsonKey(name: 'meeting_baas_id')
+  String? get meetingBaasId;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -43,23 +41,21 @@ mixin _$Meeting {
             other is Meeting &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.deployStatus, deployStatus) ||
-                other.deployStatus == deployStatus) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
-            (identical(other.completedAt, completedAt) ||
-                other.completedAt == completedAt));
+            (identical(other.meetingBaasId, meetingBaasId) ||
+                other.meetingBaasId == meetingBaasId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, url, deployStatus, createdAt, startAt, completedAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, url, createdAt, startAt, meetingBaasId);
 
   @override
   String toString() {
-    return 'Meeting(id: $id, url: $url, deployStatus: $deployStatus, createdAt: $createdAt, startAt: $startAt, completedAt: $completedAt)';
+    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId)';
   }
 }
 
@@ -71,10 +67,9 @@ abstract mixin class $MeetingCopyWith<$Res> {
   $Res call(
       {String? id,
       Uri? url,
-      @JsonKey(name: 'deploy_status') DeployStatus deployStatus,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'start_at') DateTime? startAt,
-      @JsonKey(name: 'completed_at') DateTime? completedAt});
+      @JsonKey(name: 'meeting_baas_id') String? meetingBaasId});
 }
 
 /// @nodoc
@@ -91,10 +86,9 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? url = freezed,
-    Object? deployStatus = null,
     Object? createdAt = freezed,
     Object? startAt = freezed,
-    Object? completedAt = freezed,
+    Object? meetingBaasId = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -105,10 +99,6 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri?,
-      deployStatus: null == deployStatus
-          ? _self.deployStatus
-          : deployStatus // ignore: cast_nullable_to_non_nullable
-              as DeployStatus,
       createdAt: freezed == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -117,10 +107,10 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      completedAt: freezed == completedAt
-          ? _self.completedAt
-          : completedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      meetingBaasId: freezed == meetingBaasId
+          ? _self.meetingBaasId
+          : meetingBaasId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -131,10 +121,9 @@ class _Meeting extends Meeting {
   const _Meeting(
       {this.id,
       this.url,
-      @JsonKey(name: 'deploy_status') required this.deployStatus,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'start_at') this.startAt,
-      @JsonKey(name: 'completed_at') this.completedAt})
+      @JsonKey(name: 'meeting_baas_id') this.meetingBaasId})
       : super._();
   factory _Meeting.fromJson(Map<String, dynamic> json) =>
       _$MeetingFromJson(json);
@@ -144,17 +133,14 @@ class _Meeting extends Meeting {
   @override
   final Uri? url;
   @override
-  @JsonKey(name: 'deploy_status')
-  final DeployStatus deployStatus;
-  @override
   @JsonKey(name: 'created_at')
   final DateTime? createdAt;
   @override
   @JsonKey(name: 'start_at')
   final DateTime? startAt;
   @override
-  @JsonKey(name: 'completed_at')
-  final DateTime? completedAt;
+  @JsonKey(name: 'meeting_baas_id')
+  final String? meetingBaasId;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -178,23 +164,21 @@ class _Meeting extends Meeting {
             other is _Meeting &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.deployStatus, deployStatus) ||
-                other.deployStatus == deployStatus) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
-            (identical(other.completedAt, completedAt) ||
-                other.completedAt == completedAt));
+            (identical(other.meetingBaasId, meetingBaasId) ||
+                other.meetingBaasId == meetingBaasId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, url, deployStatus, createdAt, startAt, completedAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, url, createdAt, startAt, meetingBaasId);
 
   @override
   String toString() {
-    return 'Meeting(id: $id, url: $url, deployStatus: $deployStatus, createdAt: $createdAt, startAt: $startAt, completedAt: $completedAt)';
+    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId)';
   }
 }
 
@@ -207,10 +191,9 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
   $Res call(
       {String? id,
       Uri? url,
-      @JsonKey(name: 'deploy_status') DeployStatus deployStatus,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'start_at') DateTime? startAt,
-      @JsonKey(name: 'completed_at') DateTime? completedAt});
+      @JsonKey(name: 'meeting_baas_id') String? meetingBaasId});
 }
 
 /// @nodoc
@@ -227,10 +210,9 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? url = freezed,
-    Object? deployStatus = null,
     Object? createdAt = freezed,
     Object? startAt = freezed,
-    Object? completedAt = freezed,
+    Object? meetingBaasId = freezed,
   }) {
     return _then(_Meeting(
       id: freezed == id
@@ -241,10 +223,6 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri?,
-      deployStatus: null == deployStatus
-          ? _self.deployStatus
-          : deployStatus // ignore: cast_nullable_to_non_nullable
-              as DeployStatus,
       createdAt: freezed == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -253,10 +231,10 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      completedAt: freezed == completedAt
-          ? _self.completedAt
-          : completedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      meetingBaasId: freezed == meetingBaasId
+          ? _self.meetingBaasId
+          : meetingBaasId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
