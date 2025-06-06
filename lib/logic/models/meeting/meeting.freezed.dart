@@ -15,14 +15,15 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$Meeting {
-  String? get id;
-  Uri? get url;
+  String get id;
+  Uri get url;
   @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
+  DateTime get createdAt;
   @JsonKey(name: 'start_at')
-  DateTime? get startAt;
+  DateTime get startAt;
   @JsonKey(name: 'meeting_baas_id')
-  String? get meetingBaasId;
+  String get meetingBaasId;
+  MeetingBotStatus get status;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -45,17 +46,18 @@ mixin _$Meeting {
                 other.createdAt == createdAt) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
             (identical(other.meetingBaasId, meetingBaasId) ||
-                other.meetingBaasId == meetingBaasId));
+                other.meetingBaasId == meetingBaasId) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, url, createdAt, startAt, meetingBaasId);
+  int get hashCode => Object.hash(
+      runtimeType, id, url, createdAt, startAt, meetingBaasId, status);
 
   @override
   String toString() {
-    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId)';
+    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId, status: $status)';
   }
 }
 
@@ -65,11 +67,14 @@ abstract mixin class $MeetingCopyWith<$Res> {
       _$MeetingCopyWithImpl;
   @useResult
   $Res call(
-      {String? id,
-      Uri? url,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'start_at') DateTime? startAt,
-      @JsonKey(name: 'meeting_baas_id') String? meetingBaasId});
+      {String id,
+      Uri url,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'start_at') DateTime startAt,
+      @JsonKey(name: 'meeting_baas_id') String meetingBaasId,
+      MeetingBotStatus status});
+
+  $MeetingBotStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -84,34 +89,49 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? url = freezed,
-    Object? createdAt = freezed,
-    Object? startAt = freezed,
-    Object? meetingBaasId = freezed,
+    Object? id = null,
+    Object? url = null,
+    Object? createdAt = null,
+    Object? startAt = null,
+    Object? meetingBaasId = null,
+    Object? status = null,
   }) {
     return _then(_self.copyWith(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
+              as String,
+      url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
-              as Uri?,
-      createdAt: freezed == createdAt
+              as Uri,
+      createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      startAt: freezed == startAt
+              as DateTime,
+      startAt: null == startAt
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      meetingBaasId: freezed == meetingBaasId
+              as DateTime,
+      meetingBaasId: null == meetingBaasId
           ? _self.meetingBaasId
           : meetingBaasId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MeetingBotStatus,
     ));
+  }
+
+  /// Create a copy of Meeting
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MeetingBotStatusCopyWith<$Res> get status {
+    return $MeetingBotStatusCopyWith<$Res>(_self.status, (value) {
+      return _then(_self.copyWith(status: value));
+    });
   }
 }
 
@@ -119,28 +139,31 @@ class _$MeetingCopyWithImpl<$Res> implements $MeetingCopyWith<$Res> {
 @JsonSerializable()
 class _Meeting extends Meeting {
   const _Meeting(
-      {this.id,
-      this.url,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'start_at') this.startAt,
-      @JsonKey(name: 'meeting_baas_id') this.meetingBaasId})
+      {required this.id,
+      required this.url,
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'start_at') required this.startAt,
+      @JsonKey(name: 'meeting_baas_id') required this.meetingBaasId,
+      required this.status})
       : super._();
   factory _Meeting.fromJson(Map<String, dynamic> json) =>
       _$MeetingFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
-  final Uri? url;
+  final Uri url;
   @override
   @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
+  final DateTime createdAt;
   @override
   @JsonKey(name: 'start_at')
-  final DateTime? startAt;
+  final DateTime startAt;
   @override
   @JsonKey(name: 'meeting_baas_id')
-  final String? meetingBaasId;
+  final String meetingBaasId;
+  @override
+  final MeetingBotStatus status;
 
   /// Create a copy of Meeting
   /// with the given fields replaced by the non-null parameter values.
@@ -168,17 +191,18 @@ class _Meeting extends Meeting {
                 other.createdAt == createdAt) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
             (identical(other.meetingBaasId, meetingBaasId) ||
-                other.meetingBaasId == meetingBaasId));
+                other.meetingBaasId == meetingBaasId) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, url, createdAt, startAt, meetingBaasId);
+  int get hashCode => Object.hash(
+      runtimeType, id, url, createdAt, startAt, meetingBaasId, status);
 
   @override
   String toString() {
-    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId)';
+    return 'Meeting(id: $id, url: $url, createdAt: $createdAt, startAt: $startAt, meetingBaasId: $meetingBaasId, status: $status)';
   }
 }
 
@@ -189,11 +213,15 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
-      Uri? url,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'start_at') DateTime? startAt,
-      @JsonKey(name: 'meeting_baas_id') String? meetingBaasId});
+      {String id,
+      Uri url,
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'start_at') DateTime startAt,
+      @JsonKey(name: 'meeting_baas_id') String meetingBaasId,
+      MeetingBotStatus status});
+
+  @override
+  $MeetingBotStatusCopyWith<$Res> get status;
 }
 
 /// @nodoc
@@ -208,34 +236,49 @@ class __$MeetingCopyWithImpl<$Res> implements _$MeetingCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = freezed,
-    Object? url = freezed,
-    Object? createdAt = freezed,
-    Object? startAt = freezed,
-    Object? meetingBaasId = freezed,
+    Object? id = null,
+    Object? url = null,
+    Object? createdAt = null,
+    Object? startAt = null,
+    Object? meetingBaasId = null,
+    Object? status = null,
   }) {
     return _then(_Meeting(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      url: freezed == url
+              as String,
+      url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
-              as Uri?,
-      createdAt: freezed == createdAt
+              as Uri,
+      createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      startAt: freezed == startAt
+              as DateTime,
+      startAt: null == startAt
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      meetingBaasId: freezed == meetingBaasId
+              as DateTime,
+      meetingBaasId: null == meetingBaasId
           ? _self.meetingBaasId
           : meetingBaasId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MeetingBotStatus,
     ));
+  }
+
+  /// Create a copy of Meeting
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MeetingBotStatusCopyWith<$Res> get status {
+    return $MeetingBotStatusCopyWith<$Res>(_self.status, (value) {
+      return _then(_self.copyWith(status: value));
+    });
   }
 }
 

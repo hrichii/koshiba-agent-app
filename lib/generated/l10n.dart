@@ -304,6 +304,226 @@ class AppMessage {
     );
   }
 
+  /// `参加をリクエストしました`
+  String get info_api_bot_status_message_initialized {
+    return Intl.message(
+      '参加をリクエストしました',
+      name: 'info_api_bot_status_message_initialized',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `準備中です`
+  String get info_api_bot_status_message_joining_call {
+    return Intl.message(
+      '準備中です',
+      name: 'info_api_bot_status_message_joining_call',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `待機中です`
+  String get info_api_bot_status_message_in_waiting_room {
+    return Intl.message(
+      '待機中です',
+      name: 'info_api_bot_status_message_in_waiting_room',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `通話中（録画なし）`
+  String get info_api_bot_status_message_in_call_not_recording {
+    return Intl.message(
+      '通話中（録画なし）',
+      name: 'info_api_bot_status_message_in_call_not_recording',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `通話中（録画中）`
+  String get info_api_bot_status_message_in_call_recording {
+    return Intl.message(
+      '通話中（録画中）',
+      name: 'info_api_bot_status_message_in_call_recording',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `録画を一時停止しました`
+  String get info_api_bot_status_message_recording_paused {
+    return Intl.message(
+      '録画を一時停止しました',
+      name: 'info_api_bot_status_message_recording_paused',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `録画を再開しました`
+  String get info_api_bot_status_message_recording_resumed {
+    return Intl.message(
+      '録画を再開しました',
+      name: 'info_api_bot_status_message_recording_resumed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `通話が終了しました`
+  String get info_api_bot_status_message_call_ended {
+    return Intl.message(
+      '通話が終了しました',
+      name: 'info_api_bot_status_message_call_ended',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botが拒否されました`
+  String get info_api_bot_status_message_bot_rejected {
+    return Intl.message(
+      'Botが拒否されました',
+      name: 'info_api_bot_status_message_bot_rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botが削除されました`
+  String get info_api_bot_status_message_bot_removed {
+    return Intl.message(
+      'Botが削除されました',
+      name: 'info_api_bot_status_message_bot_removed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `待機室でタイムアウトしました`
+  String get info_api_bot_status_message_waiting_room_timeout {
+    return Intl.message(
+      '待機室でタイムアウトしました',
+      name: 'info_api_bot_status_message_waiting_room_timeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `無効なミーティングURLです`
+  String get info_api_bot_status_message_invalid_meeting_url {
+    return Intl.message(
+      '無効なミーティングURLです',
+      name: 'info_api_bot_status_message_invalid_meeting_url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ミーティングエラーが発生しました`
+  String get info_api_bot_status_message_meeting_error {
+    return Intl.message(
+      'ミーティングエラーが発生しました',
+      name: 'info_api_bot_status_message_meeting_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `不明なエラーが発生しました`
+  String get info_api_bot_status_message_unknown_error {
+    return Intl.message(
+      '不明なエラーが発生しました',
+      name: 'info_api_bot_status_message_unknown_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ミーティングに参加できません`
+  String get info_api_bot_status_message_cannot_join_meeting {
+    return Intl.message(
+      'ミーティングに参加できません',
+      name: 'info_api_bot_status_message_cannot_join_meeting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `開始待機中にタイムアウトしました`
+  String get info_api_bot_status_message_timeout_waiting_to_start {
+    return Intl.message(
+      '開始待機中にタイムアウトしました',
+      name: 'info_api_bot_status_message_timeout_waiting_to_start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botが承認されませんでした`
+  String get info_api_bot_status_message_bot_not_accepted {
+    return Intl.message(
+      'Botが承認されませんでした',
+      name: 'info_api_bot_status_message_bot_not_accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `内部エラーが発生しました`
+  String get info_api_bot_status_message_internal_error {
+    return Intl.message(
+      '内部エラーが発生しました',
+      name: 'info_api_bot_status_message_internal_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `参加者がいません`
+  String get info_api_bot_status_message_no_attendees {
+    return Intl.message(
+      '参加者がいません',
+      name: 'info_api_bot_status_message_no_attendees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `スピーカーがいません`
+  String get info_api_bot_status_message_no_speaker {
+    return Intl.message(
+      'スピーカーがいません',
+      name: 'info_api_bot_status_message_no_speaker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `録画タイムアウトが発生しました`
+  String get info_api_bot_status_message_recording_timeout {
+    return Intl.message(
+      '録画タイムアウトが発生しました',
+      name: 'info_api_bot_status_message_recording_timeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APIリクエストが成功しました`
+  String get info_api_bot_status_message_api_request {
+    return Intl.message(
+      'APIリクエストが成功しました',
+      name: 'info_api_bot_status_message_api_request',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `この認証情報は無効です`
   String get error_api_authentication_invalid {
     return Intl.message(

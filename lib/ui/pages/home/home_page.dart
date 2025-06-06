@@ -9,6 +9,7 @@ import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_bot_status.dart';
 import 'package:koshiba_agent_app/ui/pages/home/home_page_provider.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
 import 'package:koshiba_agent_app/ui/widgets/app_error.dart';
@@ -206,12 +207,6 @@ class MeetingCard extends ConsumerWidget {
                           TextButton(
                             onPressed: () {
                               final meetingId = meeting.id;
-                              // 会議IDがない場合は処理しない
-                              if (meetingId == null) {
-                                Navigator.of(context).pop();
-                                return;
-                              }
-
                               // Providerのコンテキストから削除処理を実行
                               Navigator.of(context).pop();
                               _deleteMeeting(context, ref, meetingId);
@@ -241,7 +236,7 @@ class MeetingCard extends ConsumerWidget {
                   style: AppTextStyle.bodyMedium14,
                 ),
                 Text(
-                  meeting.id ?? '',
+                  meeting.id,
                   style: AppTextStyle.bodyMedium14.withGray100(),
                 ),
               ],
@@ -260,11 +255,10 @@ class MeetingCard extends ConsumerWidget {
                   '開始日時: ',
                   style: AppTextStyle.bodyMedium14,
                 ),
-                if (meeting.startAt != null)
-                  Text(
-                    dateFormat.format(meeting.startAt!),
-                    style: AppTextStyle.bodyMedium14.withGray100(),
-                  ),
+                Text(
+                  dateFormat.format(meeting.startAt),
+                  style: AppTextStyle.bodyMedium14.withGray100(),
+                ),
               ],
             ),
             const SizedBox(height: AppSpace.sm8),
@@ -281,11 +275,10 @@ class MeetingCard extends ConsumerWidget {
                   '作成日時: ',
                   style: AppTextStyle.bodyMedium14,
                 ),
-                if (meeting.createdAt != null)
-                  Text(
-                    dateFormat.format(meeting.createdAt!),
-                    style: AppTextStyle.bodyMedium14.withGray100(),
-                  ),
+                Text(
+                  dateFormat.format(meeting.createdAt),
+                  style: AppTextStyle.bodyMedium14.withGray100(),
+                ),
               ],
             ),
             const SizedBox(height: AppSpace.sm8),
@@ -303,8 +296,33 @@ class MeetingCard extends ConsumerWidget {
                   style: AppTextStyle.bodyMedium14,
                 ),
                 Text(
-                  meeting.meetingBaasId ?? '未設定',
+                  meeting.meetingBaasId,
                   style: AppTextStyle.bodyMedium14.withGray100(),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.sm8),
+            // ボットステータス情報
+            Row(
+              children: [
+                Icon(
+                  _getStatusIcon(meeting.status.level),
+                  size: 16,
+                  color: _getStatusColor(meeting.status.level),
+                ),
+                const SizedBox(width: AppSpace.sm8),
+                Text(
+                  'ステータス: ',
+                  style: AppTextStyle.bodyMedium14,
+                ),
+                Expanded(
+                  child: Text(
+                    meeting.status.code.message,
+                    style: AppTextStyle.bodyMedium14.copyWith(
+                      color: _getStatusColor(meeting.status.level),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -329,7 +347,7 @@ class MeetingCard extends ConsumerWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        meeting.url?.toString() ?? '未設定',
+                        meeting.url.toString(),
                         style: AppTextStyle.bodySmall12.withGray100(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -377,6 +395,34 @@ class MeetingCard extends ConsumerWidget {
           duration: Duration(seconds: 2),
         ),
       );
+    }
+  }
+
+  // ヘルパーメソッド：ステータスレベルに応じたアイコンを返す
+  IconData _getStatusIcon(BotStatusLevel level) {
+    switch (level) {
+      case BotStatusLevel.ready:
+        return Icons.access_time;
+      case BotStatusLevel.active:
+        return Icons.radio_button_checked;
+      case BotStatusLevel.completed:
+        return Icons.check_circle_outline;
+      case BotStatusLevel.failed:
+        return Icons.error_outline;
+    }
+  }
+
+  // ヘルパーメソッド：ステータスレベルに応じた色を返す
+  Color _getStatusColor(BotStatusLevel level) {
+    switch (level) {
+      case BotStatusLevel.ready:
+        return Colors.orange;
+      case BotStatusLevel.active:
+        return Colors.green;
+      case BotStatusLevel.completed:
+        return Colors.blue;
+      case BotStatusLevel.failed:
+        return Colors.red;
     }
   }
 }

@@ -17,7 +17,7 @@ T _$identity<T>(T value) => value;
 mixin _$MeetingCreateRequestDto {
   Uri get url;
   @JsonKey(name: 'start_at')
-  DateTime get startAt;
+  DateTime? get startAt;
 
   /// Create a copy of MeetingCreateRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -55,7 +55,7 @@ abstract mixin class $MeetingCreateRequestDtoCopyWith<$Res> {
           $Res Function(MeetingCreateRequestDto) _then) =
       _$MeetingCreateRequestDtoCopyWithImpl;
   @useResult
-  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime startAt});
+  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime? startAt});
 }
 
 /// @nodoc
@@ -72,17 +72,17 @@ class _$MeetingCreateRequestDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = null,
-    Object? startAt = null,
+    Object? startAt = freezed,
   }) {
     return _then(_self.copyWith(
       url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri,
-      startAt: null == startAt
+      startAt: freezed == startAt
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -99,7 +99,7 @@ class _MeetingCreateRequestDto implements MeetingCreateRequestDto {
   final Uri url;
   @override
   @JsonKey(name: 'start_at')
-  final DateTime startAt;
+  final DateTime? startAt;
 
   /// Create a copy of MeetingCreateRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -144,7 +144,7 @@ abstract mixin class _$MeetingCreateRequestDtoCopyWith<$Res>
       __$MeetingCreateRequestDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime startAt});
+  $Res call({Uri url, @JsonKey(name: 'start_at') DateTime? startAt});
 }
 
 /// @nodoc
@@ -161,17 +161,17 @@ class __$MeetingCreateRequestDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? url = null,
-    Object? startAt = null,
+    Object? startAt = freezed,
   }) {
     return _then(_MeetingCreateRequestDto(
       url: null == url
           ? _self.url
           : url // ignore: cast_nullable_to_non_nullable
               as Uri,
-      startAt: null == startAt
+      startAt: freezed == startAt
           ? _self.startAt
           : startAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
