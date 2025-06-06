@@ -7,7 +7,7 @@ part 'meeting_create_request_dto.g.dart';
 abstract class MeetingCreateRequestDto with _$MeetingCreateRequestDto {
   const factory MeetingCreateRequestDto({
     required Uri url,
-    @JsonKey(name: 'start_at') required DateTime startAt,
+    @JsonKey(name: 'start_at') required DateTime? startAt,
   }) = _MeetingCreateRequestDto;
 
   factory MeetingCreateRequestDto.fromJson(Map<String, dynamic> json) =>

@@ -173,6 +173,50 @@ class MessageLookup extends MessageLookupByLibrary {
         "field_meeting_url":
             MessageLookupByLibrary.simpleMessage("Meeting URL"),
         "field_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "info_api_bot_status_message_api_request":
+            MessageLookupByLibrary.simpleMessage("API request was successful"),
+        "info_api_bot_status_message_bot_not_accepted":
+            MessageLookupByLibrary.simpleMessage("Bot was not accepted"),
+        "info_api_bot_status_message_bot_rejected":
+            MessageLookupByLibrary.simpleMessage("Bot was rejected"),
+        "info_api_bot_status_message_bot_removed":
+            MessageLookupByLibrary.simpleMessage("Bot was removed"),
+        "info_api_bot_status_message_call_ended":
+            MessageLookupByLibrary.simpleMessage("Call has ended"),
+        "info_api_bot_status_message_cannot_join_meeting":
+            MessageLookupByLibrary.simpleMessage("Cannot join the meeting"),
+        "info_api_bot_status_message_in_call_not_recording":
+            MessageLookupByLibrary.simpleMessage("In call (not recording)"),
+        "info_api_bot_status_message_in_call_recording":
+            MessageLookupByLibrary.simpleMessage("In call (recording)"),
+        "info_api_bot_status_message_in_waiting_room":
+            MessageLookupByLibrary.simpleMessage("Waiting in the waiting room"),
+        "info_api_bot_status_message_initialized":
+            MessageLookupByLibrary.simpleMessage("Bot has been initialized"),
+        "info_api_bot_status_message_internal_error":
+            MessageLookupByLibrary.simpleMessage("Internal error occurred"),
+        "info_api_bot_status_message_invalid_meeting_url":
+            MessageLookupByLibrary.simpleMessage("Invalid meeting URL"),
+        "info_api_bot_status_message_joining_call":
+            MessageLookupByLibrary.simpleMessage("Joining the call"),
+        "info_api_bot_status_message_meeting_error":
+            MessageLookupByLibrary.simpleMessage("Meeting error occurred"),
+        "info_api_bot_status_message_no_attendees":
+            MessageLookupByLibrary.simpleMessage("No attendees"),
+        "info_api_bot_status_message_no_speaker":
+            MessageLookupByLibrary.simpleMessage("No speaker"),
+        "info_api_bot_status_message_recording_paused":
+            MessageLookupByLibrary.simpleMessage("Recording paused"),
+        "info_api_bot_status_message_recording_resumed":
+            MessageLookupByLibrary.simpleMessage("Recording resumed"),
+        "info_api_bot_status_message_recording_timeout":
+            MessageLookupByLibrary.simpleMessage("Recording timeout occurred"),
+        "info_api_bot_status_message_timeout_waiting_to_start":
+            MessageLookupByLibrary.simpleMessage("Timed out waiting to start"),
+        "info_api_bot_status_message_unknown_error":
+            MessageLookupByLibrary.simpleMessage("Unknown error occurred"),
+        "info_api_bot_status_message_waiting_room_timeout":
+            MessageLookupByLibrary.simpleMessage("Timed out in waiting room"),
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(
           "Request was successful",
         ),
