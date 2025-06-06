@@ -44,4 +44,8 @@ const _$BotStatusCodeEnumMap = {
   BotStatusCode.timeoutWaitingToStart: 'timeout_waiting_to_start',
   BotStatusCode.botNotAccepted: 'bot_not_accepted',
   BotStatusCode.internalError: 'internal_error',
+  BotStatusCode.noAttendees: 'no_attendees',
+  BotStatusCode.noSpeaker: 'no_speaker',
+  BotStatusCode.recordingTimeout: 'recording_timeout',
+  BotStatusCode.apiRequest: 'api_request',
 };

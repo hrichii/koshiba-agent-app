@@ -3,14 +3,14 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'meeting_create_form.dart';
+part of 'meeting_invite_form.dart';
 
 // **************************************************************************
 // ReactiveFormsGenerator
 // **************************************************************************
 
-class ReactiveMeetingCreateFormFormConsumer extends StatelessWidget {
-  const ReactiveMeetingCreateFormFormConsumer({
+class ReactiveMeetingInviteFormFormConsumer extends StatelessWidget {
+  const ReactiveMeetingInviteFormFormConsumer({
     Key? key,
     required this.builder,
     this.child,
@@ -19,23 +19,23 @@ class ReactiveMeetingCreateFormFormConsumer extends StatelessWidget {
   final Widget? child;
 
   final Widget Function(
-          BuildContext context, MeetingCreateFormForm formModel, Widget? child)
+          BuildContext context, MeetingInviteFormForm formModel, Widget? child)
       builder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveMeetingCreateFormForm.of(context);
+    final formModel = ReactiveMeetingInviteFormForm.of(context);
 
-    if (formModel is! MeetingCreateFormForm) {
+    if (formModel is! MeetingInviteFormForm) {
       throw FormControlParentNotFoundException(this);
     }
     return builder(context, formModel, child);
   }
 }
 
-class MeetingCreateFormFormInheritedStreamer
+class MeetingInviteFormFormInheritedStreamer
     extends InheritedStreamer<dynamic> {
-  const MeetingCreateFormFormInheritedStreamer({
+  const MeetingInviteFormFormInheritedStreamer({
     Key? key,
     required this.form,
     required Stream<dynamic> stream,
@@ -46,11 +46,11 @@ class MeetingCreateFormFormInheritedStreamer
           key: key,
         );
 
-  final MeetingCreateFormForm form;
+  final MeetingInviteFormForm form;
 }
 
-class ReactiveMeetingCreateFormForm extends StatelessWidget {
-  const ReactiveMeetingCreateFormForm({
+class ReactiveMeetingInviteFormForm extends StatelessWidget {
+  const ReactiveMeetingInviteFormForm({
     Key? key,
     required this.form,
     required this.child,
@@ -60,33 +60,33 @@ class ReactiveMeetingCreateFormForm extends StatelessWidget {
 
   final Widget child;
 
-  final MeetingCreateFormForm form;
+  final MeetingInviteFormForm form;
 
   final bool Function(FormGroup formGroup)? canPop;
 
   final void Function(FormGroup formGroup, bool didPop)? onPopInvoked;
 
-  static MeetingCreateFormForm? of(
+  static MeetingInviteFormForm? of(
     BuildContext context, {
     bool listen = true,
   }) {
     if (listen) {
       return context
           .dependOnInheritedWidgetOfExactType<
-              MeetingCreateFormFormInheritedStreamer>()
+              MeetingInviteFormFormInheritedStreamer>()
           ?.form;
     }
 
     final element = context.getElementForInheritedWidgetOfExactType<
-        MeetingCreateFormFormInheritedStreamer>();
+        MeetingInviteFormFormInheritedStreamer>();
     return element == null
         ? null
-        : (element.widget as MeetingCreateFormFormInheritedStreamer).form;
+        : (element.widget as MeetingInviteFormFormInheritedStreamer).form;
   }
 
   @override
   Widget build(BuildContext context) {
-    return MeetingCreateFormFormInheritedStreamer(
+    return MeetingInviteFormFormInheritedStreamer(
       form: form,
       stream: form.form.statusChanged,
       child: ReactiveFormPopScope(
@@ -98,16 +98,16 @@ class ReactiveMeetingCreateFormForm extends StatelessWidget {
   }
 }
 
-extension ReactiveReactiveMeetingCreateFormFormExt on BuildContext {
-  MeetingCreateFormForm? meetingCreateFormFormWatch() =>
-      ReactiveMeetingCreateFormForm.of(this);
+extension ReactiveReactiveMeetingInviteFormFormExt on BuildContext {
+  MeetingInviteFormForm? meetingInviteFormFormWatch() =>
+      ReactiveMeetingInviteFormForm.of(this);
 
-  MeetingCreateFormForm? meetingCreateFormFormRead() =>
-      ReactiveMeetingCreateFormForm.of(this, listen: false);
+  MeetingInviteFormForm? meetingInviteFormFormRead() =>
+      ReactiveMeetingInviteFormForm.of(this, listen: false);
 }
 
-class MeetingCreateFormFormBuilder extends StatefulWidget {
-  const MeetingCreateFormFormBuilder({
+class MeetingInviteFormFormBuilder extends StatefulWidget {
+  const MeetingInviteFormFormBuilder({
     Key? key,
     this.model,
     this.child,
@@ -117,7 +117,7 @@ class MeetingCreateFormFormBuilder extends StatefulWidget {
     this.initState,
   }) : super(key: key);
 
-  final MeetingCreateForm? model;
+  final MeetingInviteForm? model;
 
   final Widget? child;
 
@@ -126,27 +126,27 @@ class MeetingCreateFormFormBuilder extends StatefulWidget {
   final void Function(FormGroup formGroup, bool didPop)? onPopInvoked;
 
   final Widget Function(
-          BuildContext context, MeetingCreateFormForm formModel, Widget? child)
+          BuildContext context, MeetingInviteFormForm formModel, Widget? child)
       builder;
 
-  final void Function(BuildContext context, MeetingCreateFormForm formModel)?
+  final void Function(BuildContext context, MeetingInviteFormForm formModel)?
       initState;
 
   @override
-  _MeetingCreateFormFormBuilderState createState() =>
-      _MeetingCreateFormFormBuilderState();
+  _MeetingInviteFormFormBuilderState createState() =>
+      _MeetingInviteFormFormBuilderState();
 }
 
-class _MeetingCreateFormFormBuilderState
-    extends State<MeetingCreateFormFormBuilder> {
-  late MeetingCreateFormForm _formModel;
+class _MeetingInviteFormFormBuilderState
+    extends State<MeetingInviteFormFormBuilder> {
+  late MeetingInviteFormForm _formModel;
 
   StreamSubscription<LogRecord>? _logSubscription;
 
   @override
   void initState() {
-    _formModel = MeetingCreateFormForm(
-        MeetingCreateFormForm.formElements(widget.model), null);
+    _formModel = MeetingInviteFormForm(
+        MeetingInviteFormForm.formElements(widget.model), null);
 
     if (_formModel.form.disabled) {
       _formModel.form.markAsDisabled();
@@ -154,7 +154,7 @@ class _MeetingCreateFormFormBuilderState
 
     widget.initState?.call(context, _formModel);
 
-    _logSubscription = _logMeetingCreateFormForm.onRecord.listen((LogRecord e) {
+    _logSubscription = _logMeetingInviteFormForm.onRecord.listen((LogRecord e) {
       // use `dumpErrorToConsole` for severe messages to ensure that severe
       // exceptions are formatted consistently with other Flutter examples and
       // avoids printing duplicate exceptions
@@ -186,7 +186,7 @@ class _MeetingCreateFormFormBuilderState
   }
 
   @override
-  void didUpdateWidget(covariant MeetingCreateFormFormBuilder oldWidget) {
+  void didUpdateWidget(covariant MeetingInviteFormFormBuilder oldWidget) {
     if (widget.model != oldWidget.model) {
       _formModel.updateValue(widget.model);
     }
@@ -203,7 +203,7 @@ class _MeetingCreateFormFormBuilderState
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveMeetingCreateFormForm(
+    return ReactiveMeetingInviteFormForm(
       key: ObjectKey(_formModel),
       form: _formModel,
       // canPop: widget.canPop,
@@ -220,18 +220,16 @@ class _MeetingCreateFormFormBuilderState
   }
 }
 
-final _logMeetingCreateFormForm = Logger.detached('MeetingCreateFormForm');
+final _logMeetingInviteFormForm = Logger.detached('MeetingInviteFormForm');
 
-class MeetingCreateFormForm
-    implements FormModel<MeetingCreateForm, MeetingCreateForm> {
-  MeetingCreateFormForm(
+class MeetingInviteFormForm
+    implements FormModel<MeetingInviteForm, MeetingInviteForm> {
+  MeetingInviteFormForm(
     this.form,
     this.path,
   );
 
   static const String uriControlName = "uri";
-
-  static const String startAtControlName = "startAt";
 
   final FormGroup form;
 
@@ -241,15 +239,9 @@ class MeetingCreateFormForm
 
   String uriControlPath() => pathBuilder(uriControlName);
 
-  String startAtControlPath() => pathBuilder(startAtControlName);
-
   String? get _uriValue => uriControl.value;
 
-  DateTime? get _startAtValue => startAtControl.value;
-
   String? get _uriRawValue => uriControl.value;
-
-  DateTime? get _startAtRawValue => startAtControl.value;
 
   @Deprecated(
       'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
@@ -262,24 +254,9 @@ class MeetingCreateFormForm
     }
   }
 
-  @Deprecated(
-      'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
-  bool get containsStartAt {
-    try {
-      form.control(startAtControlPath());
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
   Map<String, Object>? get uriErrors => uriControl.errors;
 
-  Map<String, Object>? get startAtErrors => startAtControl.errors;
-
   void get uriFocus => form.focus(uriControlPath());
-
-  void get startAtFocus => form.focus(startAtControlPath());
 
   @Deprecated(
       'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
@@ -309,34 +286,6 @@ class MeetingCreateFormForm
     }
   }
 
-  @Deprecated(
-      'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
-  void startAtRemove({
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    if (containsStartAt) {
-      final controlPath = path;
-      if (controlPath == null) {
-        form.removeControl(
-          startAtControlName,
-          updateParent: updateParent,
-          emitEvent: emitEvent,
-        );
-      } else {
-        final formGroup = form.control(controlPath);
-
-        if (formGroup is FormGroup) {
-          formGroup.removeControl(
-            startAtControlName,
-            updateParent: updateParent,
-            emitEvent: emitEvent,
-          );
-        }
-      }
-    }
-  }
-
   void uriValueUpdate(
     String? value, {
     bool updateParent = true,
@@ -346,30 +295,12 @@ class MeetingCreateFormForm
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
-  void startAtValueUpdate(
-    DateTime? value, {
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    startAtControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
-  }
-
   void uriValuePatch(
     String? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
     uriControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
-  }
-
-  void startAtValuePatch(
-    DateTime? value, {
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    startAtControl.patchValue(value,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
@@ -388,26 +319,8 @@ class MeetingCreateFormForm
         disabled: disabled,
       );
 
-  void startAtValueReset(
-    DateTime? value, {
-    bool updateParent = true,
-    bool emitEvent = true,
-    bool removeFocus = false,
-    bool? disabled,
-  }) =>
-      startAtControl.reset(
-        value: value,
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-        removeFocus: removeFocus,
-        disabled: disabled,
-      );
-
   FormControl<String> get uriControl =>
       form.control(uriControlPath()) as FormControl<String>;
-
-  FormControl<DateTime> get startAtControl =>
-      form.control(startAtControlPath()) as FormControl<DateTime>;
 
   void uriSetDisabled(
     bool disabled, {
@@ -427,41 +340,23 @@ class MeetingCreateFormForm
     }
   }
 
-  void startAtSetDisabled(
-    bool disabled, {
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    if (disabled) {
-      startAtControl.markAsDisabled(
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-      );
-    } else {
-      startAtControl.markAsEnabled(
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-      );
-    }
-  }
-
   @override
-  MeetingCreateForm get model {
+  MeetingInviteForm get model {
     final isValid = !currentForm.hasErrors && currentForm.errors.isEmpty;
 
     if (!isValid) {
-      _logMeetingCreateFormForm.warning(
+      _logMeetingInviteFormForm.warning(
         'Avoid calling `model` on invalid form.Possible exceptions for non-nullable fields which should be guarded by `required` validator.',
         null,
         StackTrace.current,
       );
     }
-    return MeetingCreateForm(uri: _uriValue, startAt: _startAtValue);
+    return MeetingInviteForm(uri: _uriValue);
   }
 
   @override
-  MeetingCreateForm get rawModel {
-    return MeetingCreateForm(uri: _uriRawValue, startAt: _startAtRawValue);
+  MeetingInviteForm get rawModel {
+    return MeetingInviteForm(uri: _uriRawValue);
   }
 
   @override
@@ -497,28 +392,28 @@ class MeetingCreateFormForm
   }
 
   @override
-  bool equalsTo(MeetingCreateForm? other) {
+  bool equalsTo(MeetingInviteForm? other) {
     final currentForm = this.currentForm;
 
     return const DeepCollectionEquality().equals(
       currentForm is FormControlCollection<dynamic>
           ? currentForm.rawValue
           : currentForm.value,
-      MeetingCreateFormForm.formElements(other).rawValue,
+      MeetingInviteFormForm.formElements(other).rawValue,
     );
   }
 
   @override
   void submit({
-    required void Function(MeetingCreateForm model) onValid,
+    required void Function(MeetingInviteForm model) onValid,
     void Function()? onNotValid,
   }) {
     currentForm.markAllAsTouched();
     if (currentForm.valid) {
       onValid(model);
     } else {
-      _logMeetingCreateFormForm.info('Errors');
-      _logMeetingCreateFormForm.info('┗━━ ${form.errors}');
+      _logMeetingInviteFormForm.info('Errors');
+      _logMeetingInviteFormForm.info('┗━━ ${form.errors}');
       onNotValid?.call();
     }
   }
@@ -529,16 +424,16 @@ class MeetingCreateFormForm
 
   @override
   void updateValue(
-    MeetingCreateForm? value, {
+    MeetingInviteForm? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
-      form.updateValue(MeetingCreateFormForm.formElements(value).rawValue,
+      form.updateValue(MeetingInviteFormForm.formElements(value).rawValue,
           updateParent: updateParent, emitEvent: emitEvent);
 
   @override
   void reset({
-    MeetingCreateForm? value,
+    MeetingInviteForm? value,
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
@@ -550,18 +445,11 @@ class MeetingCreateFormForm
   String pathBuilder(String? pathItem) =>
       [path, pathItem].whereType<String>().join(".");
 
-  static FormGroup formElements(MeetingCreateForm? meetingCreateForm) =>
+  static FormGroup formElements(MeetingInviteForm? meetingInviteForm) =>
       FormGroup({
         uriControlName: FormControl<String>(
-            value: meetingCreateForm?.uri,
+            value: meetingInviteForm?.uri,
             validators: AppValidation.meetingUri,
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false,
-            touched: false),
-        startAtControlName: FormControl<DateTime>(
-            value: meetingCreateForm?.startAt,
-            validators: AppValidation.meetingStartAt,
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,
@@ -573,9 +461,9 @@ class MeetingCreateFormForm
           disabled: false);
 }
 
-class ReactiveMeetingCreateFormFormArrayBuilder<
-    ReactiveMeetingCreateFormFormArrayBuilderT> extends StatelessWidget {
-  const ReactiveMeetingCreateFormFormArrayBuilder({
+class ReactiveMeetingInviteFormFormArrayBuilder<
+    ReactiveMeetingInviteFormFormArrayBuilderT> extends StatelessWidget {
+  const ReactiveMeetingInviteFormFormArrayBuilder({
     Key? key,
     this.control,
     this.formControl,
@@ -585,30 +473,30 @@ class ReactiveMeetingCreateFormFormArrayBuilder<
             "You have to specify `control` or `formControl`!"),
         super(key: key);
 
-  final FormArray<ReactiveMeetingCreateFormFormArrayBuilderT>? formControl;
+  final FormArray<ReactiveMeetingInviteFormFormArrayBuilderT>? formControl;
 
-  final FormArray<ReactiveMeetingCreateFormFormArrayBuilderT>? Function(
-      MeetingCreateFormForm formModel)? control;
+  final FormArray<ReactiveMeetingInviteFormFormArrayBuilderT>? Function(
+      MeetingInviteFormForm formModel)? control;
 
   final Widget Function(BuildContext context, List<Widget> itemList,
-      MeetingCreateFormForm formModel)? builder;
+      MeetingInviteFormForm formModel)? builder;
 
   final Widget Function(
       BuildContext context,
       int i,
-      FormControl<ReactiveMeetingCreateFormFormArrayBuilderT> control,
-      ReactiveMeetingCreateFormFormArrayBuilderT? item,
-      MeetingCreateFormForm formModel) itemBuilder;
+      FormControl<ReactiveMeetingInviteFormFormArrayBuilderT> control,
+      ReactiveMeetingInviteFormFormArrayBuilderT? item,
+      MeetingInviteFormForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveMeetingCreateFormForm.of(context);
+    final formModel = ReactiveMeetingInviteFormForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
     }
 
-    return ReactiveFormArray<ReactiveMeetingCreateFormFormArrayBuilderT>(
+    return ReactiveFormArray<ReactiveMeetingInviteFormFormArrayBuilderT>(
       formArray: formControl ?? control?.call(formModel),
       builder: (context, formArray, child) {
         final values = formArray.controls.map((e) => e.value).toList();
@@ -621,7 +509,7 @@ class ReactiveMeetingCreateFormFormArrayBuilder<
                   context,
                   i,
                   formArray.controls[i] as FormControl<
-                      ReactiveMeetingCreateFormFormArrayBuilderT>,
+                      ReactiveMeetingInviteFormFormArrayBuilderT>,
                   item,
                   formModel,
                 ),
@@ -641,10 +529,10 @@ class ReactiveMeetingCreateFormFormArrayBuilder<
   }
 }
 
-class ReactiveMeetingCreateFormFormFormGroupArrayBuilder<
-        ReactiveMeetingCreateFormFormFormGroupArrayBuilderT>
+class ReactiveMeetingInviteFormFormFormGroupArrayBuilder<
+        ReactiveMeetingInviteFormFormFormGroupArrayBuilderT>
     extends StatelessWidget {
-  const ReactiveMeetingCreateFormFormFormGroupArrayBuilder({
+  const ReactiveMeetingInviteFormFormFormGroupArrayBuilder({
     Key? key,
     this.extended,
     this.getExtended,
@@ -655,24 +543,24 @@ class ReactiveMeetingCreateFormFormFormGroupArrayBuilder<
         super(key: key);
 
   final ExtendedControl<List<Map<String, Object?>?>,
-      List<ReactiveMeetingCreateFormFormFormGroupArrayBuilderT>>? extended;
+      List<ReactiveMeetingInviteFormFormFormGroupArrayBuilderT>>? extended;
 
   final ExtendedControl<List<Map<String, Object?>?>,
-          List<ReactiveMeetingCreateFormFormFormGroupArrayBuilderT>>
-      Function(MeetingCreateFormForm formModel)? getExtended;
+          List<ReactiveMeetingInviteFormFormFormGroupArrayBuilderT>>
+      Function(MeetingInviteFormForm formModel)? getExtended;
 
   final Widget Function(BuildContext context, List<Widget> itemList,
-      MeetingCreateFormForm formModel)? builder;
+      MeetingInviteFormForm formModel)? builder;
 
   final Widget Function(
       BuildContext context,
       int i,
-      ReactiveMeetingCreateFormFormFormGroupArrayBuilderT? item,
-      MeetingCreateFormForm formModel) itemBuilder;
+      ReactiveMeetingInviteFormFormFormGroupArrayBuilderT? item,
+      MeetingInviteFormForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveMeetingCreateFormForm.of(context);
+    final formModel = ReactiveMeetingInviteFormForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
@@ -684,7 +572,7 @@ class ReactiveMeetingCreateFormFormFormGroupArrayBuilder<
       stream: value.control.valueChanges,
       builder: (context, snapshot) {
         final itemList = (value.value() ??
-                <ReactiveMeetingCreateFormFormFormGroupArrayBuilderT>[])
+                <ReactiveMeetingInviteFormFormFormGroupArrayBuilderT>[])
             .asMap()
             .map((i, item) => MapEntry(
                   i,

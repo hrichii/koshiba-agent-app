@@ -82,7 +82,12 @@ class HomePage extends HookConsumerWidget {
                         color: AppColor.onPrimary,
                       ),
                       child: IconButton(
-                        onPressed: () => const ScheduleAddRoute().push(context),
+                        onPressed: () async {
+                          await const ScheduleAddRoute().push(context);
+                          await ref
+                              .read(meetingListProvider.notifier)
+                              .refreshMeetingList();
+                        },
                         icon: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
