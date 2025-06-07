@@ -17,8 +17,10 @@ T _$identity<T>(T value) => value;
 mixin _$Meeting {
   String get id;
   Uri get url;
+  @DateTimeConverter()
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @DateTimeConverter()
   @JsonKey(name: 'start_at')
   DateTime get startAt;
   @JsonKey(name: 'meeting_baas_id')
@@ -69,8 +71,8 @@ abstract mixin class $MeetingCopyWith<$Res> {
   $Res call(
       {String id,
       Uri url,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'start_at') DateTime startAt,
+      @DateTimeConverter() @JsonKey(name: 'created_at') DateTime createdAt,
+      @DateTimeConverter() @JsonKey(name: 'start_at') DateTime startAt,
       @JsonKey(name: 'meeting_baas_id') String meetingBaasId,
       MeetingBotStatus status});
 
@@ -141,8 +143,8 @@ class _Meeting extends Meeting {
   const _Meeting(
       {required this.id,
       required this.url,
-      @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'start_at') required this.startAt,
+      @DateTimeConverter() @JsonKey(name: 'created_at') required this.createdAt,
+      @DateTimeConverter() @JsonKey(name: 'start_at') required this.startAt,
       @JsonKey(name: 'meeting_baas_id') required this.meetingBaasId,
       required this.status})
       : super._();
@@ -154,9 +156,11 @@ class _Meeting extends Meeting {
   @override
   final Uri url;
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
   @override
+  @DateTimeConverter()
   @JsonKey(name: 'start_at')
   final DateTime startAt;
   @override
@@ -215,8 +219,8 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
   $Res call(
       {String id,
       Uri url,
-      @JsonKey(name: 'created_at') DateTime createdAt,
-      @JsonKey(name: 'start_at') DateTime startAt,
+      @DateTimeConverter() @JsonKey(name: 'created_at') DateTime createdAt,
+      @DateTimeConverter() @JsonKey(name: 'start_at') DateTime startAt,
       @JsonKey(name: 'meeting_baas_id') String meetingBaasId,
       MeetingBotStatus status});
 
