@@ -16,6 +16,8 @@ AppMessageCode _$AppMessageCodeFromJson(Map<String, dynamic> json) {
   switch (json['code']) {
     case 'infoApiRequestSuccess':
       return _InfoApiRequestSuccess.fromJson(json);
+    case 'infoGoogleSignInCanceled':
+      return _InfoGoogleSignInCanceled.fromJson(json);
     case 'errorApiAuthenticationInvalid':
       return _ErrorApiAuthenticationInvalid.fromJson(json);
     case 'errorApiTokenExpired':
@@ -230,6 +232,89 @@ class __$InfoApiRequestSuccessCopyWithImpl<$Res>
     Object? message = freezed,
   }) {
     return _then(_InfoApiRequestSuccess(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InfoGoogleSignInCanceled implements AppMessageCode {
+  const _InfoGoogleSignInCanceled({this.message, final String? $type})
+      : $type = $type ?? 'infoGoogleSignInCanceled';
+  factory _InfoGoogleSignInCanceled.fromJson(Map<String, dynamic> json) =>
+      _$InfoGoogleSignInCanceledFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InfoGoogleSignInCanceledCopyWith<_InfoGoogleSignInCanceled> get copyWith =>
+      __$InfoGoogleSignInCanceledCopyWithImpl<_InfoGoogleSignInCanceled>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InfoGoogleSignInCanceledToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InfoGoogleSignInCanceled &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.infoGoogleSignInCanceled(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InfoGoogleSignInCanceledCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$InfoGoogleSignInCanceledCopyWith(_InfoGoogleSignInCanceled value,
+          $Res Function(_InfoGoogleSignInCanceled) _then) =
+      __$InfoGoogleSignInCanceledCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$InfoGoogleSignInCanceledCopyWithImpl<$Res>
+    implements _$InfoGoogleSignInCanceledCopyWith<$Res> {
+  __$InfoGoogleSignInCanceledCopyWithImpl(this._self, this._then);
+
+  final _InfoGoogleSignInCanceled _self;
+  final $Res Function(_InfoGoogleSignInCanceled) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_InfoGoogleSignInCanceled(
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable

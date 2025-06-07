@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_credential.dart';
+part of 'app_user_credential.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserCredential _$UserCredentialFromJson(Map<String, dynamic> json) =>
-    _UserCredential(
+_AppUserCredential _$AppUserCredentialFromJson(Map<String, dynamic> json) =>
+    _AppUserCredential(
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
@@ -16,7 +16,7 @@ _UserCredential _$UserCredentialFromJson(Map<String, dynamic> json) =>
           : AccessToken.fromJson(json['accessToken'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$UserCredentialToJson(_UserCredential instance) =>
+Map<String, dynamic> _$AppUserCredentialToJson(_AppUserCredential instance) =>
     <String, dynamic>{
       'user': instance.user?.toJson(),
       'accessToken': instance.accessToken?.toJson(),

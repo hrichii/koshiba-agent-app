@@ -61,8 +61,14 @@ class MessageLookup extends MessageLookupByLibrary {
           "Settings",
         ),
         "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
+          "Sign in with Google",
+        ),
         "common_sign_out": MessageLookupByLibrary.simpleMessage("Sign out"),
         "common_sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "common_sign_up_with_google": MessageLookupByLibrary.simpleMessage(
+          "Sign up with Google",
+        ),
         "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
           "Account not found",
         ),
@@ -219,6 +225,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Timed out in waiting room"),
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(
           "Request was successful",
+        ),
+        "info_google_sign_in_canceled": MessageLookupByLibrary.simpleMessage(
+          "Google sign-in was canceled",
         ),
         "meeting_register": MessageLookupByLibrary.simpleMessage(
           "Register meeting",

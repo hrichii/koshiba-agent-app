@@ -3,6 +3,7 @@ import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
+import 'package:koshiba_agent_app/logic/models/user_credential/app_user_credential.dart';
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_repository_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,11 +17,19 @@ class AuthenticationUseCase extends _$AuthenticationUseCase {
   @override
   void build() {}
 
-  Future<Result<void, AppMessageCode>> signIn(SignIn signInModel) async =>
+  Future<Result<AppUserCredential, AppMessageCode>> signIn(
+    SignIn signInModel,
+  ) async =>
       _authenticationRepository.signIn(signInModel);
 
-  Future<Result<void, AppMessageCode>> signUp(SignIn signInModel) async =>
+  Future<Result<AppUserCredential, AppMessageCode>> signUp(
+    SignIn signInModel,
+  ) async =>
       _authenticationRepository.signUp(signInModel);
+
+  Future<Result<AppUserCredential, AppMessageCode>>
+      signInOrSignUpWithGoogle() async =>
+          _authenticationRepository.signInOrSignUpWithGoogle();
 
   Future<Result<void, AppMessageCode>> signOut() async =>
       _authenticationRepository.signOut();

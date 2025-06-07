@@ -54,19 +54,39 @@ class AppMessage {
     return Localizations.of<AppMessage>(context, AppMessage);
   }
 
-  /// `サインイン`
+  /// `ログイン`
   String get common_sign_in {
-    return Intl.message('サインイン', name: 'common_sign_in', desc: '', args: []);
+    return Intl.message('ログイン', name: 'common_sign_in', desc: '', args: []);
   }
 
-  /// `サインアウト`
+  /// `ログアウト`
   String get common_sign_out {
-    return Intl.message('サインアウト', name: 'common_sign_out', desc: '', args: []);
+    return Intl.message('ログアウト', name: 'common_sign_out', desc: '', args: []);
   }
 
-  /// `サインアップ`
+  /// `会員登録`
   String get common_sign_up {
-    return Intl.message('サインアップ', name: 'common_sign_up', desc: '', args: []);
+    return Intl.message('会員登録', name: 'common_sign_up', desc: '', args: []);
+  }
+
+  /// `Googleでログイン`
+  String get common_sign_in_with_google {
+    return Intl.message(
+      'Googleでログイン',
+      name: 'common_sign_in_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleで会員登録`
+  String get common_sign_up_with_google {
+    return Intl.message(
+      'Googleで会員登録',
+      name: 'common_sign_up_with_google',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `アカウント削除`
@@ -159,10 +179,10 @@ class AppMessage {
     );
   }
 
-  /// `サインアウトしました`
+  /// `ログアウトしました`
   String get sign_out_success {
     return Intl.message(
-      'サインアウトしました',
+      'ログアウトしました',
       name: 'sign_out_success',
       desc: '',
       args: [],
@@ -299,6 +319,16 @@ class AppMessage {
     return Intl.message(
       'リクエストに成功しました',
       name: 'info_api_request_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleサインインがキャンセルされました`
+  String get info_google_sign_in_canceled {
+    return Intl.message(
+      'Googleサインインがキャンセルされました',
+      name: 'info_google_sign_in_canceled',
       desc: '',
       args: [],
     );
