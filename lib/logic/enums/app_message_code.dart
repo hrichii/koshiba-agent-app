@@ -11,6 +11,8 @@ sealed class AppMessageCode with _$AppMessageCode {
   // Infoコード
   const factory AppMessageCode.infoApiRequestSuccess({String? message}) =
       _InfoApiRequestSuccess;
+  const factory AppMessageCode.infoGoogleSignInCanceled({String? message}) =
+      _InfoGoogleSignInCanceled;
 
   // Errorコード
   const factory AppMessageCode.errorApiAuthenticationInvalid({
@@ -146,6 +148,8 @@ extension AppMessageCodeExtension on AppMessageCode {
 
   String get _localizedMessage => switch (this) {
         _InfoApiRequestSuccess() => AppMessage.current.info_api_request_success,
+        _InfoGoogleSignInCanceled() =>
+          AppMessage.current.info_google_sign_in_canceled,
         _ErrorApiAuthenticationInvalid() =>
           AppMessage.current.error_api_authentication_invalid,
         _ErrorApiTokenExpired() => AppMessage.current.error_api_token_expired,

@@ -3,6 +3,8 @@
   "common_sign_in": "Sign in",
   "common_sign_out": "Sign out",
   "common_sign_up": "Sign up",
+  "common_sign_in_with_google": "Sign in with Google",
+  "common_sign_up_with_google": "Sign up with Google",
   "common_delete_account": "Delete account",
   "common_invite_bot": "Invite bot",
   "common_add_schedule": "Add schedule",
@@ -88,6 +90,7 @@
     }
   },
   "info_api_request_success": "Request was successful",
+  "info_google_sign_in_canceled": "Google sign-in was canceled",
   "info_api_bot_status_message_initialized": "Bot has been initialized",
   "info_api_bot_status_message_joining_call": "Joining the call",
   "info_api_bot_status_message_in_waiting_room": "Waiting in the waiting room",

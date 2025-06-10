@@ -7,7 +7,7 @@ import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
-import 'package:koshiba_agent_app/logic/models/user_credential/user_credential.dart';
+import 'package:koshiba_agent_app/logic/models/user_credential/app_user_credential.dart';
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_repository_interface.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -33,35 +33,57 @@ class AccountRepository implements AuthenticationRepositoryInterface {
   final VoidCallback _clearCache;
 
   @override
-  Future<Result<UserCredential, AppMessageCode>> signUp(
+  Future<Result<AppUserCredential, AppMessageCode>> signUp(
     SignIn signUpModel,
   ) async {
     final authenticationResult =
-        await _authenticationDataSource.createUserWithEmailAndPassword(
+        await _authenticationDataSource.signUpWithEmailAndPassword(
       email: signUpModel.email!,
       password: signUpModel.password!,
     );
     switch (authenticationResult) {
-      case ResultOk<UserCredential, AppMessageCode>(
-          value: final userCredential
-        ):
-        final accountCreateDto = AccountCreateDto(
-          uid: userCredential.user!.id,
-          email: userCredential.user!.email!,
-          // TODO(hrichii): nameを追加する可能性がある
-        );
-        final createResult = await _accountDataSource.create(accountCreateDto);
-        if (createResult case ResultNg<void, AppMessageCode>()) {
-          return ResultNg(value: createResult.value);
-        }
-        return authenticationResult;
-      case ResultNg<UserCredential, AppMessageCode>():
-        return authenticationResult;
+      case ResultOk(value: final userCredential):
+        return _createAccount(userCredential);
+      case ResultNg(:final value):
+        return ResultNg(value: value);
     }
   }
 
   @override
-  Future<Result<UserCredential, AppMessageCode>> signIn(SignIn signInModel) =>
+  Future<Result<AppUserCredential, AppMessageCode>>
+      signInOrSignUpWithGoogle() async {
+    switch (await _authenticationDataSource.signInOrSignUpWithGoogle()) {
+      case ResultOk(:final value):
+        switch (value) {
+          case SignUpWithGoogle(:final value):
+            return _createAccount(value);
+          case SignInWithGoogle(:final value):
+            return ResultOk(value: value);
+        }
+      case ResultNg(:final value):
+        return ResultNg(value: value);
+    }
+  }
+
+  Future<Result<AppUserCredential, AppMessageCode>> _createAccount(
+    AppUserCredential appUserCredential,
+  ) async {
+    final accountCreateDto = AccountCreateDto(
+      uid: appUserCredential.user!.id,
+      email: appUserCredential.user!.email!,
+      // TODO(hrichii): nameを追加する可能性がある
+    );
+    final createResult = await _accountDataSource.create(accountCreateDto);
+    if (createResult case ResultNg<void, AppMessageCode>()) {
+      return ResultNg(value: createResult.value);
+    }
+    return ResultOk(value: appUserCredential);
+  }
+
+  @override
+  Future<Result<AppUserCredential, AppMessageCode>> signIn(
+    SignIn signInModel,
+  ) =>
       _authenticationDataSource.signInWithEmailAndPassword(
         email: signInModel.email!,
         password: signInModel.password!,

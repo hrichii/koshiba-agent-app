@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "setup-dev",
+            "label": "dev",
             "type": "shell",
-            "command": "make setup-dev",
+            "command": "make dev",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
@@ -12,9 +12,9 @@
             "problemMatcher": []
         },
         {
-            "label": "setup-stg",
+            "label": "stg",
             "type": "shell",
-            "command": "make setup-stg",
+            "command": "make stg",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"
@@ -22,9 +22,9 @@
             "problemMatcher": []
         },
         {
-            "label": "setup-prd",
+            "label": "prd",
             "type": "shell",
-            "command": "make setup-prd",
+            "command": "make prd",
             "presentation": {
                 "reveal": "always",
                 "panel": "new"

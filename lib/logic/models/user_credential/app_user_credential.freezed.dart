@@ -4,7 +4,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_credential.dart';
+part of 'app_user_credential.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,26 +14,26 @@ part of 'user_credential.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$UserCredential {
+mixin _$AppUserCredential {
   User? get user;
   AccessToken? get accessToken;
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $UserCredentialCopyWith<UserCredential> get copyWith =>
-      _$UserCredentialCopyWithImpl<UserCredential>(
-          this as UserCredential, _$identity);
+  $AppUserCredentialCopyWith<AppUserCredential> get copyWith =>
+      _$AppUserCredentialCopyWithImpl<AppUserCredential>(
+          this as AppUserCredential, _$identity);
 
-  /// Serializes this UserCredential to a JSON map.
+  /// Serializes this AppUserCredential to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserCredential &&
+            other is AppUserCredential &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken));
@@ -45,15 +45,15 @@ mixin _$UserCredential {
 
   @override
   String toString() {
-    return 'UserCredential(user: $user, accessToken: $accessToken)';
+    return 'AppUserCredential(user: $user, accessToken: $accessToken)';
   }
 }
 
 /// @nodoc
-abstract mixin class $UserCredentialCopyWith<$Res> {
-  factory $UserCredentialCopyWith(
-          UserCredential value, $Res Function(UserCredential) _then) =
-      _$UserCredentialCopyWithImpl;
+abstract mixin class $AppUserCredentialCopyWith<$Res> {
+  factory $AppUserCredentialCopyWith(
+          AppUserCredential value, $Res Function(AppUserCredential) _then) =
+      _$AppUserCredentialCopyWithImpl;
   @useResult
   $Res call({User? user, AccessToken? accessToken});
 
@@ -62,14 +62,14 @@ abstract mixin class $UserCredentialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCredentialCopyWithImpl<$Res>
-    implements $UserCredentialCopyWith<$Res> {
-  _$UserCredentialCopyWithImpl(this._self, this._then);
+class _$AppUserCredentialCopyWithImpl<$Res>
+    implements $AppUserCredentialCopyWith<$Res> {
+  _$AppUserCredentialCopyWithImpl(this._self, this._then);
 
-  final UserCredential _self;
-  final $Res Function(UserCredential) _then;
+  final AppUserCredential _self;
+  final $Res Function(AppUserCredential) _then;
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -89,7 +89,7 @@ class _$UserCredentialCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -103,7 +103,7 @@ class _$UserCredentialCopyWithImpl<$Res>
     });
   }
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -120,28 +120,28 @@ class _$UserCredentialCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _UserCredential extends UserCredential {
-  const _UserCredential({required this.user, required this.accessToken})
+class _AppUserCredential extends AppUserCredential {
+  const _AppUserCredential({required this.user, required this.accessToken})
       : super._();
-  factory _UserCredential.fromJson(Map<String, dynamic> json) =>
-      _$UserCredentialFromJson(json);
+  factory _AppUserCredential.fromJson(Map<String, dynamic> json) =>
+      _$AppUserCredentialFromJson(json);
 
   @override
   final User? user;
   @override
   final AccessToken? accessToken;
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$UserCredentialCopyWith<_UserCredential> get copyWith =>
-      __$UserCredentialCopyWithImpl<_UserCredential>(this, _$identity);
+  _$AppUserCredentialCopyWith<_AppUserCredential> get copyWith =>
+      __$AppUserCredentialCopyWithImpl<_AppUserCredential>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$UserCredentialToJson(
+    return _$AppUserCredentialToJson(
       this,
     );
   }
@@ -150,7 +150,7 @@ class _UserCredential extends UserCredential {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserCredential &&
+            other is _AppUserCredential &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.accessToken, accessToken) ||
                 other.accessToken == accessToken));
@@ -162,16 +162,16 @@ class _UserCredential extends UserCredential {
 
   @override
   String toString() {
-    return 'UserCredential(user: $user, accessToken: $accessToken)';
+    return 'AppUserCredential(user: $user, accessToken: $accessToken)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$UserCredentialCopyWith<$Res>
-    implements $UserCredentialCopyWith<$Res> {
-  factory _$UserCredentialCopyWith(
-          _UserCredential value, $Res Function(_UserCredential) _then) =
-      __$UserCredentialCopyWithImpl;
+abstract mixin class _$AppUserCredentialCopyWith<$Res>
+    implements $AppUserCredentialCopyWith<$Res> {
+  factory _$AppUserCredentialCopyWith(
+          _AppUserCredential value, $Res Function(_AppUserCredential) _then) =
+      __$AppUserCredentialCopyWithImpl;
   @override
   @useResult
   $Res call({User? user, AccessToken? accessToken});
@@ -183,14 +183,14 @@ abstract mixin class _$UserCredentialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$UserCredentialCopyWithImpl<$Res>
-    implements _$UserCredentialCopyWith<$Res> {
-  __$UserCredentialCopyWithImpl(this._self, this._then);
+class __$AppUserCredentialCopyWithImpl<$Res>
+    implements _$AppUserCredentialCopyWith<$Res> {
+  __$AppUserCredentialCopyWithImpl(this._self, this._then);
 
-  final _UserCredential _self;
-  final $Res Function(_UserCredential) _then;
+  final _AppUserCredential _self;
+  final $Res Function(_AppUserCredential) _then;
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -198,7 +198,7 @@ class __$UserCredentialCopyWithImpl<$Res>
     Object? user = freezed,
     Object? accessToken = freezed,
   }) {
-    return _then(_UserCredential(
+    return _then(_AppUserCredential(
       user: freezed == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -210,7 +210,7 @@ class __$UserCredentialCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -224,7 +224,7 @@ class __$UserCredentialCopyWithImpl<$Res>
     });
   }
 
-  /// Create a copy of UserCredential
+  /// Create a copy of AppUserCredential
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')

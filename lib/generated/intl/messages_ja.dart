@@ -53,9 +53,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "common_navigation_home": MessageLookupByLibrary.simpleMessage("ホーム"),
         "common_navigation_settings":
             MessageLookupByLibrary.simpleMessage("設定"),
-        "common_sign_in": MessageLookupByLibrary.simpleMessage("サインイン"),
-        "common_sign_out": MessageLookupByLibrary.simpleMessage("サインアウト"),
-        "common_sign_up": MessageLookupByLibrary.simpleMessage("サインアップ"),
+        "common_sign_in": MessageLookupByLibrary.simpleMessage("ログイン"),
+        "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
+          "Googleでログイン",
+        ),
+        "common_sign_out": MessageLookupByLibrary.simpleMessage("ログアウト"),
+        "common_sign_up": MessageLookupByLibrary.simpleMessage("会員登録"),
+        "common_sign_up_with_google": MessageLookupByLibrary.simpleMessage(
+          "Googleで会員登録",
+        ),
         "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
           "アカウントが見つかりません",
         ),
@@ -210,11 +216,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "info_api_request_success": MessageLookupByLibrary.simpleMessage(
           "リクエストに成功しました",
         ),
+        "info_google_sign_in_canceled": MessageLookupByLibrary.simpleMessage(
+          "Googleサインインがキャンセルされました",
+        ),
         "meeting_register": MessageLookupByLibrary.simpleMessage("Botを参加させる"),
         "meeting_register_success": MessageLookupByLibrary.simpleMessage(
           "ミーティング登録が完了しました",
         ),
-        "sign_out_success": MessageLookupByLibrary.simpleMessage("サインアウトしました"),
+        "sign_out_success": MessageLookupByLibrary.simpleMessage("ログアウトしました"),
         "sign_up_success":
             MessageLookupByLibrary.simpleMessage("アカウント登録が完了しました"),
         "unit_letter": MessageLookupByLibrary.simpleMessage("文字"),

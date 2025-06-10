@@ -20,6 +20,20 @@ Map<String, dynamic> _$InfoApiRequestSuccessToJson(
       'code': instance.$type,
     };
 
+_InfoGoogleSignInCanceled _$InfoGoogleSignInCanceledFromJson(
+        Map<String, dynamic> json) =>
+    _InfoGoogleSignInCanceled(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$InfoGoogleSignInCanceledToJson(
+        _InfoGoogleSignInCanceled instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
 _ErrorApiAuthenticationInvalid _$ErrorApiAuthenticationInvalidFromJson(
         Map<String, dynamic> json) =>
     _ErrorApiAuthenticationInvalid(

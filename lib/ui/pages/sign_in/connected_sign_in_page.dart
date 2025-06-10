@@ -14,9 +14,15 @@ class ConnectedSignInPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future<void> onSubmit(signInModel) => ref
+    Future<void> onSignIn(signInModel) => ref
         .read(authenticationUseCaseProvider.notifier)
         .signIn(signInModel)
+        .withLoaderOverlay()
+        .withToastAtError()
+        .onSuccessWithoutValue(const HomeRouteData().go);
+    Future<void> onSignInWithGoogle() => ref
+        .read(authenticationUseCaseProvider.notifier)
+        .signInOrSignUpWithGoogle()
         .withLoaderOverlay()
         .withToastAtError()
         .onSuccessWithoutValue(const HomeRouteData().go);
@@ -49,9 +55,13 @@ class ConnectedSignInPage extends ConsumerWidget {
               ReactiveSignInFormConsumer(
                 builder: (_, form, ___) => FilledButton(
                   onPressed:
-                      form.form.valid ? () => onSubmit(form.model) : null,
+                      form.form.valid ? () => onSignIn(form.model) : null,
                   child: Text(AppMessage.current.common_sign_in),
                 ),
+              ),
+              FilledButton(
+                onPressed: onSignInWithGoogle,
+                child: Text(AppMessage.current.common_sign_in_with_google),
               ),
               TextButton(
                 onPressed: () => const SignUpSendRouteData().go(context),
