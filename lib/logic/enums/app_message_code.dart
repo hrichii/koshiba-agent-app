@@ -94,6 +94,14 @@ sealed class AppMessageCode with _$AppMessageCode {
   const factory AppMessageCode.errorClientStatusCode504({String? message}) =
       _ErrorClientStatusCode504;
 
+  // Google認証エラー
+  const factory AppMessageCode.errorClientGooleNotYetAuthenticated({
+    String? message,
+  }) = _ErrorClientGooleNotYetAuthenticated;
+  const factory AppMessageCode.errorClientGooleAuthentication({
+    String? message,
+  }) = _ErrorClientGooleAuthentication;
+
   factory AppMessageCode.fromJson(Map<String, dynamic> json) =>
       _$AppMessageCodeFromJson(json);
 
@@ -207,5 +215,9 @@ extension AppMessageCodeExtension on AppMessageCode {
           AppMessage.current.error_client_status_code_5XX,
         _ErrorClientStatusCode504() =>
           AppMessage.current.error_client_status_code_504,
+        _ErrorClientGooleNotYetAuthenticated() =>
+          AppMessage.current.error_client_goole_not_yet_authenticated,
+        _ErrorClientGooleAuthentication() =>
+          AppMessage.current.error_client_goole_authentication,
       };
 }

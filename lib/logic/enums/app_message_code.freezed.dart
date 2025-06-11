@@ -84,6 +84,10 @@ AppMessageCode _$AppMessageCodeFromJson(Map<String, dynamic> json) {
       return _ErrorClientStatusCode5XX.fromJson(json);
     case 'errorClientStatusCode504':
       return _ErrorClientStatusCode504.fromJson(json);
+    case 'errorClientGooleNotYetAuthenticated':
+      return _ErrorClientGooleNotYetAuthenticated.fromJson(json);
+    case 'errorClientGooleAuthentication':
+      return _ErrorClientGooleAuthentication.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'code', 'AppMessageCode',
@@ -3059,6 +3063,177 @@ class __$ErrorClientStatusCode504CopyWithImpl<$Res>
     Object? message = freezed,
   }) {
     return _then(_ErrorClientStatusCode504(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ErrorClientGooleNotYetAuthenticated implements AppMessageCode {
+  const _ErrorClientGooleNotYetAuthenticated(
+      {this.message, final String? $type})
+      : $type = $type ?? 'errorClientGooleNotYetAuthenticated';
+  factory _ErrorClientGooleNotYetAuthenticated.fromJson(
+          Map<String, dynamic> json) =>
+      _$ErrorClientGooleNotYetAuthenticatedFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorClientGooleNotYetAuthenticatedCopyWith<
+          _ErrorClientGooleNotYetAuthenticated>
+      get copyWith => __$ErrorClientGooleNotYetAuthenticatedCopyWithImpl<
+          _ErrorClientGooleNotYetAuthenticated>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorClientGooleNotYetAuthenticatedToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorClientGooleNotYetAuthenticated &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorClientGooleNotYetAuthenticated(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorClientGooleNotYetAuthenticatedCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorClientGooleNotYetAuthenticatedCopyWith(
+          _ErrorClientGooleNotYetAuthenticated value,
+          $Res Function(_ErrorClientGooleNotYetAuthenticated) _then) =
+      __$ErrorClientGooleNotYetAuthenticatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorClientGooleNotYetAuthenticatedCopyWithImpl<$Res>
+    implements _$ErrorClientGooleNotYetAuthenticatedCopyWith<$Res> {
+  __$ErrorClientGooleNotYetAuthenticatedCopyWithImpl(this._self, this._then);
+
+  final _ErrorClientGooleNotYetAuthenticated _self;
+  final $Res Function(_ErrorClientGooleNotYetAuthenticated) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorClientGooleNotYetAuthenticated(
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ErrorClientGooleAuthentication implements AppMessageCode {
+  const _ErrorClientGooleAuthentication({this.message, final String? $type})
+      : $type = $type ?? 'errorClientGooleAuthentication';
+  factory _ErrorClientGooleAuthentication.fromJson(Map<String, dynamic> json) =>
+      _$ErrorClientGooleAuthenticationFromJson(json);
+
+  @override
+  final String? message;
+
+  @JsonKey(name: 'code')
+  final String $type;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorClientGooleAuthenticationCopyWith<_ErrorClientGooleAuthentication>
+      get copyWith => __$ErrorClientGooleAuthenticationCopyWithImpl<
+          _ErrorClientGooleAuthentication>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ErrorClientGooleAuthenticationToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ErrorClientGooleAuthentication &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'AppMessageCode.errorClientGooleAuthentication(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorClientGooleAuthenticationCopyWith<$Res>
+    implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorClientGooleAuthenticationCopyWith(
+          _ErrorClientGooleAuthentication value,
+          $Res Function(_ErrorClientGooleAuthentication) _then) =
+      __$ErrorClientGooleAuthenticationCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? message});
+}
+
+/// @nodoc
+class __$ErrorClientGooleAuthenticationCopyWithImpl<$Res>
+    implements _$ErrorClientGooleAuthenticationCopyWith<$Res> {
+  __$ErrorClientGooleAuthenticationCopyWithImpl(this._self, this._then);
+
+  final _ErrorClientGooleAuthentication _self;
+  final $Res Function(_ErrorClientGooleAuthentication) _then;
+
+  /// Create a copy of AppMessageCode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ErrorClientGooleAuthentication(
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable

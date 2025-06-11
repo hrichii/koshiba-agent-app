@@ -132,6 +132,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_client_dio_timeout": MessageLookupByLibrary.simpleMessage(
           "A timeout has occurred",
         ),
+        "error_client_goole_authentication":
+            MessageLookupByLibrary.simpleMessage(
+          "Google authentication failed",
+        ),
+        "error_client_goole_not_yet_authenticated":
+            MessageLookupByLibrary.simpleMessage(
+          "Google authentication has not yet been completed",
+        ),
         "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
           "The request was successful",
         ),

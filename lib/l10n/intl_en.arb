@@ -145,5 +145,7 @@
   "error_client_status_code_414": "The URI is too long",
   "error_client_status_code_429": "Too many requests",
   "error_client_status_code_5XX": "An internal server error has occurred",
-  "error_client_status_code_504": "A gateway timeout has occurred"
+  "error_client_status_code_504": "A gateway timeout has occurred",
+  "error_client_goole_not_yet_authenticated": "Google authentication has not yet been completed",
+  "error_client_goole_authentication": "Google authentication failed"
 }

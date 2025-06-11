@@ -883,6 +883,26 @@ class AppMessage {
       args: [],
     );
   }
+
+  /// `Google認証がまだ完了していません`
+  String get error_client_goole_not_yet_authenticated {
+    return Intl.message(
+      'Google認証がまだ完了していません',
+      name: 'error_client_goole_not_yet_authenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google認証に失敗しました`
+  String get error_client_goole_authentication {
+    return Intl.message(
+      'Google認証に失敗しました',
+      name: 'error_client_goole_authentication',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppMessage> {

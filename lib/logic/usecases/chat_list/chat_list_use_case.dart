@@ -9,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'chat_list_use_case.g.dart';
 
 @riverpod
-class ChatListUseCase extends _$ChatListUseCase {
+class CalendarListUseCase extends _$CalendarListUseCase {
   ChatListRepositoryInterface get _chatListRepository =>
       ref.read(chatListRepositoryProvider);
 

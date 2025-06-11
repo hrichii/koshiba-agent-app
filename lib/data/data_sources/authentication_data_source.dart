@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart';
 import 'package:koshiba_agent_app/core/constants/app_env.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/access_token/access_token.dart';
@@ -18,14 +20,34 @@ final authenticationDataSourceProvider = Provider(
 class AuthenticationDataSource {
   final _firebaseAuth = FirebaseAuth.instance;
   final _googleSignInForMobile = GoogleSignIn(
-    clientId: Platform.isIOS ? AppEnv.clientId : null,
+    clientId: () {
+      if (kIsWeb) {
+        return '545963589750-il9l5579kf7up5l10dub9pg232r9396o.apps.googleusercontent.com';
+      }
+      if (Platform.isAndroid) {
+        return null;
+      }
+      if (Platform.isIOS) {
+        return AppEnv.clientId;
+      }
+    }(),
     scopes: [
       'email',
       'profile',
-      'https://www.googleapis.com/auth/calendar',
+      'https://www.googleapis.com/auth/calendar.events.readonly',
     ],
   );
-  final _googleProviderForWeb = GoogleAuthProvider();
+
+  Future<Result<Client, AppMessageCode>> getAuthenticatedClient() async {
+    final authenticatedClient =
+        await _googleSignInForMobile.authenticatedClient();
+    if (authenticatedClient == null) {
+      return const ResultNg(
+        value: AppMessageCode.errorClientGooleAuthentication(),
+      );
+    }
+    return ResultOk(value: authenticatedClient);
+  }
 
   Future<Result<AppUserCredential, AppMessageCode>> signUpWithEmailAndPassword({
     required String email,
@@ -51,47 +73,6 @@ class AuthenticationDataSource {
 
   Future<Result<SignInOrSignUpWithGoogle<AppUserCredential>, AppMessageCode>>
       signInOrSignUpWithGoogle() async {
-    if (kIsWeb) {
-      return _signInOrSignUpWithGoogleForWeb();
-    } else {
-      return _signInOrSignUpWithGoogleForMobile();
-    }
-  }
-
-  Future<Result<SignInOrSignUpWithGoogle<AppUserCredential>, AppMessageCode>>
-      _signInOrSignUpWithGoogleForWeb() async {
-    try {
-      final userCredential =
-          await FirebaseAuth.instance.signInWithPopup(_googleProviderForWeb);
-      final user = userCredential.user;
-      final appUserCredential = AppUserCredential(
-        user: user == null
-            ? null
-            : User(
-                id: user.uid,
-                email: user.email,
-                name: user.displayName ?? '',
-                isEmailVerified: user.emailVerified,
-              ),
-        accessToken: userCredential.credential?.accessToken == null
-            ? null
-            : AccessToken(token: userCredential.credential!.accessToken!),
-      );
-
-      return ResultOk(
-        value: userCredential.additionalUserInfo?.isNewUser == true
-            ? SignUpWithGoogle(appUserCredential)
-            : SignInWithGoogle(appUserCredential),
-      );
-    } on FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
-    } catch (_) {
-      return const ResultNg(value: AppMessageCode.errorClientUnknown());
-    }
-  }
-
-  Future<Result<SignInOrSignUpWithGoogle<AppUserCredential>, AppMessageCode>>
-      _signInOrSignUpWithGoogleForMobile() async {
     try {
       final googleUser = await _googleSignInForMobile.signIn();
       if (googleUser == null) {
