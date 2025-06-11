@@ -123,6 +123,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_client_dio_timeout": MessageLookupByLibrary.simpleMessage(
           "タイムアウトが発生しました",
         ),
+        "error_client_goole_authentication":
+            MessageLookupByLibrary.simpleMessage(
+          "Google認証に失敗しました",
+        ),
+        "error_client_goole_not_yet_authenticated":
+            MessageLookupByLibrary.simpleMessage("Google認証がまだ完了していません"),
         "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
           "リクエストに成功しました。",
         ),

@@ -146,5 +146,7 @@
   "error_client_status_code_414": "URIが長すぎます。",
   "error_client_status_code_429": "リクエストが多すぎます。",
   "error_client_status_code_5XX": "サーバー内部でエラーが発生しました。",
-  "error_client_status_code_504": "ゲートウェイタイムアウトが発生しました。"
+  "error_client_status_code_504": "ゲートウェイタイムアウトが発生しました。",
+  "error_client_goole_not_yet_authenticated": "Google認証がまだ完了していません",
+  "error_client_goole_authentication": "Google認証に失敗しました"
 }

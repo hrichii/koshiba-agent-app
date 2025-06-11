@@ -488,3 +488,31 @@ Map<String, dynamic> _$ErrorClientStatusCode504ToJson(
       'message': instance.message,
       'code': instance.$type,
     };
+
+_ErrorClientGooleNotYetAuthenticated
+    _$ErrorClientGooleNotYetAuthenticatedFromJson(Map<String, dynamic> json) =>
+        _ErrorClientGooleNotYetAuthenticated(
+          message: json['message'] as String?,
+          $type: json['code'] as String?,
+        );
+
+Map<String, dynamic> _$ErrorClientGooleNotYetAuthenticatedToJson(
+        _ErrorClientGooleNotYetAuthenticated instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
+
+_ErrorClientGooleAuthentication _$ErrorClientGooleAuthenticationFromJson(
+        Map<String, dynamic> json) =>
+    _ErrorClientGooleAuthentication(
+      message: json['message'] as String?,
+      $type: json['code'] as String?,
+    );
+
+Map<String, dynamic> _$ErrorClientGooleAuthenticationToJson(
+        _ErrorClientGooleAuthentication instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'code': instance.$type,
+    };
