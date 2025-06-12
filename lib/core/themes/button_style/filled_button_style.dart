@@ -18,10 +18,9 @@ class FilledButtonStyle {
         textStyle: AppTextStyle.bodyMedium14,
         padding: const EdgeInsets.all(AppSpace.lg16),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            AppRadius.md8,
-          ),
+          borderRadius: BorderRadius.circular(AppRadius.md8),
         ),
+        minimumSize: Size.zero,
       );
 
   static ButtonStyle get primary =>
@@ -41,8 +40,22 @@ class FilledButtonStyle {
   static ButtonStyle get tertiary =>
       _getStyle(color: AppColor.tertiary, onColor: AppColor.onTertiary);
   static ButtonStyle get tertiaryTonal => _getStyle(
-      color: AppColor.tertiaryContainer, onColor: AppColor.onTertiaryContainer);
+        color: AppColor.tertiaryContainer,
+        onColor: AppColor.onTertiaryContainer,
+      );
 
   static ButtonStyle get error =>
       _getStyle(color: AppColor.error, onColor: AppColor.onError);
+
+  static ButtonStyle get pannel => FilledButton.styleFrom(
+        elevation: 0,
+        foregroundColor: AppColor.gray0,
+        backgroundColor: AppColor.gray100,
+        disabledForegroundColor: AppColor.gray0.withWhite(0.6),
+        disabledBackgroundColor: AppColor.gray80.withWhite(0.6),
+        textStyle: AppTextStyle.bodyMedium14,
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        alignment: Alignment.centerLeft,
+      );
 }
