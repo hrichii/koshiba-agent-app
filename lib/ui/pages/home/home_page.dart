@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_radius.dart';
-import 'package:koshiba_agent_app/core/constants/app_space.dart';
-import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_radius.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_bot_status.dart';

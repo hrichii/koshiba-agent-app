@@ -2,6 +2,7 @@ class AppRoutePath {
   static const root = '/';
 
   // Unauthorized
+  static const String debug = '/debug';
   static const String singIn = '/sing-in';
   static const String signUpSend = '/sign-up/send';
   static const String signUpVerify = '/sign-up/verify';

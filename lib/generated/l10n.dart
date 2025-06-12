@@ -149,11 +149,11 @@ class AppMessage {
     );
   }
 
-  /// `設定`
-  String get common_navigation_settings {
+  /// `アカウント`
+  String get common_navigation_accounts {
     return Intl.message(
-      '設定',
-      name: 'common_navigation_settings',
+      'アカウント',
+      name: 'common_navigation_accounts',
       desc: '',
       args: [],
     );

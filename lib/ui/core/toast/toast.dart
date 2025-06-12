@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_radius.dart';
-import 'package:koshiba_agent_app/core/constants/app_space.dart';
-import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_radius.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
 
 enum _ToastEnum {

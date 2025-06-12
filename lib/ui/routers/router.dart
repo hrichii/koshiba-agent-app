@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:koshiba_agent_app/core/constants/app_route_path.dart';
+import 'package:koshiba_agent_app/core/themes/app_route_path.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
 import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
@@ -9,6 +9,7 @@ import 'package:koshiba_agent_app/logic/models/user/user.dart';
 import 'package:koshiba_agent_app/ui/core/scaffold/scaffold_with_navigation.dart';
 import 'package:koshiba_agent_app/ui/pages/bot_invite/bot_invite_page.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/calender_page.dart';
+import 'package:koshiba_agent_app/ui/pages/debug/debug_page.dart';
 import 'package:koshiba_agent_app/ui/pages/document/document_page.dart';
 import 'package:koshiba_agent_app/ui/pages/home/home_page.dart';
 import 'package:koshiba_agent_app/ui/pages/reset_password_send/connected_reset_password_send_page.dart';
@@ -27,6 +28,7 @@ part 'package:koshiba_agent_app/ui/routers/authorized/stateful_shell_branch/sche
 part 'package:koshiba_agent_app/ui/routers/authorized/stateful_shell_branch/bot_invite_route.dart';
 part 'package:koshiba_agent_app/ui/routers/authorized/stateful_shell_branch/setting_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/unauthorized/reset_password_send_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/unauthorized/debug_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/unauthorized/sign_in_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/unauthorized/sign_up_send_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/unauthorized/sign_up_verify_route_data.dart';
