@@ -19,10 +19,9 @@ class OutlinedButtonStyle {
       padding: const EdgeInsets.all(AppSpace.lg16),
       surfaceTintColor: AppColor.gray0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          AppRadius.md8,
-        ),
+        borderRadius: BorderRadius.circular(AppRadius.md8),
       ),
+      minimumSize: Size.zero,
     ).copyWith(
       side: WidgetStateProperty.resolveWith<BorderSide>(
         (Set<WidgetState> states) => BorderSide(
