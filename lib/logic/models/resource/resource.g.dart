@@ -9,51 +9,41 @@ part of 'resource.dart';
 ResourceDone<S> _$ResourceDoneFromJson<S>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
-) =>
-    ResourceDone<S>(
-      value: fromJsonS(json['value']),
-      $type: json['runtimeType'] as String?,
-    );
+) => ResourceDone<S>(
+  value: fromJsonS(json['value']),
+  $type: json['runtimeType'] as String?,
+);
 
 Map<String, dynamic> _$ResourceDoneToJson<S>(
   ResourceDone<S> instance,
   Object? Function(S value) toJsonS,
-) =>
-    <String, dynamic>{
-      'value': toJsonS(instance.value),
-      'runtimeType': instance.$type,
-    };
+) => <String, dynamic>{
+  'value': toJsonS(instance.value),
+  'runtimeType': instance.$type,
+};
 
 ResourceInProgress<S> _$ResourceInProgressFromJson<S>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
-) =>
-    ResourceInProgress<S>(
-      $type: json['runtimeType'] as String?,
-    );
+) => ResourceInProgress<S>($type: json['runtimeType'] as String?);
 
 Map<String, dynamic> _$ResourceInProgressToJson<S>(
   ResourceInProgress<S> instance,
   Object? Function(S value) toJsonS,
-) =>
-    <String, dynamic>{
-      'runtimeType': instance.$type,
-    };
+) => <String, dynamic>{'runtimeType': instance.$type};
 
 ResourceError<S> _$ResourceErrorFromJson<S>(
   Map<String, dynamic> json,
   S Function(Object? json) fromJsonS,
-) =>
-    ResourceError<S>(
-      value: AppMessageCode.fromJson(json['value'] as Map<String, dynamic>),
-      $type: json['runtimeType'] as String?,
-    );
+) => ResourceError<S>(
+  value: AppMessageCode.fromJson(json['value'] as Map<String, dynamic>),
+  $type: json['runtimeType'] as String?,
+);
 
 Map<String, dynamic> _$ResourceErrorToJson<S>(
   ResourceError<S> instance,
   Object? Function(S value) toJsonS,
-) =>
-    <String, dynamic>{
-      'value': instance.value.toJson(),
-      'runtimeType': instance.$type,
-    };
+) => <String, dynamic>{
+  'value': instance.value.toJson(),
+  'runtimeType': instance.$type,
+};

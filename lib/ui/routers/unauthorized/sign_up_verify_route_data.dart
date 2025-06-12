@@ -4,10 +4,8 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.signUpVerify,
   name: AppRoutePath.signUpVerify,
 )
-class SignUpVerifyRouteData extends GoRouteData {
-  const SignUpVerifyRouteData({
-    required this.email,
-  });
+class SignUpVerifyRouteData extends GoRouteData with _$SignUpVerifyRouteData {
+  const SignUpVerifyRouteData({required this.email});
   final String email;
 
   @override

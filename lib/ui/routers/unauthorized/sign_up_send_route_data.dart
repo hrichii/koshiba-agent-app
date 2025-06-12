@@ -4,7 +4,7 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.signUpSend,
   name: AppRoutePath.signUpSend,
 )
-class SignUpSendRouteData extends GoRouteData {
+class SignUpSendRouteData extends GoRouteData with _$SignUpSendRouteData {
   const SignUpSendRouteData();
 
   @override

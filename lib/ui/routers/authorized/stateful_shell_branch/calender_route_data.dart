@@ -10,7 +10,7 @@ const _calenderTypedStatefulShellBranch = TypedStatefulShellBranch(
   ],
 );
 
-class CalenderRouteData extends GoRouteData {
+class CalenderRouteData extends GoRouteData with _$CalenderRouteData {
   const CalenderRouteData();
 
   @override

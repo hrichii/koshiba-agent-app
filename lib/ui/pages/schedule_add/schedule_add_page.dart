@@ -18,75 +18,72 @@ class ScheduleAddPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppMessage.current.common_add_schedule,
-            style: AppTextStyle.bodyLarge16.withGray100(),
+    appBar: AppBar(
+      title: Text(
+        AppMessage.current.common_add_schedule,
+        style: AppTextStyle.bodyLarge16.withGray100(),
+      ),
+    ),
+    body: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        MeetingScheduleFormFormBuilder(
+          model: const MeetingScheduleForm(),
+          builder: (context, form, _) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ReactiveTextFieldWithScroll<String>(
+                formControl: form.uriControl,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: AppMessage.current.field_meeting_url,
+                ),
+                onSubmitted: (_) => onSubmitted(ref, form.model),
+              ),
+              ReactiveDateTimePicker(
+                type: ReactiveDatePickerFieldType.dateTime,
+                formControl: form.startAtControl,
+                decoration: InputDecoration(
+                  hintText: AppMessage.current.field_meeting_started_at,
+                ),
+              ),
+              ReactiveMeetingScheduleFormFormConsumer(
+                builder: (_, form, _) => FilledButton(
+                  onPressed: !form.form.valid
+                      ? null
+                      : () async {
+                          final result = await onSubmitted(ref, form.model);
+                          switch (result) {
+                            case ResultOk<void, AppMessageCode>():
+                              if (context.mounted) {
+                                Navigator.pop(context);
+                              }
+                            case ResultNg<void, AppMessageCode>():
+                          }
+                        },
+                  child: Text(AppMessage.current.meeting_register),
+                ),
+              ),
+            ],
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            MeetingScheduleFormFormBuilder(
-              model: const MeetingScheduleForm(),
-              builder: (context, form, _) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ReactiveTextFieldWithScroll<String>(
-                    formControl: form.uriControl,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: AppMessage.current.field_meeting_url,
-                    ),
-                    onSubmitted: (_) => onSubmitted(ref, form.model),
-                  ),
-                  ReactiveDateTimePicker(
-                    type: ReactiveDatePickerFieldType.dateTime,
-                    formControl: form.startAtControl,
-                    decoration: InputDecoration(
-                      hintText: AppMessage.current.field_meeting_started_at,
-                    ),
-                  ),
-                  ReactiveMeetingScheduleFormFormConsumer(
-                    builder: (_, form, ___) => FilledButton(
-                      onPressed: !form.form.valid
-                          ? null
-                          : () async {
-                              final result = await onSubmitted(ref, form.model);
-                              switch (result) {
-                                case ResultOk<void, AppMessageCode>():
-                                  if (context.mounted) {
-                                    Navigator.pop(context);
-                                  }
-                                case ResultNg<void, AppMessageCode>():
-                              }
-                            },
-                      child: Text(AppMessage.current.meeting_register),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+      ],
+    ),
+  );
   Future<Result<void, AppMessageCode>> onSubmitted(
     WidgetRef ref,
     MeetingScheduleForm form,
-  ) =>
-      ref
-          .read(meetingRepositoryProvider)
-          .registerMeeting(
-            dto: MeetingCreateRequestDto(
-              url: Uri.parse(form.uri!),
-              startAt: form.startAt!,
-            ),
-          )
-          .withLoaderOverlay()
-          .withToastAtError()
-          .withToastAtSuccess(
-            (_) => AppMessage.current.meeting_register_success,
-          );
+  ) => ref
+      .read(meetingRepositoryProvider)
+      .registerMeeting(
+        dto: MeetingCreateRequestDto(
+          url: Uri.parse(form.uri!),
+          startAt: form.startAt!,
+        ),
+      )
+      .withLoaderOverlay()
+      .withToastAtError()
+      .withToastAtSuccess((_) => AppMessage.current.meeting_register_success);
 }

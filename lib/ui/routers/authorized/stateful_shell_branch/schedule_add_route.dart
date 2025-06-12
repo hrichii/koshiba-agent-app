@@ -4,7 +4,7 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.scheduleAdd,
   name: AppRoutePath.scheduleAdd,
 )
-class ScheduleAddRoute extends GoRouteData {
+class ScheduleAddRoute extends GoRouteData with _$ScheduleAddRoute {
   const ScheduleAddRoute();
 
   @override

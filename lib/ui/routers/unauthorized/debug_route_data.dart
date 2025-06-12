@@ -4,7 +4,7 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.debug,
   name: AppRoutePath.debug,
 )
-class DebugRouteData extends GoRouteData {
+class DebugRouteData extends GoRouteData with _$DebugRouteData {
   const DebugRouteData();
 
   @override

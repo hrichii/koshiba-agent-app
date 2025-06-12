@@ -10,7 +10,7 @@ const _homeTypedStatefulShellBranch = TypedStatefulShellBranch(
   ],
 );
 
-class HomeRouteData extends GoRouteData {
+class HomeRouteData extends GoRouteData with _$HomeRouteData {
   const HomeRouteData();
 
   @override
