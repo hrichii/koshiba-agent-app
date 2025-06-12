@@ -11,7 +11,7 @@
   "common_navigation_home": "Home",
   "common_navigation_calendar": "Calendar",
   "common_navigation_document": "Document",
-  "common_navigation_settings": "Settings",
+  "common_navigation_accounts": "Accounts",
   "sign_up_success": "Invite the bot",
   "account_delete_success": "Account deleted",
   "sign_out_success": "Sign out completed",

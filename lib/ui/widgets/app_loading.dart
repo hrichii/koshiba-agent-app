@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/constants/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
 
 /// アプリ共通のローディングウィジェット
 class AppLoading extends StatelessWidget {

@@ -50,6 +50,9 @@ class MessageLookup extends MessageLookupByLibrary {
           "Delete account",
         ),
         "common_invite_bot": MessageLookupByLibrary.simpleMessage("Invite bot"),
+        "common_navigation_accounts": MessageLookupByLibrary.simpleMessage(
+          "Accounts",
+        ),
         "common_navigation_calendar": MessageLookupByLibrary.simpleMessage(
           "Calendar",
         ),
@@ -57,9 +60,6 @@ class MessageLookup extends MessageLookupByLibrary {
           "Document",
         ),
         "common_navigation_home": MessageLookupByLibrary.simpleMessage("Home"),
-        "common_navigation_settings": MessageLookupByLibrary.simpleMessage(
-          "Settings",
-        ),
         "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
         "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
           "Sign in with Google",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/constants/app_space.dart';
-import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 
 /// アプリ共通のエラー表示ウィジェット
 class AppError extends StatelessWidget {

@@ -7,7 +7,7 @@ part of 'calendar_list_use_case.dart';
 // **************************************************************************
 
 String _$calendarListUseCaseHash() =>
-    r'05be76425617b88da22c2216d4f1b780a41cf244';
+    r'c10989711ca1d96c1baad987bfc8a47dfac946a4';
 
 /// See also [CalendarListUseCase].
 @ProviderFor(CalendarListUseCase)
