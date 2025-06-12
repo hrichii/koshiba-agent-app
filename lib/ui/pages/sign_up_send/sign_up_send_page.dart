@@ -13,10 +13,7 @@ import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_fiel
 import 'package:koshiba_agent_app/ui/routers/router.dart';
 
 class SignUpSendPage extends ConsumerWidget {
-  const SignUpSendPage({
-    required this.onSubmit,
-    super.key,
-  });
+  const SignUpSendPage({required this.onSubmit, super.key});
   final Future<void> Function(SignIn) onSubmit;
 
   @override
@@ -54,7 +51,7 @@ class SignUpSendPage extends ConsumerWidget {
               ),
             ),
             ReactiveSignInFormConsumer(
-              builder: (_, form, ___) => FilledButton(
+              builder: (_, form, _) => FilledButton(
                 onPressed: () => onSubmit(form.model),
                 child: Text(AppMessage.current.common_sign_up),
               ),

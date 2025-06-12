@@ -12,13 +12,14 @@ String _$meUseCaseHash() => r'8d3b4fb13f4486bcf6b67d5d3b5fdacc3bc433da';
 @ProviderFor(MeUseCase)
 final meUseCaseProvider =
     AutoDisposeNotifierProvider<MeUseCase, Resource<List<ChatRoom>>>.internal(
-  MeUseCase.new,
-  name: r'meUseCaseProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$meUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      MeUseCase.new,
+      name: r'meUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$meUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$MeUseCase = AutoDisposeNotifier<Resource<List<ChatRoom>>>;
 // ignore_for_file: type=lint

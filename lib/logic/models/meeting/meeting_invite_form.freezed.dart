@@ -15,51 +15,47 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$MeetingInviteForm {
-  @JsonKey(name: 'url')
-  @RfControl(validators: AppValidation.meetingUri)
-  String? get uri;
 
-  /// Create a copy of MeetingInviteForm
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $MeetingInviteFormCopyWith<MeetingInviteForm> get copyWith =>
-      _$MeetingInviteFormCopyWithImpl<MeetingInviteForm>(
-          this as MeetingInviteForm, _$identity);
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? get uri;
+/// Create a copy of MeetingInviteForm
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MeetingInviteFormCopyWith<MeetingInviteForm> get copyWith => _$MeetingInviteFormCopyWithImpl<MeetingInviteForm>(this as MeetingInviteForm, _$identity);
 
   /// Serializes this MeetingInviteForm to a JSON map.
   Map<String, dynamic> toJson();
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is MeetingInviteForm &&
-            (identical(other.uri, uri) || other.uri == uri));
-  }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, uri);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeetingInviteForm&&(identical(other.uri, uri) || other.uri == uri));
+}
 
-  @override
-  String toString() {
-    return 'MeetingInviteForm(uri: $uri)';
-  }
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
+
+@override
+String toString() {
+  return 'MeetingInviteForm(uri: $uri)';
+}
+
+
 }
 
 /// @nodoc
-abstract mixin class $MeetingInviteFormCopyWith<$Res> {
-  factory $MeetingInviteFormCopyWith(
-          MeetingInviteForm value, $Res Function(MeetingInviteForm) _then) =
-      _$MeetingInviteFormCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'url')
-      @RfControl(validators: AppValidation.meetingUri)
-      String? uri});
-}
+abstract mixin class $MeetingInviteFormCopyWith<$Res>  {
+  factory $MeetingInviteFormCopyWith(MeetingInviteForm value, $Res Function(MeetingInviteForm) _then) = _$MeetingInviteFormCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri
+});
 
+
+
+
+}
 /// @nodoc
 class _$MeetingInviteFormCopyWithImpl<$Res>
     implements $MeetingInviteFormCopyWith<$Res> {
@@ -68,85 +64,67 @@ class _$MeetingInviteFormCopyWithImpl<$Res>
   final MeetingInviteForm _self;
   final $Res Function(MeetingInviteForm) _then;
 
-  /// Create a copy of MeetingInviteForm
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uri = freezed,
-  }) {
-    return _then(_self.copyWith(
-      uri: freezed == uri
-          ? _self.uri
-          : uri // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Create a copy of MeetingInviteForm
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? uri = freezed,}) {
+  return _then(_self.copyWith(
+uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
+
+}
+
 
 /// @nodoc
 @JsonSerializable()
+
 class _MeetingInviteForm extends MeetingInviteForm {
-  const _MeetingInviteForm(
-      {@JsonKey(name: 'url')
-      @RfControl(validators: AppValidation.meetingUri)
-      this.uri})
-      : super._();
-  factory _MeetingInviteForm.fromJson(Map<String, dynamic> json) =>
-      _$MeetingInviteFormFromJson(json);
+  const _MeetingInviteForm({@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) this.uri}): super._();
+  factory _MeetingInviteForm.fromJson(Map<String, dynamic> json) => _$MeetingInviteFormFromJson(json);
 
-  @override
-  @JsonKey(name: 'url')
-  @RfControl(validators: AppValidation.meetingUri)
-  final String? uri;
+@override@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) final  String? uri;
 
-  /// Create a copy of MeetingInviteForm
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$MeetingInviteFormCopyWith<_MeetingInviteForm> get copyWith =>
-      __$MeetingInviteFormCopyWithImpl<_MeetingInviteForm>(this, _$identity);
+/// Create a copy of MeetingInviteForm
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MeetingInviteFormCopyWith<_MeetingInviteForm> get copyWith => __$MeetingInviteFormCopyWithImpl<_MeetingInviteForm>(this, _$identity);
 
-  @override
-  Map<String, dynamic> toJson() {
-    return _$MeetingInviteFormToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$MeetingInviteFormToJson(this, );
+}
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _MeetingInviteForm &&
-            (identical(other.uri, uri) || other.uri == uri));
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeetingInviteForm&&(identical(other.uri, uri) || other.uri == uri));
+}
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, uri);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,uri);
 
-  @override
-  String toString() {
-    return 'MeetingInviteForm(uri: $uri)';
-  }
+@override
+String toString() {
+  return 'MeetingInviteForm(uri: $uri)';
+}
+
+
 }
 
 /// @nodoc
-abstract mixin class _$MeetingInviteFormCopyWith<$Res>
-    implements $MeetingInviteFormCopyWith<$Res> {
-  factory _$MeetingInviteFormCopyWith(
-          _MeetingInviteForm value, $Res Function(_MeetingInviteForm) _then) =
-      __$MeetingInviteFormCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'url')
-      @RfControl(validators: AppValidation.meetingUri)
-      String? uri});
-}
+abstract mixin class _$MeetingInviteFormCopyWith<$Res> implements $MeetingInviteFormCopyWith<$Res> {
+  factory _$MeetingInviteFormCopyWith(_MeetingInviteForm value, $Res Function(_MeetingInviteForm) _then) = __$MeetingInviteFormCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri
+});
 
+
+
+
+}
 /// @nodoc
 class __$MeetingInviteFormCopyWithImpl<$Res>
     implements _$MeetingInviteFormCopyWith<$Res> {
@@ -155,20 +133,16 @@ class __$MeetingInviteFormCopyWithImpl<$Res>
   final _MeetingInviteForm _self;
   final $Res Function(_MeetingInviteForm) _then;
 
-  /// Create a copy of MeetingInviteForm
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? uri = freezed,
-  }) {
-    return _then(_MeetingInviteForm(
-      uri: freezed == uri
-          ? _self.uri
-          : uri // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Create a copy of MeetingInviteForm
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? uri = freezed,}) {
+  return _then(_MeetingInviteForm(
+uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
 }
 
 // dart format on

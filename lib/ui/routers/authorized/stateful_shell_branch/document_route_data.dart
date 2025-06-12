@@ -10,7 +10,7 @@ const _documentTypedStatefulShellBranch = TypedStatefulShellBranch(
   ],
 );
 
-class DocumentRouteData extends GoRouteData {
+class DocumentRouteData extends GoRouteData with _$DocumentRouteData {
   const DocumentRouteData();
 
   @override
