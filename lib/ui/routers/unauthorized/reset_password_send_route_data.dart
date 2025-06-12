@@ -4,7 +4,8 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.resetPasswordSend,
   name: AppRoutePath.resetPasswordSend,
 )
-class ResetPasswordSendRouteData extends GoRouteData {
+class ResetPasswordSendRouteData extends GoRouteData
+    with _$ResetPasswordSendRouteData {
   const ResetPasswordSendRouteData();
 
   @override

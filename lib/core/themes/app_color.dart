@@ -267,9 +267,9 @@ class _Colors {
   // static const red50 = Color(0xFFDE3730);
   // static const red60 = Color(0xFFFF5449);
   // static const red70 = Color(0xFFFF897D);
-  static const red80 = Color(0xFFFFB4AB);
+  // static const red80 = Color(0xFFFFB4AB);
   static const red90 = Color(0xFFFFDAD6);
-  static const red95 = Color(0xFFFFEDEA);
+  // static const red95 = Color(0xFFFFEDEA);
   // static const red98 = Color(0xFFFFF8F7);
   // static const red99 = Color(0xFFFFFBFF);
   static const red100 = Color(0xFFFFFFFF);

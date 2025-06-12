@@ -4,7 +4,7 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.botInvite,
   name: AppRoutePath.botInvite,
 )
-class BotInviteRoute extends GoRouteData {
+class BotInviteRoute extends GoRouteData with _$BotInviteRoute {
   const BotInviteRoute();
 
   @override

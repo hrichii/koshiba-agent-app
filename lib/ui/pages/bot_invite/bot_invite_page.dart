@@ -17,68 +17,62 @@ class BotInvitePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppMessage.current.common_invite_bot,
-            style: AppTextStyle.bodyLarge16.withGray100(),
+    appBar: AppBar(
+      title: Text(
+        AppMessage.current.common_invite_bot,
+        style: AppTextStyle.bodyLarge16.withGray100(),
+      ),
+    ),
+    body: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        MeetingInviteFormFormBuilder(
+          model: const MeetingInviteForm(),
+          builder: (context, form, _) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ReactiveTextFieldWithScroll<String>(
+                formControl: form.uriControl,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: AppMessage.current.field_meeting_url,
+                ),
+                onSubmitted: (_) => onSubmitted(ref, form.model),
+              ),
+              ReactiveMeetingInviteFormFormConsumer(
+                builder: (_, form, _) => FilledButton(
+                  onPressed: !form.form.valid
+                      ? null
+                      : () async {
+                          final result = await onSubmitted(ref, form.model);
+                          switch (result) {
+                            case ResultOk<void, AppMessageCode>():
+                              if (context.mounted) {
+                                Navigator.pop(context);
+                              }
+                            case ResultNg<void, AppMessageCode>():
+                          }
+                        },
+                  child: Text(AppMessage.current.meeting_register),
+                ),
+              ),
+            ],
           ),
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            MeetingInviteFormFormBuilder(
-              model: const MeetingInviteForm(),
-              builder: (context, form, _) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ReactiveTextFieldWithScroll<String>(
-                    formControl: form.uriControl,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: AppMessage.current.field_meeting_url,
-                    ),
-                    onSubmitted: (_) => onSubmitted(ref, form.model),
-                  ),
-                  ReactiveMeetingInviteFormFormConsumer(
-                    builder: (_, form, ___) => FilledButton(
-                      onPressed: !form.form.valid
-                          ? null
-                          : () async {
-                              final result = await onSubmitted(ref, form.model);
-                              switch (result) {
-                                case ResultOk<void, AppMessageCode>():
-                                  if (context.mounted) {
-                                    Navigator.pop(context);
-                                  }
-                                case ResultNg<void, AppMessageCode>():
-                              }
-                            },
-                      child: Text(AppMessage.current.meeting_register),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+      ],
+    ),
+  );
   Future<Result<void, AppMessageCode>> onSubmitted(
     WidgetRef ref,
     MeetingInviteForm form,
-  ) =>
-      ref
-          .read(meetingRepositoryProvider)
-          .registerMeeting(
-            dto: MeetingCreateRequestDto(
-              url: Uri.parse(form.uri!),
-              startAt: null,
-            ),
-          )
-          .withLoaderOverlay()
-          .withToastAtError()
-          .withToastAtSuccess(
-            (_) => AppMessage.current.meeting_register_success,
-          );
+  ) => ref
+      .read(meetingRepositoryProvider)
+      .registerMeeting(
+        dto: MeetingCreateRequestDto(url: Uri.parse(form.uri!), startAt: null),
+      )
+      .withLoaderOverlay()
+      .withToastAtError()
+      .withToastAtSuccess((_) => AppMessage.current.meeting_register_success);
 }

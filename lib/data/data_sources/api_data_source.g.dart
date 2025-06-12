@@ -29,11 +29,11 @@ class _ApiDataSource implements ApiDataSource {
     final _data = dto;
     final _options = _setStreamType<ApiResponse<void>>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings',
@@ -74,11 +74,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<List<Meeting>>>(
       Options(
-        method: 'GET',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings',
@@ -94,10 +94,10 @@ class _ApiDataSource implements ApiDataSource {
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                .map<Meeting>(
-                  (i) => Meeting.fromJson(i as Map<String, dynamic>),
-                )
-                .toList()
+                  .map<Meeting>(
+                    (i) => Meeting.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
             : List.empty(),
       );
     } on Object catch (e, s) {
@@ -119,11 +119,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<Meeting>>(
       Options(
-        method: 'GET',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',
@@ -158,11 +158,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<void>>(
       Options(
-        method: 'DELETE',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'DELETE',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',
@@ -197,11 +197,11 @@ class _ApiDataSource implements ApiDataSource {
     final _data = dto;
     final _options = _setStreamType<ApiResponse<Meeting>>(
       Options(
-        method: 'PUT',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'PUT',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',

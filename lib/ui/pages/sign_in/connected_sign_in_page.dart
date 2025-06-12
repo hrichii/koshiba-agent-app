@@ -53,9 +53,10 @@ class ConnectedSignInPage extends ConsumerWidget {
                 ),
               ),
               ReactiveSignInFormConsumer(
-                builder: (_, form, ___) => FilledButton(
-                  onPressed:
-                      form.form.valid ? () => onSignIn(form.model) : null,
+                builder: (_, form, _) => FilledButton(
+                  onPressed: form.form.valid
+                      ? () => onSignIn(form.model)
+                      : null,
                   child: Text(AppMessage.current.common_sign_in),
                 ),
               ),

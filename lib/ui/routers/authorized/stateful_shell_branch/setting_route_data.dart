@@ -10,7 +10,7 @@ const _settingTypedStatefulShellBranch = TypedStatefulShellBranch(
   ],
 );
 
-class SettingRouteData extends GoRouteData {
+class SettingRouteData extends GoRouteData with _$SettingRouteData {
   const SettingRouteData();
 
   @override

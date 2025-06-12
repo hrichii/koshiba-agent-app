@@ -4,7 +4,7 @@ part of 'package:koshiba_agent_app/ui/routers/router.dart';
   path: AppRoutePath.singIn,
   name: AppRoutePath.singIn,
 )
-class SignInRouteData extends GoRouteData {
+class SignInRouteData extends GoRouteData with _$SignInRouteData {
   const SignInRouteData();
 
   @override

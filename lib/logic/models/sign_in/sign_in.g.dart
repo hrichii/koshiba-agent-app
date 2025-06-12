@@ -7,11 +7,11 @@ part of 'sign_in.dart';
 // **************************************************************************
 
 _SignIn _$SignInFromJson(Map<String, dynamic> json) => _SignIn(
-      email: json['email'] as String?,
-      password: json['password'] as String?,
-    );
+  email: json['email'] as String?,
+  password: json['password'] as String?,
+);
 
 Map<String, dynamic> _$SignInToJson(_SignIn instance) => <String, dynamic>{
-      'email': instance.email,
-      'password': instance.password,
-    };
+  'email': instance.email,
+  'password': instance.password,
+};
