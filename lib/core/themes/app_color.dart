@@ -63,6 +63,7 @@ class AppColor {
   static Color get surfaceTint => _colorScheme.surfaceTint;
   static Color get outlineVariant => _colorScheme.outlineVariant;
   static Color get scrim => _colorScheme.scrim;
+  static Color get backgroundLightGray => _Colors.gray95;
 
   static Color get warn => Colors.orange;
   static Color get success => _Colors.green60;

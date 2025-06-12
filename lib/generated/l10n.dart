@@ -89,6 +89,16 @@ class AppMessage {
     );
   }
 
+  /// `パスワード変更`
+  String get common_change_password {
+    return Intl.message(
+      'パスワード変更',
+      name: 'common_change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `アカウント削除`
   String get common_delete_account {
     return Intl.message(
@@ -154,6 +164,26 @@ class AppMessage {
     return Intl.message(
       'アカウント',
       name: 'common_navigation_accounts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `連携サービス`
+  String get common_connected_service {
+    return Intl.message(
+      '連携サービス',
+      name: 'common_connected_service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleと連携`
+  String get common_connect_for_google {
+    return Intl.message(
+      'Googleと連携',
+      name: 'common_connect_for_google',
       desc: '',
       args: [],
     );

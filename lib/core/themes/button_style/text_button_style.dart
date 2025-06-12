@@ -6,23 +6,19 @@ import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 
 class TextButtonStyle {
-  static ButtonStyle styleForm({
-    required Color color,
-  }) =>
-      TextButton.styleFrom(
+  static ButtonStyle styleForm({required Color color}) => TextButton.styleFrom(
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size.zero,
         padding: const EdgeInsets.all(AppSpace.lg16),
         foregroundColor: color,
         textStyle: AppTextStyle.bodyMedium14,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            AppRadius.md8,
-          ),
+          borderRadius: BorderRadius.circular(AppRadius.md8),
         ),
       ).copyWith(
-        foregroundColor:
-            WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+        foregroundColor: WidgetStateProperty.resolveWith<Color>((
+          Set<WidgetState> states,
+        ) {
           if (states.contains(WidgetState.disabled)) {
             return color.withBlack(0.5);
           } else if (states.contains(WidgetState.hovered)) {
@@ -33,9 +29,7 @@ class TextButtonStyle {
         }),
       );
 
-  static ButtonStyle styleFormWithoutOverlay({
-    required Color color,
-  }) {
+  static ButtonStyle styleFormWithoutOverlay({required Color color}) {
     const Color overlayColor = Colors.transparent;
     return styleForm(color: color).copyWith(
       overlayColor: WidgetStateProperty.resolveWith<Color>(
