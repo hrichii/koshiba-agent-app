@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_space.dart';
 import 'package:koshiba_agent_app/core/extensions/color_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
 
 class IconButtonStyle {
   static ButtonStyle styleForm({

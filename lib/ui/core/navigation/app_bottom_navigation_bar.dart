@@ -44,7 +44,7 @@ class AppBottomNavigationBar extends HookWidget {
           BottomNavigationBarItem(
             icon: const Icon(Icons.settings_outlined),
             activeIcon: const Icon(Icons.settings),
-            label: AppMessage.current.common_navigation_settings,
+            label: AppMessage.current.common_navigation_accounts,
           ),
         ],
       );

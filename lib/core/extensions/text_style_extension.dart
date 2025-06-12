@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 
 extension TextStyleExtension on TextStyle {
   // Color
@@ -11,18 +11,18 @@ extension TextStyleExtension on TextStyle {
       copyWith(color: AppColor.primaryContainer);
   TextStyle withOnPrimaryContainer() =>
       copyWith(color: AppColor.onPrimaryContainer);
-  TextStyle withSecondary() => copyWith(color: AppColor.secondary);
-  TextStyle withOnSecondary() => copyWith(color: AppColor.onSecondary);
-  TextStyle withSecondaryContainer() =>
-      copyWith(color: AppColor.secondaryContainer);
-  TextStyle withOnSecondaryContainer() =>
-      copyWith(color: AppColor.onSecondaryContainer);
-  TextStyle withTertiary() => copyWith(color: AppColor.tertiary);
-  TextStyle withOnTertiary() => copyWith(color: AppColor.onTertiary);
-  TextStyle withTertiaryContainer() =>
-      copyWith(color: AppColor.tertiaryContainer);
-  TextStyle withOnTertiaryContainer() =>
-      copyWith(color: AppColor.onTertiaryContainer);
+  // TextStyle withSecondary() => copyWith(color: AppColor.secondary);
+  // TextStyle withOnSecondary() => copyWith(color: AppColor.onSecondary);
+  // TextStyle withSecondaryContainer() =>
+  //     copyWith(color: AppColor.secondaryContainer);
+  // TextStyle withOnSecondaryContainer() =>
+  //     copyWith(color: AppColor.onSecondaryContainer);
+  // TextStyle withTertiary() => copyWith(color: AppColor.tertiary);
+  // TextStyle withOnTertiary() => copyWith(color: AppColor.onTertiary);
+  // TextStyle withTertiaryContainer() =>
+  //     copyWith(color: AppColor.tertiaryContainer);
+  // TextStyle withOnTertiaryContainer() =>
+  //     copyWith(color: AppColor.onTertiaryContainer);
   TextStyle withError() => copyWith(color: AppColor.error);
   TextStyle withOnError() => copyWith(color: AppColor.onError);
   TextStyle withErrorContainer() => copyWith(color: AppColor.errorContainer);
@@ -66,9 +66,13 @@ extension TextStyleExtension on TextStyle {
       );
 
   // TextOverflow
-  TextStyle withTextOverflow(TextOverflow textOverflow) =>
-      copyWith(overflow: textOverflow);
+  TextStyle withVisible() => copyWith(overflow: TextOverflow.visible);
+  TextStyle withEllipsis() => copyWith(overflow: TextOverflow.ellipsis);
 
   // Underline
   TextStyle withUnderline() => copyWith(decoration: TextDecoration.underline);
+
+  // TextLeadingDistribution
+  TextStyle withLeadingEven() =>
+      copyWith(leadingDistribution: TextLeadingDistribution.even);
 }

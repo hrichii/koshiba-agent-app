@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:koshiba_agent_app/core/constants/app_env.dart';
+import 'package:koshiba_agent_app/core/themes/app_env.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 
 part 'app_message_code.freezed.dart';

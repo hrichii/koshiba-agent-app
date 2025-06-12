@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:koshiba_agent_app/core/constants/app_env.dart';
+import 'package:koshiba_agent_app/core/themes/app_env.dart';
 
 class FirestoreUtil {
   static FirebaseFirestore get _firestore => FirebaseFirestore.instanceFor(

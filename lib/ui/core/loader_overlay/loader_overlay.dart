@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_radius.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_radius.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
 
 class LoaderOverlay {

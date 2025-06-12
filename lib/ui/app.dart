@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:koshiba_agent_app/core/constants/app_color.dart';
-import 'package:koshiba_agent_app/core/constants/app_env.dart';
-import 'package:koshiba_agent_app/core/constants/app_radius.dart';
-import 'package:koshiba_agent_app/core/constants/app_text_theme.dart';
-import 'package:koshiba_agent_app/core/constants/button_style/filled_button_style.dart';
-import 'package:koshiba_agent_app/core/constants/button_style/icon_button_style.dart';
-import 'package:koshiba_agent_app/core/constants/button_style/outlined_button_style.dart';
-import 'package:koshiba_agent_app/core/constants/button_style/text_button_style.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_env.dart';
+import 'package:koshiba_agent_app/core/themes/app_radius.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/filled_button_style.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/icon_button_style.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/outlined_button_style.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/text_button_style.dart';
 import 'package:koshiba_agent_app/core/validation/app_reactive_form_config.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
@@ -20,8 +20,8 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const colorScheme = AppColorScheme.dark;
-    const textTheme = AppTextTheme.dark;
+    const colorScheme = AppColorScheme.light;
+    const textTheme = AppTextTheme.normal;
     return AppReactiveFormConfig(
       child: MaterialApp.router(
         title: AppEnv.appName,
@@ -33,15 +33,15 @@ class App extends ConsumerWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        locale: const Locale('ja'),
         supportedLocales: AppMessage.delegate.supportedLocales,
         theme: ThemeData(
           colorScheme: colorScheme,
           textTheme: textTheme,
-          useMaterial3: true,
-          scaffoldBackgroundColor: AppColorScheme.dark.surface,
+          scaffoldBackgroundColor: AppColorScheme.light.surface,
           appBarTheme: AppBarTheme(
             surfaceTintColor: Colors.transparent,
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColorScheme.light.surface,
             elevation: 0,
             centerTitle: true,
             titleTextStyle: textTheme.bodyLarge,
@@ -84,6 +84,19 @@ class App extends ConsumerWidget {
             dense: true,
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
+          ),
+          navigationRailTheme: NavigationRailThemeData(
+            backgroundColor: colorScheme.surface,
+            selectedIconTheme: IconThemeData(
+              color: colorScheme.onPrimaryContainer,
+            ),
+            unselectedIconTheme: IconThemeData(
+              color: AppColor.gray50,
+            ),
+            selectedLabelTextStyle:
+                textTheme.bodyMedium?.withOnPrimaryContainer(),
+            unselectedLabelTextStyle: textTheme.bodyMedium?.withGray50(),
+            indicatorColor: colorScheme.primaryContainer,
           ),
           bottomSheetTheme: BottomSheetThemeData(
             backgroundColor: colorScheme.surface,

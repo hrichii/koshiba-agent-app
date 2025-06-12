@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTextTheme {
-  static const TextTheme dark = _default;
+  static const TextTheme normal = _default;
 
-  static const _textOverflow = TextOverflow.ellipsis;
-  static const _fontWeight = FontWeight.w600;
+  static const _textOverflow = TextOverflow.visible;
+  static const _fontWeight = FontWeight.w300;
   static const _default = TextTheme(
     displayMedium: TextStyle(
       fontSize: 48,
@@ -60,7 +60,7 @@ class AppTextTheme {
 }
 
 class AppTextStyle {
-  static const TextTheme _textTheme = AppTextTheme.dark;
+  static const TextTheme _textTheme = AppTextTheme.normal;
   static TextStyle get displayMedium48 => _textTheme.displayMedium!;
   static TextStyle get titleLarge32 => _textTheme.titleLarge!;
   static TextStyle get titleMedium24 => _textTheme.titleMedium!;

@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
       $scheduleAddRoute,
       $botInviteRoute,
       $resetPasswordSendRouteData,
+      $debugRouteData,
       $signInRouteData,
       $signUpSendRouteData,
       $signUpVerifyRouteData,
@@ -196,6 +197,30 @@ extension $ResetPasswordSendRouteDataExtension on ResetPasswordSendRouteData {
 
   String get location => GoRouteData.$location(
         '/reset-password/send',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $debugRouteData => GoRouteData.$route(
+      path: '/debug',
+      name: '/debug',
+      factory: $DebugRouteDataExtension._fromState,
+    );
+
+extension $DebugRouteDataExtension on DebugRouteData {
+  static DebugRouteData _fromState(GoRouterState state) =>
+      const DebugRouteData();
+
+  String get location => GoRouteData.$location(
+        '/debug',
       );
 
   void go(BuildContext context) => context.go(location);
