@@ -6,6 +6,7 @@ import 'package:koshiba_agent_app/data/data_sources/api_interceptor/token_interc
 import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
 import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_request_dto.dart';
+import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_status.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_update_request_dto.dart';
@@ -68,11 +69,19 @@ abstract class ApiDataSource {
     @Body() MeetingUpdateRequestDto dto,
   );
 
+  @GET('/connects/google')
+  @Headers(_headerMap)
+  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnect();
+
   @POST('/connects/google')
   @Headers(_headerMap)
-  Future<ApiResponse<void>> saveGoogleCredential(
+  Future<ApiResponse<void>> saveGoogleConnect(
     @Body() ConnectToGoogleRequestDto dto,
   );
+
+  @DELETE('/connects/google')
+  @Headers(_headerMap)
+  Future<ApiResponse<void>> deleteGoogleConnect();
 
   @GET('/calendars')
   @Headers(_headerMap)

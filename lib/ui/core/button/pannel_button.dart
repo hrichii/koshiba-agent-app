@@ -18,27 +18,26 @@ class PannelButtonGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(radius),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: spacing,
-          children: pannelButtonDataList.asMap().entries.map((entry) {
-            final index = entry.key;
-            final buttonData = entry.value;
-            return PannelButton(
-              onPressed: buttonData.onPressed,
-              topRadius: index == 0 ? radius : 0,
-              bottomRadius:
-                  index == pannelButtonDataList.length - 1 ? radius : 0,
-              child: buttonData.child,
-            );
-          }).toList(),
-        ),
-      );
+    decoration: BoxDecoration(
+      color: backgroundColor,
+      borderRadius: BorderRadius.circular(radius),
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: spacing,
+      children: pannelButtonDataList.asMap().entries.map((entry) {
+        final index = entry.key;
+        final buttonData = entry.value;
+        return PannelButton(
+          onPressed: buttonData.onPressed,
+          topRadius: index == 0 ? radius : 0,
+          bottomRadius: index == pannelButtonDataList.length - 1 ? radius : 0,
+          child: buttonData.child,
+        );
+      }).toList(),
+    ),
+  );
 }
 
 class PannelButtonData {
@@ -48,12 +47,17 @@ class PannelButtonData {
     required Widget title,
     VoidCallback? onPressed,
     ButtonStyle? style,
-  }) =>
-      PannelButtonData(
-        child: Row(spacing: AppSpace.sm8, children: [leadingIcon, title]),
-        onPressed: onPressed,
-        style: style,
-      );
+  }) => PannelButtonData(
+    child: Row(
+      spacing: AppSpace.sm8,
+      children: [
+        leadingIcon,
+        Flexible(child: title),
+      ],
+    ),
+    onPressed: onPressed,
+    style: style,
+  );
   final Widget child;
   final VoidCallback? onPressed;
   final ButtonStyle? style;
@@ -76,22 +80,22 @@ class PannelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IgnorePointer(
-        ignoring: onPressed == null,
-        child: FilledButton(
-          onPressed: onPressed ?? () {},
-          style: (style ?? FilledButtonStyle.pannel).copyWith(
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(topRadius),
-                  topRight: Radius.circular(topRadius),
-                  bottomLeft: Radius.circular(bottomRadius),
-                  bottomRight: Radius.circular(bottomRadius),
-                ),
-              ),
+    ignoring: onPressed == null,
+    child: FilledButton(
+      onPressed: onPressed ?? () {},
+      style: (style ?? FilledButtonStyle.pannel).copyWith(
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(topRadius),
+              topRight: Radius.circular(topRadius),
+              bottomLeft: Radius.circular(bottomRadius),
+              bottomRight: Radius.circular(bottomRadius),
             ),
           ),
-          child: child,
         ),
-      );
+      ),
+      child: child,
+    ),
+  );
 }

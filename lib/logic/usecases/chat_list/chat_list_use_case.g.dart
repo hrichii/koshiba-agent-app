@@ -11,16 +11,19 @@ String _$calendarListUseCaseHash() =>
 
 /// See also [CalendarListUseCase].
 @ProviderFor(CalendarListUseCase)
-final calendarListUseCaseProvider = AutoDisposeNotifierProvider<
-    CalendarListUseCase, Resource<List<ChatRoom>>>.internal(
-  CalendarListUseCase.new,
-  name: r'calendarListUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$calendarListUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final calendarListUseCaseProvider =
+    AutoDisposeNotifierProvider<
+      CalendarListUseCase,
+      Resource<List<ChatRoom>>
+    >.internal(
+      CalendarListUseCase.new,
+      name: r'calendarListUseCaseProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$calendarListUseCaseHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$CalendarListUseCase = AutoDisposeNotifier<Resource<List<ChatRoom>>>;
 // ignore_for_file: type=lint

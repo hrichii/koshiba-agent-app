@@ -42,6 +42,7 @@ class AuthenticationDataSource {
   Future<Result<String, AppMessageCode>> getAuthCode() async {
     try {
       final GoogleSignInAccount googleSignInAccount;
+      await _googleSignInForMobile.signOut();
       switch (await _googleSignInForMobile.signIn()) {
         case final GoogleSignInAccount account:
           googleSignInAccount = account;
@@ -65,8 +66,8 @@ class AuthenticationDataSource {
 
   Future<Result<Client, AppMessageCode>> getAuthenticatedClient() async {
     //
-    final authenticatedClient =
-        await _googleSignInForMobile.authenticatedClient();
+    final authenticatedClient = await _googleSignInForMobile
+        .authenticatedClient();
     if (authenticatedClient == null) {
       return const ResultNg(
         value: AppMessageCode.errorClientGooleAuthentication(),
@@ -78,27 +79,25 @@ class AuthenticationDataSource {
   Future<Result<AppUserCredential, AppMessageCode>> signUpWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _handleAuth(
-        () => _firebaseAuth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        ),
-      );
+  }) => _handleAuth(
+    () => _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    ),
+  );
 
   Future<Result<AppUserCredential, AppMessageCode>> signInWithEmailAndPassword({
     required String email,
     required String password,
-  }) =>
-      _handleAuth(
-        () => _firebaseAuth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        ),
-      );
+  }) => _handleAuth(
+    () => _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    ),
+  );
 
   Future<Result<SignInOrSignUpWithGoogle<AppUserCredential>, AppMessageCode>>
-      signInOrSignUpWithGoogle() async {
+  signInOrSignUpWithGoogle() async {
     try {
       final googleUser = await _googleSignInForMobile.signIn();
       if (googleUser == null) {
