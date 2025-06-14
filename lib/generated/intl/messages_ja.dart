@@ -69,6 +69,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "common_sign_up_with_google": MessageLookupByLibrary.simpleMessage(
           "Googleで会員登録",
         ),
+        "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
+          "Googleとの連携が完了しました",
+        ),
         "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
           "アカウントが見つかりません",
         ),

@@ -9,15 +9,12 @@ import 'package:koshiba_agent_app/logic/usecases/meeting/meeting_repository_inte
 import 'package:riverpod/riverpod.dart';
 
 final meetingRepositoryProvider = Provider(
-  (ref) => MeetingRepository(
-    apiDataSource: ref.read(apiDataSourceProvider),
-  ),
+  (ref) => MeetingRepository(apiDataSource: ref.read(apiDataSourceProvider)),
 );
 
 class MeetingRepository implements MeetingRepositoryInterface {
-  MeetingRepository({
-    required ApiDataSource apiDataSource,
-  }) : _apiDataSource = apiDataSource;
+  MeetingRepository({required ApiDataSource apiDataSource})
+      : _apiDataSource = apiDataSource;
 
   final ApiDataSource _apiDataSource;
 

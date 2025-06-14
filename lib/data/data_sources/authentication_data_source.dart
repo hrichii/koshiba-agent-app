@@ -20,6 +20,7 @@ final authenticationDataSourceProvider = Provider(
 class AuthenticationDataSource {
   final _firebaseAuth = FirebaseAuth.instance;
   final _googleSignInForMobile = GoogleSignIn(
+    serverClientId: AppEnv.serverClientId,
     clientId: () {
       if (kIsWeb) {
         return '545963589750-il9l5579kf7up5l10dub9pg232r9396o.apps.googleusercontent.com';
@@ -38,7 +39,32 @@ class AuthenticationDataSource {
     ],
   );
 
+  Future<Result<String, AppMessageCode>> getAuthCode() async {
+    try {
+      final GoogleSignInAccount googleSignInAccount;
+      switch (await _googleSignInForMobile.signIn()) {
+        case final GoogleSignInAccount account:
+          googleSignInAccount = account;
+        case null:
+          return const ResultNg(
+            value: AppMessageCode.infoGoogleSignInCanceled(),
+          );
+      }
+
+      final authCode = googleSignInAccount.serverAuthCode;
+      if (authCode == null) {
+        return const ResultNg(value: AppMessageCode.errorClientUnknown());
+      }
+      return ResultOk(value: authCode);
+    } on FirebaseAuthException catch (e) {
+      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
+    } catch (e) {
+      return const ResultNg(value: AppMessageCode.errorClientUnknown());
+    }
+  }
+
   Future<Result<Client, AppMessageCode>> getAuthenticatedClient() async {
+    //
     final authenticatedClient =
         await _googleSignInForMobile.authenticatedClient();
     if (authenticatedClient == null) {
@@ -84,8 +110,9 @@ class AuthenticationDataSource {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        credential,
+      );
       final user = userCredential.user;
       final appUserCredential = AppUserCredential(
         user: user == null

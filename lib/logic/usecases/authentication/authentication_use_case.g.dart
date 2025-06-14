@@ -13,14 +13,14 @@ String _$authenticationUseCaseHash() =>
 @ProviderFor(AuthenticationUseCase)
 final authenticationUseCaseProvider =
     AutoDisposeNotifierProvider<AuthenticationUseCase, void>.internal(
-      AuthenticationUseCase.new,
-      name: r'authenticationUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$authenticationUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  AuthenticationUseCase.new,
+  name: r'authenticationUseCaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authenticationUseCaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$AuthenticationUseCase = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint

@@ -219,6 +219,16 @@ class AppMessage {
     );
   }
 
+  /// `Googleとの連携が完了しました`
+  String get connect_to_google_success {
+    return Intl.message(
+      'Googleとの連携が完了しました',
+      name: 'connect_to_google_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Botを参加させる`
   String get meeting_register {
     return Intl.message(

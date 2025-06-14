@@ -1,43 +1,30 @@
-import 'package:http/http.dart';
-import 'package:koshiba_agent_app/data/data_sources/authentication_data_source.dart';
-import 'package:koshiba_agent_app/data/data_sources/google_calendar_data_source.dart';
+import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
+import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
 import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/usecases/calendar/calendar_repository_interface.dart';
 import 'package:riverpod/riverpod.dart';
 
 final calendarRepositoryProvider = Provider(
-  (ref) => CalendarRepository(
-    googleCalendarDataSource: ref.read(googleCalendarDataSourceProvider),
-    authenticationDataSource: ref.read(authenticationDataSourceProvider),
-  ),
+  (ref) => CalendarRepository(apiDataSource: ref.read(apiDataSourceProvider)),
 );
 
 class CalendarRepository implements CalendarRepositoryInterface {
-  CalendarRepository({
-    required GoogleCalendarDataSource googleCalendarDataSource,
-    required AuthenticationDataSource authenticationDataSource,
-  })  : _googleCalendarDataSource = googleCalendarDataSource,
-        _authenticationDataSource = authenticationDataSource;
+  CalendarRepository({required ApiDataSource apiDataSource})
+      : _apiDataSource = apiDataSource;
 
-  final GoogleCalendarDataSource _googleCalendarDataSource;
-  final AuthenticationDataSource _authenticationDataSource;
+  final ApiDataSource _apiDataSource;
 
   @override
   Future<Result<List<CalendarEvent>, AppMessageCode>>
       fetchCalendarEventList() async {
-    final clientResult =
-        await _authenticationDataSource.getAuthenticatedClient();
-    final Client client;
-    switch (clientResult) {
-      case ResultOk(:final value):
-        client = value;
-      case ResultNg(:final value):
-        return ResultNg(value: value);
+    final response = await _apiDataSource.getCalendarList();
+    switch (response) {
+      case ApiResponseOk<List<CalendarEvent>>(:final data):
+        return ResultOk(value: data);
+      case ApiResponseNg<List<CalendarEvent>>():
+        return ResultNg(value: response.messageCode);
     }
-    return _googleCalendarDataSource.fetchEventList(
-      client: client,
-    );
   }
 }

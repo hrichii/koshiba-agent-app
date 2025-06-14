@@ -7,15 +7,15 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $authorizedStatefulShellRouteData,
-  $scheduleAddRoute,
-  $botInviteRoute,
-  $resetPasswordSendRouteData,
-  $debugRouteData,
-  $signInRouteData,
-  $signUpSendRouteData,
-  $signUpVerifyRouteData,
-];
+      $authorizedStatefulShellRouteData,
+      $scheduleAddRoute,
+      $botInviteRoute,
+      $resetPasswordSendRouteData,
+      $debugRouteData,
+      $signInRouteData,
+      $signUpSendRouteData,
+      $signUpVerifyRouteData,
+    ];
 
 RouteBase get $authorizedStatefulShellRouteData =>
     StatefulShellRouteData.$route(
@@ -26,7 +26,6 @@ RouteBase get $authorizedStatefulShellRouteData =>
             GoRouteData.$route(
               path: '/home',
               name: '/home',
-
               factory: _$HomeRouteData._fromState,
             ),
           ],
@@ -36,7 +35,6 @@ RouteBase get $authorizedStatefulShellRouteData =>
             GoRouteData.$route(
               path: '/calenders',
               name: '/calenders',
-
               factory: _$CalenderRouteData._fromState,
             ),
           ],
@@ -46,7 +44,6 @@ RouteBase get $authorizedStatefulShellRouteData =>
             GoRouteData.$route(
               path: '/documents',
               name: '/documents',
-
               factory: _$DocumentRouteData._fromState,
             ),
           ],
@@ -56,7 +53,6 @@ RouteBase get $authorizedStatefulShellRouteData =>
             GoRouteData.$route(
               path: '/settings',
               name: '/settings',
-
               factory: _$SettingRouteData._fromState,
             ),
           ],
@@ -154,11 +150,10 @@ mixin _$SettingRouteData on GoRouteData {
 }
 
 RouteBase get $scheduleAddRoute => GoRouteData.$route(
-  path: '/schedule/add',
-  name: '/schedule/add',
-
-  factory: _$ScheduleAddRoute._fromState,
-);
+      path: '/schedule/add',
+      name: '/schedule/add',
+      factory: _$ScheduleAddRoute._fromState,
+    );
 
 mixin _$ScheduleAddRoute on GoRouteData {
   static ScheduleAddRoute _fromState(GoRouterState state) =>
@@ -182,11 +177,10 @@ mixin _$ScheduleAddRoute on GoRouteData {
 }
 
 RouteBase get $botInviteRoute => GoRouteData.$route(
-  path: '/bot/invite',
-  name: '/bot/invite',
-
-  factory: _$BotInviteRoute._fromState,
-);
+      path: '/bot/invite',
+      name: '/bot/invite',
+      factory: _$BotInviteRoute._fromState,
+    );
 
 mixin _$BotInviteRoute on GoRouteData {
   static BotInviteRoute _fromState(GoRouterState state) =>
@@ -210,11 +204,10 @@ mixin _$BotInviteRoute on GoRouteData {
 }
 
 RouteBase get $resetPasswordSendRouteData => GoRouteData.$route(
-  path: '/reset-password/send',
-  name: '/reset-password/send',
-
-  factory: _$ResetPasswordSendRouteData._fromState,
-);
+      path: '/reset-password/send',
+      name: '/reset-password/send',
+      factory: _$ResetPasswordSendRouteData._fromState,
+    );
 
 mixin _$ResetPasswordSendRouteData on GoRouteData {
   static ResetPasswordSendRouteData _fromState(GoRouterState state) =>
@@ -238,11 +231,10 @@ mixin _$ResetPasswordSendRouteData on GoRouteData {
 }
 
 RouteBase get $debugRouteData => GoRouteData.$route(
-  path: '/debug',
-  name: '/debug',
-
-  factory: _$DebugRouteData._fromState,
-);
+      path: '/debug',
+      name: '/debug',
+      factory: _$DebugRouteData._fromState,
+    );
 
 mixin _$DebugRouteData on GoRouteData {
   static DebugRouteData _fromState(GoRouterState state) =>
@@ -266,11 +258,10 @@ mixin _$DebugRouteData on GoRouteData {
 }
 
 RouteBase get $signInRouteData => GoRouteData.$route(
-  path: '/sing-in',
-  name: '/sing-in',
-
-  factory: _$SignInRouteData._fromState,
-);
+      path: '/sing-in',
+      name: '/sing-in',
+      factory: _$SignInRouteData._fromState,
+    );
 
 mixin _$SignInRouteData on GoRouteData {
   static SignInRouteData _fromState(GoRouterState state) =>
@@ -294,11 +285,10 @@ mixin _$SignInRouteData on GoRouteData {
 }
 
 RouteBase get $signUpSendRouteData => GoRouteData.$route(
-  path: '/sign-up/send',
-  name: '/sign-up/send',
-
-  factory: _$SignUpSendRouteData._fromState,
-);
+      path: '/sign-up/send',
+      name: '/sign-up/send',
+      factory: _$SignUpSendRouteData._fromState,
+    );
 
 mixin _$SignUpSendRouteData on GoRouteData {
   static SignUpSendRouteData _fromState(GoRouterState state) =>
@@ -322,11 +312,10 @@ mixin _$SignUpSendRouteData on GoRouteData {
 }
 
 RouteBase get $signUpVerifyRouteData => GoRouteData.$route(
-  path: '/sign-up/verify',
-  name: '/sign-up/verify',
-
-  factory: _$SignUpVerifyRouteData._fromState,
-);
+      path: '/sign-up/verify',
+      name: '/sign-up/verify',
+      factory: _$SignUpVerifyRouteData._fromState,
+    );
 
 mixin _$SignUpVerifyRouteData on GoRouteData {
   static SignUpVerifyRouteData _fromState(GoRouterState state) =>
@@ -336,9 +325,9 @@ mixin _$SignUpVerifyRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location(
-    '/sign-up/verify',
-    queryParams: {'email': _self.email},
-  );
+        '/sign-up/verify',
+        queryParams: {'email': _self.email},
+      );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -365,9 +354,8 @@ String _$routerHash() => r'5ffa95b90878634f5253075b0c05e4b3542b8437';
 final routerProvider = NotifierProvider<Router, GoRouter>.internal(
   Router.new,
   name: r'routerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$routerHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$routerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
