@@ -11,8 +11,8 @@ abstract class CalendarEvent with _$CalendarEvent {
     required String? title,
     required String? description,
     required Uri? url,
-    @DateTimeConverter() required DateTime? startAt,
-    @DateTimeConverter() required DateTime? endAt,
+    @JsonKey(name: 'start_at') @DateTimeConverter() required DateTime? startAt,
+    @JsonKey(name: 'end_at') @DateTimeConverter() required DateTime? endAt,
   }) = _CalendarEvent;
 
   const CalendarEvent._();

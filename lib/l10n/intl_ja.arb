@@ -18,6 +18,7 @@
   "sign_up_success": "アカウント登録が完了しました",
   "account_delete_success": "アカウントを削除しました",
   "sign_out_success": "ログアウトしました",
+  "connect_to_google_success": "Googleとの連携が完了しました",
   "meeting_register": "Botを参加させる",
   "meeting_register_success": "ミーティング登録が完了しました",
   "field_email": "メールアドレス",

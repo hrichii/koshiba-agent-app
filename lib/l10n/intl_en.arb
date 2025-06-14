@@ -18,6 +18,7 @@
   "sign_up_success": "Invite the bot",
   "account_delete_success": "Account deleted",
   "sign_out_success": "Sign out completed",
+  "connect_to_google_success": "Connected to Google successfully",
   "meeting_register": "Register meeting",
   "field_email": "Email",
   "field_password": "Password",

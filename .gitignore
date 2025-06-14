@@ -49,6 +49,6 @@ ios/Flutter/Dart-Defines.xcconfig
 /android/app/.cxx
 /firebase.json
 /ios/Runner/GoogleService-Info.plist
-/lib/core/constants/firebase_options.dart
+/lib/core/themes/firebase_options.dart
 /android/app/google-services.json
 .firebase

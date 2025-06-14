@@ -16,7 +16,8 @@ _MeetingScheduleForm _$MeetingScheduleFormFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$MeetingScheduleFormToJson(
   _MeetingScheduleForm instance,
-) => <String, dynamic>{
-  'url': instance.uri,
-  'start_at': instance.startAt?.toIso8601String(),
-};
+) =>
+    <String, dynamic>{
+      'url': instance.uri,
+      'start_at': instance.startAt?.toIso8601String(),
+    };
