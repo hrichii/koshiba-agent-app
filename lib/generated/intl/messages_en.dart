@@ -78,6 +78,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "common_sign_up_with_google": MessageLookupByLibrary.simpleMessage(
           "Sign up with Google",
         ),
+        "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
+          "Connected to Google successfully",
+        ),
         "error_api_account_not_found": MessageLookupByLibrary.simpleMessage(
           "Account not found",
         ),

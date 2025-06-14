@@ -10,6 +10,7 @@ import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/logic/usecases/connect_service/connect_service_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
 
@@ -31,6 +32,14 @@ class SettingPage extends ConsumerWidget {
         .withToastAtError()
         .withToastAtSuccess((_) => AppMessage.current.account_delete_success)
         .onSuccessWithoutValue(const SignInRouteData().go);
+    Future<void> connectForGoogle() => ref
+        .read(connectServiceUseCaseProvider.notifier)
+        .connectGoogleService()
+        .withLoaderOverlay()
+        .withToastAtError()
+        .withToastAtSuccess(
+          (_) => AppMessage.current.connect_to_google_success,
+        );
 
     return Scaffold(
       backgroundColor: AppColor.backgroundLightGray,
@@ -54,7 +63,7 @@ class SettingPage extends ConsumerWidget {
                 children: [
                   _profileView(),
                   _accountView(signOut: signOut, changePassword: () async {}),
-                  _connectedServiceView(connectForGoogle: () async {}),
+                  _connectedServiceView(connectForGoogle: connectForGoogle),
                   Padding(
                     padding: const EdgeInsets.only(top: AppSpace.xl24),
                     child: _deleteAccountView(deleteAccount: deleteAccount),

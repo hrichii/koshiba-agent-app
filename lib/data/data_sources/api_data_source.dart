@@ -4,6 +4,8 @@ import 'package:koshiba_agent_app/data/data_sources/api_interceptor/logger_inter
 import 'package:koshiba_agent_app/data/data_sources/api_interceptor/response_handle_interceptor.dart';
 import 'package:koshiba_agent_app/data/data_sources/api_interceptor/token_interceptor.dart';
 import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
+import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
+import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_update_request_dto.dart';
@@ -13,21 +15,16 @@ import 'package:riverpod/riverpod.dart';
 
 part 'api_data_source.g.dart';
 
-final apiDataSourceProvider = Provider(
-  (ref) {
-    final dio = Dio(BaseOptions())
-      ..options.baseUrl = AppEnv.apiUrl
-      ..interceptors.addAll([
-        LoggerInterceptor(),
-        TokenInterceptor(),
-        ResponseHandleInterceptor(),
-      ]);
-    return ApiDataSource(
-      baseUrl: AppEnv.apiUrl,
-      dio,
-    );
-  },
-);
+final apiDataSourceProvider = Provider((ref) {
+  final dio = Dio(BaseOptions())
+    ..options.baseUrl = AppEnv.apiUrl
+    ..interceptors.addAll([
+      LoggerInterceptor(),
+      TokenInterceptor(),
+      ResponseHandleInterceptor(),
+    ]);
+  return ApiDataSource(baseUrl: AppEnv.apiUrl, dio);
+});
 
 @RestApi()
 abstract class ApiDataSource {
@@ -44,7 +41,7 @@ abstract class ApiDataSource {
 
   @POST('/meetings')
   @Headers(_headerMap)
-  Future<ApiResponse<void>> registerMeeting(
+  Future<ApiResponse<Meeting>> registerMeeting(
     @Body() MeetingCreateRequestDto dto,
   );
 
@@ -58,15 +55,11 @@ abstract class ApiDataSource {
 
   @GET('/meetings/{meetingId}')
   @Headers(_headerMap)
-  Future<ApiResponse<Meeting>> getMeeting(
-    @Path('meetingId') String meetingId,
-  );
+  Future<ApiResponse<Meeting>> getMeeting(@Path('meetingId') String meetingId);
 
   @DELETE('/meetings/{meetingId}')
   @Headers(_headerMap)
-  Future<ApiResponse<void>> deleteMeeting(
-    @Path('meetingId') String meetingId,
-  );
+  Future<ApiResponse<void>> deleteMeeting(@Path('meetingId') String meetingId);
 
   @PUT('/meetings/{meetingId}')
   @Headers(_headerMap)
@@ -74,4 +67,14 @@ abstract class ApiDataSource {
     @Path('meetingId') String meetingId,
     @Body() MeetingUpdateRequestDto dto,
   );
+
+  @POST('/connects/google')
+  @Headers(_headerMap)
+  Future<ApiResponse<void>> saveGoogleCredential(
+    @Body() ConnectToGoogleRequestDto dto,
+  );
+
+  @GET('/calendars')
+  @Headers(_headerMap)
+  Future<ApiResponse<List<CalendarEvent>>> getCalendarList();
 }
