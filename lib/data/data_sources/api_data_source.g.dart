@@ -31,11 +31,11 @@ class _ApiDataSource implements ApiDataSource {
     final _data = dto;
     final _options = _setStreamType<ApiResponse<Meeting>>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings',
@@ -79,11 +79,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<List<Meeting>>>(
       Options(
-        method: 'GET',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings',
@@ -99,10 +99,10 @@ class _ApiDataSource implements ApiDataSource {
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                .map<Meeting>(
-                  (i) => Meeting.fromJson(i as Map<String, dynamic>),
-                )
-                .toList()
+                  .map<Meeting>(
+                    (i) => Meeting.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
             : List.empty(),
       );
     } on Object catch (e, s) {
@@ -124,11 +124,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<Meeting>>(
       Options(
-        method: 'GET',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',
@@ -163,11 +163,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<void>>(
       Options(
-        method: 'DELETE',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'DELETE',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',
@@ -202,11 +202,11 @@ class _ApiDataSource implements ApiDataSource {
     final _data = dto;
     final _options = _setStreamType<ApiResponse<Meeting>>(
       Options(
-        method: 'PUT',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'PUT',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/meetings/${meetingId}',
@@ -230,7 +230,46 @@ class _ApiDataSource implements ApiDataSource {
   }
 
   @override
-  Future<ApiResponse<void>> saveGoogleCredential(
+  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnect() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'accept': 'application/json',
+      r'content-type': 'application/json',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiResponse<ConnectToGoogleStatus>>(
+      Options(
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
+          .compose(
+            _dio.options,
+            '/connects/google',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponse<ConnectToGoogleStatus> _value;
+    try {
+      _value = ApiResponse<ConnectToGoogleStatus>.fromJson(
+        _result.data!,
+        (json) => ConnectToGoogleStatus.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiResponse<void>> saveGoogleConnect(
     ConnectToGoogleRequestDto dto,
   ) async {
     final _extra = <String, dynamic>{};
@@ -243,11 +282,47 @@ class _ApiDataSource implements ApiDataSource {
     final _data = dto;
     final _options = _setStreamType<ApiResponse<void>>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
+          .compose(
+            _dio.options,
+            '/connects/google',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponse<void> _value;
+    try {
+      _value = ApiResponse<void>.fromJson(_result.data!, (json) => () {}());
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiResponse<void>> deleteGoogleConnect() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{
+      r'accept': 'application/json',
+      r'content-type': 'application/json',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiResponse<void>>(
+      Options(
+            method: 'DELETE',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/connects/google',
@@ -279,11 +354,11 @@ class _ApiDataSource implements ApiDataSource {
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<List<CalendarEvent>>>(
       Options(
-        method: 'GET',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'application/json',
-      )
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             '/calendars',
@@ -299,10 +374,10 @@ class _ApiDataSource implements ApiDataSource {
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                .map<CalendarEvent>(
-                  (i) => CalendarEvent.fromJson(i as Map<String, dynamic>),
-                )
-                .toList()
+                  .map<CalendarEvent>(
+                    (i) => CalendarEvent.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
             : List.empty(),
       );
     } on Object catch (e, s) {

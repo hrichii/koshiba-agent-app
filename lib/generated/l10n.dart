@@ -54,6 +54,11 @@ class AppMessage {
     return Localizations.of<AppMessage>(context, AppMessage);
   }
 
+  /// `キャンセル`
+  String get common_cancel {
+    return Intl.message('キャンセル', name: 'common_cancel', desc: '', args: []);
+  }
+
   /// `ログイン`
   String get common_sign_in {
     return Intl.message('ログイン', name: 'common_sign_in', desc: '', args: []);
@@ -189,6 +194,26 @@ class AppMessage {
     );
   }
 
+  /// `連携済み`
+  String get common_connected {
+    return Intl.message('連携済み', name: 'common_connected', desc: '', args: []);
+  }
+
+  /// `未連携`
+  String get common_disconnected {
+    return Intl.message('未連携', name: 'common_disconnected', desc: '', args: []);
+  }
+
+  /// `取得失敗`
+  String get common_error_fetch_failed {
+    return Intl.message(
+      '取得失敗',
+      name: 'common_error_fetch_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `アカウント登録が完了しました`
   String get sign_up_success {
     return Intl.message(
@@ -199,11 +224,41 @@ class AppMessage {
     );
   }
 
+  /// `アカウントを削除しますか？`
+  String get account_delete_confirm_title {
+    return Intl.message(
+      'アカウントを削除しますか？',
+      name: 'account_delete_confirm_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `削除する`
+  String get account_delete_confirm_button_title {
+    return Intl.message(
+      '削除する',
+      name: 'account_delete_confirm_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `アカウントを削除しました`
   String get account_delete_success {
     return Intl.message(
       'アカウントを削除しました',
       name: 'account_delete_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ログアウトしますか？`
+  String get sign_out_confirm_title {
+    return Intl.message(
+      'ログアウトしますか？',
+      name: 'sign_out_confirm_title',
       desc: '',
       args: [],
     );
@@ -224,6 +279,36 @@ class AppMessage {
     return Intl.message(
       'Googleとの連携が完了しました',
       name: 'connect_to_google_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleとの連携を解除しますか？`
+  String get disconnect_to_google_confirm_title {
+    return Intl.message(
+      'Googleとの連携を解除しますか？',
+      name: 'disconnect_to_google_confirm_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `解除する`
+  String get disconnect_to_google_confirm_disconnect_button_title {
+    return Intl.message(
+      '解除する',
+      name: 'disconnect_to_google_confirm_disconnect_button_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleとの連携が解除されました`
+  String get disconnect_to_google_success {
+    return Intl.message(
+      'Googleとの連携が解除されました',
+      name: 'disconnect_to_google_success',
       desc: '',
       args: [],
     );
