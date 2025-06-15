@@ -230,7 +230,7 @@ class _ApiDataSource implements ApiDataSource {
   }
 
   @override
-  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnect() async {
+  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnectStatus() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
@@ -314,7 +314,7 @@ class _ApiDataSource implements ApiDataSource {
   }
 
   @override
-  Future<ApiResponse<void>> saveGoogleConnect(
+  Future<ApiResponse<void>> saveGoogleCredential(
     ConnectToGoogleRequestDto dto,
   ) async {
     final _extra = <String, dynamic>{};
@@ -352,7 +352,7 @@ class _ApiDataSource implements ApiDataSource {
   }
 
   @override
-  Future<ApiResponse<void>> deleteGoogleConnect() async {
+  Future<ApiResponse<void>> deleteGoogleCredential() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{

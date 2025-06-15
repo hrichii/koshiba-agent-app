@@ -7,7 +7,7 @@ part of 'authentication_use_case.dart';
 // **************************************************************************
 
 String _$authenticationUseCaseHash() =>
-    r'7e2853241bed3a2b94f6256102d3c6c95606bd98';
+    r'd672c991269aea23e6177a01db16e6e1175562ad';
 
 /// See also [AuthenticationUseCase].
 @ProviderFor(AuthenticationUseCase)
