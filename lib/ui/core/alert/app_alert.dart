@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -9,6 +8,7 @@ import 'package:koshiba_agent_app/core/themes/app_radius.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class AppAlert {
   AppAlert._();
@@ -117,13 +117,7 @@ class AppAlertView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
-      return CupertinoAlertDialog(
-        title: title == null ? null : Text(title!),
-        content: content == null ? null : Text(content!),
-        actions: actionList,
-      );
-    } else {
+    if (kIsWeb || Platform.isAndroid) {
       return AlertDialog(
         title: title == null ? null : Text(title!),
         titleTextStyle: AppTextStyle.bodyLarge16.copyWith(
@@ -133,6 +127,12 @@ class AppAlertView extends StatelessWidget {
         contentTextStyle: AppTextStyle.bodyMedium14.copyWith(
           overflow: TextOverflow.visible,
         ),
+        actions: actionList,
+      );
+    } else {
+      return CupertinoAlertDialog(
+        title: title == null ? null : Text(title!),
+        content: content == null ? null : Text(content!),
         actions: actionList,
       );
     }
@@ -184,14 +184,7 @@ class AppAlertAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
-      return CupertinoDialogAction(
-        isDefaultAction: useBold,
-        isDestructiveAction: useRed,
-        onPressed: onPressed,
-        child: Text(text),
-      );
-    } else {
+    if (kIsWeb || Platform.isAndroid) {
       final borderRadius = BorderRadius.circular(AppRadius.sm4);
       return Material(
         color: Colors.transparent,
@@ -204,6 +197,13 @@ class AppAlertAction extends StatelessWidget {
             child: Text(text, style: _getTextStyle()),
           ),
         ),
+      );
+    } else {
+      return CupertinoDialogAction(
+        isDefaultAction: useBold,
+        isDestructiveAction: useRed,
+        onPressed: onPressed,
+        child: Text(text),
       );
     }
   }

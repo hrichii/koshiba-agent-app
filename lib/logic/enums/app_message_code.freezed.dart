@@ -164,6 +164,14 @@ AppMessageCode _$AppMessageCodeFromJson(
           return _ErrorClientGooleAuthentication.fromJson(
             json
           );
+                case 'errorClientWebNotSupported':
+          return _ErrorClientWebNotSupported.fromJson(
+            json
+          );
+                case 'errorClientMobileNotSupported':
+          return _ErrorClientMobileNotSupported.fromJson(
+            json
+          );
         
           default:
             throw CheckedFromJsonException(
@@ -2932,6 +2940,152 @@ class __$ErrorClientGooleAuthenticationCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? message = freezed,}) {
   return _then(_ErrorClientGooleAuthentication(
+message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ErrorClientWebNotSupported implements AppMessageCode {
+  const _ErrorClientWebNotSupported({this.message, final  String? $type}): $type = $type ?? 'errorClientWebNotSupported';
+  factory _ErrorClientWebNotSupported.fromJson(Map<String, dynamic> json) => _$ErrorClientWebNotSupportedFromJson(json);
+
+@override final  String? message;
+
+@JsonKey(name: 'code')
+final String $type;
+
+
+/// Create a copy of AppMessageCode
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ErrorClientWebNotSupportedCopyWith<_ErrorClientWebNotSupported> get copyWith => __$ErrorClientWebNotSupportedCopyWithImpl<_ErrorClientWebNotSupported>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ErrorClientWebNotSupportedToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ErrorClientWebNotSupported&&(identical(other.message, message) || other.message == message));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'AppMessageCode.errorClientWebNotSupported(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ErrorClientWebNotSupportedCopyWith<$Res> implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorClientWebNotSupportedCopyWith(_ErrorClientWebNotSupported value, $Res Function(_ErrorClientWebNotSupported) _then) = __$ErrorClientWebNotSupportedCopyWithImpl;
+@override @useResult
+$Res call({
+ String? message
+});
+
+
+
+
+}
+/// @nodoc
+class __$ErrorClientWebNotSupportedCopyWithImpl<$Res>
+    implements _$ErrorClientWebNotSupportedCopyWith<$Res> {
+  __$ErrorClientWebNotSupportedCopyWithImpl(this._self, this._then);
+
+  final _ErrorClientWebNotSupported _self;
+  final $Res Function(_ErrorClientWebNotSupported) _then;
+
+/// Create a copy of AppMessageCode
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? message = freezed,}) {
+  return _then(_ErrorClientWebNotSupported(
+message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ErrorClientMobileNotSupported implements AppMessageCode {
+  const _ErrorClientMobileNotSupported({this.message, final  String? $type}): $type = $type ?? 'errorClientMobileNotSupported';
+  factory _ErrorClientMobileNotSupported.fromJson(Map<String, dynamic> json) => _$ErrorClientMobileNotSupportedFromJson(json);
+
+@override final  String? message;
+
+@JsonKey(name: 'code')
+final String $type;
+
+
+/// Create a copy of AppMessageCode
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ErrorClientMobileNotSupportedCopyWith<_ErrorClientMobileNotSupported> get copyWith => __$ErrorClientMobileNotSupportedCopyWithImpl<_ErrorClientMobileNotSupported>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ErrorClientMobileNotSupportedToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ErrorClientMobileNotSupported&&(identical(other.message, message) || other.message == message));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,message);
+
+@override
+String toString() {
+  return 'AppMessageCode.errorClientMobileNotSupported(message: $message)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ErrorClientMobileNotSupportedCopyWith<$Res> implements $AppMessageCodeCopyWith<$Res> {
+  factory _$ErrorClientMobileNotSupportedCopyWith(_ErrorClientMobileNotSupported value, $Res Function(_ErrorClientMobileNotSupported) _then) = __$ErrorClientMobileNotSupportedCopyWithImpl;
+@override @useResult
+$Res call({
+ String? message
+});
+
+
+
+
+}
+/// @nodoc
+class __$ErrorClientMobileNotSupportedCopyWithImpl<$Res>
+    implements _$ErrorClientMobileNotSupportedCopyWith<$Res> {
+  __$ErrorClientMobileNotSupportedCopyWithImpl(this._self, this._then);
+
+  final _ErrorClientMobileNotSupported _self;
+  final $Res Function(_ErrorClientMobileNotSupported) _then;
+
+/// Create a copy of AppMessageCode
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? message = freezed,}) {
+  return _then(_ErrorClientMobileNotSupported(
 message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

@@ -167,6 +167,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Google authentication has not yet been completed",
         ),
+    "error_client_mobile_not_supported": MessageLookupByLibrary.simpleMessage(
+      "Mobile is not supported",
+    ),
     "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
       "The request was successful",
     ),
@@ -205,6 +208,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_client_unknow": MessageLookupByLibrary.simpleMessage(
       "An unknown error has occurred",
+    ),
+    "error_client_web_not_supported": MessageLookupByLibrary.simpleMessage(
+      "Web is not supported",
     ),
     "field_email": MessageLookupByLibrary.simpleMessage("Email"),
     "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(

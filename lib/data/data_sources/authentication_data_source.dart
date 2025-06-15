@@ -20,7 +20,8 @@ final authenticationDataSourceProvider = Provider(
 class AuthenticationDataSource {
   final _firebaseAuth = FirebaseAuth.instance;
   final _googleSignInForMobile = GoogleSignIn(
-    serverClientId: AppEnv.serverClientId,
+    forceCodeForRefreshToken: true,
+    serverClientId: kIsWeb ? null : AppEnv.serverClientId,
     clientId: () {
       if (kIsWeb) {
         return '545963589750-il9l5579kf7up5l10dub9pg232r9396o.apps.googleusercontent.com';
@@ -33,8 +34,10 @@ class AuthenticationDataSource {
       }
     }(),
     scopes: [
-      'email',
-      'profile',
+      'openid',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/calendar',
       'https://www.googleapis.com/auth/calendar.events.readonly',
     ],
   );
@@ -140,9 +143,9 @@ class AuthenticationDataSource {
   }
 
   Future<Result<void, AppMessageCode>> signOut() async {
+    // TODO(hrichii): signoutできていない。あとで調査する
     try {
-      await _signOutWithGoogleIfNeeded();
-      await _firebaseAuth.signOut();
+      await (_signOutWithGoogleIfNeeded(), _firebaseAuth.signOut()).wait;
       return const ResultOk(value: null);
     } on FirebaseAuthException catch (e) {
       return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));

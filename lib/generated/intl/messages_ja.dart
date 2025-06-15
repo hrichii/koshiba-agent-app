@@ -146,6 +146,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_client_goole_not_yet_authenticated":
         MessageLookupByLibrary.simpleMessage("Google認証がまだ完了していません"),
+    "error_client_mobile_not_supported": MessageLookupByLibrary.simpleMessage(
+      "モバイルではサポートされていません",
+    ),
     "error_client_status_code_2XX": MessageLookupByLibrary.simpleMessage(
       "リクエストに成功しました。",
     ),
@@ -184,6 +187,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "error_client_unknow": MessageLookupByLibrary.simpleMessage(
       "不明なエラーが発生しました",
+    ),
+    "error_client_web_not_supported": MessageLookupByLibrary.simpleMessage(
+      "Webではサポートされていません",
     ),
     "field_email": MessageLookupByLibrary.simpleMessage("メールアドレス"),
     "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(

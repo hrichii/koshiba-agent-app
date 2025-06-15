@@ -62,9 +62,7 @@ class HomePage extends HookConsumerWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(
-                                Icons.smart_toy_outlined,
-                              ),
+                              const Icon(Icons.smart_toy_outlined),
                               Text(
                                 AppMessage.current.common_invite_bot,
                                 style: Theme.of(context).textTheme.labelLarge,
@@ -91,9 +89,7 @@ class HomePage extends HookConsumerWidget {
                         icon: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(
-                              Icons.event_outlined,
-                            ),
+                            const Icon(Icons.event_outlined),
                             Text(
                               AppMessage.current.common_add_schedule,
                               style: Theme.of(context).textTheme.labelLarge,
@@ -120,9 +116,7 @@ class HomePage extends HookConsumerWidget {
                 child: meetingList.when(
                   data: (meetings) {
                     if (meetings.isEmpty) {
-                      return const Center(
-                        child: Text('予定されている会議はありません'),
-                      );
+                      return const Center(child: Text('予定されている会議はありません'));
                     }
 
                     return ListView.builder(
@@ -155,10 +149,7 @@ class HomePage extends HookConsumerWidget {
 
 // 会議表示用のカードウィジェット
 class MeetingCard extends ConsumerWidget {
-  const MeetingCard({
-    required this.meeting,
-    super.key,
-  });
+  const MeetingCard({required this.meeting, super.key});
 
   final Meeting meeting;
 
@@ -186,10 +177,7 @@ class MeetingCard extends ConsumerWidget {
                   color: Colors.blue,
                 ),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  '会議',
-                  style: AppTextStyle.bodyLarge16.withGray100(),
-                ),
+                Text('会議', style: AppTextStyle.bodyLarge16.withGray100()),
                 const Spacer(),
                 IconButton(
                   icon: const Icon(
@@ -230,16 +218,9 @@ class MeetingCard extends ConsumerWidget {
             // ID情報
             Row(
               children: [
-                const Icon(
-                  Icons.tag,
-                  size: 16,
-                  color: Colors.grey,
-                ),
+                const Icon(Icons.tag, size: 16, color: Colors.grey),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  'ID: ',
-                  style: AppTextStyle.bodyMedium14,
-                ),
+                Text('ID: ', style: AppTextStyle.bodyMedium14),
                 Text(
                   meeting.id,
                   style: AppTextStyle.bodyMedium14.withGray100(),
@@ -250,16 +231,9 @@ class MeetingCard extends ConsumerWidget {
             // 開始日時情報
             Row(
               children: [
-                const Icon(
-                  Icons.access_time,
-                  size: 16,
-                  color: Colors.grey,
-                ),
+                const Icon(Icons.access_time, size: 16, color: Colors.grey),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  '開始日時: ',
-                  style: AppTextStyle.bodyMedium14,
-                ),
+                Text('開始日時: ', style: AppTextStyle.bodyMedium14),
                 Text(
                   dateFormat.format(meeting.startAt),
                   style: AppTextStyle.bodyMedium14.withGray100(),
@@ -270,16 +244,9 @@ class MeetingCard extends ConsumerWidget {
             // 作成日時情報
             Row(
               children: [
-                const Icon(
-                  Icons.calendar_today,
-                  size: 16,
-                  color: Colors.grey,
-                ),
+                const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  '作成日時: ',
-                  style: AppTextStyle.bodyMedium14,
-                ),
+                Text('作成日時: ', style: AppTextStyle.bodyMedium14),
                 Text(
                   dateFormat.format(meeting.createdAt),
                   style: AppTextStyle.bodyMedium14.withGray100(),
@@ -290,16 +257,9 @@ class MeetingCard extends ConsumerWidget {
             // Meeting BaaS ID情報
             Row(
               children: [
-                const Icon(
-                  Icons.cloud_outlined,
-                  size: 16,
-                  color: Colors.grey,
-                ),
+                const Icon(Icons.cloud_outlined, size: 16, color: Colors.grey),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  'BaaS ID: ',
-                  style: AppTextStyle.bodyMedium14,
-                ),
+                Text('BaaS ID: ', style: AppTextStyle.bodyMedium14),
                 Text(
                   meeting.meetingBaasId,
                   style: AppTextStyle.bodyMedium14.withGray100(),
@@ -316,10 +276,7 @@ class MeetingCard extends ConsumerWidget {
                   color: _getStatusColor(meeting.status.level),
                 ),
                 const SizedBox(width: AppSpace.sm8),
-                Text(
-                  'ステータス: ',
-                  style: AppTextStyle.bodyMedium14,
-                ),
+                Text('ステータス: ', style: AppTextStyle.bodyMedium14),
                 Expanded(
                   child: Text(
                     meeting.status.code.message,
@@ -336,20 +293,13 @@ class MeetingCard extends ConsumerWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.link,
-                  size: 16,
-                  color: Colors.grey,
-                ),
+                const Icon(Icons.link, size: 16, color: Colors.grey),
                 const SizedBox(width: AppSpace.sm8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '会議URL: ',
-                        style: AppTextStyle.bodyMedium14,
-                      ),
+                      Text('会議URL: ', style: AppTextStyle.bodyMedium14),
                       const SizedBox(height: 2),
                       Text(
                         meeting.url.toString(),

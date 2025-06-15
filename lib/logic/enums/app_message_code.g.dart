@@ -405,3 +405,25 @@ _ErrorClientGooleAuthentication _$ErrorClientGooleAuthenticationFromJson(
 Map<String, dynamic> _$ErrorClientGooleAuthenticationToJson(
   _ErrorClientGooleAuthentication instance,
 ) => <String, dynamic>{'message': instance.message, 'code': instance.$type};
+
+_ErrorClientWebNotSupported _$ErrorClientWebNotSupportedFromJson(
+  Map<String, dynamic> json,
+) => _ErrorClientWebNotSupported(
+  message: json['message'] as String?,
+  $type: json['code'] as String?,
+);
+
+Map<String, dynamic> _$ErrorClientWebNotSupportedToJson(
+  _ErrorClientWebNotSupported instance,
+) => <String, dynamic>{'message': instance.message, 'code': instance.$type};
+
+_ErrorClientMobileNotSupported _$ErrorClientMobileNotSupportedFromJson(
+  Map<String, dynamic> json,
+) => _ErrorClientMobileNotSupported(
+  message: json['message'] as String?,
+  $type: json['code'] as String?,
+);
+
+Map<String, dynamic> _$ErrorClientMobileNotSupportedToJson(
+  _ErrorClientMobileNotSupported instance,
+) => <String, dynamic>{'message': instance.message, 'code': instance.$type};

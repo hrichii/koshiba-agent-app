@@ -161,5 +161,7 @@
   "error_client_status_code_5XX": "An internal server error has occurred",
   "error_client_status_code_504": "A gateway timeout has occurred",
   "error_client_goole_not_yet_authenticated": "Google authentication has not yet been completed",
-  "error_client_goole_authentication": "Google authentication failed"
+  "error_client_goole_authentication": "Google authentication failed",
+  "error_client_web_not_supported": "Web is not supported",
+  "error_client_mobile_not_supported": "Mobile is not supported"
 }
