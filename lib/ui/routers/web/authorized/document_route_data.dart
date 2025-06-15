@@ -9,5 +9,5 @@ class DocumentRouteData extends GoRouteData with _$DocumentRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const ConnectedDocumentPage();
+      const ScaffoldWithNavigationRail(child: ConnectedDocumentPage());
 }

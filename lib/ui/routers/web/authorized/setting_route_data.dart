@@ -9,5 +9,5 @@ class SettingRouteData extends GoRouteData with _$SettingRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const SettingPage();
+      const ScaffoldWithNavigationRail(child: SettingPage());
 }

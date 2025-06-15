@@ -6,7 +6,7 @@ import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
-import 'package:koshiba_agent_app/ui/core/scaffold/scaffold_with_navigation.dart';
+import 'package:koshiba_agent_app/ui/core/scaffold/scaffold_with_bottom_navigation_bar.dart';
 import 'package:koshiba_agent_app/ui/pages/bot_invite/bot_invite_page.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/calender_page.dart';
 import 'package:koshiba_agent_app/ui/pages/debug/debug_page.dart';
