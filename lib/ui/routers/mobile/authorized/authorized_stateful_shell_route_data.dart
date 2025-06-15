@@ -16,7 +16,7 @@ class AuthorizedStatefulShellRouteData extends StatefulShellRouteData {
     BuildContext context,
     GoRouterState state,
     StatefulNavigationShell navigationShell,
-  ) => ScaffoldWithNavigation(
+  ) => ScaffoldWithBottomNavigationBar(
     selectedIndex: navigationShell.currentIndex,
     onDestinationSelected: navigationShell.goBranch,
     body: navigationShell,

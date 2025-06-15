@@ -6,7 +6,7 @@ import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
-import 'package:koshiba_agent_app/ui/core/scaffold/scaffold_with_bottom_navigation_bar.dart';
+import 'package:koshiba_agent_app/ui/core/scaffold/scaffold_with_navigation_rail.dart';
 import 'package:koshiba_agent_app/ui/pages/bot_invite/bot_invite_page.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/calender_page.dart';
 import 'package:koshiba_agent_app/ui/pages/debug/debug_page.dart';
@@ -20,22 +20,21 @@ import 'package:koshiba_agent_app/ui/pages/sign_up_send/connected_sign_up_send_p
 import 'package:koshiba_agent_app/ui/pages/sign_up_verify/connected_sign_up_verify_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/authorized_stateful_shell_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/calender_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/document_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/home_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/schedule_add_route.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/bot_invite_route.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/authorized/setting_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/unauthorized/reset_password_send_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/unauthorized/debug_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/unauthorized/sign_in_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/unauthorized/sign_up_send_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/mobile/unauthorized/sign_up_verify_route_data.dart';
-part 'mobile_router.g.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/home_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/calender_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/document_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/setting_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/bot_invite_route.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/schedule_add_route.dart';
+part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_in_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_up_send_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_up_verify_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/unauthorized/reset_password_send_route_data.dart';
+part 'package:koshiba_agent_app/ui/routers/web/unauthorized/debug_route_data.dart';
+part 'web_router.g.dart';
 
 @Riverpod(keepAlive: true)
-class MobileRouter extends _$MobileRouter {
+class WebRouter extends _$WebRouter {
   @override
   GoRouter build() {
     final router = GoRouter(

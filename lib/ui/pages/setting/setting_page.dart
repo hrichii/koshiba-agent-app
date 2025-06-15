@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
@@ -21,6 +20,7 @@ import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
 import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
+import 'package:web/web.dart' show window;
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({super.key});
@@ -69,7 +69,7 @@ class SettingPage extends HookConsumerWidget {
 
     Future<void> connectToGoogle() {
       Future<void> getAuthUrlAndOpenUrlForWeb() async {
-        final fromUri = GoRouter.of(context).state.uri;
+        final fromUri = Uri.parse(window.location.href);
         await ref
             .read(connectServiceUseCaseProvider.notifier)
             .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri)

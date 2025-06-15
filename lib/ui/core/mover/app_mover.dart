@@ -1,5 +1,8 @@
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
-import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
+import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart'
+    as mobile;
+import 'package:koshiba_agent_app/ui/routers/web/web_router.dart' as web;
+
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,17 +19,49 @@ class AppMover {
 
   static Future<void> pushBotInvite(BuildContext? context) async {
     if (kIsWeb) {
-      // TODO
+      return const web.BotInviteRoute().push(context ?? _rootContext);
     } else {
-      return const BotInviteRoute().push(context ?? _rootContext);
+      return const mobile.BotInviteRoute().push(context ?? _rootContext);
     }
   }
 
   static Future<void> pushScheduleAdd(BuildContext? context) async {
     if (kIsWeb) {
-      // TODO
+      return const mobile.ScheduleAddRoute().push(context ?? _rootContext);
     } else {
-      return const ScheduleAddRoute().push(context ?? _rootContext);
+      return const mobile.ScheduleAddRoute().push(context ?? _rootContext);
+    }
+  }
+
+  static Future<void> goHome({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.HomeRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.HomeRouteData().go(context ?? _rootContext);
+    }
+  }
+
+  static Future<void> goCalendar({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.CalenderRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.CalenderRouteData().go(context ?? _rootContext);
+    }
+  }
+
+  static Future<void> goDocument({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.DocumentRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.DocumentRouteData().go(context ?? _rootContext);
+    }
+  }
+
+  static Future<void> goSetting({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.SettingRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.SettingRouteData().go(context ?? _rootContext);
     }
   }
 }

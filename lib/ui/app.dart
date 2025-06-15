@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,7 +13,9 @@ import 'package:koshiba_agent_app/core/themes/button_style/outlined_button_style
 import 'package:koshiba_agent_app/core/themes/button_style/text_button_style.dart';
 import 'package:koshiba_agent_app/core/validation/app_reactive_form_config.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/ui/core/transition/no_transitions_builder.dart';
 import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
+import 'package:koshiba_agent_app/ui/routers/web/web_router.dart';
 import 'package:page_transition/page_transition.dart';
 
 class App extends ConsumerWidget {
@@ -26,7 +29,9 @@ class App extends ConsumerWidget {
       child: MaterialApp.router(
         title: AppEnv.appName,
         debugShowCheckedModeBanner: false,
-        routerConfig: ref.watch(mobileRouterProvider),
+        routerConfig: kIsWeb
+            ? ref.watch(webRouterProvider)
+            : ref.watch(mobileRouterProvider),
         localizationsDelegates: const [
           AppMessage.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -107,16 +112,21 @@ class App extends ConsumerWidget {
             ),
           ),
           pageTransitionsTheme: PageTransitionsTheme(
-            builders: <TargetPlatform, PageTransitionsBuilder>{
-              TargetPlatform.iOS: PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: this,
-              ).matchingBuilder,
-              TargetPlatform.android: PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: this,
-              ).matchingBuilder,
-            },
+            builders: kIsWeb
+                ? {
+                    for (final platform in TargetPlatform.values)
+                      platform: const NoTransitionsBuilder(),
+                  }
+                : <TargetPlatform, PageTransitionsBuilder>{
+                    TargetPlatform.iOS: PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: this,
+                    ).matchingBuilder,
+                    TargetPlatform.android: PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: this,
+                    ).matchingBuilder,
+                  },
           ),
           dialogTheme: DialogThemeData(backgroundColor: AppColor.gray20),
         ),
