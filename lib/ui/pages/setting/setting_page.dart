@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/platform/web/web.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_env.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
@@ -20,7 +21,6 @@ import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
 import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
-import 'package:web/web.dart' show window;
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({super.key});
@@ -69,7 +69,7 @@ class SettingPage extends HookConsumerWidget {
 
     Future<void> connectToGoogle() {
       Future<void> getAuthUrlAndOpenUrlForWeb() async {
-        final fromUri = Uri.parse(window.location.href);
+        final fromUri = Uri.parse(webWindow.location.href);
         await ref
             .read(connectServiceUseCaseProvider.notifier)
             .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri)

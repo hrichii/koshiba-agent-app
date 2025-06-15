@@ -41,6 +41,9 @@ class AuthenticationDataSource {
       'https://www.googleapis.com/auth/calendar.events.readonly',
       'https://www.googleapis.com/auth/documents',
       'https://www.googleapis.com/auth/documents.readonly',
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/drive.readonly',
+      'https://www.googleapis.com/auth/drive.file',
     ],
   );
 
