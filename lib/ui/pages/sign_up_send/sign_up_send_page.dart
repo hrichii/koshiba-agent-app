@@ -10,7 +10,7 @@ import 'package:koshiba_agent_app/logic/models/user_credential/app_user_credenti
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_for_password.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 class SignUpSendPage extends ConsumerWidget {
   const SignUpSendPage({required this.onSubmit, super.key});

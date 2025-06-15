@@ -13,9 +13,7 @@ _AppUserCredential _$AppUserCredentialFromJson(Map<String, dynamic> json) =>
           : User.fromJson(json['user'] as Map<String, dynamic>),
       accessToken: json['accessToken'] == null
           ? null
-          : AccessToken.fromJson(
-              json['accessToken'] as Map<String, dynamic>,
-            ),
+          : AccessToken.fromJson(json['accessToken'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AppUserCredentialToJson(_AppUserCredential instance) =>

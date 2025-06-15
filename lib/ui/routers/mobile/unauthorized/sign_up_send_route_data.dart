@@ -1,4 +1,4 @@
-part of 'package:koshiba_agent_app/ui/routers/router.dart';
+part of 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 @TypedGoRoute<SignUpSendRouteData>(
   path: AppRoutePath.signUpSend,

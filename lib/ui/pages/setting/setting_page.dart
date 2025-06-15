@@ -20,7 +20,7 @@ import 'package:koshiba_agent_app/ui/core/alert/app_alert.dart';
 import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({super.key});
