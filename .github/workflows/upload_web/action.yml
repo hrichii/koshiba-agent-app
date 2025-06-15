@@ -19,7 +19,7 @@ inputs:
     required: true
   flutter_version:
     description: 'Flutter version to use'
-    default: '3.29.2'
+    default: '3.32.3'
   flutter_channel:
     description: 'Flutter channel to use'
     default: 'stable'
