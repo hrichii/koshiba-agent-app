@@ -7,13 +7,12 @@ import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:riverpod/riverpod.dart';
 
-final accountDataSourceProvider = Provider(
-  (ref) => AccountDataSource(),
-);
+final accountDataSourceProvider = Provider((ref) => AccountDataSource());
 
 class AccountDataSource {
-  final _accountsRef =
-      FirestoreUtil.collectionFromEnum(CollectionEnum.accounts);
+  final _accountsRef = FirestoreUtil.collectionFromEnum(
+    CollectionEnum.accounts,
+  );
 
   /// アカウントを作成する
   Future<Result<void, AppMessageCode>> create(AccountCreateDto dto) =>
@@ -23,8 +22,10 @@ class AccountDataSource {
           .toResult(map: (value) => value);
 
   /// アカウントを取得する
-  Future<Result<AccountDto?, AppMessageCode>> get(String uid) =>
-      _accountsRef.doc(uid).get().toResult(
+  Future<Result<AccountDto?, AppMessageCode>> get(String uid) => _accountsRef
+      .doc(uid)
+      .get()
+      .toResult(
         map: (document) {
           final data = document.data();
           return data == null ? null : AccountDto.fromJson(data);

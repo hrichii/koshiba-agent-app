@@ -1,4 +1,4 @@
-import 'package:koshiba_agent_app/data/repositories/connect_service_repository.dart';
+import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_status.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
@@ -11,7 +11,7 @@ part 'connect_service_use_case.g.dart';
 @riverpod
 class ConnectServiceUseCase extends _$ConnectServiceUseCase {
   ConnectServiceRepositoryInterface get _connectServiceRepository =>
-      ref.read(connectServiceRepositoryProvider);
+      ref.read(accountRepositoryProvider);
 
   @override
   Resource<ConnectToGoogleStatus> build() => const Resource.inProgress();

@@ -8,7 +8,8 @@ abstract class AuthenticationRepositoryInterface {
   Future<Result<AppUserCredential, AppMessageCode>> signUp(SignIn signInModel);
 
   Future<Result<AppUserCredential, AppMessageCode>> signIn(SignIn signInModel);
-  Future<Result<AppUserCredential, AppMessageCode>> signInOrSignUpWithGoogle();
+  Future<Result<AppUserCredential, AppMessageCode>>
+  signInOrUpWithGoogleForMobile();
 
   Future<Result<void, AppMessageCode>> signOut();
   Result<User, AppMessageCode> getMe();

@@ -72,7 +72,7 @@ abstract class ApiDataSource {
 
   @GET('/connects/google')
   @Headers(_headerMap)
-  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnect();
+  Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnectStatus();
 
   @GET('/connects/google/auth-url')
   @Headers(_headerMap)
@@ -81,13 +81,13 @@ abstract class ApiDataSource {
 
   @POST('/connects/google')
   @Headers(_headerMap)
-  Future<ApiResponse<void>> saveGoogleConnect(
+  Future<ApiResponse<void>> saveGoogleCredential(
     @Body() ConnectToGoogleRequestDto dto,
   );
 
   @DELETE('/connects/google')
   @Headers(_headerMap)
-  Future<ApiResponse<void>> deleteGoogleConnect();
+  Future<ApiResponse<void>> deleteGoogleCredential();
 
   @GET('/calendars')
   @Headers(_headerMap)

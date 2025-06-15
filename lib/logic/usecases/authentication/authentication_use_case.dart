@@ -19,17 +19,15 @@ class AuthenticationUseCase extends _$AuthenticationUseCase {
 
   Future<Result<AppUserCredential, AppMessageCode>> signIn(
     SignIn signInModel,
-  ) async =>
-      _authenticationRepository.signIn(signInModel);
+  ) async => _authenticationRepository.signIn(signInModel);
 
   Future<Result<AppUserCredential, AppMessageCode>> signUp(
     SignIn signInModel,
-  ) async =>
-      _authenticationRepository.signUp(signInModel);
+  ) async => _authenticationRepository.signUp(signInModel);
 
   Future<Result<AppUserCredential, AppMessageCode>>
-      signInOrSignUpWithGoogle() async =>
-          _authenticationRepository.signInOrSignUpWithGoogle();
+  signInOrSignUpWithGoogle() async =>
+      _authenticationRepository.signInOrUpWithGoogleForMobile();
 
   Future<Result<void, AppMessageCode>> signOut() async =>
       _authenticationRepository.signOut();

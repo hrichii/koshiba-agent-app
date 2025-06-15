@@ -7,7 +7,7 @@ part of 'connect_service_use_case.dart';
 // **************************************************************************
 
 String _$connectServiceUseCaseHash() =>
-    r'566cecf38bbb54ba14c04945c05f13be9fc3be2f';
+    r'd382c4863dd9a0042c4a25ad4c4b9b03ea0f90a8';
 
 /// See also [ConnectServiceUseCase].
 @ProviderFor(ConnectServiceUseCase)
