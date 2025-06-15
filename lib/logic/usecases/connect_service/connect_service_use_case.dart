@@ -16,10 +16,35 @@ class ConnectServiceUseCase extends _$ConnectServiceUseCase {
   @override
   Resource<ConnectToGoogleStatus> build() => const Resource.inProgress();
 
-  Future<Result<void, AppMessageCode>> connectGoogleService() async {
+  Future<Result<Uri, AppMessageCode>> getAuthUrlForConnectGoogleServiceForWeb({
+    required Uri fromUri,
+  }) async {
     final preState = state;
     state = const ResourceInProgress();
-    final result = await _connectServiceRepository.connectGoogleService();
+    final result = await _connectServiceRepository
+        .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri);
+    switch (result) {
+      case ResultOk<Uri, AppMessageCode>():
+        state = const ResourceDone(
+          value: ConnectToGoogleStatus(isConnected: true),
+        );
+        return result;
+      case ResultNg<Uri, AppMessageCode>(:final value):
+        state = ResourceError(value: value);
+        if (preState is ResourceDone) {
+          state = preState;
+        } else {
+          state = ResourceError(value: value);
+        }
+        return result;
+    }
+  }
+
+  Future<Result<void, AppMessageCode>> connectGoogleServiceForMobile() async {
+    final preState = state;
+    state = const ResourceInProgress();
+    final result = await _connectServiceRepository
+        .connectGoogleServiceForMobile();
     switch (result) {
       case ResultOk<void, AppMessageCode>():
         state = const ResourceDone(

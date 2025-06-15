@@ -45,9 +45,8 @@ sealed class AppMessageCode with _$AppMessageCode {
   const factory AppMessageCode.errorApiResourceAlreadyExists({
     String? message,
   }) = _ErrorApiResourceAlreadyExists;
-  const factory AppMessageCode.errorApiResourceUnauthorized({
-    String? message,
-  }) = _ErrorApiResourceUnauthorized;
+  const factory AppMessageCode.errorApiResourceUnauthorized({String? message}) =
+      _ErrorApiResourceUnauthorized;
 
   const factory AppMessageCode.errorApiServerIssue({String? message}) =
       _ErrorApiServerIssue;
@@ -102,28 +101,35 @@ sealed class AppMessageCode with _$AppMessageCode {
     String? message,
   }) = _ErrorClientGooleAuthentication;
 
+  // Webは対応していない
+  const factory AppMessageCode.errorClientWebNotSupported({String? message}) =
+      _ErrorClientWebNotSupported;
+  // Mobileは対応していない
+  const factory AppMessageCode.errorClientMobileNotSupported({
+    String? message,
+  }) = _ErrorClientMobileNotSupported;
+
   factory AppMessageCode.fromJson(Map<String, dynamic> json) =>
       _$AppMessageCodeFromJson(json);
 
   factory AppMessageCode.fromDioExceptionType(
     DioExceptionType dioExceptionType,
-  ) =>
-      switch (dioExceptionType) {
-        DioExceptionType.connectionTimeout =>
-          const AppMessageCode.errorClientDioTimeout(),
-        DioExceptionType.sendTimeout =>
-          const AppMessageCode.errorClientDioTimeout(),
-        DioExceptionType.receiveTimeout =>
-          const AppMessageCode.errorClientDioTimeout(),
-        DioExceptionType.badCertificate =>
-          const AppMessageCode.errorClientDioConnection(),
-        DioExceptionType.badResponse =>
-          const AppMessageCode.errorClientUnexpectedResponse(),
-        DioExceptionType.cancel => const AppMessageCode.errorClientDioCancel(),
-        DioExceptionType.connectionError =>
-          const AppMessageCode.errorClientDioConnection(),
-        DioExceptionType.unknown => const AppMessageCode.errorClientUnknown(),
-      };
+  ) => switch (dioExceptionType) {
+    DioExceptionType.connectionTimeout =>
+      const AppMessageCode.errorClientDioTimeout(),
+    DioExceptionType.sendTimeout =>
+      const AppMessageCode.errorClientDioTimeout(),
+    DioExceptionType.receiveTimeout =>
+      const AppMessageCode.errorClientDioTimeout(),
+    DioExceptionType.badCertificate =>
+      const AppMessageCode.errorClientDioConnection(),
+    DioExceptionType.badResponse =>
+      const AppMessageCode.errorClientUnexpectedResponse(),
+    DioExceptionType.cancel => const AppMessageCode.errorClientDioCancel(),
+    DioExceptionType.connectionError =>
+      const AppMessageCode.errorClientDioConnection(),
+    DioExceptionType.unknown => const AppMessageCode.errorClientUnknown(),
+  };
 
   factory AppMessageCode.fromStatusCode({
     required int statusCode,
@@ -142,8 +148,9 @@ sealed class AppMessageCode with _$AppMessageCode {
       414 => AppMessageCode.errorClientStatusCode414(message: message),
       429 => AppMessageCode.errorClientStatusCode429(message: message),
       504 => AppMessageCode.errorClientStatusCode504(message: message),
-      >= 400 && < 500 =>
-        AppMessageCode.errorClientStatusCode4XX(message: message),
+      >= 400 && < 500 => AppMessageCode.errorClientStatusCode4XX(
+        message: message,
+      ),
       >= 500 => AppMessageCode.errorClientStatusCode5XX(message: message),
       _ => AppMessageCode.errorClientUnexpectedResponse(message: message),
     };
@@ -155,69 +162,73 @@ extension AppMessageCodeExtension on AppMessageCode {
       _localizedMessage + (AppEnv.env == 'dev' ? ' [Debug]$message' : '');
 
   String get _localizedMessage => switch (this) {
-        _InfoApiRequestSuccess() => AppMessage.current.info_api_request_success,
-        _InfoGoogleSignInCanceled() =>
-          AppMessage.current.info_google_sign_in_canceled,
-        _ErrorApiAuthenticationInvalid() =>
-          AppMessage.current.error_api_authentication_invalid,
-        _ErrorApiTokenExpired() => AppMessage.current.error_api_token_expired,
-        _ErrorApiAccountNotFound() =>
-          AppMessage.current.error_api_account_not_found,
-        _ErrorApiOperationNotAllowed() =>
-          AppMessage.current.error_api_operation_not_allowed,
-        _ErrorApiInvalidEmail() => AppMessage.current.error_api_invalid_email,
-        _ErrorApiEmailAlreadyUsed() =>
-          AppMessage.current.error_api_email_already_used,
-        _ErrorApiWeakPassword() => AppMessage.current.error_api_weak_password,
-        _ErrorApiUnexpectedResponse() =>
-          AppMessage.current.error_api_unexpected_response,
-        _ErrorApiNetworkRequestFailed() =>
-          AppMessage.current.error_api_network_request_failed,
-        _ErrorApiTooManyRequests() =>
-          AppMessage.current.error_api_too_many_requests,
-        _ErrorApiBadRequest() => AppMessage.current.error_api_bad_request,
-        _ErrorApiNotFound() => AppMessage.current.error_api_not_found,
-        _ErrorApiResourceUnauthorized() =>
-          AppMessage.current.error_api_resource_unauthorized,
-        _ErrorApiBotOperationIssue() =>
-          AppMessage.current.error_api_bot_operation_issue,
-        _ErrorApiBotStartTimePast() =>
-          AppMessage.current.error_api_bot_start_time_past,
-        _ErrorApiResourceAlreadyExists() =>
-          AppMessage.current.error_api_resource_already_exists,
-        _ErrorApiServerIssue() => AppMessage.current.error_api_server_issue,
-        _ErrorClientUnknown() => AppMessage.current.error_client_unknow,
-        _ErrorClientUnexpectedResponse() =>
-          AppMessage.current.error_client_unexpected_response,
-        _ErrorClientDioTimeout() => AppMessage.current.error_client_dio_timeout,
-        _ErrorClientDioCancel() => AppMessage.current.error_client_dio_cancel,
-        _ErrorClientDioConnection() =>
-          AppMessage.current.error_client_dio_connection,
-        _ErrorClientStatusCode2XX() =>
-          AppMessage.current.error_client_status_code_2XX,
-        _ErrorClientStatusCode4XX() =>
-          AppMessage.current.error_client_status_code_4XX,
-        _ErrorClientStatusCode401() =>
-          AppMessage.current.error_client_status_code_401,
-        _ErrorClientStatusCode407() =>
-          AppMessage.current.error_client_status_code_407,
-        _ErrorClientStatusCode408() =>
-          AppMessage.current.error_client_status_code_408,
-        _ErrorClientStatusCode409() =>
-          AppMessage.current.error_client_status_code_409,
-        _ErrorClientStatusCode413() =>
-          AppMessage.current.error_client_status_code_413,
-        _ErrorClientStatusCode414() =>
-          AppMessage.current.error_client_status_code_414,
-        _ErrorClientStatusCode429() =>
-          AppMessage.current.error_client_status_code_429,
-        _ErrorClientStatusCode5XX() =>
-          AppMessage.current.error_client_status_code_5XX,
-        _ErrorClientStatusCode504() =>
-          AppMessage.current.error_client_status_code_504,
-        _ErrorClientGooleNotYetAuthenticated() =>
-          AppMessage.current.error_client_goole_not_yet_authenticated,
-        _ErrorClientGooleAuthentication() =>
-          AppMessage.current.error_client_goole_authentication,
-      };
+    _InfoApiRequestSuccess() => AppMessage.current.info_api_request_success,
+    _InfoGoogleSignInCanceled() =>
+      AppMessage.current.info_google_sign_in_canceled,
+    _ErrorApiAuthenticationInvalid() =>
+      AppMessage.current.error_api_authentication_invalid,
+    _ErrorApiTokenExpired() => AppMessage.current.error_api_token_expired,
+    _ErrorApiAccountNotFound() =>
+      AppMessage.current.error_api_account_not_found,
+    _ErrorApiOperationNotAllowed() =>
+      AppMessage.current.error_api_operation_not_allowed,
+    _ErrorApiInvalidEmail() => AppMessage.current.error_api_invalid_email,
+    _ErrorApiEmailAlreadyUsed() =>
+      AppMessage.current.error_api_email_already_used,
+    _ErrorApiWeakPassword() => AppMessage.current.error_api_weak_password,
+    _ErrorApiUnexpectedResponse() =>
+      AppMessage.current.error_api_unexpected_response,
+    _ErrorApiNetworkRequestFailed() =>
+      AppMessage.current.error_api_network_request_failed,
+    _ErrorApiTooManyRequests() =>
+      AppMessage.current.error_api_too_many_requests,
+    _ErrorApiBadRequest() => AppMessage.current.error_api_bad_request,
+    _ErrorApiNotFound() => AppMessage.current.error_api_not_found,
+    _ErrorApiResourceUnauthorized() =>
+      AppMessage.current.error_api_resource_unauthorized,
+    _ErrorApiBotOperationIssue() =>
+      AppMessage.current.error_api_bot_operation_issue,
+    _ErrorApiBotStartTimePast() =>
+      AppMessage.current.error_api_bot_start_time_past,
+    _ErrorApiResourceAlreadyExists() =>
+      AppMessage.current.error_api_resource_already_exists,
+    _ErrorApiServerIssue() => AppMessage.current.error_api_server_issue,
+    _ErrorClientUnknown() => AppMessage.current.error_client_unknow,
+    _ErrorClientUnexpectedResponse() =>
+      AppMessage.current.error_client_unexpected_response,
+    _ErrorClientDioTimeout() => AppMessage.current.error_client_dio_timeout,
+    _ErrorClientDioCancel() => AppMessage.current.error_client_dio_cancel,
+    _ErrorClientDioConnection() =>
+      AppMessage.current.error_client_dio_connection,
+    _ErrorClientStatusCode2XX() =>
+      AppMessage.current.error_client_status_code_2XX,
+    _ErrorClientStatusCode4XX() =>
+      AppMessage.current.error_client_status_code_4XX,
+    _ErrorClientStatusCode401() =>
+      AppMessage.current.error_client_status_code_401,
+    _ErrorClientStatusCode407() =>
+      AppMessage.current.error_client_status_code_407,
+    _ErrorClientStatusCode408() =>
+      AppMessage.current.error_client_status_code_408,
+    _ErrorClientStatusCode409() =>
+      AppMessage.current.error_client_status_code_409,
+    _ErrorClientStatusCode413() =>
+      AppMessage.current.error_client_status_code_413,
+    _ErrorClientStatusCode414() =>
+      AppMessage.current.error_client_status_code_414,
+    _ErrorClientStatusCode429() =>
+      AppMessage.current.error_client_status_code_429,
+    _ErrorClientStatusCode5XX() =>
+      AppMessage.current.error_client_status_code_5XX,
+    _ErrorClientStatusCode504() =>
+      AppMessage.current.error_client_status_code_504,
+    _ErrorClientGooleNotYetAuthenticated() =>
+      AppMessage.current.error_client_goole_not_yet_authenticated,
+    _ErrorClientGooleAuthentication() =>
+      AppMessage.current.error_client_goole_authentication,
+    _ErrorClientWebNotSupported() =>
+      AppMessage.current.error_client_web_not_supported,
+    _ErrorClientMobileNotSupported() =>
+      AppMessage.current.error_client_mobile_not_supported,
+  };
 }

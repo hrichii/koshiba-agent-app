@@ -69,17 +69,16 @@ class App extends ConsumerWidget {
           filledButtonTheme: FilledButtonThemeData(
             style: FilledButtonStyle.primary,
           ),
-          outlinedButtonTheme:
-              OutlinedButtonThemeData(style: OutlinedButtonStyle.primary),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButtonStyle.primary,
+          ),
           textButtonTheme: TextButtonThemeData(style: TextButtonStyle.primary),
           iconButtonTheme: IconButtonThemeData(style: IconButtonStyle.primary),
           iconTheme: IconThemeData(size: 24, color: colorScheme.primary),
-          dividerTheme: DividerThemeData(
-            space: 1,
-            color: AppColor.gray30,
+          dividerTheme: DividerThemeData(space: 1, color: AppColor.gray30),
+          progressIndicatorTheme: ProgressIndicatorThemeData(
+            color: colorScheme.primary,
           ),
-          progressIndicatorTheme:
-              ProgressIndicatorThemeData(color: colorScheme.primary),
           listTileTheme: const ListTileThemeData(
             dense: true,
             contentPadding: EdgeInsets.zero,
@@ -90,11 +89,9 @@ class App extends ConsumerWidget {
             selectedIconTheme: IconThemeData(
               color: colorScheme.onPrimaryContainer,
             ),
-            unselectedIconTheme: IconThemeData(
-              color: AppColor.gray50,
-            ),
-            selectedLabelTextStyle:
-                textTheme.bodyMedium?.withOnPrimaryContainer(),
+            unselectedIconTheme: IconThemeData(color: AppColor.gray50),
+            selectedLabelTextStyle: textTheme.bodyMedium
+                ?.withOnPrimaryContainer(),
             unselectedLabelTextStyle: textTheme.bodyMedium?.withGray50(),
             indicatorColor: colorScheme.primaryContainer,
           ),

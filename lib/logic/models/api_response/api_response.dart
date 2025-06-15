@@ -18,6 +18,5 @@ sealed class ApiResponse<S> with _$ApiResponse<S> {
   factory ApiResponse.fromJson(
     Map<String, dynamic> json,
     S Function(Object?) fromJsonS,
-  ) =>
-      _$ApiResponseFromJson(json, fromJsonS);
+  ) => _$ApiResponseFromJson(json, fromJsonS);
 }

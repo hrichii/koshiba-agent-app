@@ -162,5 +162,7 @@
   "error_client_status_code_5XX": "サーバー内部でエラーが発生しました。",
   "error_client_status_code_504": "ゲートウェイタイムアウトが発生しました。",
   "error_client_goole_not_yet_authenticated": "Google認証がまだ完了していません",
-  "error_client_goole_authentication": "Google認証に失敗しました"
+  "error_client_goole_authentication": "Google認証に失敗しました",
+  "error_client_web_not_supported": "Webではサポートされていません",
+  "error_client_mobile_not_supported": "モバイルではサポートされていません"
 }

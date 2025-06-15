@@ -8,10 +8,8 @@ part of 'connect_to_google_request_dto.dart';
 
 _ConnectToGoogleRequestDto _$ConnectToGoogleRequestDtoFromJson(
   Map<String, dynamic> json,
-) =>
-    _ConnectToGoogleRequestDto(authCode: json['auth_code'] as String);
+) => _ConnectToGoogleRequestDto(authCode: json['auth_code'] as String);
 
 Map<String, dynamic> _$ConnectToGoogleRequestDtoToJson(
   _ConnectToGoogleRequestDto instance,
-) =>
-    <String, dynamic>{'auth_code': instance.authCode};
+) => <String, dynamic>{'auth_code': instance.authCode};

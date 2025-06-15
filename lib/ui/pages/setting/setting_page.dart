@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
@@ -16,6 +18,7 @@ import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/logic/usecases/connect_service/connect_service_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/alert/app_alert.dart';
 import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
+import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
 import 'package:koshiba_agent_app/ui/routers/router.dart';
 
@@ -64,15 +67,33 @@ class SettingPage extends HookConsumerWidget {
         .getGoogleConnectStatus()
         .withToastAtError();
 
-    Future<void> connectForGoogle() => ref
-        .read(connectServiceUseCaseProvider.notifier)
-        .connectGoogleService()
-        .withLoaderOverlay()
-        .withToastAtError()
-        .withToastAtSuccess(
-          (_) => AppMessage.current.connect_to_google_success,
-        );
-    Future<void> disconnectForGoogle() async {
+    Future<void> connectToGoogle() {
+      Future<void> getAuthUrlAndOpenUrlForWeb() async {
+        final fromUri = GoRouter.of(context).state.uri;
+        await ref
+            .read(connectServiceUseCaseProvider.notifier)
+            .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri)
+            .withLoaderOverlay()
+            .withToastAtError()
+            .onSuccess((_, uri) => AppMover.openUrl(uri));
+      }
+
+      Future<void> connectToGoogleForMobile() => ref
+          .read(connectServiceUseCaseProvider.notifier)
+          .connectGoogleServiceForMobile()
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess(
+            (_) => AppMessage.current.connect_to_google_success,
+          );
+
+      if (kIsWeb) {
+        return getAuthUrlAndOpenUrlForWeb();
+      }
+      return connectToGoogleForMobile();
+    }
+
+    Future<void> disconnectToGoogle() async {
       final isConfirmed = await AppAlert.showConfirm(
         title: AppMessage.current.disconnect_to_google_confirm_title,
         confirmText: AppMessage
@@ -124,8 +145,8 @@ class SettingPage extends HookConsumerWidget {
                       connectToGoogleStatus: ref.watch(
                         connectServiceUseCaseProvider,
                       ),
-                      connectForGoogle: connectForGoogle,
-                      disconnectForGoogle: disconnectForGoogle,
+                      connectForGoogle: connectToGoogle,
+                      disconnectForGoogle: disconnectToGoogle,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: AppSpace.xl24),

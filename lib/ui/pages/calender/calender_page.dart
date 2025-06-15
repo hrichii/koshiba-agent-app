@@ -36,17 +36,17 @@ class CalendarPage extends HookConsumerWidget {
 
     // トグルがOnになった時に実行
     Future<void> inviteBot(CalendarEvent event) => ref
-            .read(meetingRepositoryProvider)
-            .registerMeeting(
-              dto: MeetingCreateRequestDto.fromGoogleCalendar(
-                url: event.url!,
-                startAt: event.startAt!,
-                googleCalendarId: event.id!,
-              ),
-            )
-            .withLoaderOverlay()
-            .withToastAtError()
-            .then((result) {
+        .read(meetingRepositoryProvider)
+        .registerMeeting(
+          dto: MeetingCreateRequestDto.fromGoogleCalendar(
+            url: event.url!,
+            startAt: event.startAt!,
+            googleCalendarId: event.id!,
+          ),
+        )
+        .withLoaderOverlay()
+        .withToastAtError()
+        .then((result) {
           // 成功した場合、meetingIdを保存
           if (result is ResultOk<void, dynamic>) {
             _fetchMeetingForEvent(ref, event, eventMeetingMap);
@@ -61,13 +61,13 @@ class CalendarPage extends HookConsumerWidget {
           .withLoaderOverlay()
           .withToastAtError()
           .then((result) {
-        // 成功した場合、マッピングから削除
-        if (result is ResultOk<void, dynamic>) {
-          final newMap = Map<String, String>.from(eventMeetingMap.value);
-          newMap.removeWhere((_, value) => value == meetingId);
-          eventMeetingMap.value = newMap;
-        }
-      });
+            // 成功した場合、マッピングから削除
+            if (result is ResultOk<void, dynamic>) {
+              final newMap = Map<String, String>.from(eventMeetingMap.value);
+              newMap.removeWhere((_, value) => value == meetingId);
+              eventMeetingMap.value = newMap;
+            }
+          });
     }
 
     // カレンダーイベントを読み込んだ後、関連するミーティング情報も取得
@@ -85,30 +85,31 @@ class CalendarPage extends HookConsumerWidget {
         child: Builder(
           builder: (context) => switch (latestResource) {
             ResourceInProgress() => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              child: CircularProgressIndicator(),
+            ),
             ResourceError(:final value) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('エラーが発生しました: ${value.message}'),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => _fetchCalendarEvents(ref),
-                      child: const Text('再試行'),
-                    ),
-                  ],
-                ),
-              ),
-            ResourceDone(:final value) => value.isEmpty
-                ? const Center(child: Text('予定がありません'))
-                : _buildCalendarEventsList(
-                    context,
-                    value,
-                    eventMeetingMap.value,
-                    inviteBot,
-                    cancelInviteBot,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('エラーが発生しました: ${value.message}'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => _fetchCalendarEvents(ref),
+                    child: const Text('再試行'),
                   ),
+                ],
+              ),
+            ),
+            ResourceDone(:final value) =>
+              value.isEmpty
+                  ? const Center(child: Text('予定がありません'))
+                  : _buildCalendarEventsList(
+                      context,
+                      value,
+                      eventMeetingMap.value,
+                      inviteBot,
+                      cancelInviteBot,
+                    ),
           },
         ),
       ),
@@ -149,9 +150,7 @@ class CalendarPage extends HookConsumerWidget {
                       Expanded(
                         child: Text(
                           event.title ?? '無題のイベント',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
+                          style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -190,8 +189,8 @@ class CalendarPage extends HookConsumerWidget {
                           event.startAt != null && event.endAt != null
                               ? '${dateFormat.format(event.startAt!)} - ${dateFormat.format(event.endAt!)}'
                               : event.startAt != null
-                                  ? dateFormat.format(event.startAt!)
-                                  : '日時不明',
+                              ? dateFormat.format(event.startAt!)
+                              : '日時不明',
                         ),
                       ),
                     ],
@@ -251,7 +250,9 @@ class CalendarPage extends HookConsumerWidget {
 
         // Google CalendarのIDとミーティングIDのマッピングを作成
         for (final event in events) {
-          if (event.id == null || event.url == null) continue;
+          if (event.id == null || event.url == null) {
+            continue;
+          }
 
           // 同じURLを持つミーティングを探す
           for (final meeting in meetings) {
@@ -276,7 +277,9 @@ class CalendarPage extends HookConsumerWidget {
     CalendarEvent event,
     ValueNotifier<Map<String, String>> eventMeetingMap,
   ) async {
-    if (event.id == null || event.url == null) return;
+    if (event.id == null || event.url == null) {
+      return;
+    }
 
     final meetingRepository = ref.read(meetingRepositoryProvider);
     final result = await meetingRepository.getMeetingList();

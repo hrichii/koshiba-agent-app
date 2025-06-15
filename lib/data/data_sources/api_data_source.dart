@@ -5,6 +5,7 @@ import 'package:koshiba_agent_app/data/data_sources/api_interceptor/response_han
 import 'package:koshiba_agent_app/data/data_sources/api_interceptor/token_interceptor.dart';
 import 'package:koshiba_agent_app/logic/models/api_response/api_response.dart';
 import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
+import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_authorization_url_dto.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_status.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
@@ -72,6 +73,11 @@ abstract class ApiDataSource {
   @GET('/connects/google')
   @Headers(_headerMap)
   Future<ApiResponse<ConnectToGoogleStatus>> getGoogleConnect();
+
+  @GET('/connects/google/auth-url')
+  @Headers(_headerMap)
+  Future<ApiResponse<ConnectToGoogleAuthorizationUrlDto>>
+  getAuthUrlForGoogleConnect({@Query('from_url') required String fromUri});
 
   @POST('/connects/google')
   @Headers(_headerMap)

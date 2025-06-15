@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:koshiba_agent_app/data/data_sources/api_data_source.dart';
 import 'package:koshiba_agent_app/data/data_sources/authentication_data_source.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
@@ -36,7 +37,28 @@ class ConnectServiceRepository implements ConnectServiceRepositoryInterface {
   }
 
   @override
-  Future<Result<void, AppMessageCode>> connectGoogleService() async {
+  Future<Result<Uri, AppMessageCode>> getAuthUrlForConnectGoogleServiceForWeb({
+    required Uri fromUri,
+  }) async {
+    if (!kIsWeb) {
+      return const ResultNg(
+        value: AppMessageCode.errorClientMobileNotSupported(),
+      );
+    }
+    final response = await _apiDataSource.getAuthUrlForGoogleConnect(
+      fromUri: fromUri.toString(),
+    );
+    return switch (response) {
+      ApiResponseOk(:final data) => ResultOk(value: data.authorizationUri),
+      ApiResponseNg(:final messageCode) => ResultNg(value: messageCode),
+    };
+  }
+
+  @override
+  Future<Result<void, AppMessageCode>> connectGoogleServiceForMobile() async {
+    if (kIsWeb) {
+      return const ResultNg(value: AppMessageCode.errorClientWebNotSupported());
+    }
     final result = await _authenticationDataSource.getAuthCode();
     switch (result) {
       case ResultOk(value: final authCode):

@@ -67,40 +67,35 @@ class DebugPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
-        appBar: AppBar(
-          title: Text(AppMessage.current.common_navigation_accounts),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: AppSpace.md12,
-            children: [
-              _colorPaletteView(),
-              _buttonView(),
-            ],
-          ),
-        ),
-      );
+    appBar: AppBar(title: Text(AppMessage.current.common_navigation_accounts)),
+    body: SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: AppSpace.md12,
+        children: [_colorPaletteView(), _buttonView()],
+      ),
+    ),
+  );
 
   Widget _colorPaletteView() {
     Widget colorPallete(List<Color> colorList) => Row(
-          children: colorList
-              .map(
-                (color) => Expanded(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppColor.gray50),
-                        color: color,
-                      ),
-                    ),
+      children: colorList
+          .map(
+            (color) => Expanded(
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColor.gray50),
+                    color: color,
                   ),
                 ),
-              )
-              .toList(),
-        );
+              ),
+            ),
+          )
+          .toList(),
+    );
     return Column(
       spacing: AppSpace.sm8,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,68 +111,62 @@ class DebugPage extends ConsumerWidget {
   }
 
   Widget _buttonView() => Column(
-        spacing: AppSpace.sm8,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('FilledButton'),
-          FilledButton(
-            onPressed: () {},
-            child: const Text('primary'),
-          ),
-          const FilledButton(
-            onPressed: null,
-            child: Text('primary'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.primaryTonal,
-            onPressed: () {},
-            child: const Text('primaryTonal'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.primaryTonal,
-            onPressed: null,
-            child: const Text('primaryTonal'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.secondary,
-            onPressed: () {},
-            child: const Text('secondary'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.secondary,
-            onPressed: null,
-            child: const Text('secondary'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.secondaryTonal,
-            onPressed: () {},
-            child: const Text('secondaryTonal'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.secondaryTonal,
-            onPressed: null,
-            child: const Text('secondaryTonal'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.tertiary,
-            onPressed: () {},
-            child: const Text('tertiary'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.tertiary,
-            onPressed: null,
-            child: const Text('tertiary'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.tertiaryTonal,
-            onPressed: () {},
-            child: const Text('tertiaryTonal'),
-          ),
-          FilledButton(
-            style: FilledButtonStyle.tertiaryTonal,
-            onPressed: null,
-            child: const Text('tertiaryTonal'),
-          ),
-        ],
-      );
+    spacing: AppSpace.sm8,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Text('FilledButton'),
+      FilledButton(onPressed: () {}, child: const Text('primary')),
+      const FilledButton(onPressed: null, child: Text('primary')),
+      FilledButton(
+        style: FilledButtonStyle.primaryTonal,
+        onPressed: () {},
+        child: const Text('primaryTonal'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.primaryTonal,
+        onPressed: null,
+        child: const Text('primaryTonal'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.secondary,
+        onPressed: () {},
+        child: const Text('secondary'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.secondary,
+        onPressed: null,
+        child: const Text('secondary'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.secondaryTonal,
+        onPressed: () {},
+        child: const Text('secondaryTonal'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.secondaryTonal,
+        onPressed: null,
+        child: const Text('secondaryTonal'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.tertiary,
+        onPressed: () {},
+        child: const Text('tertiary'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.tertiary,
+        onPressed: null,
+        child: const Text('tertiary'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.tertiaryTonal,
+        onPressed: () {},
+        child: const Text('tertiaryTonal'),
+      ),
+      FilledButton(
+        style: FilledButtonStyle.tertiaryTonal,
+        onPressed: null,
+        child: const Text('tertiaryTonal'),
+      ),
+    ],
+  );
 }

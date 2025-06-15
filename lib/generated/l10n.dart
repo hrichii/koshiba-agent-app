@@ -1028,6 +1028,26 @@ class AppMessage {
       args: [],
     );
   }
+
+  /// `Webではサポートされていません`
+  String get error_client_web_not_supported {
+    return Intl.message(
+      'Webではサポートされていません',
+      name: 'error_client_web_not_supported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `モバイルではサポートされていません`
+  String get error_client_mobile_not_supported {
+    return Intl.message(
+      'モバイルではサポートされていません',
+      name: 'error_client_mobile_not_supported',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppMessage> {
