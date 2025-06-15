@@ -30,7 +30,7 @@ runs:
     - name: Generate secret files
       shell: bash
       run: |
-        make setup-${{ inputs.env }}
+        make ${{ inputs.env }}
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:

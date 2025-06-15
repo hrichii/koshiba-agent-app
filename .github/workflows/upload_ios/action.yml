@@ -23,7 +23,7 @@ runs:
     - name: Generate secret files
       shell: bash
       run: |
-        make setup-${{ inputs.env }}
+        make ${{ inputs.env }}
     - name: Install Flutter
       shell: bash
       run: |

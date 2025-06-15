@@ -17,7 +17,7 @@ runs:
     - name: Generate secret files
       shell: bash
       run: |
-        make setup-${{ inputs.env }}
+        make ${{ inputs.env }}
 
     - name: Set up Java 17
       uses: actions/setup-java@v2
