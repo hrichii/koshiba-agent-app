@@ -7,7 +7,7 @@ import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_for_password.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 class ConnectedSignInPage extends ConsumerWidget {
   const ConnectedSignInPage({super.key});

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'router.dart';
+part of 'mobile_router.dart';
 
 // **************************************************************************
 // GoRouterGenerator
@@ -358,20 +358,20 @@ mixin _$SignUpVerifyRouteData on GoRouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerHash() => r'5ffa95b90878634f5253075b0c05e4b3542b8437';
+String _$mobileRouterHash() => r'57f5db248715212f923e7aea52d3b0404aa500c7';
 
-/// See also [Router].
-@ProviderFor(Router)
-final routerProvider = NotifierProvider<Router, GoRouter>.internal(
-  Router.new,
-  name: r'routerProvider',
+/// See also [MobileRouter].
+@ProviderFor(MobileRouter)
+final mobileRouterProvider = NotifierProvider<MobileRouter, GoRouter>.internal(
+  MobileRouter.new,
+  name: r'mobileRouterProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$routerHash,
+      : _$mobileRouterHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$Router = Notifier<GoRouter>;
+typedef _$MobileRouter = Notifier<GoRouter>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

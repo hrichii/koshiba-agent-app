@@ -12,7 +12,7 @@ import 'package:koshiba_agent_app/core/themes/button_style/outlined_button_style
 import 'package:koshiba_agent_app/core/themes/button_style/text_button_style.dart';
 import 'package:koshiba_agent_app/core/validation/app_reactive_form_config.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
+import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 import 'package:page_transition/page_transition.dart';
 
 class App extends ConsumerWidget {
@@ -26,7 +26,7 @@ class App extends ConsumerWidget {
       child: MaterialApp.router(
         title: AppEnv.appName,
         debugShowCheckedModeBanner: false,
-        routerConfig: ref.watch(routerProvider),
+        routerConfig: ref.watch(mobileRouterProvider),
         localizationsDelegates: const [
           AppMessage.delegate,
           GlobalMaterialLocalizations.delegate,

@@ -10,8 +10,8 @@ import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_bot_status.dart';
+import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/pages/home/home_page_provider.dart';
-import 'package:koshiba_agent_app/ui/routers/router.dart';
 import 'package:koshiba_agent_app/ui/widgets/app_error.dart';
 import 'package:koshiba_agent_app/ui/widgets/app_loading.dart';
 
@@ -52,7 +52,7 @@ class HomePage extends HookConsumerWidget {
                       ),
                       child: IconButton(
                         onPressed: () async {
-                          await const BotInviteRoute().push(context);
+                          await AppMover.pushBotInvite(context);
                           await ref
                               .read(meetingListProvider.notifier)
                               .refreshMeetingList();
@@ -81,7 +81,7 @@ class HomePage extends HookConsumerWidget {
                       ),
                       child: IconButton(
                         onPressed: () async {
-                          await const ScheduleAddRoute().push(context);
+                          await AppMover.pushScheduleAdd(context);
                           await ref
                               .read(meetingListProvider.notifier)
                               .refreshMeetingList();
