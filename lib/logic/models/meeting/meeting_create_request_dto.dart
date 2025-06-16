@@ -10,20 +10,19 @@ abstract class MeetingCreateRequestDto with _$MeetingCreateRequestDto {
     required Uri url,
     @JsonKey(name: 'start_at') required DateTime? startAt,
     @JsonKey(name: 'google_calendar_id') String? googleCalendarId,
-    MeetingCreateSource? source,
+    required MeetingCreateSource source,
   }) = _MeetingCreateRequestDto;
 
   factory MeetingCreateRequestDto.fromGoogleCalendar({
     required Uri url,
     required DateTime startAt,
     required String googleCalendarId,
-  }) =>
-      MeetingCreateRequestDto(
-        url: url,
-        startAt: startAt,
-        googleCalendarId: googleCalendarId,
-        source: MeetingCreateSource.googleCalendar,
-      );
+  }) => MeetingCreateRequestDto(
+    url: url,
+    startAt: startAt,
+    googleCalendarId: googleCalendarId,
+    source: MeetingCreateSource.googleCalendar,
+  );
 
   factory MeetingCreateRequestDto.fromJson(Map<String, dynamic> json) =>
       _$MeetingCreateRequestDtoFromJson(json);

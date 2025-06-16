@@ -14,7 +14,7 @@ _MeetingCreateRequestDto _$MeetingCreateRequestDtoFromJson(
       ? null
       : DateTime.parse(json['start_at'] as String),
   googleCalendarId: json['google_calendar_id'] as String?,
-  source: $enumDecodeNullable(_$MeetingCreateSourceEnumMap, json['source']),
+  source: $enumDecode(_$MeetingCreateSourceEnumMap, json['source']),
 );
 
 Map<String, dynamic> _$MeetingCreateRequestDtoToJson(
@@ -23,7 +23,7 @@ Map<String, dynamic> _$MeetingCreateRequestDtoToJson(
   'url': instance.url.toString(),
   'start_at': instance.startAt?.toIso8601String(),
   'google_calendar_id': instance.googleCalendarId,
-  'source': _$MeetingCreateSourceEnumMap[instance.source],
+  'source': _$MeetingCreateSourceEnumMap[instance.source]!,
 };
 
 const _$MeetingCreateSourceEnumMap = {
