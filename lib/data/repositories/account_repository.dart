@@ -159,22 +159,29 @@ class AccountRepository
   /// 退会する。
   @override
   Future<Result<void, AppMessageCode>> deleteMe() async {
-    final uid = switch (getMe()) {
-      ResultOk<User, AppMessageCode>(value: final user) => user.id,
-      ResultNg<User, AppMessageCode>() => null,
-    };
-    if (uid == null) {
-      return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
+    final String uid;
+    switch (getMe()) {
+      case ResultOk<User, AppMessageCode>(value: final user):
+        uid = user.id;
+      case ResultNg<User, AppMessageCode>():
+        return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
     }
-    // TODO(hrichii): Backend側での退会処理を行う
-    final authenticationResult = await _firebaseAuthDataSource.deleteMe();
-    switch (authenticationResult) {
+    // 自分自身でしか削除できない制約のため、deleteMe()を呼び出す前に実行する必要がある。
+    switch (await _accountDataSource.delete(uid)) {
       case ResultOk<void, AppMessageCode>():
-        _clearCache();
-        await _accountDataSource.delete(uid);
-      case ResultNg<void, AppMessageCode>():
+        break;
+      case final ResultNg<void, AppMessageCode> resultNg:
+        return resultNg;
     }
-    return authenticationResult;
+    switch (await _firebaseAuthDataSource.deleteMe()) {
+      case ResultOk<void, AppMessageCode>():
+        break;
+      case final ResultNg<void, AppMessageCode> resultNg:
+        return resultNg;
+    }
+    _clearCache();
+
+    return _firebaseAuthDataSource.signOut();
   }
 
   /// Googleサービスとの連携状態を取得する。

@@ -8,6 +8,7 @@ import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_source.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_schedule_form.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
@@ -81,6 +82,7 @@ class ScheduleAddPage extends ConsumerWidget {
         dto: MeetingCreateRequestDto(
           url: Uri.parse(form.uri!),
           startAt: form.startAt!,
+          source: MeetingCreateSource.googleCalendar,
         ),
       )
       .withLoaderOverlay()

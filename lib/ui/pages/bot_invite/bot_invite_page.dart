@@ -8,6 +8,7 @@ import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_source.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_invite_form.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
@@ -70,7 +71,11 @@ class BotInvitePage extends ConsumerWidget {
   ) => ref
       .read(meetingRepositoryProvider)
       .registerMeeting(
-        dto: MeetingCreateRequestDto(url: Uri.parse(form.uri!), startAt: null),
+        dto: MeetingCreateRequestDto(
+          url: Uri.parse(form.uri!),
+          startAt: null,
+          source: MeetingCreateSource.koshiba,
+        ),
       )
       .withLoaderOverlay()
       .withToastAtError()

@@ -100,7 +100,7 @@ class FirebaseAuthDataSource {
         return const ResultNg(value: AppMessageCode.errorApiAccountNotFound());
       }
       await user.delete();
-      return signOut();
+      return const ResultOk(value: null);
     } on FirebaseAuthException catch (e) {
       return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
     } catch (_) {
