@@ -13,19 +13,34 @@ import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_status.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
+import 'package:koshiba_agent_app/logic/models/result/result.dart';
+import 'package:koshiba_agent_app/logic/models/user/user.dart';
+import 'package:koshiba_agent_app/logic/usecases/account/account_use_case.dart';
 import 'package:koshiba_agent_app/logic/usecases/connect_service/connect_service_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/alert/app_alert.dart';
 import 'package:koshiba_agent_app/ui/core/button/pannel_button.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
+import 'package:koshiba_agent_app/ui/core/toast/toast.dart';
 import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 class SettingPage extends HookConsumerWidget {
   const SettingPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void getMe() {
+      final result = ref.read(accountUseCaseProvider.notifier).getMe();
+      switch (result) {
+        case ResultOk<User, AppMessageCode>():
+          break;
+        case ResultNg<User, AppMessageCode>(:final value):
+          Toast().showError(value.localizedMessage);
+      }
+    }
+
     Future<void> signOut() async {
       final isConfirmed = await AppAlert.showConfirm(
         title: AppMessage.current.sign_out_confirm_title,
@@ -113,8 +128,13 @@ class SettingPage extends HookConsumerWidget {
           );
     }
 
+    Future<void> refresh() async {
+      getMe();
+      await getConnectForGoogle();
+    }
+
     useMemoized(() {
-      Future(getConnectForGoogle);
+      Future(refresh);
     }, []);
     return Scaffold(
       backgroundColor: AppColor.backgroundLightGray,
@@ -123,7 +143,7 @@ class SettingPage extends HookConsumerWidget {
         title: Text(AppMessage.current.common_navigation_accounts),
       ),
       body: RefreshIndicator(
-        onRefresh: getConnectForGoogle,
+        onRefresh: refresh,
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Padding(
@@ -139,7 +159,7 @@ class SettingPage extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: AppSpace.lg16,
                   children: [
-                    _profileView(),
+                    _profileView(ref.watch(accountUseCaseProvider)),
                     _accountView(signOut: signOut, changePassword: () async {}),
                     _connectedServiceView(
                       connectToGoogleStatus: ref.watch(
@@ -167,7 +187,7 @@ class SettingPage extends HookConsumerWidget {
     );
   }
 
-  Widget _profileView() => Column(
+  Widget _profileView(Resource<User> userResource) => Column(
     mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.stretch,
     spacing: AppSpace.xss2,
@@ -177,10 +197,58 @@ class SettingPage extends HookConsumerWidget {
             [
                   PannelButtonData(
                     child: Row(
+                      spacing: AppSpace.md12,
                       children: [
-                        const Icon(Icons.account_circle, size: 40),
-                        const SizedBox(width: AppSpace.sm8),
-                        Text('email@aa.aa', style: AppTextStyle.bodyMedium14),
+                        switch (userResource) {
+                          ResourceDone(:final value)
+                              when value.photoURL != null =>
+                            CircleAvatar(
+                              radius: 20,
+                              backgroundImage: NetworkImage(value.photoURL!),
+                            ),
+                          ResourceDone() => Icon(
+                            Icons.account_circle,
+                            size: 40,
+                            color: AppColor.primary,
+                          ),
+                          ResourceInProgress() => const ShimmerWidget(
+                            width: 40,
+                            height: 40,
+                          ),
+                          ResourceError() => Icon(
+                            Icons.account_circle,
+                            size: 40,
+                            color: AppColor.error,
+                          ),
+                        },
+                        Expanded(
+                          child: switch (userResource) {
+                            ResourceDone(:final value) => Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  value.email ?? '',
+                                  style: AppTextStyle.bodyMedium14.withW400(),
+                                ),
+                                if (value.useProvider.label != null)
+                                  Text(
+                                    value.useProvider.label!,
+                                    style: AppTextStyle.bodySmall12
+                                        .withGray60(),
+                                  ),
+                              ],
+                            ),
+                            ResourceInProgress() => const ShimmerWidget(
+                              width: 120,
+                              height: 14,
+                            ),
+                            ResourceError() => Text(
+                              AppMessage.current.common_error_fetch_failed,
+                              style: AppTextStyle.bodyMedium14.withError(),
+                            ),
+                          },
+                        ),
                       ],
                     ),
                   ),

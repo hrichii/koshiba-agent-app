@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MeetingCreateRequestDto {
 
- Uri get url;@JsonKey(name: 'start_at') DateTime? get startAt;@JsonKey(name: 'google_calendar_id') String? get googleCalendarId; MeetingCreateSource get source;
+ Uri get url;@JsonKey(name: 'start_at') DateTime? get startAt; MeetingCreateSource get source;@JsonKey(name: 'google_calendar_id') String? get googleCalendarId;
 /// Create a copy of MeetingCreateRequestDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $MeetingCreateRequestDtoCopyWith<MeetingCreateRequestDto> get copyWith => _$Meet
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeetingCreateRequestDto&&(identical(other.url, url) || other.url == url)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.googleCalendarId, googleCalendarId) || other.googleCalendarId == googleCalendarId)&&(identical(other.source, source) || other.source == source));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeetingCreateRequestDto&&(identical(other.url, url) || other.url == url)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.googleCalendarId, googleCalendarId) || other.googleCalendarId == googleCalendarId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,startAt,googleCalendarId,source);
+int get hashCode => Object.hash(runtimeType,url,startAt,source,googleCalendarId);
 
 @override
 String toString() {
-  return 'MeetingCreateRequestDto(url: $url, startAt: $startAt, googleCalendarId: $googleCalendarId, source: $source)';
+  return 'MeetingCreateRequestDto(url: $url, startAt: $startAt, source: $source, googleCalendarId: $googleCalendarId)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $MeetingCreateRequestDtoCopyWith<$Res>  {
   factory $MeetingCreateRequestDtoCopyWith(MeetingCreateRequestDto value, $Res Function(MeetingCreateRequestDto) _then) = _$MeetingCreateRequestDtoCopyWithImpl;
 @useResult
 $Res call({
- Uri url,@JsonKey(name: 'start_at') DateTime? startAt,@JsonKey(name: 'google_calendar_id') String? googleCalendarId, MeetingCreateSource source
+ Uri url,@JsonKey(name: 'start_at') DateTime? startAt, MeetingCreateSource source,@JsonKey(name: 'google_calendar_id') String? googleCalendarId
 });
 
 
@@ -66,13 +66,13 @@ class _$MeetingCreateRequestDtoCopyWithImpl<$Res>
 
 /// Create a copy of MeetingCreateRequestDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? startAt = freezed,Object? googleCalendarId = freezed,Object? source = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? startAt = freezed,Object? source = null,Object? googleCalendarId = freezed,}) {
   return _then(_self.copyWith(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as Uri,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,googleCalendarId: freezed == googleCalendarId ? _self.googleCalendarId : googleCalendarId // ignore: cast_nullable_to_non_nullable
-as String?,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as MeetingCreateSource,
+as DateTime?,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as MeetingCreateSource,googleCalendarId: freezed == googleCalendarId ? _self.googleCalendarId : googleCalendarId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -83,13 +83,13 @@ as MeetingCreateSource,
 @JsonSerializable()
 
 class _MeetingCreateRequestDto implements MeetingCreateRequestDto {
-  const _MeetingCreateRequestDto({required this.url, @JsonKey(name: 'start_at') required this.startAt, @JsonKey(name: 'google_calendar_id') this.googleCalendarId, required this.source});
+  const _MeetingCreateRequestDto({required this.url, @JsonKey(name: 'start_at') required this.startAt, required this.source, @JsonKey(name: 'google_calendar_id') this.googleCalendarId});
   factory _MeetingCreateRequestDto.fromJson(Map<String, dynamic> json) => _$MeetingCreateRequestDtoFromJson(json);
 
 @override final  Uri url;
 @override@JsonKey(name: 'start_at') final  DateTime? startAt;
-@override@JsonKey(name: 'google_calendar_id') final  String? googleCalendarId;
 @override final  MeetingCreateSource source;
+@override@JsonKey(name: 'google_calendar_id') final  String? googleCalendarId;
 
 /// Create a copy of MeetingCreateRequestDto
 /// with the given fields replaced by the non-null parameter values.
@@ -104,16 +104,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeetingCreateRequestDto&&(identical(other.url, url) || other.url == url)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.googleCalendarId, googleCalendarId) || other.googleCalendarId == googleCalendarId)&&(identical(other.source, source) || other.source == source));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeetingCreateRequestDto&&(identical(other.url, url) || other.url == url)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.source, source) || other.source == source)&&(identical(other.googleCalendarId, googleCalendarId) || other.googleCalendarId == googleCalendarId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,startAt,googleCalendarId,source);
+int get hashCode => Object.hash(runtimeType,url,startAt,source,googleCalendarId);
 
 @override
 String toString() {
-  return 'MeetingCreateRequestDto(url: $url, startAt: $startAt, googleCalendarId: $googleCalendarId, source: $source)';
+  return 'MeetingCreateRequestDto(url: $url, startAt: $startAt, source: $source, googleCalendarId: $googleCalendarId)';
 }
 
 
@@ -124,7 +124,7 @@ abstract mixin class _$MeetingCreateRequestDtoCopyWith<$Res> implements $Meeting
   factory _$MeetingCreateRequestDtoCopyWith(_MeetingCreateRequestDto value, $Res Function(_MeetingCreateRequestDto) _then) = __$MeetingCreateRequestDtoCopyWithImpl;
 @override @useResult
 $Res call({
- Uri url,@JsonKey(name: 'start_at') DateTime? startAt,@JsonKey(name: 'google_calendar_id') String? googleCalendarId, MeetingCreateSource source
+ Uri url,@JsonKey(name: 'start_at') DateTime? startAt, MeetingCreateSource source,@JsonKey(name: 'google_calendar_id') String? googleCalendarId
 });
 
 
@@ -141,13 +141,13 @@ class __$MeetingCreateRequestDtoCopyWithImpl<$Res>
 
 /// Create a copy of MeetingCreateRequestDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? startAt = freezed,Object? googleCalendarId = freezed,Object? source = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? startAt = freezed,Object? source = null,Object? googleCalendarId = freezed,}) {
   return _then(_MeetingCreateRequestDto(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as Uri,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,googleCalendarId: freezed == googleCalendarId ? _self.googleCalendarId : googleCalendarId // ignore: cast_nullable_to_non_nullable
-as String?,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
-as MeetingCreateSource,
+as DateTime?,source: null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as MeetingCreateSource,googleCalendarId: freezed == googleCalendarId ? _self.googleCalendarId : googleCalendarId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

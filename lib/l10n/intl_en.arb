@@ -30,6 +30,8 @@
   "disconnect_to_google_confirm_disconnect_button_title": "Disconnect",
   "disconnect_to_google_success": "Disconnected from Google successfully",
   "meeting_register": "Register meeting",
+  "meeting_register_success": "Meeting registration completed",
+  "sign_in_by_google_label": "Signed in with Google",
   "field_email": "Email",
   "field_password": "Password",
   "field_meeting_url": "Meeting URL",

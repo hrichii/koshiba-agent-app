@@ -51,7 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
     "common_change_password": MessageLookupByLibrary.simpleMessage("パスワード変更"),
     "common_connect_for_google": MessageLookupByLibrary.simpleMessage(
-      "Googleと連携",
+      "Googleのサービスと連携",
     ),
     "common_connected": MessageLookupByLibrary.simpleMessage("連携済み"),
     "common_connected_service": MessageLookupByLibrary.simpleMessage("連携サービス"),
@@ -250,6 +250,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "meeting_register": MessageLookupByLibrary.simpleMessage("Botを参加させる"),
     "meeting_register_success": MessageLookupByLibrary.simpleMessage(
       "ミーティング登録が完了しました",
+    ),
+    "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
+      "Googleでログイン済み",
     ),
     "sign_out_confirm_title": MessageLookupByLibrary.simpleMessage(
       "ログアウトしますか？",

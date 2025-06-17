@@ -48,7 +48,11 @@ class FirebaseAuthDataSource {
                 id: user.uid,
                 email: user.email,
                 name: user.displayName ?? '',
+                photoURL: user.photoURL,
                 isEmailVerified: user.emailVerified,
+                useProvider: UseProviderEnum.fromProviderData(
+                  user.providerData,
+                ),
               ),
         accessToken: userCredential.credential?.accessToken == null
             ? null
@@ -61,7 +65,9 @@ class FirebaseAuthDataSource {
             : SignInWithGoogle(userCredential: appUserCredential),
       );
     } on FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
+      return ResultNg(
+        value: _mapFirebaseErrorToAppMessageCode(e.code, e.message),
+      );
     } catch (_) {
       return const ResultNg(value: AppMessageCode.errorClientUnknown());
     }
@@ -72,7 +78,9 @@ class FirebaseAuthDataSource {
       await _firebaseAuth.signOut();
       return const ResultOk(value: null);
     } on FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
+      return ResultNg(
+        value: _mapFirebaseErrorToAppMessageCode(e.code, e.message),
+      );
     } catch (_) {
       return const ResultNg(value: AppMessageCode.errorClientUnknown());
     }
@@ -88,7 +96,9 @@ class FirebaseAuthDataSource {
         id: user.uid,
         email: user.email,
         name: user.displayName ?? '',
+        photoURL: user.photoURL,
         isEmailVerified: user.emailVerified,
+        useProvider: UseProviderEnum.fromProviderData(user.providerData),
       ),
     );
   }
@@ -102,7 +112,9 @@ class FirebaseAuthDataSource {
       await user.delete();
       return const ResultOk(value: null);
     } on FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
+      return ResultNg(
+        value: _mapFirebaseErrorToAppMessageCode(e.code, e.message),
+      );
     } catch (_) {
       return const ResultNg(value: AppMessageCode.errorClientUnknown());
     }
@@ -123,7 +135,11 @@ class FirebaseAuthDataSource {
                   id: user.uid,
                   email: user.email,
                   name: user.displayName ?? '',
+                  photoURL: user.photoURL,
                   isEmailVerified: user.emailVerified,
+                  useProvider: UseProviderEnum.fromProviderData(
+                    user.providerData,
+                  ),
                 ),
           accessToken: userCredential.credential?.accessToken == null
               ? null
@@ -131,7 +147,9 @@ class FirebaseAuthDataSource {
         ),
       );
     } on FirebaseAuthException catch (e) {
-      return ResultNg(value: _mapFirebaseErrorToAppMessageCode(e.code));
+      return ResultNg(
+        value: _mapFirebaseErrorToAppMessageCode(e.code, e.message),
+      );
     } catch (e) {
       return ResultNg(
         value: AppMessageCode.errorClientUnknown(message: e.toString()),
@@ -139,26 +157,29 @@ class FirebaseAuthDataSource {
     }
   }
 
-  AppMessageCode _mapFirebaseErrorToAppMessageCode(String code) {
+  AppMessageCode _mapFirebaseErrorToAppMessageCode(
+    String code,
+    String? message,
+  ) {
     switch (code) {
       case 'invalid-credential':
-        return const AppMessageCode.errorApiAuthenticationInvalid();
+        return AppMessageCode.errorApiAuthenticationInvalid(message: message);
       case 'email-already-in-use':
-        return const AppMessageCode.errorApiEmailAlreadyUsed();
+        return AppMessageCode.errorApiEmailAlreadyUsed(message: message);
       case 'invalid-email':
-        return const AppMessageCode.errorApiInvalidEmail();
+        return AppMessageCode.errorApiInvalidEmail(message: message);
       case 'operation-not-allowed':
-        return const AppMessageCode.errorApiOperationNotAllowed();
+        return AppMessageCode.errorApiOperationNotAllowed(message: message);
       case 'weak-password':
-        return const AppMessageCode.errorApiWeakPassword();
+        return AppMessageCode.errorApiWeakPassword(message: message);
       case 'too-many-requests':
-        return const AppMessageCode.errorApiTooManyRequests();
+        return AppMessageCode.errorApiTooManyRequests(message: message);
       case 'user-token-expired':
-        return const AppMessageCode.errorApiTokenExpired();
+        return AppMessageCode.errorApiTokenExpired(message: message);
       case 'network-request-failed':
-        return const AppMessageCode.errorApiNetworkRequestFailed();
+        return AppMessageCode.errorApiNetworkRequestFailed(message: message);
       default:
-        return const AppMessageCode.errorClientUnknown();
+        return AppMessageCode.errorClientUnknown(message: message);
     }
   }
 }
