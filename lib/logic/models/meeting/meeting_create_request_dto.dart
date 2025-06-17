@@ -9,8 +9,8 @@ abstract class MeetingCreateRequestDto with _$MeetingCreateRequestDto {
   const factory MeetingCreateRequestDto({
     required Uri url,
     @JsonKey(name: 'start_at') required DateTime? startAt,
-    @JsonKey(name: 'google_calendar_id') String? googleCalendarId,
     required MeetingCreateSource source,
+    @JsonKey(name: 'google_calendar_id') String? googleCalendarId,
   }) = _MeetingCreateRequestDto;
 
   factory MeetingCreateRequestDto.fromGoogleCalendar({

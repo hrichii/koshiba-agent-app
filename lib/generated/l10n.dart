@@ -184,10 +184,10 @@ class AppMessage {
     );
   }
 
-  /// `Googleと連携`
+  /// `Googleのサービスと連携`
   String get common_connect_for_google {
     return Intl.message(
-      'Googleと連携',
+      'Googleのサービスと連携',
       name: 'common_connect_for_google',
       desc: '',
       args: [],
@@ -329,6 +329,16 @@ class AppMessage {
     return Intl.message(
       'ミーティング登録が完了しました',
       name: 'meeting_register_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Googleでログイン済み`
+  String get sign_in_by_google_label {
+    return Intl.message(
+      'Googleでログイン済み',
+      name: 'sign_in_by_google_label',
       desc: '',
       args: [],
     );

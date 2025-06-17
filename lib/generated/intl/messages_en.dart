@@ -271,6 +271,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "meeting_register": MessageLookupByLibrary.simpleMessage(
       "Register meeting",
     ),
+    "meeting_register_success": MessageLookupByLibrary.simpleMessage(
+      "Meeting registration completed",
+    ),
+    "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
+      "Signed in with Google",
+    ),
     "sign_out_confirm_title": MessageLookupByLibrary.simpleMessage(
       "Do you want to sign out?",
     ),
