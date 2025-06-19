@@ -432,6 +432,60 @@ class _ApiDataSource implements ApiDataSource {
     return _value;
   }
 
+  @override
+  Future<ApiResponse<ScheduleResponseDto>> getScheduleList({
+    DateTime? timeBase,
+    DateTime? timeMin,
+    DateTime? timeMax,
+    int pageSize = 10,
+    String? nextPageToken,
+    String? previousPageToken,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'time_base': timeBase?.toIso8601String(),
+      r'time_min': timeMin?.toIso8601String(),
+      r'time_max': timeMax?.toIso8601String(),
+      r'page_size': pageSize,
+      r'next_page_token': nextPageToken,
+      r'previous_page_token': previousPageToken,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'accept': 'application/json',
+      r'content-type': 'application/json',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiResponse<ScheduleResponseDto>>(
+      Options(
+            method: 'GET',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
+          .compose(
+            _dio.options,
+            '/schedules',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponse<ScheduleResponseDto> _value;
+    try {
+      _value = ApiResponse<ScheduleResponseDto>.fromJson(
+        _result.data!,
+        (json) => ScheduleResponseDto.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

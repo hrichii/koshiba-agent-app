@@ -11,6 +11,7 @@ import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_goog
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_update_request_dto.dart';
+import 'package:koshiba_agent_app/logic/models/schedule/schedule_response_dto.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:riverpod/riverpod.dart';
@@ -92,4 +93,15 @@ abstract class ApiDataSource {
   @GET('/calendars')
   @Headers(_headerMap)
   Future<ApiResponse<List<CalendarEvent>>> getCalendarList();
+
+  @GET('/schedules')
+  @Headers(_headerMap)
+  Future<ApiResponse<ScheduleResponseDto>> getScheduleList({
+    @Query('time_base') DateTime? timeBase,
+    @Query('time_min') DateTime? timeMin,
+    @Query('time_max') DateTime? timeMax,
+    @Query('page_size') int pageSize = 10,
+    @Query('next_page_token') String? nextPageToken,
+    @Query('previous_page_token') String? previousPageToken,
+  });
 }

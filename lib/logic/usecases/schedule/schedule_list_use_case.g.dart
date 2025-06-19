@@ -1,31 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'calendar_list_use_case.dart';
+part of 'schedule_list_use_case.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$calendarListUseCaseHash() =>
-    r'c10989711ca1d96c1baad987bfc8a47dfac946a4';
+String _$scheduleListUseCaseHash() =>
+    r'79c7fc74e0ba3dc088b349c7a63473ad5a49da70';
 
-/// See also [CalendarListUseCase].
-@ProviderFor(CalendarListUseCase)
-final calendarListUseCaseProvider =
+/// See also [ScheduleListUseCase].
+@ProviderFor(ScheduleListUseCase)
+final scheduleListUseCaseProvider =
     AutoDisposeNotifierProvider<
-      CalendarListUseCase,
-      List<Resource<List<CalendarEvent>>>
+      ScheduleListUseCase,
+      ScheduleListState
     >.internal(
-      CalendarListUseCase.new,
-      name: r'calendarListUseCaseProvider',
+      ScheduleListUseCase.new,
+      name: r'scheduleListUseCaseProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$calendarListUseCaseHash,
+          : _$scheduleListUseCaseHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$CalendarListUseCase =
-    AutoDisposeNotifier<List<Resource<List<CalendarEvent>>>>;
+typedef _$ScheduleListUseCase = AutoDisposeNotifier<ScheduleListState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
