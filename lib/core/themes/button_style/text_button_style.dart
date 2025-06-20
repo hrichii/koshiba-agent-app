@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:koshiba_agent_app/core/extensions/color_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_radius.dart';
-import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 
 class TextButtonStyle {
-  static ButtonStyle styleForm({required Color color}) => TextButton.styleFrom(
+  static ButtonStyle styleForm({required Color color}) =>
+      TextButton.styleFrom(
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size.zero,
-        padding: const EdgeInsets.all(AppSpace.lg16),
+        padding: EdgeInsets.zero,
         foregroundColor: color,
         textStyle: AppTextStyle.bodyMedium14,
         shape: RoundedRectangleBorder(

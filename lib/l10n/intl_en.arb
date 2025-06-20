@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "common_cancel": "Cancel",
+  "common_delete": "Delete",
   "common_sign_in": "Sign in",
   "common_sign_out": "Sign out",
   "common_sign_up": "Sign up",

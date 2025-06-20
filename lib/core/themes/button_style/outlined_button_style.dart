@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:koshiba_agent_app/core/extensions/color_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_radius.dart';
-import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 
 class OutlinedButtonStyle {
@@ -16,7 +15,7 @@ class OutlinedButtonStyle {
       backgroundColor: backgroundColor,
       disabledForegroundColor: disabledMainColor,
       textStyle: AppTextStyle.bodyMedium14,
-      padding: const EdgeInsets.all(AppSpace.lg16),
+      padding: EdgeInsets.zero,
       surfaceTintColor: AppColor.gray0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.md8),

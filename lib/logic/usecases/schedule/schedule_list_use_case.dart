@@ -276,4 +276,32 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
         return ResultNg(value: value);
     }
   }
+
+  /// ScheduledBotから削除する
+  Future<Result<void, AppMessageCode>> deleteScheduledBot({
+    required String? scheduledBotId,
+  }) async {
+    final schedule = state.data
+        .where((schedule) => schedule.scheduledBot?.id == scheduledBotId)
+        .firstOrNull;
+    final scheduledBot = schedule?.scheduledBot;
+    if (scheduledBotId == null || scheduledBot == null) {
+      return const ResultNg(value: AppMessageCode.errorApiNotFound());
+    }
+
+    final deleteResult = await _meetingRepository.deleteMeeting(
+      meetingId: scheduledBot.id,
+    );
+    switch (deleteResult) {
+      case ResultOk():
+        state = state.copyWith(
+          data: () => state.data
+              .where((schedule) => schedule.scheduledBot?.id != scheduledBotId)
+              .toList(),
+        );
+        return const ResultOk(value: null);
+      case ResultNg(:final value):
+        return ResultNg(value: value);
+    }
+  }
 }

@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Meeting {
 
- String get id; Uri get url;@JsonKey(name: 'meeting_baas_id') String get meetingBaasId; MeetingBotStatus get status;@DateTimeConverter()@JsonKey(name: 'created_at') DateTime get createdAt;@DateTimeConverter()@JsonKey(name: 'start_at') DateTime get startAt;@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? get endAt; String? get title;
+ String get id; Uri get url;@JsonKey(name: 'meeting_baas_id') String get meetingBaasId; MeetingBotStatus get status;@DateTimeConverter()@JsonKey(name: 'created_at') DateTime get createdAt;@DateTimeConverter()@JsonKey(name: 'start_at') DateTime get startAt;@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? get endAt; String? get title; String? get description;
 /// Create a copy of Meeting
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $MeetingCopyWith<Meeting> get copyWith => _$MeetingCopyWithImpl<Meeting>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Meeting&&(identical(other.id, id) || other.id == id)&&(identical(other.url, url) || other.url == url)&&(identical(other.meetingBaasId, meetingBaasId) || other.meetingBaasId == meetingBaasId)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.title, title) || other.title == title));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Meeting&&(identical(other.id, id) || other.id == id)&&(identical(other.url, url) || other.url == url)&&(identical(other.meetingBaasId, meetingBaasId) || other.meetingBaasId == meetingBaasId)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,url,meetingBaasId,status,createdAt,startAt,endAt,title);
+int get hashCode => Object.hash(runtimeType,id,url,meetingBaasId,status,createdAt,startAt,endAt,title,description);
 
 @override
 String toString() {
-  return 'Meeting(id: $id, url: $url, meetingBaasId: $meetingBaasId, status: $status, createdAt: $createdAt, startAt: $startAt, endAt: $endAt, title: $title)';
+  return 'Meeting(id: $id, url: $url, meetingBaasId: $meetingBaasId, status: $status, createdAt: $createdAt, startAt: $startAt, endAt: $endAt, title: $title, description: $description)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $MeetingCopyWith<$Res>  {
   factory $MeetingCopyWith(Meeting value, $Res Function(Meeting) _then) = _$MeetingCopyWithImpl;
 @useResult
 $Res call({
- String id, Uri url,@JsonKey(name: 'meeting_baas_id') String meetingBaasId, MeetingBotStatus status,@DateTimeConverter()@JsonKey(name: 'created_at') DateTime createdAt,@DateTimeConverter()@JsonKey(name: 'start_at') DateTime startAt,@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? endAt, String? title
+ String id, Uri url,@JsonKey(name: 'meeting_baas_id') String meetingBaasId, MeetingBotStatus status,@DateTimeConverter()@JsonKey(name: 'created_at') DateTime createdAt,@DateTimeConverter()@JsonKey(name: 'start_at') DateTime startAt,@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? endAt, String? title, String? description
 });
 
 
@@ -66,7 +66,7 @@ class _$MeetingCopyWithImpl<$Res>
 
 /// Create a copy of Meeting
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? url = null,Object? meetingBaasId = null,Object? status = null,Object? createdAt = null,Object? startAt = null,Object? endAt = freezed,Object? title = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? url = null,Object? meetingBaasId = null,Object? status = null,Object? createdAt = null,Object? startAt = null,Object? endAt = freezed,Object? title = freezed,Object? description = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
@@ -76,6 +76,7 @@ as MeetingBotStatus,createdAt: null == createdAt ? _self.createdAt : createdAt /
 as DateTime,startAt: null == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
 as DateTime,endAt: freezed == endAt ? _self.endAt : endAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -96,7 +97,7 @@ $MeetingBotStatusCopyWith<$Res> get status {
 @JsonSerializable()
 
 class _Meeting extends Meeting {
-  const _Meeting({required this.id, required this.url, @JsonKey(name: 'meeting_baas_id') required this.meetingBaasId, required this.status, @DateTimeConverter()@JsonKey(name: 'created_at') required this.createdAt, @DateTimeConverter()@JsonKey(name: 'start_at') required this.startAt, @DateTimeConverter()@JsonKey(name: 'end_at') this.endAt, this.title}): super._();
+  const _Meeting({required this.id, required this.url, @JsonKey(name: 'meeting_baas_id') required this.meetingBaasId, required this.status, @DateTimeConverter()@JsonKey(name: 'created_at') required this.createdAt, @DateTimeConverter()@JsonKey(name: 'start_at') required this.startAt, @DateTimeConverter()@JsonKey(name: 'end_at') this.endAt, this.title, this.description}): super._();
   factory _Meeting.fromJson(Map<String, dynamic> json) => _$MeetingFromJson(json);
 
 @override final  String id;
@@ -107,6 +108,7 @@ class _Meeting extends Meeting {
 @override@DateTimeConverter()@JsonKey(name: 'start_at') final  DateTime startAt;
 @override@DateTimeConverter()@JsonKey(name: 'end_at') final  DateTime? endAt;
 @override final  String? title;
+@override final  String? description;
 
 /// Create a copy of Meeting
 /// with the given fields replaced by the non-null parameter values.
@@ -121,16 +123,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Meeting&&(identical(other.id, id) || other.id == id)&&(identical(other.url, url) || other.url == url)&&(identical(other.meetingBaasId, meetingBaasId) || other.meetingBaasId == meetingBaasId)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.title, title) || other.title == title));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Meeting&&(identical(other.id, id) || other.id == id)&&(identical(other.url, url) || other.url == url)&&(identical(other.meetingBaasId, meetingBaasId) || other.meetingBaasId == meetingBaasId)&&(identical(other.status, status) || other.status == status)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,url,meetingBaasId,status,createdAt,startAt,endAt,title);
+int get hashCode => Object.hash(runtimeType,id,url,meetingBaasId,status,createdAt,startAt,endAt,title,description);
 
 @override
 String toString() {
-  return 'Meeting(id: $id, url: $url, meetingBaasId: $meetingBaasId, status: $status, createdAt: $createdAt, startAt: $startAt, endAt: $endAt, title: $title)';
+  return 'Meeting(id: $id, url: $url, meetingBaasId: $meetingBaasId, status: $status, createdAt: $createdAt, startAt: $startAt, endAt: $endAt, title: $title, description: $description)';
 }
 
 
@@ -141,7 +143,7 @@ abstract mixin class _$MeetingCopyWith<$Res> implements $MeetingCopyWith<$Res> {
   factory _$MeetingCopyWith(_Meeting value, $Res Function(_Meeting) _then) = __$MeetingCopyWithImpl;
 @override @useResult
 $Res call({
- String id, Uri url,@JsonKey(name: 'meeting_baas_id') String meetingBaasId, MeetingBotStatus status,@DateTimeConverter()@JsonKey(name: 'created_at') DateTime createdAt,@DateTimeConverter()@JsonKey(name: 'start_at') DateTime startAt,@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? endAt, String? title
+ String id, Uri url,@JsonKey(name: 'meeting_baas_id') String meetingBaasId, MeetingBotStatus status,@DateTimeConverter()@JsonKey(name: 'created_at') DateTime createdAt,@DateTimeConverter()@JsonKey(name: 'start_at') DateTime startAt,@DateTimeConverter()@JsonKey(name: 'end_at') DateTime? endAt, String? title, String? description
 });
 
 
@@ -158,7 +160,7 @@ class __$MeetingCopyWithImpl<$Res>
 
 /// Create a copy of Meeting
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? url = null,Object? meetingBaasId = null,Object? status = null,Object? createdAt = null,Object? startAt = null,Object? endAt = freezed,Object? title = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? url = null,Object? meetingBaasId = null,Object? status = null,Object? createdAt = null,Object? startAt = null,Object? endAt = freezed,Object? title = freezed,Object? description = freezed,}) {
   return _then(_Meeting(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
@@ -168,6 +170,7 @@ as MeetingBotStatus,createdAt: null == createdAt ? _self.createdAt : createdAt /
 as DateTime,startAt: null == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
 as DateTime,endAt: freezed == endAt ? _self.endAt : endAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

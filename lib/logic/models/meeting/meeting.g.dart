@@ -18,6 +18,7 @@ _Meeting _$MeetingFromJson(Map<String, dynamic> json) => _Meeting(
     const DateTimeConverter().fromJson,
   ),
   title: json['title'] as String?,
+  description: json['description'] as String?,
 );
 
 Map<String, dynamic> _$MeetingToJson(_Meeting instance) => <String, dynamic>{
@@ -32,6 +33,7 @@ Map<String, dynamic> _$MeetingToJson(_Meeting instance) => <String, dynamic>{
     const DateTimeConverter().toJson,
   ),
   'title': instance.title,
+  'description': instance.description,
 };
 
 Value? _$JsonConverterFromJson<Json, Value>(

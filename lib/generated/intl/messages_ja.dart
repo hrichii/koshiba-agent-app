@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "common_connected": MessageLookupByLibrary.simpleMessage("連携済み"),
     "common_connected_service": MessageLookupByLibrary.simpleMessage("連携サービス"),
+    "common_delete": MessageLookupByLibrary.simpleMessage("削除する"),
     "common_delete_account": MessageLookupByLibrary.simpleMessage("アカウント削除"),
     "common_disconnected": MessageLookupByLibrary.simpleMessage("未連携"),
     "common_error_fetch_failed": MessageLookupByLibrary.simpleMessage("取得失敗"),
