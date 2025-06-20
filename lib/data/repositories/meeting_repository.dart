@@ -14,18 +14,18 @@ final meetingRepositoryProvider = Provider(
 
 class MeetingRepository implements MeetingRepositoryInterface {
   MeetingRepository({required ApiDataSource apiDataSource})
-      : _apiDataSource = apiDataSource;
+    : _apiDataSource = apiDataSource;
 
   final ApiDataSource _apiDataSource;
 
   @override
-  Future<Result<void, AppMessageCode>> registerMeeting({
+  Future<Result<Meeting, AppMessageCode>> registerMeeting({
     required MeetingCreateRequestDto dto,
   }) async {
     switch (await _apiDataSource.registerMeeting(dto)) {
-      case ApiResponseOk<void>():
-        return const ResultOk(value: null);
-      case ApiResponseNg<void>(:final messageCode):
+      case ApiResponseOk(data: final value):
+        return ResultOk(value: value);
+      case ApiResponseNg(:final messageCode):
         return ResultNg(value: messageCode);
     }
   }

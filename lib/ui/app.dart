@@ -115,13 +115,30 @@ class App extends ConsumerWidget {
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             padding: EdgeInsets.zero,
             trackColor: WidgetStateProperty.resolveWith((states) {
+              final color = () {
+                if (states.contains(WidgetState.selected)) {
+                  return AppColor.primary;
+                } else {
+                  return AppColor.gray100;
+                }
+              }();
               if (states.contains(WidgetState.disabled)) {
-                return AppColor.primary.withValues(alpha: 0.5);
+                return color.withValues(alpha: 0.3);
               }
-              if (states.contains(WidgetState.selected)) {
-                return AppColor.primary;
+              return color;
+            }),
+            thumbColor: WidgetStateProperty.resolveWith((states) {
+              final color = () {
+                if (states.contains(WidgetState.selected)) {
+                  return AppColor.gray100;
+                } else {
+                  return AppColor.gray20;
+                }
+              }();
+              if (states.contains(WidgetState.disabled)) {
+                return color.withValues(alpha: 0.3);
               }
-              return null;
+              return color;
             }),
           ),
           pageTransitionsTheme: PageTransitionsTheme(

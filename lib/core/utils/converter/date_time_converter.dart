@@ -7,5 +7,5 @@ class DateTimeConverter implements JsonConverter<DateTime, String> {
   DateTime fromJson(String json) => DateTime.parse(json).toLocal();
 
   @override
-  String toJson(DateTime dateTime) => dateTime.toLocal().toString();
+  String toJson(DateTime dateTime) => dateTime.toUtc().toIso8601String();
 }

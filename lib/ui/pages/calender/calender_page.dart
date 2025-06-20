@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
+import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
@@ -26,17 +28,56 @@ class CalendarPage extends HookConsumerWidget {
 
     Future<void> refresh() async {
       // データ読み込み後、上部の余白分だけスクロール位置を調整
-      await ref.read(scheduleListUseCaseProvider.notifier).refresh();
+      await ref
+          .read(scheduleListUseCaseProvider.notifier)
+          .refresh()
+          .withToastAtError();
       await Future.delayed(const Duration(milliseconds: 100));
       if (scrollController.hasClients) {
         scrollController.jumpTo(_topPadding - 14); // 少し余白を見せる
       }
     }
 
-    Future<void> fetchPrevious() =>
-        ref.read(scheduleListUseCaseProvider.notifier).fetchPrevious();
-    Future<void> fetchNext() =>
-        ref.read(scheduleListUseCaseProvider.notifier).fetchNext();
+    Future<void> fetchPrevious() => ref
+        .read(scheduleListUseCaseProvider.notifier)
+        .fetchPrevious()
+        .withToastAtError();
+    Future<void> fetchNext() => ref
+        .read(scheduleListUseCaseProvider.notifier)
+        .fetchNext()
+        .withToastAtError();
+
+    Future<void> changeBotJoin({
+      required String? googleCalendarEventId,
+      required bool isBotJoin,
+    }) async {
+      if (isBotJoin) {
+        // Botを参加させる
+        await ref
+            .read(scheduleListUseCaseProvider.notifier)
+            .scheduleBotJoinByGoogleCalendar(
+              googleCalendarEventId: googleCalendarEventId,
+            )
+            .withLoaderOverlay()
+            .withToastAtError()
+            .withToastAtSuccess(
+              (_) => AppMessage.current.schedule_bot_join_success,
+            );
+      } else {
+        // Bot参加をキャンセルする
+        await ref
+            .read(scheduleListUseCaseProvider.notifier)
+            .deleteBotJoinByGoogleCalendar(
+              googleCalendarEventId: googleCalendarEventId,
+            )
+            .withLoaderOverlay()
+            .withToastAtError()
+            .withToastAtSuccess(
+              (_) => AppMessage.current.delete_bot_join_success,
+            );
+      }
+    }
+
     final loadingPrevious = ref
         .watch(scheduleListUseCaseProvider)
         .loadingPrevious;
@@ -130,23 +171,29 @@ class CalendarPage extends HookConsumerWidget {
             const SizedBox(height: AppSpace.sm8),
             ...[
               // 上方向スクロール用に上部に余白を追加
-              ?_buildShimmer(canFetchPrevious),
-              ?_buildShimmer(loadingPrevious),
-              ?_buildShimmer(loadingInitial),
+              ..._buildShimmer(canFetchPrevious),
+              ..._buildShimmer(loadingPrevious),
+              ..._buildShimmer(loadingInitial),
               ...scheduleList
                   .map(
                     (schedule) => buildScheduleItem(
                       schedule: schedule,
-                      onChanged: (isJoined) {
-                        // TODO
-                      },
+                      onChanged: schedule.canJoin
+                          ? (isJoined) {
+                              changeBotJoin(
+                                googleCalendarEventId:
+                                    schedule.googleCalendarEvent?.id,
+                                isBotJoin: isJoined,
+                              );
+                            }
+                          : null,
                       onTap: () {
                         // TODO
                       },
                     ),
                   )
                   .whereType<Widget>(),
-              ?_buildShimmer(loadingNext),
+              ..._buildShimmer(loadingNext),
             ].withGap(AppSpace.sm8),
             const SizedBox(height: AppSpace.sm8),
           ],
@@ -155,18 +202,20 @@ class CalendarPage extends HookConsumerWidget {
     );
   }
 
-  Widget? _buildShimmer(bool isLoading) {
+  List<Widget> _buildShimmer(bool isLoading) {
     if (!isLoading) {
-      return null;
+      return [];
     } else {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: AppSpace.sm8,
-        children: List.generate(
-          _loadingItemCount,
-          (_) => ScheduleItemWidget.loading(),
+      return [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: AppSpace.sm8,
+          children: List.generate(
+            _loadingItemCount,
+            (_) => ScheduleItemWidget.loading(),
+          ),
         ),
-      );
+      ];
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:koshiba_agent_app/core/utils/converter/date_time_converter.dart';
 import 'package:koshiba_agent_app/core/validation/app_validation.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -13,6 +14,7 @@ abstract class MeetingScheduleForm with _$MeetingScheduleForm {
     @JsonKey(name: 'url')
     @RfControl(validators: AppValidation.meetingUri)
     String? uri,
+    @DateTimeConverter()
     @JsonKey(name: 'start_at')
     @RfControl(validators: AppValidation.meetingStartAt)
     DateTime? startAt,

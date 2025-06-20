@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:koshiba_agent_app/core/utils/converter/date_time_converter.dart';
 
 part 'meeting_update_request_dto.freezed.dart';
 part 'meeting_update_request_dto.g.dart';
@@ -6,7 +7,7 @@ part 'meeting_update_request_dto.g.dart';
 @freezed
 abstract class MeetingUpdateRequestDto with _$MeetingUpdateRequestDto {
   const factory MeetingUpdateRequestDto({
-    @JsonKey(name: 'start_at') DateTime? startAt,
+    @DateTimeConverter() @JsonKey(name: 'start_at') DateTime? startAt,
     String? url,
   }) = _MeetingUpdateRequestDto;
 

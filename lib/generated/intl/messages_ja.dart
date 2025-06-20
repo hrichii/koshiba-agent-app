@@ -79,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
       "Googleとの連携が完了しました",
     ),
+    "delete_bot_join_success": MessageLookupByLibrary.simpleMessage(
+      "Bot参加をキャンセルしました",
+    ),
     "disconnect_to_google_confirm_disconnect_button_title":
         MessageLookupByLibrary.simpleMessage("解除する"),
     "disconnect_to_google_confirm_title": MessageLookupByLibrary.simpleMessage(
@@ -252,6 +255,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "meeting_register": MessageLookupByLibrary.simpleMessage("Botを参加させる"),
     "meeting_register_success": MessageLookupByLibrary.simpleMessage(
       "ミーティング登録が完了しました",
+    ),
+    "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
+      "Bot参加を登録しました",
     ),
     "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
       "Googleでログイン済み",

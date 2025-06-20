@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MeetingScheduleForm {
 
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? get uri;@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? get startAt;
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? get uri;@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? get startAt;
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $MeetingScheduleFormCopyWith<$Res>  {
   factory $MeetingScheduleFormCopyWith(MeetingScheduleForm value, $Res Function(MeetingScheduleForm) _then) = _$MeetingScheduleFormCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
 });
 
 
@@ -81,11 +81,11 @@ as DateTime?,
 @JsonSerializable()
 
 class _MeetingScheduleForm extends MeetingScheduleForm {
-  const _MeetingScheduleForm({@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) this.uri, @JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) this.startAt}): super._();
+  const _MeetingScheduleForm({@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) this.uri, @DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) this.startAt}): super._();
   factory _MeetingScheduleForm.fromJson(Map<String, dynamic> json) => _$MeetingScheduleFormFromJson(json);
 
 @override@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) final  String? uri;
-@override@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) final  DateTime? startAt;
+@override@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) final  DateTime? startAt;
 
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
@@ -120,7 +120,7 @@ abstract mixin class _$MeetingScheduleFormCopyWith<$Res> implements $MeetingSche
   factory _$MeetingScheduleFormCopyWith(_MeetingScheduleForm value, $Res Function(_MeetingScheduleForm) _then) = __$MeetingScheduleFormCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
+@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
 });
 
 
