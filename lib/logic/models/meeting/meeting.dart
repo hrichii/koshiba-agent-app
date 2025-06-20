@@ -18,6 +18,7 @@ abstract class Meeting with _$Meeting {
     @DateTimeConverter() @JsonKey(name: 'start_at') required DateTime startAt,
     @DateTimeConverter() @JsonKey(name: 'end_at') DateTime? endAt,
     String? title,
+    String? description,
   }) = _Meeting;
 
   const Meeting._();

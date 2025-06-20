@@ -59,6 +59,11 @@ class AppMessage {
     return Intl.message('キャンセル', name: 'common_cancel', desc: '', args: []);
   }
 
+  /// `削除する`
+  String get common_delete {
+    return Intl.message('削除する', name: 'common_delete', desc: '', args: []);
+  }
+
   /// `ログイン`
   String get common_sign_in {
     return Intl.message('ログイン', name: 'common_sign_in', desc: '', args: []);

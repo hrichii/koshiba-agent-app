@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
   $authorizedStatefulShellRouteData,
   $scheduleAddRoute,
   $botInviteRoute,
+  $scheduleDetailRouteData,
   $resetPasswordSendRouteData,
   $debugRouteData,
   $signInRouteData,
@@ -34,8 +35,8 @@ RouteBase get $authorizedStatefulShellRouteData =>
         StatefulShellBranchData.$branch(
           routes: [
             GoRouteData.$route(
-              path: '/calenders',
-              name: '/calenders',
+              path: '/schedules',
+              name: '/schedules',
 
               factory: _$CalenderRouteData._fromState,
             ),
@@ -95,7 +96,7 @@ mixin _$CalenderRouteData on GoRouteData {
       const CalenderRouteData();
 
   @override
-  String get location => GoRouteData.$location('/calenders');
+  String get location => GoRouteData.$location('/schedules');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -207,6 +208,48 @@ mixin _$BotInviteRoute on GoRouteData {
 
   @override
   void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $scheduleDetailRouteData => GoRouteData.$route(
+  path: '/schedules/detauil',
+  name: '/schedules/detauil',
+
+  factory: _$ScheduleDetailRouteData._fromState,
+);
+
+mixin _$ScheduleDetailRouteData on GoRouteData {
+  static ScheduleDetailRouteData _fromState(GoRouterState state) =>
+      ScheduleDetailRouteData(
+        gid: state.uri.queryParameters['gid'],
+        kid: state.uri.queryParameters['kid'],
+        $extra: state.extra as Schedule?,
+      );
+
+  ScheduleDetailRouteData get _self => this as ScheduleDetailRouteData;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/schedules/detauil',
+    queryParams: {
+      if (_self.gid != null) 'gid': _self.gid,
+      if (_self.kid != null) 'kid': _self.kid,
+    },
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
 }
 
 RouteBase get $resetPasswordSendRouteData => GoRouteData.$route(

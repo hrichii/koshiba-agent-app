@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_connected_service": MessageLookupByLibrary.simpleMessage(
       "Connected services",
     ),
+    "common_delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "common_delete_account": MessageLookupByLibrary.simpleMessage(
       "Delete account",
     ),

@@ -1,4 +1,5 @@
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
+import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
 import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart'
     as mobile;
 import 'package:koshiba_agent_app/ui/routers/web/web_router.dart' as web;
@@ -15,6 +16,25 @@ class AppMover {
       mode: LaunchMode.platformDefault,
       webOnlyWindowName: kIsWeb ? '_self' : null,
     );
+  }
+
+  static Future<void> pushScheduleDetail({
+    required Schedule schedule,
+    BuildContext? context,
+  }) async {
+    if (kIsWeb) {
+      return web.ScheduleDetailRouteData(
+        $extra: schedule,
+        gid: schedule.googleCalendarEvent?.id,
+        kid: schedule.scheduledBot?.id,
+      ).go(context ?? _rootContext);
+    } else {
+      return mobile.ScheduleDetailRouteData(
+        $extra: schedule,
+        gid: schedule.googleCalendarEvent?.id,
+        kid: schedule.scheduledBot?.id,
+      ).push(context ?? _rootContext);
+    }
   }
 
   static Future<void> pushBotInvite(BuildContext? context) async {
