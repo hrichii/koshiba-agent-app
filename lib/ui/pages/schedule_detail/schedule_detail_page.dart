@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:koshiba_agent_app/core/extensions/date_time_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
+import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
+import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
+import 'package:koshiba_agent_app/logic/models/transcription/transcription_item.dart';
+import 'package:koshiba_agent_app/logic/models/transcription/transcription_role_enum.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
+import 'package:koshiba_agent_app/logic/usecases/transcription/transcription_use_case.dart';
+import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/schedule_item_widget.dart';
 
@@ -94,24 +103,78 @@ class ScheduleDetailPage extends HookConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-
-          children: [
-            ...buildScheduleItem(
-              schedule: schedule,
-              onChanged: schedule?.canJoin == true
-                  ? (isJoined) {
-                      changeBotJoin(
-                        googleCalendarEventId:
-                            schedule?.googleCalendarEvent?.id,
-                        isBotJoin: isJoined,
-                      );
-                    }
-                  : null,
-              onDelete: deleteScheduledBot,
-            ),
-          ],
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg16),
+          physics: const AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children:
+              [
+                    ...buildScheduleItem(
+                      schedule: schedule,
+                      onChanged: schedule?.canJoin == true
+                          ? (isJoined) {
+                              changeBotJoin(
+                                googleCalendarEventId:
+                                    schedule?.googleCalendarEvent?.id,
+                                isBotJoin: isJoined,
+                              );
+                            }
+                          : null,
+                      onDelete: deleteScheduledBot,
+                    ),
+                    const SizedBox(height: AppSpace.xl24),
+                    Text(
+                      AppMessage.current.common_transcription,
+                      style: AppTextStyle.titleSmall20,
+                    ),
+                    const SizedBox(height: AppSpace.md12),
+                    if (scheduleId != null)
+                      ...switch (ref.watch(
+                        transcriptionUseCaseProvider(scheduleId!),
+                      )) {
+                        AsyncData<List<TranscriptionItem>>(:final value) =>
+                          value.isEmpty
+                              ? [
+                                  Center(
+                                    child: Text(
+                                      AppMessage
+                                          .current
+                                          .schedule_detail_empyty_transcription,
+                                    ),
+                                  ),
+                                ]
+                              : value
+                                    .map(_buildTranscriptionItemWidget)
+                                    .whereType<Widget>()
+                                    .toList()
+                                    .withGap(AppSpace.md12),
+                        AsyncError<List<TranscriptionItem>>() => [
+                          Center(
+                            child: Text(
+                              AppMessage.current.common_error_fetch_failed,
+                            ),
+                          ),
+                        ],
+                        _ => [
+                          const Center(
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        ],
+                      },
+                  ]
+                  .map(
+                    (child) => Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 800),
+                        child: SizedBox(width: double.infinity, child: child),
+                      ),
+                    ),
+                  )
+                  .toList(),
         ),
       ),
     );
@@ -169,6 +232,58 @@ class ScheduleDetailPage extends HookConsumerWidget {
 
     return true;
   }
+
+  Widget _buildTranscriptionItemWidget(TranscriptionItem item) => Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: AppSpace.lg16,
+    children: [
+      Text(
+        item.timestamp.toTimeString(),
+        style: AppTextStyle.bodyMedium14.withGray40(),
+      ),
+      Flexible(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppSpace.xs4,
+          children: [
+            switch (item.role) {
+              TranscriptionRoleEnum.user => Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: AppSpace.xs4,
+                children: [
+                  Icon(
+                    size: 18,
+                    Icons.account_circle_outlined,
+                    color: AppColor.primary,
+                  ),
+                  Text(AppMessage.current.common_user),
+                ],
+              ),
+              TranscriptionRoleEnum.assistant => Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: AppSpace.xs4,
+                children: [
+                  Image.asset(
+                    AppAssets.imagesAppIcon.value,
+                    width: 18,
+                    height: 18,
+                  ),
+                  Text(AppMessage.current.common_bot),
+                ],
+              ),
+
+              _ => Icon(size: 18, Icons.help, color: AppColor.gray50),
+            },
+            Text(
+              item.content ?? '',
+              style: const TextStyle(fontSize: 16, color: Colors.black87),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
 
   Widget _buildErrorPage() => Scaffold(
     appBar: AppBar(),

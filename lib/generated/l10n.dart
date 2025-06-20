@@ -79,6 +79,16 @@ class AppMessage {
     return Intl.message('会員登録', name: 'common_sign_up', desc: '', args: []);
   }
 
+  /// `ユーザー`
+  String get common_user {
+    return Intl.message('ユーザー', name: 'common_user', desc: '', args: []);
+  }
+
+  /// `ジャービス`
+  String get common_bot {
+    return Intl.message('ジャービス', name: 'common_bot', desc: '', args: []);
+  }
+
   /// `Googleでログイン`
   String get common_sign_in_with_google {
     return Intl.message(
@@ -214,6 +224,16 @@ class AppMessage {
     return Intl.message(
       '取得失敗',
       name: 'common_error_fetch_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `文字起こし`
+  String get common_transcription {
+    return Intl.message(
+      '文字起こし',
+      name: 'common_transcription',
       desc: '',
       args: [],
     );
@@ -364,6 +384,16 @@ class AppMessage {
     return Intl.message(
       'Googleでログイン済み',
       name: 'sign_in_by_google_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `文字起こしはありません`
+  String get schedule_detail_empyty_transcription {
+    return Intl.message(
+      '文字起こしはありません',
+      name: 'schedule_detail_empyty_transcription',
       desc: '',
       args: [],
     );

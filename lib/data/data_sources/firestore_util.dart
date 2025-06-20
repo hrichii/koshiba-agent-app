@@ -4,15 +4,12 @@ import 'package:koshiba_agent_app/core/themes/app_env.dart';
 
 class FirestoreUtil {
   static FirebaseFirestore get _firestore => FirebaseFirestore.instanceFor(
-        app: Firebase.app(),
-        databaseId: AppEnv.databaseId,
-      );
+    app: Firebase.app(),
+    databaseId: AppEnv.databaseId,
+  );
   static CollectionReference<Map<String, dynamic>> collectionFromEnum(
     CollectionEnum collectionEnum,
-  ) =>
-      _firestore.collection(collectionEnum.name);
+  ) => _firestore.collection(collectionEnum.name);
 }
 
-enum CollectionEnum {
-  accounts,
-}
+enum CollectionEnum { accounts, transcription }

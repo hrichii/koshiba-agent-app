@@ -90,6 +90,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_sign_up_with_google": MessageLookupByLibrary.simpleMessage(
       "Sign up with Google",
     ),
+    "common_transcription": MessageLookupByLibrary.simpleMessage(
+      "Transcription",
+    ),
+    "common_user": MessageLookupByLibrary.simpleMessage("User"),
     "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
       "Connected to Google successfully",
     ),
@@ -281,6 +285,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
       "Bot has been registered to join the meeting",
     ),
+    "schedule_detail_empyty_transcription":
+        MessageLookupByLibrary.simpleMessage("No transcription available"),
     "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
       "Signed in with Google",
     ),
