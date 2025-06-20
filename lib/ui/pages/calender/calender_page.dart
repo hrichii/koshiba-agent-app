@@ -5,20 +5,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
-import 'package:koshiba_agent_app/core/themes/app_radius.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
-import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/schedule_item_widget.dart';
 
 class CalendarPage extends HookConsumerWidget {
   const CalendarPage({super.key});
   static const int _loadingItemCount = 10; // Shimmerの数
-  static const double _shimmerHeight = 134; // Shimmerの高さ
+  static const double _shimmerHeight = 124; // Shimmerの高さ
   static const double _topPadding =
       (_shimmerHeight + AppSpace.sm8) * _loadingItemCount; // 上部の余白
 
@@ -132,7 +130,7 @@ class CalendarPage extends HookConsumerWidget {
             const SizedBox(height: AppSpace.sm8),
             ...[
               // 上方向スクロール用に上部に余白を追加
-              ?_buildTopPadding(canFetchPrevious),
+              ?_buildShimmer(canFetchPrevious),
               ?_buildShimmer(loadingPrevious),
               ?_buildShimmer(loadingInitial),
               ...scheduleList
@@ -157,28 +155,6 @@ class CalendarPage extends HookConsumerWidget {
     );
   }
 
-  Widget? _buildTopPadding(bool canFetchPrevious) {
-    if (!canFetchPrevious) {
-      return null;
-    } else {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: AppSpace.sm8,
-        children: List.generate(
-          _loadingItemCount,
-          (_) => Container(
-            height: _shimmerHeight,
-            decoration: BoxDecoration(
-              color: AppColor.gray100,
-              borderRadius: BorderRadius.circular(AppRadius.lg12),
-              border: Border.all(color: AppColor.gray90, width: 1),
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
   Widget? _buildShimmer(bool isLoading) {
     if (!isLoading) {
       return null;
@@ -188,10 +164,7 @@ class CalendarPage extends HookConsumerWidget {
         spacing: AppSpace.sm8,
         children: List.generate(
           _loadingItemCount,
-          (_) => ShimmerWidget(
-            height: _shimmerHeight,
-            borderRadius: BorderRadius.circular(AppRadius.lg12),
-          ),
+          (_) => ScheduleItemWidget.loading(),
         ),
       );
     }
@@ -209,7 +182,6 @@ class CalendarPage extends HookConsumerWidget {
       return ScheduleItemWidget.googleCalendarEvent(
         onChanged: onChanged,
         calendarEvent: calendarEvent,
-        scheduledBot: scheduledBot,
         isJoined: isJoined,
         onTap: onTap,
       );

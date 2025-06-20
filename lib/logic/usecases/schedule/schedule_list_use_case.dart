@@ -69,7 +69,7 @@ class ScheduleListState {
     loadingPrevious: loadingPrevious == null
         ? this.loadingPrevious
         : loadingPrevious(),
-    requestId: this.requestId, // requestIdは保持
+    requestId: requestId,
   );
 }
 
