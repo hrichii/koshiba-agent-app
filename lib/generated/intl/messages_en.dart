@@ -73,13 +73,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_navigation_accounts": MessageLookupByLibrary.simpleMessage(
       "Accounts",
     ),
-    "common_navigation_calendar": MessageLookupByLibrary.simpleMessage(
-      "Calendar",
-    ),
     "common_navigation_document": MessageLookupByLibrary.simpleMessage(
       "Document",
     ),
     "common_navigation_home": MessageLookupByLibrary.simpleMessage("Home"),
+    "common_navigation_schedule": MessageLookupByLibrary.simpleMessage(
+      "Schedule",
+    ),
     "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
     "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
       "Sign in with Google",

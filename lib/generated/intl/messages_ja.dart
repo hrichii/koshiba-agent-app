@@ -60,11 +60,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_error_fetch_failed": MessageLookupByLibrary.simpleMessage("取得失敗"),
     "common_invite_bot": MessageLookupByLibrary.simpleMessage("Botを招待"),
     "common_navigation_accounts": MessageLookupByLibrary.simpleMessage("アカウント"),
-    "common_navigation_calendar": MessageLookupByLibrary.simpleMessage("カレンダー"),
     "common_navigation_document": MessageLookupByLibrary.simpleMessage(
       "ドキュメント",
     ),
     "common_navigation_home": MessageLookupByLibrary.simpleMessage("ホーム"),
+    "common_navigation_schedule": MessageLookupByLibrary.simpleMessage(
+      "スケジュール",
+    ),
     "common_sign_in": MessageLookupByLibrary.simpleMessage("ログイン"),
     "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
       "Googleでログイン",

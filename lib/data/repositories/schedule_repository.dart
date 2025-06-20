@@ -15,11 +15,12 @@ class ScheduleRepository implements ScheduleRepositoryInterface {
     : _apiDataSource = apiDataSource;
 
   final ApiDataSource _apiDataSource;
+  final int _pageSize = 20;
 
   @override
   Future<Result<ScheduleResponseDto, AppMessageCode>>
   fetchScheduleListAtInitial({required DateTime? timeBase}) async {
-    final response = await _apiDataSource.getScheduleList();
+    final response = await _apiDataSource.getScheduleList(pageSize: _pageSize);
     switch (response) {
       case ApiResponseOk(:final data):
         return ResultOk(value: data);
@@ -33,6 +34,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface {
     required String pageToken,
   }) async {
     final response = await _apiDataSource.getScheduleList(
+      pageSize: _pageSize,
       nextPageToken: pageToken,
     );
     switch (response) {
@@ -47,6 +49,7 @@ class ScheduleRepository implements ScheduleRepositoryInterface {
   Future<Result<ScheduleResponseDto, AppMessageCode>>
   fetchScheduleListForPrevoius({required String pageToken}) async {
     final response = await _apiDataSource.getScheduleList(
+      pageSize: _pageSize,
       previousPageToken: pageToken,
     );
     switch (response) {

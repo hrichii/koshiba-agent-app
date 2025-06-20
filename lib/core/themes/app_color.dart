@@ -3,32 +3,32 @@ import 'package:flutter/material.dart';
 class AppColorScheme {
   static const light = ColorScheme(
     brightness: Brightness.light,
-    primary: _Colors.blue40,
-    onPrimary: _Colors.blue100,
-    primaryContainer: _Colors.blue80,
-    onPrimaryContainer: _Colors.blue10,
-    secondary: _Colors.yellow50,
-    onSecondary: _Colors.yellow100,
-    secondaryContainer: _Colors.yellow90,
-    onSecondaryContainer: _Colors.yellow10,
-    tertiary: _Colors.pink40,
-    onTertiary: _Colors.pink100,
-    tertiaryContainer: _Colors.pink70,
-    onTertiaryContainer: _Colors.pink10,
-    error: _Colors.red40,
-    onError: _Colors.red100,
-    errorContainer: _Colors.red90,
-    onErrorContainer: _Colors.red10,
-    surface: _Colors.gray100, //SearchBarやNavigationRailなどの背景色
-    onSurface: _Colors.gray10, //Textの色
-    onSurfaceVariant: _Colors.gray10, //アイコンやラジオボタンの枠の色
-    outline: _Colors.gray50, //OutlineButtonの枠やTextFieldの下線の色
-    onInverseSurface: _Colors.gray95,
-    inverseSurface: _Colors.gray20,
-    inversePrimary: _Colors.blue80,
+    primary: AppColorPallete.blue40,
+    onPrimary: AppColorPallete.blue100,
+    primaryContainer: AppColorPallete.blue80,
+    onPrimaryContainer: AppColorPallete.blue10,
+    secondary: AppColorPallete.yellow50,
+    onSecondary: AppColorPallete.yellow100,
+    secondaryContainer: AppColorPallete.yellow90,
+    onSecondaryContainer: AppColorPallete.yellow10,
+    tertiary: AppColorPallete.pink40,
+    onTertiary: AppColorPallete.pink100,
+    tertiaryContainer: AppColorPallete.pink70,
+    onTertiaryContainer: AppColorPallete.pink10,
+    error: AppColorPallete.red40,
+    onError: AppColorPallete.red100,
+    errorContainer: AppColorPallete.red90,
+    onErrorContainer: AppColorPallete.red10,
+    surface: AppColorPallete.gray100, //SearchBarやNavigationRailなどの背景色
+    onSurface: AppColorPallete.gray10, //Textの色
+    onSurfaceVariant: AppColorPallete.gray10, //アイコンやラジオボタンの枠の色
+    outline: AppColorPallete.gray50, //OutlineButtonの枠やTextFieldの下線の色
+    onInverseSurface: AppColorPallete.gray95,
+    inverseSurface: AppColorPallete.gray20,
+    inversePrimary: AppColorPallete.blue80,
     shadow: Colors.black, //影の色
     surfaceTint: Colors.white, //SearchBarやNavigationRailなどの背景色に少し影響
-    outlineVariant: _Colors.gray80, //Dividerに影響
+    outlineVariant: AppColorPallete.gray80, //Dividerに影響
     scrim: Colors.black,
   );
 }
@@ -63,103 +63,103 @@ class AppColor {
   static Color get surfaceTint => _colorScheme.surfaceTint;
   static Color get outlineVariant => _colorScheme.outlineVariant;
   static Color get scrim => _colorScheme.scrim;
-  static Color get backgroundLightGray => _Colors.gray95;
+  static Color get backgroundLightGray => AppColorPallete.gray95;
 
   static Color get warn => Colors.orange;
-  static Color get success => _Colors.green60;
+  static Color get success => AppColorPallete.green60;
 
-  static Color get gray0 => _Colors.gray0;
-  static Color get gray1 => _Colors.gray1;
-  static Color get gray2 => _Colors.gray2;
-  static Color get gray3 => _Colors.gray3;
-  static Color get gray4 => _Colors.gray4;
-  static Color get gray5 => _Colors.gray5;
-  static Color get gray10 => _Colors.gray10;
-  static Color get gray15 => _Colors.gray15;
-  static Color get gray20 => _Colors.gray20;
-  static Color get gray25 => _Colors.gray25;
-  static Color get gray30 => _Colors.gray30;
-  static Color get gray35 => _Colors.gray35;
-  static Color get gray40 => _Colors.gray40;
-  static Color get gray50 => _Colors.gray50;
-  static Color get gray60 => _Colors.gray60;
-  static Color get gray70 => _Colors.gray70;
-  static Color get gray80 => _Colors.gray80;
-  static Color get gray85 => _Colors.gray85;
-  static Color get gray90 => _Colors.gray90;
-  static Color get gray95 => _Colors.gray95;
-  static Color get gray96 => _Colors.gray96;
-  static Color get gray97 => _Colors.gray97;
-  static Color get gray98 => _Colors.gray98;
-  static Color get gray99 => _Colors.gray99;
-  static Color get gray100 => _Colors.gray100;
+  static Color get gray0 => AppColorPallete.gray0;
+  static Color get gray1 => AppColorPallete.gray1;
+  static Color get gray2 => AppColorPallete.gray2;
+  static Color get gray3 => AppColorPallete.gray3;
+  static Color get gray4 => AppColorPallete.gray4;
+  static Color get gray5 => AppColorPallete.gray5;
+  static Color get gray10 => AppColorPallete.gray10;
+  static Color get gray15 => AppColorPallete.gray15;
+  static Color get gray20 => AppColorPallete.gray20;
+  static Color get gray25 => AppColorPallete.gray25;
+  static Color get gray30 => AppColorPallete.gray30;
+  static Color get gray35 => AppColorPallete.gray35;
+  static Color get gray40 => AppColorPallete.gray40;
+  static Color get gray50 => AppColorPallete.gray50;
+  static Color get gray60 => AppColorPallete.gray60;
+  static Color get gray70 => AppColorPallete.gray70;
+  static Color get gray80 => AppColorPallete.gray80;
+  static Color get gray85 => AppColorPallete.gray85;
+  static Color get gray90 => AppColorPallete.gray90;
+  static Color get gray95 => AppColorPallete.gray95;
+  static Color get gray96 => AppColorPallete.gray96;
+  static Color get gray97 => AppColorPallete.gray97;
+  static Color get gray98 => AppColorPallete.gray98;
+  static Color get gray99 => AppColorPallete.gray99;
+  static Color get gray100 => AppColorPallete.gray100;
 
-  static Color get blue0 => _Colors.blue0;
-  static Color get blue1 => _Colors.blue1;
-  static Color get blue2 => _Colors.blue2;
-  static Color get blue3 => _Colors.blue3;
-  static Color get blue4 => _Colors.blue4;
-  static Color get blue5 => _Colors.blue5;
-  static Color get blue10 => _Colors.blue10;
-  static Color get blue15 => _Colors.blue15;
-  static Color get blue20 => _Colors.blue20;
-  static Color get blue25 => _Colors.blue25;
-  static Color get blue30 => _Colors.blue30;
-  static Color get blue35 => _Colors.blue35;
-  static Color get blue40 => _Colors.blue40;
-  static Color get blue50 => _Colors.blue50;
-  static Color get blue60 => _Colors.blue60;
-  static Color get blue70 => _Colors.blue70;
-  static Color get blue80 => _Colors.blue80;
-  static Color get blue85 => _Colors.blue85;
-  static Color get blue90 => _Colors.blue90;
-  static Color get blue95 => _Colors.blue95;
-  static Color get blue96 => _Colors.blue96;
-  static Color get blue97 => _Colors.blue97;
-  static Color get blue98 => _Colors.blue98;
-  static Color get blue99 => _Colors.blue99;
-  static Color get blue100 => _Colors.blue100;
+  static Color get blue0 => AppColorPallete.blue0;
+  static Color get blue1 => AppColorPallete.blue1;
+  static Color get blue2 => AppColorPallete.blue2;
+  static Color get blue3 => AppColorPallete.blue3;
+  static Color get blue4 => AppColorPallete.blue4;
+  static Color get blue5 => AppColorPallete.blue5;
+  static Color get blue10 => AppColorPallete.blue10;
+  static Color get blue15 => AppColorPallete.blue15;
+  static Color get blue20 => AppColorPallete.blue20;
+  static Color get blue25 => AppColorPallete.blue25;
+  static Color get blue30 => AppColorPallete.blue30;
+  static Color get blue35 => AppColorPallete.blue35;
+  static Color get blue40 => AppColorPallete.blue40;
+  static Color get blue50 => AppColorPallete.blue50;
+  static Color get blue60 => AppColorPallete.blue60;
+  static Color get blue70 => AppColorPallete.blue70;
+  static Color get blue80 => AppColorPallete.blue80;
+  static Color get blue85 => AppColorPallete.blue85;
+  static Color get blue90 => AppColorPallete.blue90;
+  static Color get blue95 => AppColorPallete.blue95;
+  static Color get blue96 => AppColorPallete.blue96;
+  static Color get blue97 => AppColorPallete.blue97;
+  static Color get blue98 => AppColorPallete.blue98;
+  static Color get blue99 => AppColorPallete.blue99;
+  static Color get blue100 => AppColorPallete.blue100;
 
-  static Color get yellow0 => _Colors.yellow0;
-  static Color get yellow5 => _Colors.yellow5;
-  static Color get yellow10 => _Colors.yellow10;
-  static Color get yellow15 => _Colors.yellow15;
-  static Color get yellow20 => _Colors.yellow20;
-  static Color get yellow25 => _Colors.yellow25;
-  static Color get yellow30 => _Colors.yellow30;
-  static Color get yellow35 => _Colors.yellow35;
-  static Color get yellow40 => _Colors.yellow40;
-  static Color get yellow50 => _Colors.yellow50;
-  static Color get yellow60 => _Colors.yellow60;
-  static Color get yellow70 => _Colors.yellow70;
-  static Color get yellow80 => _Colors.yellow80;
-  static Color get yellow90 => _Colors.yellow90;
-  static Color get yellow95 => _Colors.yellow95;
-  static Color get yellow98 => _Colors.yellow98;
-  static Color get yellow99 => _Colors.yellow99;
-  static Color get yellow100 => _Colors.yellow100;
+  static Color get yellow0 => AppColorPallete.yellow0;
+  static Color get yellow5 => AppColorPallete.yellow5;
+  static Color get yellow10 => AppColorPallete.yellow10;
+  static Color get yellow15 => AppColorPallete.yellow15;
+  static Color get yellow20 => AppColorPallete.yellow20;
+  static Color get yellow25 => AppColorPallete.yellow25;
+  static Color get yellow30 => AppColorPallete.yellow30;
+  static Color get yellow35 => AppColorPallete.yellow35;
+  static Color get yellow40 => AppColorPallete.yellow40;
+  static Color get yellow50 => AppColorPallete.yellow50;
+  static Color get yellow60 => AppColorPallete.yellow60;
+  static Color get yellow70 => AppColorPallete.yellow70;
+  static Color get yellow80 => AppColorPallete.yellow80;
+  static Color get yellow90 => AppColorPallete.yellow90;
+  static Color get yellow95 => AppColorPallete.yellow95;
+  static Color get yellow98 => AppColorPallete.yellow98;
+  static Color get yellow99 => AppColorPallete.yellow99;
+  static Color get yellow100 => AppColorPallete.yellow100;
 
-  static Color get pink0 => _Colors.pink0;
-  static Color get pink5 => _Colors.pink5;
-  static Color get pink10 => _Colors.pink10;
-  static Color get pink15 => _Colors.pink15;
-  static Color get pink20 => _Colors.pink20;
-  static Color get pink25 => _Colors.pink25;
-  static Color get pink30 => _Colors.pink30;
-  static Color get pink35 => _Colors.pink35;
-  static Color get pink40 => _Colors.pink40;
-  static Color get pink50 => _Colors.pink50;
-  static Color get pink60 => _Colors.pink60;
-  static Color get pink70 => _Colors.pink70;
-  static Color get pink80 => _Colors.pink80;
-  static Color get pink90 => _Colors.pink90;
-  static Color get pink95 => _Colors.pink95;
-  static Color get pink98 => _Colors.pink98;
-  static Color get pink99 => _Colors.pink99;
-  static Color get pink100 => _Colors.pink100;
+  static Color get pink0 => AppColorPallete.pink0;
+  static Color get pink5 => AppColorPallete.pink5;
+  static Color get pink10 => AppColorPallete.pink10;
+  static Color get pink15 => AppColorPallete.pink15;
+  static Color get pink20 => AppColorPallete.pink20;
+  static Color get pink25 => AppColorPallete.pink25;
+  static Color get pink30 => AppColorPallete.pink30;
+  static Color get pink35 => AppColorPallete.pink35;
+  static Color get pink40 => AppColorPallete.pink40;
+  static Color get pink50 => AppColorPallete.pink50;
+  static Color get pink60 => AppColorPallete.pink60;
+  static Color get pink70 => AppColorPallete.pink70;
+  static Color get pink80 => AppColorPallete.pink80;
+  static Color get pink90 => AppColorPallete.pink90;
+  static Color get pink95 => AppColorPallete.pink95;
+  static Color get pink98 => AppColorPallete.pink98;
+  static Color get pink99 => AppColorPallete.pink99;
+  static Color get pink100 => AppColorPallete.pink100;
 }
 
-class _Colors {
+class AppColorPallete {
   static const blue0 = Color(0xFF000000);
   static const blue1 = Color(0xFF020306);
   static const blue2 = Color(0xFF05060D);

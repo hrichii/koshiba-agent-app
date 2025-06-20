@@ -64,7 +64,7 @@ class AppNavigationRail extends HookWidget {
                     path: AppRoutePath.calender,
                     icon: Icons.calendar_month_outlined,
                     selectedIcon: Icons.calendar_month,
-                    label: AppMessage.current.common_navigation_calendar,
+                    label: AppMessage.current.common_navigation_schedule,
                     onTap: () => AppMover.goCalendar(),
                   ),
                   _buildNavItem(
