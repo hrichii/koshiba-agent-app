@@ -6,7 +6,7 @@ import 'package:koshiba_agent_app/logic/models/result/result.dart';
 
 /// チャットルーム一覧の操作を定義するインターフェース
 abstract interface class MeetingRepositoryInterface {
-  Future<Result<void, AppMessageCode>> registerMeeting({
+  Future<Result<Meeting, AppMessageCode>> registerMeeting({
     required MeetingCreateRequestDto dto,
   });
 

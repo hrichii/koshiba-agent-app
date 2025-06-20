@@ -92,6 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
       "Connected to Google successfully",
     ),
+    "delete_bot_join_success": MessageLookupByLibrary.simpleMessage(
+      "Bot has been removed from the meeting",
+    ),
     "disconnect_to_google_confirm_disconnect_button_title":
         MessageLookupByLibrary.simpleMessage("Disconnect"),
     "disconnect_to_google_confirm_title": MessageLookupByLibrary.simpleMessage(
@@ -273,6 +276,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "meeting_register_success": MessageLookupByLibrary.simpleMessage(
       "Meeting registration completed",
+    ),
+    "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
+      "Bot has been registered to join the meeting",
     ),
     "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
       "Signed in with Google",

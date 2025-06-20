@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MeetingUpdateRequestDto {
 
-@JsonKey(name: 'start_at') DateTime? get startAt; String? get url;
+@DateTimeConverter()@JsonKey(name: 'start_at') DateTime? get startAt; String? get url;
 /// Create a copy of MeetingUpdateRequestDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $MeetingUpdateRequestDtoCopyWith<$Res>  {
   factory $MeetingUpdateRequestDtoCopyWith(MeetingUpdateRequestDto value, $Res Function(MeetingUpdateRequestDto) _then) = _$MeetingUpdateRequestDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'start_at') DateTime? startAt, String? url
+@DateTimeConverter()@JsonKey(name: 'start_at') DateTime? startAt, String? url
 });
 
 
@@ -81,10 +81,10 @@ as String?,
 @JsonSerializable()
 
 class _MeetingUpdateRequestDto implements MeetingUpdateRequestDto {
-  const _MeetingUpdateRequestDto({@JsonKey(name: 'start_at') this.startAt, this.url});
+  const _MeetingUpdateRequestDto({@DateTimeConverter()@JsonKey(name: 'start_at') this.startAt, this.url});
   factory _MeetingUpdateRequestDto.fromJson(Map<String, dynamic> json) => _$MeetingUpdateRequestDtoFromJson(json);
 
-@override@JsonKey(name: 'start_at') final  DateTime? startAt;
+@override@DateTimeConverter()@JsonKey(name: 'start_at') final  DateTime? startAt;
 @override final  String? url;
 
 /// Create a copy of MeetingUpdateRequestDto
@@ -120,7 +120,7 @@ abstract mixin class _$MeetingUpdateRequestDtoCopyWith<$Res> implements $Meeting
   factory _$MeetingUpdateRequestDtoCopyWith(_MeetingUpdateRequestDto value, $Res Function(_MeetingUpdateRequestDto) _then) = __$MeetingUpdateRequestDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'start_at') DateTime? startAt, String? url
+@DateTimeConverter()@JsonKey(name: 'start_at') DateTime? startAt, String? url
 });
 
 

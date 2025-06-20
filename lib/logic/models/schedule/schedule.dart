@@ -17,4 +17,9 @@ abstract class Schedule with _$Schedule {
       _$ScheduleFromJson(json);
 
   bool get isJoined => scheduledBot != null;
+  bool get canJoin =>
+      googleCalendarEvent != null &&
+      googleCalendarEvent!.startAt != null &&
+      googleCalendarEvent!.startAt!.isAfter(DateTime.now()) &&
+      googleCalendarEvent!.url != null;
 }

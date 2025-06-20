@@ -1,7 +1,11 @@
+import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/data/repositories/schedule_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_request_dto.dart';
+import 'package:koshiba_agent_app/logic/models/meeting/meeting_create_source.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
+import 'package:koshiba_agent_app/logic/usecases/meeting/meeting_repository_interface.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_repository_interface.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -75,8 +79,10 @@ class ScheduleListState {
 
 @riverpod
 class ScheduleListUseCase extends _$ScheduleListUseCase {
-  ScheduleRepositoryInterface get _repository =>
+  ScheduleRepositoryInterface get _scheduleRepository =>
       ref.read(scheduleRepositoryProvider);
+  MeetingRepositoryInterface get _meetingRepository =>
+      ref.read(meetingRepositoryProvider);
 
   bool get canFetchPrevious =>
       !state.loadingInitial &&
@@ -98,7 +104,9 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
 
     state = state.copyWith(loadingInitial: () => true);
 
-    final result = await _repository.fetchScheduleListAtInitial(timeBase: null);
+    final result = await _scheduleRepository.fetchScheduleListAtInitial(
+      timeBase: null,
+    );
 
     // リクエストIDが変わっていたら処理をスキップ
     if (state.requestId != requestId) {
@@ -129,7 +137,7 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
     final currentRequestId = state.requestId;
     state = state.copyWith(loadingNext: () => true);
 
-    final result = await _repository.fetchScheduleListForNext(
+    final result = await _scheduleRepository.fetchScheduleListForNext(
       pageToken: state.nextPageToken!,
     );
 
@@ -162,7 +170,7 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
     final currentRequestId = state.requestId;
     state = state.copyWith(loadingPrevious: () => true);
 
-    final result = await _repository.fetchScheduleListForPrevoius(
+    final result = await _scheduleRepository.fetchScheduleListForPrevoius(
       pageToken: state.previousPageToken!,
     );
 
@@ -182,6 +190,89 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
         return const ResultOk(value: null);
       case ResultNg(:final value):
         state = state.copyWith(loadingPrevious: () => false);
+        return ResultNg(value: value);
+    }
+  }
+
+  /// GoogleカレンダーのイベントにBot参加をリクエスト
+  Future<Result<void, AppMessageCode>> scheduleBotJoinByGoogleCalendar({
+    required String? googleCalendarEventId,
+  }) async {
+    final schedule = state.data
+        .where(
+          (schedule) =>
+              schedule.googleCalendarEvent?.id == googleCalendarEventId,
+        )
+        .firstOrNull;
+    final googleCalendarEvent = schedule?.googleCalendarEvent;
+    if (googleCalendarEventId == null || googleCalendarEvent == null) {
+      return const ResultNg(value: AppMessageCode.errorApiNotFound());
+    }
+    if (schedule?.isJoined == true) {
+      return const ResultNg(
+        value: AppMessageCode.errorApiResourceAlreadyExists(),
+      );
+    }
+    final url = googleCalendarEvent.url;
+    final startAt = googleCalendarEvent.startAt;
+    if (url == null || startAt == null) {
+      return const ResultNg(value: AppMessageCode.errorApiBadRequest());
+    }
+
+    final registerResult = await _meetingRepository.registerMeeting(
+      dto: MeetingCreateRequestDto(
+        url: url,
+        startAt: startAt,
+        source: MeetingCreateSource.googleCalendar,
+        googleCalendarId: googleCalendarEventId,
+      ),
+    );
+    switch (registerResult) {
+      case ResultOk(:final value):
+        state = state.copyWith(
+          data: () => state.data.map((schedule) {
+            if (schedule.googleCalendarEvent?.id == googleCalendarEventId) {
+              return schedule.copyWith(scheduledBot: value);
+            }
+            return schedule;
+          }).toList(),
+        );
+        return const ResultOk(value: null);
+      case ResultNg(:final value):
+        return ResultNg(value: value);
+    }
+  }
+
+  /// GoogleカレンダーのイベントからBot参加をキャンセル
+  Future<Result<void, AppMessageCode>> deleteBotJoinByGoogleCalendar({
+    required String? googleCalendarEventId,
+  }) async {
+    final schedule = state.data
+        .where(
+          (schedule) =>
+              schedule.googleCalendarEvent?.id == googleCalendarEventId,
+        )
+        .firstOrNull;
+    final scheduledBot = schedule?.scheduledBot;
+    if (googleCalendarEventId == null || scheduledBot == null) {
+      return const ResultNg(value: AppMessageCode.errorApiNotFound());
+    }
+
+    final deleteResult = await _meetingRepository.deleteMeeting(
+      meetingId: scheduledBot.id,
+    );
+    switch (deleteResult) {
+      case ResultOk():
+        state = state.copyWith(
+          data: () => state.data.map((schedule) {
+            if (schedule.googleCalendarEvent?.id == googleCalendarEventId) {
+              return schedule.copyWith(scheduledBot: null);
+            }
+            return schedule;
+          }).toList(),
+        );
+        return const ResultOk(value: null);
+      case ResultNg(:final value):
         return ResultNg(value: value);
     }
   }

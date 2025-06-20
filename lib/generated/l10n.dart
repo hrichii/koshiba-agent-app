@@ -334,6 +334,26 @@ class AppMessage {
     );
   }
 
+  /// `Bot参加を登録しました`
+  String get schedule_bot_join_success {
+    return Intl.message(
+      'Bot参加を登録しました',
+      name: 'schedule_bot_join_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bot参加をキャンセルしました`
+  String get delete_bot_join_success {
+    return Intl.message(
+      'Bot参加をキャンセルしました',
+      name: 'delete_bot_join_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Googleでログイン済み`
   String get sign_in_by_google_label {
     return Intl.message(
