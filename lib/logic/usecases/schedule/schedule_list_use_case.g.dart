@@ -7,7 +7,7 @@ part of 'schedule_list_use_case.dart';
 // **************************************************************************
 
 String _$scheduleListUseCaseHash() =>
-    r'd2e50c907aeddd86fec1a3f49734957910866c13';
+    r'917ae28b98aa27ac7e03c8e73f27a2368a34bbec';
 
 /// See also [ScheduleListUseCase].
 @ProviderFor(ScheduleListUseCase)

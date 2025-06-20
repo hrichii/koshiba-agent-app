@@ -1,0 +1,1 @@
+enum TranscriptionSourceEnum { chat, voice }
