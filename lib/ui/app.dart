@@ -111,6 +111,19 @@ class App extends ConsumerWidget {
               ),
             ),
           ),
+          switchTheme: SwitchThemeData(
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            padding: EdgeInsets.zero,
+            trackColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.disabled)) {
+                return AppColor.primary.withValues(alpha: 0.5);
+              }
+              if (states.contains(WidgetState.selected)) {
+                return AppColor.primary;
+              }
+              return null;
+            }),
+          ),
           pageTransitionsTheme: PageTransitionsTheme(
             builders: kIsWeb
                 ? {

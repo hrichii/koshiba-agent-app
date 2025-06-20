@@ -22,30 +22,30 @@ class AppBottomNavigationBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) => BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: onDestinationSelected,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home_outlined),
-            activeIcon: const Icon(Icons.home),
-            label: AppMessage.current.common_navigation_home,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.calendar_month_outlined),
-            activeIcon: const Icon(Icons.calendar_month),
-            label: AppMessage.current.common_navigation_calendar,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.description_outlined),
-            activeIcon: const Icon(Icons.description),
-            label: AppMessage.current.common_navigation_document,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.settings_outlined),
-            activeIcon: const Icon(Icons.settings),
-            label: AppMessage.current.common_navigation_accounts,
-          ),
-        ],
-      );
+    currentIndex: selectedIndex,
+    onTap: onDestinationSelected,
+    type: BottomNavigationBarType.fixed,
+    items: [
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.home_outlined),
+        activeIcon: const Icon(Icons.home),
+        label: AppMessage.current.common_navigation_home,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.calendar_month_outlined),
+        activeIcon: const Icon(Icons.calendar_month),
+        label: AppMessage.current.common_navigation_schedule,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.description_outlined),
+        activeIcon: const Icon(Icons.description),
+        label: AppMessage.current.common_navigation_document,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.settings_outlined),
+        activeIcon: const Icon(Icons.settings),
+        label: AppMessage.current.common_navigation_accounts,
+      ),
+    ],
+  );
 }

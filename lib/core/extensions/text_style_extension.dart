@@ -61,9 +61,8 @@ extension TextStyleExtension on TextStyle {
 
   // LineHeight
   TextStyle withLineHeight(double lineHeight) => copyWith(
-        height:
-            lineHeight / (fontSize ?? AppTextStyle.bodyMedium14.fontSize ?? 14),
-      );
+    height: lineHeight / (fontSize ?? AppTextStyle.bodyMedium14.fontSize ?? 14),
+  );
 
   // TextOverflow
   TextStyle withVisible() => copyWith(overflow: TextOverflow.visible);

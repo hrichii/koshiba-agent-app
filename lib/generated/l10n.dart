@@ -144,11 +144,11 @@ class AppMessage {
     );
   }
 
-  /// `カレンダー`
-  String get common_navigation_calendar {
+  /// `スケジュール`
+  String get common_navigation_schedule {
     return Intl.message(
-      'カレンダー',
-      name: 'common_navigation_calendar',
+      'スケジュール',
+      name: 'common_navigation_schedule',
       desc: '',
       args: [],
     );

@@ -104,8 +104,8 @@ $MeetingCopyWith<$Res>? get scheduledBot {
 /// @nodoc
 @JsonSerializable()
 
-class _Schedule implements Schedule {
-  const _Schedule({@JsonKey(name: 'google_calendar_event') this.googleCalendarEvent, @JsonKey(name: 'scheduled_bot') this.scheduledBot});
+class _Schedule extends Schedule {
+  const _Schedule({@JsonKey(name: 'google_calendar_event') this.googleCalendarEvent, @JsonKey(name: 'scheduled_bot') this.scheduledBot}): super._();
   factory _Schedule.fromJson(Map<String, dynamic> json) => _$ScheduleFromJson(json);
 
 @override@JsonKey(name: 'google_calendar_event') final  CalendarEvent? googleCalendarEvent;

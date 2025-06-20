@@ -12,6 +12,9 @@ abstract class Schedule with _$Schedule {
     @JsonKey(name: 'scheduled_bot') Meeting? scheduledBot,
   }) = _Schedule;
 
+  const Schedule._();
   factory Schedule.fromJson(Map<String, dynamic> json) =>
       _$ScheduleFromJson(json);
+
+  bool get isJoined => scheduledBot != null;
 }
