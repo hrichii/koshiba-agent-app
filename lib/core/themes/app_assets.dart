@@ -6,6 +6,7 @@ class AppAssets {
   static const imagesGoogleCalendarIcon = AppAsset(
     'assets/images/google_calendar_icon.png',
   );
+  static const imagesGoogleIcon = AppAsset('assets/images/google_icon.png');
 }
 
 extension type AppAsset._(String value) {

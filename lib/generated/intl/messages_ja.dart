@@ -51,6 +51,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_delete_success": MessageLookupByLibrary.simpleMessage(
       "アカウントを削除しました",
     ),
+    "common_already_have_account": MessageLookupByLibrary.simpleMessage(
+      "すでにアカウントをお持ちの方は",
+    ),
     "common_bot": MessageLookupByLibrary.simpleMessage("ジャービス"),
     "common_cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
     "common_change_password": MessageLookupByLibrary.simpleMessage("パスワード変更"),
@@ -59,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "common_connected": MessageLookupByLibrary.simpleMessage("連携済み"),
     "common_connected_service": MessageLookupByLibrary.simpleMessage("連携サービス"),
+    "common_create_new_account": MessageLookupByLibrary.simpleMessage(
+      "新しいアカウントを作成",
+    ),
     "common_delete": MessageLookupByLibrary.simpleMessage("削除する"),
     "common_delete_account": MessageLookupByLibrary.simpleMessage("アカウント削除"),
     "common_disconnected": MessageLookupByLibrary.simpleMessage("未連携"),
@@ -72,6 +78,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_navigation_schedule": MessageLookupByLibrary.simpleMessage(
       "スケジュール",
     ),
+    "common_no_account_yet": MessageLookupByLibrary.simpleMessage(
+      "アカウントをお持ちでない方は",
+    ),
+    "common_or": MessageLookupByLibrary.simpleMessage("または"),
+    "common_please_create_account": MessageLookupByLibrary.simpleMessage(
+      "アカウントを作成してください",
+    ),
+    "common_please_sign_in_to_account": MessageLookupByLibrary.simpleMessage(
+      "アカウントにサインインしてください",
+    ),
     "common_sign_in": MessageLookupByLibrary.simpleMessage("ログイン"),
     "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
       "Googleでログイン",
@@ -83,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "common_transcription": MessageLookupByLibrary.simpleMessage("文字起こし"),
     "common_user": MessageLookupByLibrary.simpleMessage("ユーザー"),
+    "common_welcome": MessageLookupByLibrary.simpleMessage("ようこそ"),
     "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
       "Googleとの連携が完了しました",
     ),
