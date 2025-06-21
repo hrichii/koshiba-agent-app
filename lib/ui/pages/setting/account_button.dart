@@ -37,7 +37,7 @@ class AccountButton extends HookWidget {
     final menuController = useMemoized(() => MenuController());
     return MenuAnchor(
       controller: menuController,
-      alignmentOffset: const Offset(-200, -30),
+      alignmentOffset: const Offset(-310, 0),
       builder: (_, _, _) => Material(
         borderRadius: BorderRadius.circular(AppRadius.full),
         color: Colors.transparent,
@@ -48,26 +48,30 @@ class AccountButton extends HookWidget {
         ),
       ),
       menuChildren: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _profileView(accountResource),
-            _signOutView(onTap: onSignOut),
-            _changePasswordView(onTap: onChangePassword),
-            Padding(
-              padding: const EdgeInsets.all(AppSpace.sm8),
-              child: Text(
-                AppMessage.current.common_connected_service,
-                style: AppTextStyle.bodyMedium14,
+        SizedBox(
+          width: 350,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _profileView(accountResource),
+              Container(height: 1, color: AppColor.gray80),
+              _signOutView(onTap: onSignOut),
+              _changePasswordView(onTap: onChangePassword),
+              Padding(
+                padding: const EdgeInsets.all(AppSpace.sm8),
+                child: Text(
+                  AppMessage.current.common_connected_service,
+                  style: AppTextStyle.bodyMedium14,
+                ),
               ),
-            ),
-            _connectedServiceView(
-              connectToGoogleStatus: connectToGoogleResource,
-              connectForGoogle: onConnectToGoogle,
-              disconnectForGoogle: onDisconnectToGoogle,
-            ),
-            _deleteAccountView(deleteAccount: onDeleteAccount),
-          ],
+              _connectedServiceView(
+                connectToGoogleStatus: connectToGoogleResource,
+                connectForGoogle: onConnectToGoogle,
+                disconnectForGoogle: onDisconnectToGoogle,
+              ),
+              _deleteAccountView(deleteAccount: onDeleteAccount),
+            ],
+          ),
         ),
       ],
     );
@@ -93,8 +97,8 @@ class AccountButton extends HookWidget {
 
   Widget _profileView(Resource<User> userResource) => Padding(
     padding: const EdgeInsets.symmetric(
-      vertical: AppSpace.sm8,
-      horizontal: AppSpace.sm8,
+      vertical: AppSpace.lg16,
+      horizontal: AppSpace.lg16,
     ),
     child: Row(
       spacing: AppSpace.md12,
@@ -108,7 +112,7 @@ class AccountButton extends HookWidget {
               children: [
                 Text(
                   value.email ?? '',
-                  style: AppTextStyle.bodyMedium14.withW400(),
+                  style: AppTextStyle.bodyLarge16.withW400(),
                 ),
                 if (value.useProvider.label != null)
                   Text(
@@ -150,7 +154,7 @@ class AccountButton extends HookWidget {
         child: Row(
           spacing: AppSpace.md12,
           children: [
-            const Icon(Icons.logout),
+            Icon(Icons.logout, color: AppColor.gray30, size: 18),
             Flexible(child: Text(AppMessage.current.common_sign_out)),
           ],
         ),
@@ -161,7 +165,7 @@ class AccountButton extends HookWidget {
         child: Row(
           spacing: AppSpace.md12,
           children: [
-            const Icon(Icons.key),
+            Icon(Icons.key, color: AppColor.gray30, size: 18),
             Flexible(child: Text(AppMessage.current.common_change_password)),
           ],
         ),
@@ -182,7 +186,7 @@ class AccountButton extends HookWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Icon(FontAwesomeIcons.google, size: 18),
+        Icon(FontAwesomeIcons.google, size: 18, color: AppColor.gray30),
         const SizedBox(width: AppSpace.md12),
         Text(
           AppMessage.current.common_connect_for_google,

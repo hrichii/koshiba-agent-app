@@ -84,7 +84,6 @@ class ScheduleDetailPage extends HookConsumerWidget {
         .withToastAtSuccess((_) => AppMessage.current.delete_bot_join_success);
 
     return Scaffold(
-      backgroundColor: AppColor.blue95,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

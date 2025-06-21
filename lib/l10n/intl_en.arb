@@ -12,7 +12,6 @@
   "common_change_password": "Change password",
   "common_delete_account": "Delete account",
   "common_invite_bot": "Invite bot",
-  "common_add_schedule": "Add schedule",
   "common_navigation_home": "Home",
   "common_navigation_schedule": "Schedule",
   "common_navigation_document": "Document",
@@ -39,10 +38,16 @@
   "delete_bot_join_success": "Bot has been removed from the meeting",
   "sign_in_by_google_label": "Signed in with Google",
   "schedule_detail_empyty_transcription": "No transcription available",
+  "schedule_add_meeting_join_start_time": "Join at start time",
+  "schedule_add_meeting_join_right_now": "Join now",
   "field_email": "Email",
   "field_password": "Password",
+  "field_meeting_title": "Title",
+  "field_meeting_description": "Description",
   "field_meeting_url": "Meeting URL",
-  "field_meeting_started_at": "Meeting start time",
+  "field_meeting_start_at": "Start time",
+  "field_meeting_end_at": "End time",
+  "field_meeting_bot_join_timing": "Bot join timing",
   "unit_letter": "characters",
   "validation_required": "Please enter {fieldName}",
   "@validation_required": {
@@ -98,6 +103,22 @@
   },
   "validation_url": "The URL format is invalid. Please enter a valid {fieldName}",
   "@validation_url": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "validation_before_end_at": "Please enter a time after the start time for {fieldName}",
+  "@validation_before_end_at": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "validation_after_current_time": "{fieldName}は現在時刻より後の時刻を入力してください",
+  "@validation_after_current_time": {
     "placeholders": {
       "fieldName": {
         "type": "String"

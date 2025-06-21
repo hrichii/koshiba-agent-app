@@ -38,12 +38,12 @@ class App extends ConsumerWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        locale: const Locale('ja'),
-        supportedLocales: AppMessage.delegate.supportedLocales,
+        locale: const Locale('ja', 'JP'),
+        supportedLocales: const [Locale('ja', 'JP')],
         theme: ThemeData(
           colorScheme: colorScheme,
           textTheme: textTheme,
-          scaffoldBackgroundColor: AppColorScheme.light.surface,
+          scaffoldBackgroundColor: AppColor.blue98,
           appBarTheme: AppBarTheme(
             surfaceTintColor: Colors.transparent,
             backgroundColor: AppColorScheme.light.surface,
@@ -56,7 +56,7 @@ class App extends ConsumerWidget {
               borderRadius: BorderRadius.circular(AppRadius.sm4),
             ),
             filled: true,
-            fillColor: AppColor.gray10,
+            fillColor: AppColor.gray100,
             contentPadding: const EdgeInsets.all(16),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppRadius.sm4),
@@ -158,7 +158,6 @@ class App extends ConsumerWidget {
                     ).matchingBuilder,
                   },
           ),
-          dialogTheme: DialogThemeData(backgroundColor: AppColor.gray20),
         ),
       ),
     );

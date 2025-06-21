@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MeetingScheduleForm {
 
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? get uri;@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? get startAt;
+@RfControl(validators: AppValidation.meetingTitle)@JsonKey(name: 'title')@RfControl() String? get title;@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? get uri;@JsonKey(name: 'is_join_right_now', defaultValue: true)@RfControl(validators: AppValidation.meetingBotJoinTiming) bool? get isJoinRightNow;@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? get startAt;@JsonKey(name: 'end_at')@RfControl() DateTime? get endAt;@JsonKey(name: 'description')@RfControl() String? get description;
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $MeetingScheduleFormCopyWith<MeetingScheduleForm> get copyWith => _$MeetingSched
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeetingScheduleForm&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.startAt, startAt) || other.startAt == startAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeetingScheduleForm&&(identical(other.title, title) || other.title == title)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.isJoinRightNow, isJoinRightNow) || other.isJoinRightNow == isJoinRightNow)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,startAt);
+int get hashCode => Object.hash(runtimeType,title,uri,isJoinRightNow,startAt,endAt,description);
 
 @override
 String toString() {
-  return 'MeetingScheduleForm(uri: $uri, startAt: $startAt)';
+  return 'MeetingScheduleForm(title: $title, uri: $uri, isJoinRightNow: $isJoinRightNow, startAt: $startAt, endAt: $endAt, description: $description)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $MeetingScheduleFormCopyWith<$Res>  {
   factory $MeetingScheduleFormCopyWith(MeetingScheduleForm value, $Res Function(MeetingScheduleForm) _then) = _$MeetingScheduleFormCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
+@RfControl(validators: AppValidation.meetingTitle)@JsonKey(name: 'title')@RfControl() String? title,@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@JsonKey(name: 'is_join_right_now', defaultValue: true)@RfControl(validators: AppValidation.meetingBotJoinTiming) bool? isJoinRightNow,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt,@JsonKey(name: 'end_at')@RfControl() DateTime? endAt,@JsonKey(name: 'description')@RfControl() String? description
 });
 
 
@@ -66,11 +66,15 @@ class _$MeetingScheduleFormCopyWithImpl<$Res>
 
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? uri = freezed,Object? startAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? uri = freezed,Object? isJoinRightNow = freezed,Object? startAt = freezed,Object? endAt = freezed,Object? description = freezed,}) {
   return _then(_self.copyWith(
-uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String?,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String?,isJoinRightNow: freezed == isJoinRightNow ? _self.isJoinRightNow : isJoinRightNow // ignore: cast_nullable_to_non_nullable
+as bool?,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,endAt: freezed == endAt ? _self.endAt : endAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -81,11 +85,15 @@ as DateTime?,
 @JsonSerializable()
 
 class _MeetingScheduleForm extends MeetingScheduleForm {
-  const _MeetingScheduleForm({@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) this.uri, @DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) this.startAt}): super._();
+  const _MeetingScheduleForm({@RfControl(validators: AppValidation.meetingTitle)@JsonKey(name: 'title')@RfControl() this.title, @JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) this.uri, @JsonKey(name: 'is_join_right_now', defaultValue: true)@RfControl(validators: AppValidation.meetingBotJoinTiming) this.isJoinRightNow, @DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) this.startAt, @JsonKey(name: 'end_at')@RfControl() this.endAt, @JsonKey(name: 'description')@RfControl() this.description}): super._();
   factory _MeetingScheduleForm.fromJson(Map<String, dynamic> json) => _$MeetingScheduleFormFromJson(json);
 
+@override@RfControl(validators: AppValidation.meetingTitle)@JsonKey(name: 'title')@RfControl() final  String? title;
 @override@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) final  String? uri;
+@override@JsonKey(name: 'is_join_right_now', defaultValue: true)@RfControl(validators: AppValidation.meetingBotJoinTiming) final  bool? isJoinRightNow;
 @override@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) final  DateTime? startAt;
+@override@JsonKey(name: 'end_at')@RfControl() final  DateTime? endAt;
+@override@JsonKey(name: 'description')@RfControl() final  String? description;
 
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
@@ -100,16 +108,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeetingScheduleForm&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.startAt, startAt) || other.startAt == startAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeetingScheduleForm&&(identical(other.title, title) || other.title == title)&&(identical(other.uri, uri) || other.uri == uri)&&(identical(other.isJoinRightNow, isJoinRightNow) || other.isJoinRightNow == isJoinRightNow)&&(identical(other.startAt, startAt) || other.startAt == startAt)&&(identical(other.endAt, endAt) || other.endAt == endAt)&&(identical(other.description, description) || other.description == description));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uri,startAt);
+int get hashCode => Object.hash(runtimeType,title,uri,isJoinRightNow,startAt,endAt,description);
 
 @override
 String toString() {
-  return 'MeetingScheduleForm(uri: $uri, startAt: $startAt)';
+  return 'MeetingScheduleForm(title: $title, uri: $uri, isJoinRightNow: $isJoinRightNow, startAt: $startAt, endAt: $endAt, description: $description)';
 }
 
 
@@ -120,7 +128,7 @@ abstract mixin class _$MeetingScheduleFormCopyWith<$Res> implements $MeetingSche
   factory _$MeetingScheduleFormCopyWith(_MeetingScheduleForm value, $Res Function(_MeetingScheduleForm) _then) = __$MeetingScheduleFormCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt
+@RfControl(validators: AppValidation.meetingTitle)@JsonKey(name: 'title')@RfControl() String? title,@JsonKey(name: 'url')@RfControl(validators: AppValidation.meetingUri) String? uri,@JsonKey(name: 'is_join_right_now', defaultValue: true)@RfControl(validators: AppValidation.meetingBotJoinTiming) bool? isJoinRightNow,@DateTimeConverter()@JsonKey(name: 'start_at')@RfControl(validators: AppValidation.meetingStartAt) DateTime? startAt,@JsonKey(name: 'end_at')@RfControl() DateTime? endAt,@JsonKey(name: 'description')@RfControl() String? description
 });
 
 
@@ -137,11 +145,15 @@ class __$MeetingScheduleFormCopyWithImpl<$Res>
 
 /// Create a copy of MeetingScheduleForm
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? uri = freezed,Object? startAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? uri = freezed,Object? isJoinRightNow = freezed,Object? startAt = freezed,Object? endAt = freezed,Object? description = freezed,}) {
   return _then(_MeetingScheduleForm(
-uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
-as String?,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,uri: freezed == uri ? _self.uri : uri // ignore: cast_nullable_to_non_nullable
+as String?,isJoinRightNow: freezed == isJoinRightNow ? _self.isJoinRightNow : isJoinRightNow // ignore: cast_nullable_to_non_nullable
+as bool?,startAt: freezed == startAt ? _self.startAt : startAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,endAt: freezed == endAt ? _self.endAt : endAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

@@ -29,23 +29,24 @@ class _ReactiveTextFieldForPasswordState<T>
 
   @override
   Widget build(BuildContext context) => ReactiveTextFieldWithScroll<T>(
-        formControl: widget.formControl,
-        onSubmitted: widget.onSubmitted,
-        obscureText: !isVisible,
-        textInputAction: widget.textInputAction,
-        keyboardType: widget.keyboardType,
-        decoration: widget.decoration.copyWith(
-          suffixIcon: IconButton(
-            icon: Icon(
-              isVisible ? Icons.visibility_off : Icons.visibility,
-              color: AppColor.gray50,
-            ),
-            onPressed: () {
-              setState(() {
-                isVisible = !isVisible;
-              });
-            },
-          ),
+    formControl: widget.formControl,
+    onSubmitted: widget.onSubmitted,
+    obscureText: !isVisible,
+    textInputAction: widget.textInputAction,
+    keyboardType: widget.keyboardType,
+    maxLines: 1, // パスワードフィールドは必ず1行
+    decoration: widget.decoration.copyWith(
+      suffixIcon: IconButton(
+        icon: Icon(
+          isVisible ? Icons.visibility_off : Icons.visibility,
+          color: AppColor.gray50,
         ),
-      );
+        onPressed: () {
+          setState(() {
+            isVisible = !isVisible;
+          });
+        },
+      ),
+    ),
+  );
 }

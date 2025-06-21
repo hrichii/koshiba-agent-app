@@ -37,14 +37,6 @@ class AppMover {
     }
   }
 
-  static Future<void> pushBotInvite(BuildContext? context) async {
-    if (kIsWeb) {
-      return const web.BotInviteRoute().push(context ?? _rootContext);
-    } else {
-      return const mobile.BotInviteRoute().push(context ?? _rootContext);
-    }
-  }
-
   static Future<void> pushScheduleAdd(BuildContext? context) async {
     if (kIsWeb) {
       return const mobile.ScheduleAddRoute().push(context ?? _rootContext);

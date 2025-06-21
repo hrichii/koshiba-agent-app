@@ -5,4 +5,6 @@ enum ValidationKeyEnum {
   minLengthWithFieldName,
   requiredWithFieldName,
   urlWithFieldName,
+  beforeEndAtWithFieldName,
+  afterCurrentTime,
 }

@@ -20,21 +20,25 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ja';
 
-  static String m0(fieldName) => "${fieldName}は英数字を入力してください";
+  static String m0(fieldName) => "${fieldName}は現在時刻より後の時刻を入力してください";
 
-  static String m1(fieldName) => "メールアドレスの形式に不正があります。有効な${fieldName}を入力してください";
+  static String m1(fieldName) => "${fieldName}は英数字を入力してください";
 
-  static String m2(fieldName, maxLength, unit) =>
+  static String m2(fieldName) => "${fieldName}は開始時刻より後の時刻を入力してください";
+
+  static String m3(fieldName) => "メールアドレスの形式に不正があります。有効な${fieldName}を入力してください";
+
+  static String m4(fieldName, maxLength, unit) =>
       "${fieldName}は${maxLength}${unit}以下で入力してください";
 
-  static String m3(fieldName, minLength, unit) =>
+  static String m5(fieldName, minLength, unit) =>
       "${fieldName}は${minLength}${unit}以上を入力してください";
 
-  static String m4(fieldName) => "${fieldName}を入力してください";
+  static String m6(fieldName) => "${fieldName}を入力してください";
 
-  static String m5(fieldName) => "URLの形式に不正があります。有効な${fieldName}を入力してください";
+  static String m7(fieldName) => "URLの形式に不正があります。有効な${fieldName}を入力してください";
 
-  static String m6(fieldName) => "有効な${fieldName}を入力してください";
+  static String m8(fieldName) => "有効な${fieldName}を入力してください";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -47,7 +51,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_delete_success": MessageLookupByLibrary.simpleMessage(
       "アカウントを削除しました",
     ),
-    "common_add_schedule": MessageLookupByLibrary.simpleMessage("スケジュール作成"),
     "common_bot": MessageLookupByLibrary.simpleMessage("ジャービス"),
     "common_cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
     "common_change_password": MessageLookupByLibrary.simpleMessage("パスワード変更"),
@@ -201,9 +204,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "Webではサポートされていません",
     ),
     "field_email": MessageLookupByLibrary.simpleMessage("メールアドレス"),
-    "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(
-      "ミーティング開始時刻",
+    "field_meeting_bot_join_timing": MessageLookupByLibrary.simpleMessage(
+      "参加タイミング",
     ),
+    "field_meeting_description": MessageLookupByLibrary.simpleMessage("説明"),
+    "field_meeting_end_at": MessageLookupByLibrary.simpleMessage("終了時刻"),
+    "field_meeting_start_at": MessageLookupByLibrary.simpleMessage("開始時刻"),
+    "field_meeting_title": MessageLookupByLibrary.simpleMessage("タイトル"),
     "field_meeting_url": MessageLookupByLibrary.simpleMessage("ミーティングURL"),
     "field_password": MessageLookupByLibrary.simpleMessage("パスワード"),
     "info_api_bot_status_message_api_request":
@@ -260,6 +267,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "meeting_register_success": MessageLookupByLibrary.simpleMessage(
       "ミーティング登録が完了しました",
     ),
+    "schedule_add_meeting_join_right_now": MessageLookupByLibrary.simpleMessage(
+      "今すぐ参加",
+    ),
+    "schedule_add_meeting_join_start_time":
+        MessageLookupByLibrary.simpleMessage("開始時刻に参加"),
     "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
       "Bot参加を登録しました",
     ),
@@ -274,12 +286,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "sign_out_success": MessageLookupByLibrary.simpleMessage("ログアウトしました"),
     "sign_up_success": MessageLookupByLibrary.simpleMessage("アカウント登録が完了しました"),
     "unit_letter": MessageLookupByLibrary.simpleMessage("文字"),
-    "validation_alpha_numeric": m0,
-    "validation_email": m1,
-    "validation_max_length": m2,
-    "validation_min_length": m3,
-    "validation_required": m4,
-    "validation_url": m5,
-    "validation_valid": m6,
+    "validation_after_current_time": m0,
+    "validation_alpha_numeric": m1,
+    "validation_before_end_at": m2,
+    "validation_email": m3,
+    "validation_max_length": m4,
+    "validation_min_length": m5,
+    "validation_required": m6,
+    "validation_url": m7,
+    "validation_valid": m8,
   };
 }

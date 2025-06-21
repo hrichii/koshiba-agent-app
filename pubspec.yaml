@@ -36,6 +36,7 @@ dependencies:
   reactive_date_time_picker: ^5.0.1
   reactive_forms: ^18.0.0
   reactive_forms_annotations: ^8.0.1
+  reactive_segmented_control: ^2.0.2
   retrofit: ^4.4.2
   riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1

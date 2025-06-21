@@ -20,24 +20,29 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(fieldName) =>
-      "Please enter alphanumeric characters for ${fieldName}";
+  static String m0(fieldName) => "${fieldName}は現在時刻より後の時刻を入力してください";
 
   static String m1(fieldName) =>
+      "Please enter alphanumeric characters for ${fieldName}";
+
+  static String m2(fieldName) =>
+      "Please enter a time after the start time for ${fieldName}";
+
+  static String m3(fieldName) =>
       "The email format is invalid. Please enter a valid ${fieldName}";
 
-  static String m2(fieldName, maxLength, unit) =>
+  static String m4(fieldName, maxLength, unit) =>
       "Please enter no more than ${maxLength} ${unit} for ${fieldName}";
 
-  static String m3(fieldName, minLength, unit) =>
+  static String m5(fieldName, minLength, unit) =>
       "Please enter at least ${minLength} ${unit} for ${fieldName}";
 
-  static String m4(fieldName) => "Please enter ${fieldName}";
+  static String m6(fieldName) => "Please enter ${fieldName}";
 
-  static String m5(fieldName) =>
+  static String m7(fieldName) =>
       "The URL format is invalid. Please enter a valid ${fieldName}";
 
-  static String m6(fieldName) => "Please enter a valid ${fieldName}";
+  static String m8(fieldName) => "Please enter a valid ${fieldName}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -50,7 +55,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_delete_success": MessageLookupByLibrary.simpleMessage(
       "Account deleted",
     ),
-    "common_add_schedule": MessageLookupByLibrary.simpleMessage("Add schedule"),
     "common_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "common_change_password": MessageLookupByLibrary.simpleMessage(
       "Change password",
@@ -221,9 +225,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Web is not supported",
     ),
     "field_email": MessageLookupByLibrary.simpleMessage("Email"),
-    "field_meeting_started_at": MessageLookupByLibrary.simpleMessage(
-      "Meeting start time",
+    "field_meeting_bot_join_timing": MessageLookupByLibrary.simpleMessage(
+      "Bot join timing",
     ),
+    "field_meeting_description": MessageLookupByLibrary.simpleMessage(
+      "Description",
+    ),
+    "field_meeting_end_at": MessageLookupByLibrary.simpleMessage("End time"),
+    "field_meeting_start_at": MessageLookupByLibrary.simpleMessage(
+      "Start time",
+    ),
+    "field_meeting_title": MessageLookupByLibrary.simpleMessage("Title"),
     "field_meeting_url": MessageLookupByLibrary.simpleMessage("Meeting URL"),
     "field_password": MessageLookupByLibrary.simpleMessage("Password"),
     "info_api_bot_status_message_api_request":
@@ -282,6 +294,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "meeting_register_success": MessageLookupByLibrary.simpleMessage(
       "Meeting registration completed",
     ),
+    "schedule_add_meeting_join_right_now": MessageLookupByLibrary.simpleMessage(
+      "Join now",
+    ),
+    "schedule_add_meeting_join_start_time":
+        MessageLookupByLibrary.simpleMessage("Join at start time"),
     "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
       "Bot has been registered to join the meeting",
     ),
@@ -298,12 +315,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "sign_up_success": MessageLookupByLibrary.simpleMessage("Invite the bot"),
     "unit_letter": MessageLookupByLibrary.simpleMessage("characters"),
-    "validation_alpha_numeric": m0,
-    "validation_email": m1,
-    "validation_max_length": m2,
-    "validation_min_length": m3,
-    "validation_required": m4,
-    "validation_url": m5,
-    "validation_valid": m6,
+    "validation_after_current_time": m0,
+    "validation_alpha_numeric": m1,
+    "validation_before_end_at": m2,
+    "validation_email": m3,
+    "validation_max_length": m4,
+    "validation_min_length": m5,
+    "validation_required": m6,
+    "validation_url": m7,
+    "validation_valid": m8,
   };
 }
