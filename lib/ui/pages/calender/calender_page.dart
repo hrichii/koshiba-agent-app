@@ -10,7 +10,6 @@ import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/button_style/filled_button_style.dart';
-import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
@@ -48,7 +47,7 @@ class CalendarPage extends HookConsumerWidget {
       }
 
       await ref
-          .read(accountRepositoryProvider)
+          .read(accountUseCaseProvider.notifier)
           .signOut()
           .withLoaderOverlay()
           .withToastAtError()
@@ -66,7 +65,7 @@ class CalendarPage extends HookConsumerWidget {
         return;
       }
       await ref
-          .read(accountRepositoryProvider)
+          .read(accountUseCaseProvider.notifier)
           .deleteMe()
           .withLoaderOverlay()
           .withToastAtError()
@@ -135,11 +134,11 @@ class CalendarPage extends HookConsumerWidget {
       }
     }
 
-    Future<void> fetchInitial() async {
+    Future<void> fetchInitial({bool useCache = false}) async {
       // データ読み込み後、上部の余白分だけスクロール位置を調整
       await ref
           .read(scheduleListUseCaseProvider.notifier)
-          .refresh()
+          .fetchInitial(useCache: useCache)
           .withToastAtError();
       await Future.delayed(const Duration(milliseconds: 100));
       if (scrollController.hasClients &&
@@ -204,12 +203,15 @@ class CalendarPage extends HookConsumerWidget {
         .watch(scheduleListUseCaseProvider.notifier)
         .canFetchPrevious;
 
+    Future<void> init() =>
+        (getMe(), fetchInitial(useCache: true), getConnectForGoogle()).wait;
+
     Future<void> refresh() =>
-        (getMe(), fetchInitial(), getConnectForGoogle()).wait;
+        (getMe(), fetchInitial(useCache: false), getConnectForGoogle()).wait;
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        await refresh();
+        await init();
       });
       return null;
     }, const []);
@@ -241,9 +243,7 @@ class CalendarPage extends HookConsumerWidget {
     }, [loadingPrevious, loadingNext]);
 
     return Scaffold(
-      backgroundColor: AppColor.blue95,
       appBar: AppBar(
-        backgroundColor: AppColor.gray100,
         flexibleSpace: SizedBox(
           height: double.infinity,
           child: Padding(
@@ -259,7 +259,7 @@ class CalendarPage extends HookConsumerWidget {
                     const EdgeInsets.all(AppSpace.lg16),
                   ),
                   onPressed: () => AppMover.pushScheduleAdd(context),
-                  child: Text(AppMessage.current.common_add_schedule),
+                  child: Text(AppMessage.current.common_invite_bot),
                 ),
                 AccountButton(
                   accountResource: ref.watch(accountUseCaseProvider),

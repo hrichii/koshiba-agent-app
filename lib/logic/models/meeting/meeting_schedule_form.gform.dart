@@ -18,8 +18,12 @@ class ReactiveMeetingScheduleFormFormConsumer extends StatelessWidget {
 
   final Widget? child;
 
-  final Widget Function(BuildContext context, MeetingScheduleFormForm formModel,
-      Widget? child) builder;
+  final Widget Function(
+    BuildContext context,
+    MeetingScheduleFormForm formModel,
+    Widget? child,
+  )
+  builder;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +43,7 @@ class MeetingScheduleFormFormInheritedStreamer
     required this.form,
     required Stream<dynamic> stream,
     required Widget child,
-  }) : super(
-          stream,
-          child,
-          key: key,
-        );
+  }) : super(stream, child, key: key);
 
   final MeetingScheduleFormForm form;
 }
@@ -64,7 +64,7 @@ class ReactiveMeetingScheduleFormForm extends StatelessWidget {
   final bool Function(FormGroup formGroup)? canPop;
 
   final ReactiveFormPopInvokedWithResultCallback<dynamic>?
-      onPopInvokedWithResult;
+  onPopInvokedWithResult;
 
   static MeetingScheduleFormForm? of(
     BuildContext context, {
@@ -73,12 +73,15 @@ class ReactiveMeetingScheduleFormForm extends StatelessWidget {
     if (listen) {
       return context
           .dependOnInheritedWidgetOfExactType<
-              MeetingScheduleFormFormInheritedStreamer>()
+            MeetingScheduleFormFormInheritedStreamer
+          >()
           ?.form;
     }
 
-    final element = context.getElementForInheritedWidgetOfExactType<
-        MeetingScheduleFormFormInheritedStreamer>();
+    final element = context
+        .getElementForInheritedWidgetOfExactType<
+          MeetingScheduleFormFormInheritedStreamer
+        >();
     return element == null
         ? null
         : (element.widget as MeetingScheduleFormFormInheritedStreamer).form;
@@ -124,13 +127,17 @@ class MeetingScheduleFormFormBuilder extends StatefulWidget {
   final bool Function(FormGroup formGroup)? canPop;
 
   final ReactiveFormPopInvokedWithResultCallback<dynamic>?
-      onPopInvokedWithResult;
+  onPopInvokedWithResult;
 
-  final Widget Function(BuildContext context, MeetingScheduleFormForm formModel,
-      Widget? child) builder;
+  final Widget Function(
+    BuildContext context,
+    MeetingScheduleFormForm formModel,
+    Widget? child,
+  )
+  builder;
 
   final void Function(BuildContext context, MeetingScheduleFormForm formModel)?
-      initState;
+  initState;
 
   @override
   _MeetingScheduleFormFormBuilderState createState() =>
@@ -146,7 +153,9 @@ class _MeetingScheduleFormFormBuilderState
   @override
   void initState() {
     _formModel = MeetingScheduleFormForm(
-        MeetingScheduleFormForm.formElements(widget.model), null);
+      MeetingScheduleFormForm.formElements(widget.model),
+      null,
+    );
 
     if (_formModel.form.disabled) {
       _formModel.form.markAsDisabled();
@@ -154,8 +163,9 @@ class _MeetingScheduleFormFormBuilderState
 
     widget.initState?.call(context, _formModel);
 
-    _logSubscription =
-        _logMeetingScheduleFormForm.onRecord.listen((LogRecord e) {
+    _logSubscription = _logMeetingScheduleFormForm.onRecord.listen((
+      LogRecord e,
+    ) {
       // use `dumpErrorToConsole` for severe messages to ensure that severe
       // exceptions are formatted consistently with other Flutter examples and
       // avoids printing duplicate exceptions
@@ -225,14 +235,19 @@ final _logMeetingScheduleFormForm = Logger.detached('MeetingScheduleFormForm');
 
 class MeetingScheduleFormForm
     implements FormModel<MeetingScheduleForm, MeetingScheduleForm> {
-  MeetingScheduleFormForm(
-    this.form,
-    this.path,
-  );
+  MeetingScheduleFormForm(this.form, this.path);
+
+  static const String titleControlName = "title";
 
   static const String uriControlName = "uri";
 
+  static const String isJoinRightNowControlName = "isJoinRightNow";
+
   static const String startAtControlName = "startAt";
+
+  static const String endAtControlName = "endAt";
+
+  static const String descriptionControlName = "description";
 
   final FormGroup form;
 
@@ -240,20 +255,57 @@ class MeetingScheduleFormForm
 
   final Map<String, bool> _disabled = {};
 
+  String titleControlPath() => pathBuilder(titleControlName);
+
   String uriControlPath() => pathBuilder(uriControlName);
+
+  String isJoinRightNowControlPath() => pathBuilder(isJoinRightNowControlName);
 
   String startAtControlPath() => pathBuilder(startAtControlName);
 
+  String endAtControlPath() => pathBuilder(endAtControlName);
+
+  String descriptionControlPath() => pathBuilder(descriptionControlName);
+
+  String? get _titleValue => titleControl.value;
+
   String? get _uriValue => uriControl.value;
+
+  bool? get _isJoinRightNowValue => isJoinRightNowControl.value;
 
   DateTime? get _startAtValue => startAtControl.value;
 
+  DateTime? get _endAtValue => endAtControl.value;
+
+  String? get _descriptionValue => descriptionControl.value;
+
+  String? get _titleRawValue => titleControl.value;
+
   String? get _uriRawValue => uriControl.value;
+
+  bool? get _isJoinRightNowRawValue => isJoinRightNowControl.value;
 
   DateTime? get _startAtRawValue => startAtControl.value;
 
+  DateTime? get _endAtRawValue => endAtControl.value;
+
+  String? get _descriptionRawValue => descriptionControl.value;
+
   @Deprecated(
-      'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
+  bool get containsTitle {
+    try {
+      form.control(titleControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
   bool get containsUri {
     try {
       form.control(uriControlPath());
@@ -264,7 +316,20 @@ class MeetingScheduleFormForm
   }
 
   @Deprecated(
-      'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step')
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
+  bool get containsIsJoinRightNow {
+    try {
+      form.control(isJoinRightNowControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
   bool get containsStartAt {
     try {
       form.control(startAtControlPath());
@@ -274,20 +339,84 @@ class MeetingScheduleFormForm
     }
   }
 
+  @Deprecated(
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
+  bool get containsEndAt {
+    try {
+      form.control(endAtControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form and ensures at startup that all controls are present inside the form so we do not need this additional step',
+  )
+  bool get containsDescription {
+    try {
+      form.control(descriptionControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Map<String, Object>? get titleErrors => titleControl.errors;
+
   Map<String, Object>? get uriErrors => uriControl.errors;
+
+  Map<String, Object>? get isJoinRightNowErrors => isJoinRightNowControl.errors;
 
   Map<String, Object>? get startAtErrors => startAtControl.errors;
 
+  Map<String, Object>? get endAtErrors => endAtControl.errors;
+
+  Map<String, Object>? get descriptionErrors => descriptionControl.errors;
+
+  void get titleFocus => form.focus(titleControlPath());
+
   void get uriFocus => form.focus(uriControlPath());
+
+  void get isJoinRightNowFocus => form.focus(isJoinRightNowControlPath());
 
   void get startAtFocus => form.focus(startAtControlPath());
 
+  void get endAtFocus => form.focus(endAtControlPath());
+
+  void get descriptionFocus => form.focus(descriptionControlPath());
+
   @Deprecated(
-      'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
-  void uriRemove({
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void titleRemove({bool updateParent = true, bool emitEvent = true}) {
+    if (containsTitle) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          titleControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            titleControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void uriRemove({bool updateParent = true, bool emitEvent = true}) {
     if (containsUri) {
       final controlPath = path;
       if (controlPath == null) {
@@ -311,11 +440,35 @@ class MeetingScheduleFormForm
   }
 
   @Deprecated(
-      'Generator completely wraps the form so manual fields removal could lead to unexpected crashes')
-  void startAtRemove({
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void isJoinRightNowRemove({bool updateParent = true, bool emitEvent = true}) {
+    if (containsIsJoinRightNow) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          isJoinRightNowControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            isJoinRightNowControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void startAtRemove({bool updateParent = true, bool emitEvent = true}) {
     if (containsStartAt) {
       final controlPath = path;
       if (controlPath == null) {
@@ -338,13 +491,92 @@ class MeetingScheduleFormForm
     }
   }
 
+  @Deprecated(
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void endAtRemove({bool updateParent = true, bool emitEvent = true}) {
+    if (containsEndAt) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          endAtControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            endAtControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  @Deprecated(
+    'Generator completely wraps the form so manual fields removal could lead to unexpected crashes',
+  )
+  void descriptionRemove({bool updateParent = true, bool emitEvent = true}) {
+    if (containsDescription) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          descriptionControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            descriptionControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void titleValueUpdate(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    titleControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
   void uriValueUpdate(
     String? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    uriControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    uriControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void isJoinRightNowValueUpdate(
+    bool? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    isJoinRightNowControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
   }
 
   void startAtValueUpdate(
@@ -352,8 +584,47 @@ class MeetingScheduleFormForm
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    startAtControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    startAtControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void endAtValueUpdate(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    endAtControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void descriptionValueUpdate(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    descriptionControl.updateValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void titleValuePatch(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    titleControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
   }
 
   void uriValuePatch(
@@ -361,8 +632,23 @@ class MeetingScheduleFormForm
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    uriControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    uriControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void isJoinRightNowValuePatch(
+    bool? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    isJoinRightNowControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
   }
 
   void startAtValuePatch(
@@ -370,9 +656,50 @@ class MeetingScheduleFormForm
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    startAtControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    startAtControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
   }
+
+  void endAtValuePatch(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    endAtControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void descriptionValuePatch(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    descriptionControl.patchValue(
+      value,
+      updateParent: updateParent,
+      emitEvent: emitEvent,
+    );
+  }
+
+  void titleValueReset(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) => titleControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
 
   void uriValueReset(
     String? value, {
@@ -380,14 +707,27 @@ class MeetingScheduleFormForm
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
-  }) =>
-      uriControl.reset(
-        value: value,
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-        removeFocus: removeFocus,
-        disabled: disabled,
-      );
+  }) => uriControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
+
+  void isJoinRightNowValueReset(
+    bool? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) => isJoinRightNowControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
 
   void startAtValueReset(
     DateTime? value, {
@@ -395,20 +735,77 @@ class MeetingScheduleFormForm
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
-  }) =>
-      startAtControl.reset(
-        value: value,
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-        removeFocus: removeFocus,
-        disabled: disabled,
-      );
+  }) => startAtControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
+
+  void endAtValueReset(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) => endAtControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
+
+  void descriptionValueReset(
+    String? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) => descriptionControl.reset(
+    value: value,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+    removeFocus: removeFocus,
+    disabled: disabled,
+  );
+
+  FormControl<String> get titleControl =>
+      form.control(titleControlPath()) as FormControl<String>;
 
   FormControl<String> get uriControl =>
       form.control(uriControlPath()) as FormControl<String>;
 
+  FormControl<bool> get isJoinRightNowControl =>
+      form.control(isJoinRightNowControlPath()) as FormControl<bool>;
+
   FormControl<DateTime> get startAtControl =>
       form.control(startAtControlPath()) as FormControl<DateTime>;
+
+  FormControl<DateTime> get endAtControl =>
+      form.control(endAtControlPath()) as FormControl<DateTime>;
+
+  FormControl<String> get descriptionControl =>
+      form.control(descriptionControlPath()) as FormControl<String>;
+
+  void titleSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      titleControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      titleControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
 
   void uriSetDisabled(
     bool disabled, {
@@ -422,6 +819,24 @@ class MeetingScheduleFormForm
       );
     } else {
       uriControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void isJoinRightNowSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      isJoinRightNowControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      isJoinRightNowControl.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -446,6 +861,42 @@ class MeetingScheduleFormForm
     }
   }
 
+  void endAtSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      endAtControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      endAtControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void descriptionSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      descriptionControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      descriptionControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
   @override
   MeetingScheduleForm get model {
     final isValid = !currentForm.hasErrors && currentForm.errors.isEmpty;
@@ -457,19 +908,30 @@ class MeetingScheduleFormForm
         StackTrace.current,
       );
     }
-    return MeetingScheduleForm(uri: _uriValue, startAt: _startAtValue);
+    return MeetingScheduleForm(
+      title: _titleValue,
+      uri: _uriValue,
+      isJoinRightNow: _isJoinRightNowValue,
+      startAt: _startAtValue,
+      endAt: _endAtValue,
+      description: _descriptionValue,
+    );
   }
 
   @override
   MeetingScheduleForm get rawModel {
-    return MeetingScheduleForm(uri: _uriRawValue, startAt: _startAtRawValue);
+    return MeetingScheduleForm(
+      title: _titleRawValue,
+      uri: _uriRawValue,
+      isJoinRightNow: _isJoinRightNowRawValue,
+      startAt: _startAtRawValue,
+      endAt: _endAtRawValue,
+      description: _descriptionRawValue,
+    );
   }
 
   @override
-  void toggleDisabled({
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
+  void toggleDisabled({bool updateParent = true, bool emitEvent = true}) {
     final currentFormInstance = currentForm;
 
     if (currentFormInstance is! FormGroup) {
@@ -482,7 +944,9 @@ class MeetingScheduleFormForm
       });
 
       currentForm.markAsDisabled(
-          updateParent: updateParent, emitEvent: emitEvent);
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
     } else {
       currentFormInstance.controls.forEach((key, control) {
         if (_disabled[key] == false) {
@@ -533,49 +997,94 @@ class MeetingScheduleFormForm
     MeetingScheduleForm? value, {
     bool updateParent = true,
     bool emitEvent = true,
-  }) =>
-      form.updateValue(MeetingScheduleFormForm.formElements(value).rawValue,
-          updateParent: updateParent, emitEvent: emitEvent);
+  }) => form.updateValue(
+    MeetingScheduleFormForm.formElements(value).rawValue,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+  );
 
   @override
   void reset({
     MeetingScheduleForm? value,
     bool updateParent = true,
     bool emitEvent = true,
-  }) =>
-      form.reset(
-          value: value != null ? formElements(value).rawValue : null,
-          updateParent: updateParent,
-          emitEvent: emitEvent);
+  }) => form.reset(
+    value: value != null ? formElements(value).rawValue : null,
+    updateParent: updateParent,
+    emitEvent: emitEvent,
+  );
 
   String pathBuilder(String? pathItem) =>
       [path, pathItem].whereType<String>().join(".");
 
   static FormGroup formElements(MeetingScheduleForm? meetingScheduleForm) =>
-      FormGroup({
-        uriControlName: FormControl<String>(
+      FormGroup(
+        {
+          titleControlName: FormControl<String>(
+            value: meetingScheduleForm?.title,
+            validators: AppValidation.meetingTitle,
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false,
+          ),
+          uriControlName: FormControl<String>(
             value: meetingScheduleForm?.uri,
             validators: AppValidation.meetingUri,
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,
-            touched: false),
-        startAtControlName: FormControl<DateTime>(
+            touched: false,
+          ),
+          isJoinRightNowControlName: FormControl<bool>(
+            value: meetingScheduleForm?.isJoinRightNow,
+            validators: AppValidation.meetingBotJoinTiming,
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false,
+          ),
+          startAtControlName: FormControl<DateTime>(
             value: meetingScheduleForm?.startAt,
             validators: AppValidation.meetingStartAt,
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false,
-            touched: false)
-      },
-          validators: [],
-          asyncValidators: [],
-          asyncValidatorsDebounceTime: 250,
-          disabled: false);
+            touched: false,
+          ),
+          endAtControlName: FormControl<DateTime>(
+            value: meetingScheduleForm?.endAt,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false,
+          ),
+          descriptionControlName: FormControl<String>(
+            value: meetingScheduleForm?.description,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false,
+          ),
+        },
+        validators: [
+          _BeforeEndAtValidator(fieldNameEnum: FieldNameEnum.meetingEndAt),
+          _RequiredStartAtValidator(
+            fieldNameEnum: FieldNameEnum.meetingStartAt,
+          ),
+        ],
+        asyncValidators: [],
+        asyncValidatorsDebounceTime: 250,
+        disabled: false,
+      );
 }
 
 class ReactiveMeetingScheduleFormFormArrayBuilder<
-    ReactiveMeetingScheduleFormFormArrayBuilderT> extends StatelessWidget {
+  ReactiveMeetingScheduleFormFormArrayBuilderT
+>
+    extends StatelessWidget {
   const ReactiveMeetingScheduleFormFormArrayBuilder({
     Key? key,
     this.control,
@@ -584,30 +1093,41 @@ class ReactiveMeetingScheduleFormFormArrayBuilder<
     required this.itemBuilder,
     this.emptyBuilder,
     this.controlFilter,
-  })  : assert(control != null || formControl != null,
-            "You have to specify `control` or `formControl`!"),
-        super(key: key);
+  }) : assert(
+         control != null || formControl != null,
+         "You have to specify `control` or `formControl`!",
+       ),
+       super(key: key);
 
   final FormArray<ReactiveMeetingScheduleFormFormArrayBuilderT>? formControl;
 
   final FormArray<ReactiveMeetingScheduleFormFormArrayBuilderT>? Function(
-      MeetingScheduleFormForm formModel)? control;
-
-  final Widget Function(BuildContext context, List<Widget> itemList,
-      MeetingScheduleFormForm formModel)? builder;
+    MeetingScheduleFormForm formModel,
+  )?
+  control;
 
   final Widget Function(
-      BuildContext context,
-      int i,
-      FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
-      ReactiveMeetingScheduleFormFormArrayBuilderT? item,
-      MeetingScheduleFormForm formModel) itemBuilder;
+    BuildContext context,
+    List<Widget> itemList,
+    MeetingScheduleFormForm formModel,
+  )?
+  builder;
+
+  final Widget Function(
+    BuildContext context,
+    int i,
+    FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
+    ReactiveMeetingScheduleFormFormArrayBuilderT? item,
+    MeetingScheduleFormForm formModel,
+  )
+  itemBuilder;
 
   final Widget Function(BuildContext context)? emptyBuilder;
 
   final bool Function(
-          FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control)?
-      controlFilter;
+    FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
+  )?
+  controlFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -621,21 +1141,13 @@ class ReactiveMeetingScheduleFormFormArrayBuilder<
     final itemBuilder = this.itemBuilder;
 
     return ReactiveFormArrayItemBuilder<
-        ReactiveMeetingScheduleFormFormArrayBuilderT>(
+      ReactiveMeetingScheduleFormFormArrayBuilderT
+    >(
       formControl: formControl ?? control?.call(formModel),
       builder: builder != null
-          ? (context, itemList) => builder(
-                context,
-                itemList,
-                formModel,
-              )
+          ? (context, itemList) => builder(context, itemList, formModel)
           : null,
-      itemBuilder: (
-        context,
-        i,
-        control,
-        item,
-      ) =>
+      itemBuilder: (context, i, control, item) =>
           itemBuilder(context, i, control, item, formModel),
       emptyBuilder: emptyBuilder,
       controlFilter: controlFilter,
@@ -644,7 +1156,9 @@ class ReactiveMeetingScheduleFormFormArrayBuilder<
 }
 
 class ReactiveMeetingScheduleFormFormArrayBuilder2<
-    ReactiveMeetingScheduleFormFormArrayBuilderT> extends StatelessWidget {
+  ReactiveMeetingScheduleFormFormArrayBuilderT
+>
+    extends StatelessWidget {
   const ReactiveMeetingScheduleFormFormArrayBuilder2({
     Key? key,
     this.control,
@@ -653,36 +1167,47 @@ class ReactiveMeetingScheduleFormFormArrayBuilder2<
     required this.itemBuilder,
     this.emptyBuilder,
     this.controlFilter,
-  })  : assert(control != null || formControl != null,
-            "You have to specify `control` or `formControl`!"),
-        super(key: key);
+  }) : assert(
+         control != null || formControl != null,
+         "You have to specify `control` or `formControl`!",
+       ),
+       super(key: key);
 
   final FormArray<ReactiveMeetingScheduleFormFormArrayBuilderT>? formControl;
 
   final FormArray<ReactiveMeetingScheduleFormFormArrayBuilderT>? Function(
-      MeetingScheduleFormForm formModel)? control;
+    MeetingScheduleFormForm formModel,
+  )?
+  control;
 
   final Widget Function(
-      ({
-        BuildContext context,
-        List<Widget> itemList,
-        MeetingScheduleFormForm formModel
-      }) params)? builder;
+    ({
+      BuildContext context,
+      List<Widget> itemList,
+      MeetingScheduleFormForm formModel,
+    })
+    params,
+  )?
+  builder;
 
   final Widget Function(
-      ({
-        BuildContext context,
-        int i,
-        FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
-        ReactiveMeetingScheduleFormFormArrayBuilderT? item,
-        MeetingScheduleFormForm formModel
-      }) params) itemBuilder;
+    ({
+      BuildContext context,
+      int i,
+      FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
+      ReactiveMeetingScheduleFormFormArrayBuilderT? item,
+      MeetingScheduleFormForm formModel,
+    })
+    params,
+  )
+  itemBuilder;
 
   final Widget Function(BuildContext context)? emptyBuilder;
 
   final bool Function(
-          FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control)?
-      controlFilter;
+    FormControl<ReactiveMeetingScheduleFormFormArrayBuilderT> control,
+  )?
+  controlFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -696,27 +1221,22 @@ class ReactiveMeetingScheduleFormFormArrayBuilder2<
     final itemBuilder = this.itemBuilder;
 
     return ReactiveFormArrayItemBuilder<
-        ReactiveMeetingScheduleFormFormArrayBuilderT>(
+      ReactiveMeetingScheduleFormFormArrayBuilderT
+    >(
       formControl: formControl ?? control?.call(formModel),
       builder: builder != null
           ? (context, itemList) => builder((
-                context: context,
-                itemList: itemList,
-                formModel: formModel,
-              ))
+              context: context,
+              itemList: itemList,
+              formModel: formModel,
+            ))
           : null,
-      itemBuilder: (
-        context,
-        i,
-        control,
-        item,
-      ) =>
-          itemBuilder((
+      itemBuilder: (context, i, control, item) => itemBuilder((
         context: context,
         i: i,
         control: control,
         item: item,
-        formModel: formModel
+        formModel: formModel,
       )),
       emptyBuilder: emptyBuilder,
       controlFilter: controlFilter,
@@ -725,7 +1245,8 @@ class ReactiveMeetingScheduleFormFormArrayBuilder2<
 }
 
 class ReactiveMeetingScheduleFormFormFormGroupArrayBuilder<
-        ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>
+  ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT
+>
     extends StatelessWidget {
   const ReactiveMeetingScheduleFormFormFormGroupArrayBuilder({
     Key? key,
@@ -733,25 +1254,39 @@ class ReactiveMeetingScheduleFormFormFormGroupArrayBuilder<
     this.getExtended,
     this.builder,
     required this.itemBuilder,
-  })  : assert(extended != null || getExtended != null,
-            "You have to specify `control` or `formControl`!"),
-        super(key: key);
+  }) : assert(
+         extended != null || getExtended != null,
+         "You have to specify `control` or `formControl`!",
+       ),
+       super(key: key);
 
-  final ExtendedControl<List<Map<String, Object?>?>,
-      List<ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>>? extended;
+  final ExtendedControl<
+    List<Map<String, Object?>?>,
+    List<ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>
+  >?
+  extended;
 
-  final ExtendedControl<List<Map<String, Object?>?>,
-          List<ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>>
-      Function(MeetingScheduleFormForm formModel)? getExtended;
-
-  final Widget Function(BuildContext context, List<Widget> itemList,
-      MeetingScheduleFormForm formModel)? builder;
+  final ExtendedControl<
+    List<Map<String, Object?>?>,
+    List<ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>
+  >
+  Function(MeetingScheduleFormForm formModel)?
+  getExtended;
 
   final Widget Function(
-      BuildContext context,
-      int i,
-      ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT? item,
-      MeetingScheduleFormForm formModel) itemBuilder;
+    BuildContext context,
+    List<Widget> itemList,
+    MeetingScheduleFormForm formModel,
+  )?
+  builder;
+
+  final Widget Function(
+    BuildContext context,
+    int i,
+    ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT? item,
+    MeetingScheduleFormForm formModel,
+  )
+  itemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -766,26 +1301,18 @@ class ReactiveMeetingScheduleFormFormFormGroupArrayBuilder<
     return StreamBuilder<List<Map<String, Object?>?>?>(
       stream: value.control.valueChanges,
       builder: (context, snapshot) {
-        final itemList = (value.value() ??
-                <ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>[])
-            .asMap()
-            .map((i, item) => MapEntry(
-                  i,
-                  itemBuilder(
-                    context,
-                    i,
-                    item,
-                    formModel,
-                  ),
-                ))
-            .values
-            .toList();
+        final itemList =
+            (value.value() ??
+                    <ReactiveMeetingScheduleFormFormFormGroupArrayBuilderT>[])
+                .asMap()
+                .map(
+                  (i, item) =>
+                      MapEntry(i, itemBuilder(context, i, item, formModel)),
+                )
+                .values
+                .toList();
 
-        return builder?.call(
-              context,
-              itemList,
-              formModel,
-            ) ??
+        return builder?.call(context, itemList, formModel) ??
             Column(children: itemList);
       },
     );

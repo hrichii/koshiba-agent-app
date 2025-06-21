@@ -139,16 +139,6 @@ class AppMessage {
     );
   }
 
-  /// `スケジュール作成`
-  String get common_add_schedule {
-    return Intl.message(
-      'スケジュール作成',
-      name: 'common_add_schedule',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `ホーム`
   String get common_navigation_home {
     return Intl.message(
@@ -399,6 +389,26 @@ class AppMessage {
     );
   }
 
+  /// `開始時刻に参加`
+  String get schedule_add_meeting_join_start_time {
+    return Intl.message(
+      '開始時刻に参加',
+      name: 'schedule_add_meeting_join_start_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `今すぐ参加`
+  String get schedule_add_meeting_join_right_now {
+    return Intl.message(
+      '今すぐ参加',
+      name: 'schedule_add_meeting_join_right_now',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `メールアドレス`
   String get field_email {
     return Intl.message('メールアドレス', name: 'field_email', desc: '', args: []);
@@ -407,6 +417,26 @@ class AppMessage {
   /// `パスワード`
   String get field_password {
     return Intl.message('パスワード', name: 'field_password', desc: '', args: []);
+  }
+
+  /// `タイトル`
+  String get field_meeting_title {
+    return Intl.message(
+      'タイトル',
+      name: 'field_meeting_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `説明`
+  String get field_meeting_description {
+    return Intl.message(
+      '説明',
+      name: 'field_meeting_description',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `ミーティングURL`
@@ -419,11 +449,31 @@ class AppMessage {
     );
   }
 
-  /// `ミーティング開始時刻`
-  String get field_meeting_started_at {
+  /// `開始時刻`
+  String get field_meeting_start_at {
     return Intl.message(
-      'ミーティング開始時刻',
-      name: 'field_meeting_started_at',
+      '開始時刻',
+      name: 'field_meeting_start_at',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `終了時刻`
+  String get field_meeting_end_at {
+    return Intl.message(
+      '終了時刻',
+      name: 'field_meeting_end_at',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `参加タイミング`
+  String get field_meeting_bot_join_timing {
+    return Intl.message(
+      '参加タイミング',
+      name: 'field_meeting_bot_join_timing',
       desc: '',
       args: [],
     );
@@ -499,6 +549,26 @@ class AppMessage {
     return Intl.message(
       '有効な$fieldNameを入力してください',
       name: 'validation_valid',
+      desc: '',
+      args: [fieldName],
+    );
+  }
+
+  /// `{fieldName}は開始時刻より後の時刻を入力してください`
+  String validation_before_end_at(String fieldName) {
+    return Intl.message(
+      '$fieldNameは開始時刻より後の時刻を入力してください',
+      name: 'validation_before_end_at',
+      desc: '',
+      args: [fieldName],
+    );
+  }
+
+  /// `{fieldName}は現在時刻より後の時刻を入力してください`
+  String validation_after_current_time(String fieldName) {
+    return Intl.message(
+      '$fieldNameは現在時刻より後の時刻を入力してください',
+      name: 'validation_after_current_time',
       desc: '',
       args: [fieldName],
     );

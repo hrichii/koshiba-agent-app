@@ -3,6 +3,8 @@ import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
+import 'package:koshiba_agent_app/logic/usecases/connect_service/connect_service_use_case.dart';
+import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'account_use_case.g.dart';
@@ -28,5 +30,35 @@ class AccountUseCase extends _$AccountUseCase {
         state = ResourceError(value: value);
     }
     return result;
+  }
+
+  Future<Result<void, AppMessageCode>> signOut() async {
+    final result = await _accountRepository.signOut();
+    switch (result) {
+      case ResultOk<void, AppMessageCode>():
+        _clear();
+        break;
+      case ResultNg<void, AppMessageCode>():
+        break;
+    }
+    return result;
+  }
+
+  Future<Result<void, AppMessageCode>> deleteMe() async {
+    final result = await _accountRepository.deleteMe();
+    switch (result) {
+      case ResultOk<void, AppMessageCode>():
+        _clear();
+        break;
+      case ResultNg<void, AppMessageCode>():
+        break;
+    }
+    return result;
+  }
+
+  void _clear() {
+    ref.invalidate(connectServiceUseCaseProvider);
+    ref.invalidate(scheduleListUseCaseProvider);
+    ref.invalidateSelf();
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:koshiba_agent_app/data/repositories/meeting_repository.dart';
 import 'package:koshiba_agent_app/data/repositories/schedule_repository.dart';
 import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
@@ -20,6 +22,7 @@ class ScheduleListState {
     bool loadingInitial = false,
     bool loadingNext = false,
     bool loadingPrevious = false,
+    String? requestId,
   }) => ScheduleListState._(
     data: data,
     nextPageToken: nextPageToken,
@@ -27,7 +30,7 @@ class ScheduleListState {
     loadingInitial: loadingInitial,
     loadingNext: loadingNext,
     loadingPrevious: loadingPrevious,
-    requestId: DateTime.now().millisecondsSinceEpoch.toString(),
+    requestId: requestId,
   );
   const ScheduleListState._({
     required this.data,
@@ -36,7 +39,7 @@ class ScheduleListState {
     this.loadingInitial = false,
     this.loadingNext = false,
     this.loadingPrevious = false,
-    this.requestId = '',
+    this.requestId,
   });
 
   // リフレッシュ用ファクトリーコンストラクタ
@@ -51,7 +54,7 @@ class ScheduleListState {
   final bool loadingInitial;
   final bool loadingNext;
   final bool loadingPrevious;
-  final String requestId;
+  final String? requestId;
 
   ScheduleListState copyWith({
     List<Schedule> Function()? data,
@@ -77,7 +80,7 @@ class ScheduleListState {
   );
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ScheduleListUseCase extends _$ScheduleListUseCase {
   ScheduleRepositoryInterface get _scheduleRepository =>
       ref.read(scheduleRepositoryProvider);
@@ -95,10 +98,16 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
       state.nextPageToken != null;
 
   @override
-  ScheduleListState build() => ScheduleListState(data: const []);
+  ScheduleListState build() =>
+      ScheduleListState(data: const [], requestId: null);
 
   // 初期読み込み
-  Future<Result<void, AppMessageCode>> refresh() async {
+  Future<Result<void, AppMessageCode>> fetchInitial({
+    bool useCache = false,
+  }) async {
+    if (useCache && state.requestId != null) {
+      return const ResultOk(value: null);
+    }
     state = ScheduleListState.refresh();
     final requestId = state.requestId;
 
@@ -215,14 +224,18 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
     }
     final url = googleCalendarEvent.url;
     final startAt = googleCalendarEvent.startAt;
-    if (url == null || startAt == null) {
+    final title = googleCalendarEvent.title;
+    if (url == null || startAt == null || title == null) {
       return const ResultNg(value: AppMessageCode.errorApiBadRequest());
     }
 
     final registerResult = await _meetingRepository.registerMeeting(
       dto: MeetingCreateRequestDto(
+        title: title,
         url: url,
         startAt: startAt,
+        endAt: googleCalendarEvent.endAt,
+        description: googleCalendarEvent.description,
         source: MeetingCreateSource.googleCalendar,
         googleCalendarId: googleCalendarEventId,
       ),
@@ -241,6 +254,38 @@ class ScheduleListUseCase extends _$ScheduleListUseCase {
       case ResultNg(:final value):
         return ResultNg(value: value);
     }
+  }
+
+  Future<Result<void, AppMessageCode>> registerScheduledBot(
+    MeetingCreateRequestDto dto,
+  ) async {
+    final result = await _meetingRepository.registerMeeting(dto: dto);
+    switch (result) {
+      case ResultOk(:final value):
+        if (state.loadingInitial) {
+          unawaited(fetchInitial(useCache: false));
+          return result;
+        }
+        final newState = [
+          ...state.data,
+          Schedule(scheduledBot: value, googleCalendarEvent: null),
+        ];
+        newState.sort((a, b) {
+          final aStartAt =
+              a.scheduledBot?.startAt ??
+              a.googleCalendarEvent?.startAt ??
+              DateTime.now();
+          final bStartAt =
+              b.scheduledBot?.startAt ??
+              b.googleCalendarEvent?.startAt ??
+              DateTime.now();
+          return aStartAt.compareTo(bStartAt);
+        });
+        state = state.copyWith(data: () => newState);
+      case ResultNg():
+        break;
+    }
+    return result;
   }
 
   /// GoogleカレンダーのイベントからBot参加をキャンセル

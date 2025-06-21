@@ -12,7 +12,6 @@
   "common_change_password": "パスワード変更",
   "common_delete_account": "アカウント削除",
   "common_invite_bot": "Botを会議に招待",
-  "common_add_schedule": "スケジュール作成",
   "common_navigation_home": "ホーム",
   "common_navigation_schedule": "スケジュール",
   "common_navigation_document": "ドキュメント",
@@ -39,10 +38,16 @@
   "delete_bot_join_success": "Bot参加をキャンセルしました",
   "sign_in_by_google_label": "Googleでログイン済み",
   "schedule_detail_empyty_transcription": "文字起こしはありません",
+  "schedule_add_meeting_join_start_time": "開始時刻に参加",
+  "schedule_add_meeting_join_right_now": "今すぐ参加",
   "field_email": "メールアドレス",
   "field_password": "パスワード",
+  "field_meeting_title": "タイトル",
+  "field_meeting_description": "説明",
   "field_meeting_url": "ミーティングURL",
-  "field_meeting_started_at": "ミーティング開始時刻",
+  "field_meeting_start_at": "開始時刻",
+  "field_meeting_end_at": "終了時刻",
+  "field_meeting_bot_join_timing": "参加タイミング",
   "unit_letter": "文字",
   "validation_required": "{fieldName}を入力してください",
   "@validation_required": {
@@ -106,6 +111,22 @@
   },
   "validation_valid": "有効な{fieldName}を入力してください",
   "@validation_valid": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "validation_before_end_at": "{fieldName}は開始時刻より後の時刻を入力してください",
+  "@validation_before_end_at": {
+    "placeholders": {
+      "fieldName": {
+        "type": "String"
+      }
+    }
+  },
+  "validation_after_current_time": "{fieldName}は現在時刻より後の時刻を入力してください",
+  "@validation_after_current_time": {
     "placeholders": {
       "fieldName": {
         "type": "String"

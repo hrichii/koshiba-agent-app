@@ -32,28 +32,26 @@ class LoaderOverlay {
 class _LoaderOverlayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Positioned.fill(
-        child: Material(
-          color: AppColor.gray0.withValues(alpha: 0.75),
-          surfaceTintColor: Colors.transparent,
-          elevation: 0,
-          child: Center(
-            child: Card(
-              child: Container(
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: AppColor.gray10,
-                  borderRadius: BorderRadius.circular(AppRadius.xl16),
-                ),
-                child: const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            ),
+    child: Material(
+      color: AppColor.gray0.withValues(alpha: 0.75),
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      child: Center(
+        child: Container(
+          width: 100,
+          height: 100,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: AppColor.gray10,
+            borderRadius: BorderRadius.circular(AppRadius.xl16),
+          ),
+          child: const SizedBox(
+            width: 50,
+            height: 50,
+            child: CircularProgressIndicator(),
           ),
         ),
-      );
+      ),
+    ),
+  );
 }

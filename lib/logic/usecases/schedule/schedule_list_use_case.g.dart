@@ -7,15 +7,12 @@ part of 'schedule_list_use_case.dart';
 // **************************************************************************
 
 String _$scheduleListUseCaseHash() =>
-    r'917ae28b98aa27ac7e03c8e73f27a2368a34bbec';
+    r'50aad414545f8fd967d1b53a8dfe529dac03feab';
 
 /// See also [ScheduleListUseCase].
 @ProviderFor(ScheduleListUseCase)
 final scheduleListUseCaseProvider =
-    AutoDisposeNotifierProvider<
-      ScheduleListUseCase,
-      ScheduleListState
-    >.internal(
+    NotifierProvider<ScheduleListUseCase, ScheduleListState>.internal(
       ScheduleListUseCase.new,
       name: r'scheduleListUseCaseProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -25,6 +22,6 @@ final scheduleListUseCaseProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$ScheduleListUseCase = AutoDisposeNotifier<ScheduleListState>;
+typedef _$ScheduleListUseCase = Notifier<ScheduleListState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -9,7 +9,6 @@ part of 'mobile_router.dart';
 List<RouteBase> get $appRoutes => [
   $calenderRouteData,
   $scheduleAddRoute,
-  $botInviteRoute,
   $scheduleDetailRouteData,
   $resetPasswordSendRouteData,
   $signInRouteData,
@@ -58,34 +57,6 @@ mixin _$ScheduleAddRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/schedule/add');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $botInviteRoute => GoRouteData.$route(
-  path: '/bot/invite',
-  name: '/bot/invite',
-
-  factory: _$BotInviteRoute._fromState,
-);
-
-mixin _$BotInviteRoute on GoRouteData {
-  static BotInviteRoute _fromState(GoRouterState state) =>
-      const BotInviteRoute();
-
-  @override
-  String get location => GoRouteData.$location('/bot/invite');
 
   @override
   void go(BuildContext context) => context.go(location);
