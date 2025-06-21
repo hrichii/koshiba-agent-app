@@ -79,6 +79,36 @@ class AppMessage {
     return Intl.message('会員登録', name: 'common_sign_up', desc: '', args: []);
   }
 
+  /// `ようこそ`
+  String get common_welcome {
+    return Intl.message('ようこそ', name: 'common_welcome', desc: '', args: []);
+  }
+
+  /// `アカウントにサインインしてください`
+  String get common_please_sign_in_to_account {
+    return Intl.message(
+      'アカウントにサインインしてください',
+      name: 'common_please_sign_in_to_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `アカウントをお持ちでない方は`
+  String get common_no_account_yet {
+    return Intl.message(
+      'アカウントをお持ちでない方は',
+      name: 'common_no_account_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `または`
+  String get common_or {
+    return Intl.message('または', name: 'common_or', desc: '', args: []);
+  }
+
   /// `ユーザー`
   String get common_user {
     return Intl.message('ユーザー', name: 'common_user', desc: '', args: []);
@@ -104,6 +134,36 @@ class AppMessage {
     return Intl.message(
       'Googleで会員登録',
       name: 'common_sign_up_with_google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `新しいアカウントを作成`
+  String get common_create_new_account {
+    return Intl.message(
+      '新しいアカウントを作成',
+      name: 'common_create_new_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `アカウントを作成してください`
+  String get common_please_create_account {
+    return Intl.message(
+      'アカウントを作成してください',
+      name: 'common_please_create_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `すでにアカウントをお持ちの方は`
+  String get common_already_have_account {
+    return Intl.message(
+      'すでにアカウントをお持ちの方は',
+      name: 'common_already_have_account',
       desc: '',
       args: [],
     );

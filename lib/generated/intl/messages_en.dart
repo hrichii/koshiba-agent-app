@@ -55,6 +55,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "account_delete_success": MessageLookupByLibrary.simpleMessage(
       "Account deleted",
     ),
+    "common_already_have_account": MessageLookupByLibrary.simpleMessage(
+      "Already have an account?",
+    ),
     "common_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "common_change_password": MessageLookupByLibrary.simpleMessage(
       "Change password",
@@ -65,6 +68,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_connected": MessageLookupByLibrary.simpleMessage("Connected"),
     "common_connected_service": MessageLookupByLibrary.simpleMessage(
       "Connected services",
+    ),
+    "common_create_new_account": MessageLookupByLibrary.simpleMessage(
+      "Create New Account",
     ),
     "common_delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "common_delete_account": MessageLookupByLibrary.simpleMessage(
@@ -85,6 +91,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_navigation_schedule": MessageLookupByLibrary.simpleMessage(
       "Schedule",
     ),
+    "common_no_account_yet": MessageLookupByLibrary.simpleMessage(
+      "Don\'t have an account yet?",
+    ),
+    "common_or": MessageLookupByLibrary.simpleMessage("or"),
+    "common_please_create_account": MessageLookupByLibrary.simpleMessage(
+      "Please create your account",
+    ),
+    "common_please_sign_in_to_account": MessageLookupByLibrary.simpleMessage(
+      "Please sign in to your account",
+    ),
     "common_sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
     "common_sign_in_with_google": MessageLookupByLibrary.simpleMessage(
       "Sign in with Google",
@@ -98,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Transcription",
     ),
     "common_user": MessageLookupByLibrary.simpleMessage("User"),
+    "common_welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
     "connect_to_google_success": MessageLookupByLibrary.simpleMessage(
       "Connected to Google successfully",
     ),

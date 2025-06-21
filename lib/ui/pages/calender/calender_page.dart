@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
-import 'package:koshiba_agent_app/core/platform/web/web_impl.dart';
+import 'package:koshiba_agent_app/core/platform/web/web.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
