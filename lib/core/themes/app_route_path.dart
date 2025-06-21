@@ -12,14 +12,11 @@ class AppRoutePath {
   static const String resetPasswordUpdate = '/reset-password';
 
   // Authorized
-  static const String home = '/home';
   static const String botInvite = '/bot/invite';
   static const String scheduleAdd = '/schedule/add';
   static const String schedule = '/schedules';
   static const String scheduleDetail = '/schedules/detauil';
-  static const String document = '/documents';
   static const String chatDetail = '/chats/:chatId';
-  static const String setting = '/settings';
   static const String updateMyPassword = '/me/password';
 
   static const List<String> unauthorizedPathList = [

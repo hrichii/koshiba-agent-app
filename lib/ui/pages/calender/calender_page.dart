@@ -1,18 +1,31 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
+import 'package:koshiba_agent_app/core/platform/web/web_impl.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/filled_button_style.dart';
+import 'package:koshiba_agent_app/data/repositories/account_repository.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
+import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
+import 'package:koshiba_agent_app/logic/usecases/account/account_use_case.dart';
+import 'package:koshiba_agent_app/logic/usecases/connect_service/connect_service_use_case.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
+import 'package:koshiba_agent_app/ui/core/alert/app_alert.dart';
+import 'package:koshiba_agent_app/ui/core/extensions/button_style_ext.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
+import 'package:koshiba_agent_app/ui/core/toast/toast.dart';
 import 'package:koshiba_agent_app/ui/pages/calender/schedule_item_widget.dart';
+import 'package:koshiba_agent_app/ui/pages/setting/account_button.dart';
+import 'package:koshiba_agent_app/ui/routers/web/web_router.dart';
 
 class CalendarPage extends HookConsumerWidget {
   const CalendarPage({super.key});
@@ -25,7 +38,104 @@ class CalendarPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useScrollController();
 
-    Future<void> refresh() async {
+    Future<void> signOut() async {
+      final isConfirmed = await AppAlert.showConfirm(
+        title: AppMessage.current.sign_out_confirm_title,
+        confirmText: AppMessage.current.common_sign_out,
+      );
+      if (isConfirmed != true) {
+        return;
+      }
+
+      await ref
+          .read(accountRepositoryProvider)
+          .signOut()
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess((_) => AppMessage.current.sign_out_success)
+          .onSuccessWithoutValue(const SignInRouteData().go);
+    }
+
+    Future<void> deleteAccount() async {
+      final isConfirmed = await AppAlert.showConfirm(
+        title: AppMessage.current.account_delete_confirm_title,
+        confirmText: AppMessage.current.account_delete_confirm_button_title,
+        useRedForConfirmText: true,
+      );
+      if (isConfirmed != true) {
+        return;
+      }
+      await ref
+          .read(accountRepositoryProvider)
+          .deleteMe()
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess((_) => AppMessage.current.account_delete_success)
+          .onSuccessWithoutValue(const SignInRouteData().go);
+    }
+
+    Future<void> connectToGoogle() {
+      Future<void> getAuthUrlAndOpenUrlForWeb() async {
+        final fromUri = Uri.parse(webWindow.location.href);
+        await ref
+            .read(connectServiceUseCaseProvider.notifier)
+            .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri)
+            .withLoaderOverlay()
+            .withToastAtError()
+            .onSuccess((_, uri) => AppMover.openUrl(uri));
+      }
+
+      Future<void> connectToGoogleForMobile() => ref
+          .read(connectServiceUseCaseProvider.notifier)
+          .connectGoogleServiceForMobile()
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess(
+            (_) => AppMessage.current.connect_to_google_success,
+          );
+
+      if (kIsWeb) {
+        return getAuthUrlAndOpenUrlForWeb();
+      }
+      return connectToGoogleForMobile();
+    }
+
+    Future<void> disconnectToGoogle() async {
+      final isConfirmed = await AppAlert.showConfirm(
+        title: AppMessage.current.disconnect_to_google_confirm_title,
+        confirmText: AppMessage
+            .current
+            .disconnect_to_google_confirm_disconnect_button_title,
+      );
+      if (isConfirmed != true) {
+        return;
+      }
+      await ref
+          .read(connectServiceUseCaseProvider.notifier)
+          .disconnectGoogleService()
+          .withLoaderOverlay()
+          .withToastAtError()
+          .withToastAtSuccess(
+            (_) => AppMessage.current.disconnect_to_google_success,
+          );
+    }
+
+    Future<void> getConnectForGoogle() => ref
+        .read(connectServiceUseCaseProvider.notifier)
+        .getGoogleConnectStatus()
+        .withToastAtError();
+
+    Future<void> getMe() async {
+      final result = ref.read(accountUseCaseProvider.notifier).getMe();
+      switch (result) {
+        case ResultOk():
+          break;
+        case ResultNg(:final value):
+          Toast().showError(value.localizedMessage);
+      }
+    }
+
+    Future<void> fetchInitial() async {
       // データ読み込み後、上部の余白分だけスクロール位置を調整
       await ref
           .read(scheduleListUseCaseProvider.notifier)
@@ -93,6 +203,10 @@ class CalendarPage extends HookConsumerWidget {
     final canFetchPrevious = ref
         .watch(scheduleListUseCaseProvider.notifier)
         .canFetchPrevious;
+
+    Future<void> refresh() =>
+        (getMe(), fetchInitial(), getConnectForGoogle()).wait;
+
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await refresh();
@@ -135,10 +249,29 @@ class CalendarPage extends HookConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg16),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: AppSpace.lg16,
               children: [
                 Image.asset(AppAssets.imagesAppHeaderLogo.value, width: 100),
-                const SizedBox(width: 100),
+                const Expanded(child: SizedBox.shrink()),
+                FilledButton(
+                  style: FilledButtonStyle.primary.withPadding(
+                    const EdgeInsets.all(AppSpace.lg16),
+                  ),
+                  onPressed: () => AppMover.pushScheduleAdd(context),
+                  child: Text(AppMessage.current.common_add_schedule),
+                ),
+                AccountButton(
+                  accountResource: ref.watch(accountUseCaseProvider),
+                  connectToGoogleResource: ref.watch(
+                    connectServiceUseCaseProvider,
+                  ),
+                  onSignOut: signOut,
+                  onDeleteAccount: deleteAccount,
+                  onConnectToGoogle: connectToGoogle,
+                  onDisconnectToGoogle: disconnectToGoogle,
+                  onChangePassword: () async {},
+                ),
               ],
             ),
           ),

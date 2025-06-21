@@ -7,10 +7,7 @@ part of 'web_router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $homeRouteData,
   $calenderRouteData,
-  $documentRouteData,
-  $settingRouteData,
   $botInviteRoute,
   $scheduleDetailRouteData,
   $scheduleAddRoute,
@@ -18,35 +15,7 @@ List<RouteBase> get $appRoutes => [
   $signUpSendRouteData,
   $signUpVerifyRouteData,
   $resetPasswordSendRouteData,
-  $debugRouteData,
 ];
-
-RouteBase get $homeRouteData => GoRouteData.$route(
-  path: '/home',
-  name: '/home',
-
-  factory: _$HomeRouteData._fromState,
-);
-
-mixin _$HomeRouteData on GoRouteData {
-  static HomeRouteData _fromState(GoRouterState state) => const HomeRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/home');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
 
 RouteBase get $calenderRouteData => GoRouteData.$route(
   path: '/schedules',
@@ -61,62 +30,6 @@ mixin _$CalenderRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/schedules');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $documentRouteData => GoRouteData.$route(
-  path: '/documents',
-  name: '/documents',
-
-  factory: _$DocumentRouteData._fromState,
-);
-
-mixin _$DocumentRouteData on GoRouteData {
-  static DocumentRouteData _fromState(GoRouterState state) =>
-      const DocumentRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/documents');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $settingRouteData => GoRouteData.$route(
-  path: '/settings',
-  name: '/settings',
-
-  factory: _$SettingRouteData._fromState,
-);
-
-mixin _$SettingRouteData on GoRouteData {
-  static SettingRouteData _fromState(GoRouterState state) =>
-      const SettingRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/settings');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -347,39 +260,11 @@ mixin _$ResetPasswordSendRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $debugRouteData => GoRouteData.$route(
-  path: '/debug',
-  name: '/debug',
-
-  factory: _$DebugRouteData._fromState,
-);
-
-mixin _$DebugRouteData on GoRouteData {
-  static DebugRouteData _fromState(GoRouterState state) =>
-      const DebugRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/debug');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$webRouterHash() => r'b1c419acb813d5ddcdf94ca711afa013223891d3';
+String _$webRouterHash() => r'574d077e3559678cefd2a4942356eb7ef13cd06b';
 
 /// See also [WebRouter].
 @ProviderFor(WebRouter)

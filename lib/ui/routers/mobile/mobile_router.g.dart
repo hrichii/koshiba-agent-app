@@ -7,89 +7,22 @@ part of 'mobile_router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $authorizedStatefulShellRouteData,
+  $calenderRouteData,
   $scheduleAddRoute,
   $botInviteRoute,
   $scheduleDetailRouteData,
   $resetPasswordSendRouteData,
-  $debugRouteData,
   $signInRouteData,
   $signUpSendRouteData,
   $signUpVerifyRouteData,
 ];
 
-RouteBase get $authorizedStatefulShellRouteData =>
-    StatefulShellRouteData.$route(
-      factory: $AuthorizedStatefulShellRouteDataExtension._fromState,
-      branches: [
-        StatefulShellBranchData.$branch(
-          routes: [
-            GoRouteData.$route(
-              path: '/home',
-              name: '/home',
+RouteBase get $calenderRouteData => GoRouteData.$route(
+  path: '/schedules',
+  name: '/schedules',
 
-              factory: _$HomeRouteData._fromState,
-            ),
-          ],
-        ),
-        StatefulShellBranchData.$branch(
-          routes: [
-            GoRouteData.$route(
-              path: '/schedules',
-              name: '/schedules',
-
-              factory: _$CalenderRouteData._fromState,
-            ),
-          ],
-        ),
-        StatefulShellBranchData.$branch(
-          routes: [
-            GoRouteData.$route(
-              path: '/documents',
-              name: '/documents',
-
-              factory: _$DocumentRouteData._fromState,
-            ),
-          ],
-        ),
-        StatefulShellBranchData.$branch(
-          routes: [
-            GoRouteData.$route(
-              path: '/settings',
-              name: '/settings',
-
-              factory: _$SettingRouteData._fromState,
-            ),
-          ],
-        ),
-      ],
-    );
-
-extension $AuthorizedStatefulShellRouteDataExtension
-    on AuthorizedStatefulShellRouteData {
-  static AuthorizedStatefulShellRouteData _fromState(GoRouterState state) =>
-      const AuthorizedStatefulShellRouteData();
-}
-
-mixin _$HomeRouteData on GoRouteData {
-  static HomeRouteData _fromState(GoRouterState state) => const HomeRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/home');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
+  factory: _$CalenderRouteData._fromState,
+);
 
 mixin _$CalenderRouteData on GoRouteData {
   static CalenderRouteData _fromState(GoRouterState state) =>
@@ -97,48 +30,6 @@ mixin _$CalenderRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/schedules');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin _$DocumentRouteData on GoRouteData {
-  static DocumentRouteData _fromState(GoRouterState state) =>
-      const DocumentRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/documents');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin _$SettingRouteData on GoRouteData {
-  static SettingRouteData _fromState(GoRouterState state) =>
-      const SettingRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/settings');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -280,34 +171,6 @@ mixin _$ResetPasswordSendRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $debugRouteData => GoRouteData.$route(
-  path: '/debug',
-  name: '/debug',
-
-  factory: _$DebugRouteData._fromState,
-);
-
-mixin _$DebugRouteData on GoRouteData {
-  static DebugRouteData _fromState(GoRouterState state) =>
-      const DebugRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/debug');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 RouteBase get $signInRouteData => GoRouteData.$route(
   path: '/sing-in',
   name: '/sing-in',
@@ -401,7 +264,7 @@ mixin _$SignUpVerifyRouteData on GoRouteData {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mobileRouterHash() => r'57f5db248715212f923e7aea52d3b0404aa500c7';
+String _$mobileRouterHash() => r'91a0714a6339e27d87b2ae43ba4bd0986748969a';
 
 /// See also [MobileRouter].
 @ProviderFor(MobileRouter)
