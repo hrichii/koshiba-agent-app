@@ -13,9 +13,6 @@ class ScheduleDetailRouteData extends GoRouteData
   final Schedule? $extra;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => ScheduleDetailPage(
-    schedule: $extra,
-    googleCalendarEventId: gid,
-    scheduleId: kid,
-  );
+  Widget build(BuildContext context, GoRouterState state) =>
+      ScheduleDetailPage(googleCalendarEventId: gid, scheduleId: kid);
 }
