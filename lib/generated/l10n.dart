@@ -129,10 +129,10 @@ class AppMessage {
     );
   }
 
-  /// `Botを招待`
+  /// `Botを会議に招待`
   String get common_invite_bot {
     return Intl.message(
-      'Botを招待',
+      'Botを会議に招待',
       name: 'common_invite_bot',
       desc: '',
       args: [],

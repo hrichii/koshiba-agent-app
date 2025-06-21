@@ -53,35 +53,11 @@ class AppMover {
     }
   }
 
-  static Future<void> goHome({BuildContext? context}) async {
-    if (kIsWeb) {
-      return const web.HomeRouteData().go(context ?? _rootContext);
-    } else {
-      return const mobile.HomeRouteData().go(context ?? _rootContext);
-    }
-  }
-
   static Future<void> goCalendar({BuildContext? context}) async {
     if (kIsWeb) {
       return const web.CalenderRouteData().go(context ?? _rootContext);
     } else {
       return const mobile.CalenderRouteData().go(context ?? _rootContext);
-    }
-  }
-
-  static Future<void> goDocument({BuildContext? context}) async {
-    if (kIsWeb) {
-      return const web.DocumentRouteData().go(context ?? _rootContext);
-    } else {
-      return const mobile.DocumentRouteData().go(context ?? _rootContext);
-    }
-  }
-
-  static Future<void> goSetting({BuildContext? context}) async {
-    if (kIsWeb) {
-      return const web.SettingRouteData().go(context ?? _rootContext);
-    } else {
-      return const mobile.SettingRouteData().go(context ?? _rootContext);
     }
   }
 }

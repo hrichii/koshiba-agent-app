@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'account_use_case.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AccountUseCase extends _$AccountUseCase {
   AccountRepository get _accountRepository =>
       ref.read(accountRepositoryProvider);

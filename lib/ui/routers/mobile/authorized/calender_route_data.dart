@@ -1,15 +1,10 @@
 part of 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
-const _calenderTypedStatefulShellBranch = TypedStatefulShellBranch(
-  routes: <TypedRoute<RouteData>>[
-    TypedGoRoute<CalenderRouteData>(
-      name: AppRoutePath.schedule,
-      path: AppRoutePath.schedule,
-      routes: [],
-    ),
-  ],
-);
-
+@TypedGoRoute<CalenderRouteData>(
+  name: AppRoutePath.schedule,
+  path: AppRoutePath.schedule,
+  routes: <TypedRoute<RouteData>>[],
+)
 class CalenderRouteData extends GoRouteData with _$CalenderRouteData {
   const CalenderRouteData();
 

@@ -8,9 +8,9 @@ import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/logic/models/user_credential/app_user_credential.dart';
 import 'package:koshiba_agent_app/logic/usecases/authentication/authentication_use_case.dart';
+import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_for_password.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
-import 'package:koshiba_agent_app/ui/routers/mobile/mobile_router.dart';
 
 class SignUpSendPage extends ConsumerWidget {
   const SignUpSendPage({required this.onSubmit, super.key});
@@ -24,7 +24,7 @@ class SignUpSendPage extends ConsumerWidget {
             .signInOrSignUpWithGoogle()
             .withLoaderOverlay()
             .withToastAtError()
-            .onSuccessWithoutValue(const HomeRouteData().go);
+            .onSuccessWithoutValue((_) => AppMover.goCalendar());
     return Center(
       child: SignInFormBuilder(
         model: const SignIn(),

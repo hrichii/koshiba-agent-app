@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'connect_service_use_case.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ConnectServiceUseCase extends _$ConnectServiceUseCase {
   ConnectServiceRepositoryInterface get _connectServiceRepository =>
       ref.read(accountRepositoryProvider);
