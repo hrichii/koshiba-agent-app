@@ -6,4 +6,10 @@ extension ButtonStyleExt on ButtonStyle {
   );
   ButtonStyle withPadding(EdgeInsetsGeometry padding) =>
       copyWith(padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(padding));
+
+  ButtonStyle withBorderRadius(BorderRadiusGeometry borderRadius) => copyWith(
+    shape: WidgetStatePropertyAll<OutlinedBorder>(
+      RoundedRectangleBorder(borderRadius: borderRadius),
+    ),
+  );
 }

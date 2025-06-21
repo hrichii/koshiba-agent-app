@@ -20,12 +20,12 @@ import 'package:koshiba_agent_app/ui/pages/calender/schedule_item_widget.dart';
 
 class ScheduleDetailPage extends HookConsumerWidget {
   const ScheduleDetailPage({
-    required this.schedule,
+    // required this.schedule,
     required this.googleCalendarEventId,
     required this.scheduleId,
     super.key,
   });
-  final Schedule? schedule;
+  // final Schedule? schedule;
   final String? googleCalendarEventId;
   final String? scheduleId;
   // schedule==null かつ googleCalendarEventId = null かつ scheduleId=nullならエラーページにする
@@ -33,7 +33,18 @@ class ScheduleDetailPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!_hasValidData()) {
+    final schedule = ref.watch(
+      scheduleListUseCaseProvider.select(
+        (state) => state.data
+            .where(
+              (schedule) =>
+                  schedule.googleCalendarEvent?.id == googleCalendarEventId ||
+                  schedule.scheduledBot?.id == scheduleId,
+            )
+            .firstOrNull,
+      ),
+    );
+    if (!_hasValidData(schedule)) {
       return _buildErrorPage();
     }
     void onBack() {
@@ -210,7 +221,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
     return [];
   }
 
-  bool _hasValidData() {
+  bool _hasValidData(Schedule? schedule) {
     // schedule==null かつ googleCalendarEventId = null かつ scheduleId=nullならエラー
     if (schedule == null &&
         googleCalendarEventId == null &&
@@ -221,10 +232,10 @@ class ScheduleDetailPage extends HookConsumerWidget {
     // Scheduleが存在する場合、googleCalendarEventIdとscheduleIdが一致しないならエラー
     if (schedule != null) {
       if (googleCalendarEventId != null &&
-          schedule!.googleCalendarEvent?.id != googleCalendarEventId) {
+          schedule.googleCalendarEvent?.id != googleCalendarEventId) {
         return false;
       }
-      if (scheduleId != null && schedule!.scheduledBot?.id != scheduleId) {
+      if (scheduleId != null && schedule.scheduledBot?.id != scheduleId) {
         return false;
       }
     }

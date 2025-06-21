@@ -7,10 +7,13 @@ import 'package:koshiba_agent_app/core/themes/app_radius.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/themes/button_style/outlined_button_style.dart';
+import 'package:koshiba_agent_app/core/themes/button_style/text_button_style.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_bot_status.dart';
+import 'package:koshiba_agent_app/ui/core/extensions/button_style_ext.dart';
+import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
 
 class ScheduleItemWidget extends StatelessWidget {
@@ -212,75 +215,94 @@ class _BaseScheduleItem extends StatelessWidget {
     required DateTime? startAt,
     required DateTime? endAt,
     required VoidCallback? onTap,
-  }) => Material(
-    color: AppColor.gray100,
-    borderRadius: const BorderRadius.vertical(
-      top: Radius.circular(AppRadius.lg12),
-    ),
-    child: IgnorePointer(
-      ignoring: onTap == null,
+  }) {
+    final content = Container(
+      padding: const EdgeInsets.only(
+        top: AppSpace.lg16,
+        left: AppSpace.lg16,
+        right: AppSpace.lg16,
+        bottom: AppSpace.sm8,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppSpace.sm8,
+              children: [
+                Text(
+                  title ?? 'No Title',
+                  style: AppTextStyle.bodyLarge16,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                _buildTimeText(
+                  showDate: showDate,
+                  iconPath: iconPath,
+                  startAt: startAt,
+                  endAt: endAt,
+                ),
+                if (url != null && showUri)
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: AppSpace.sm8,
+                    children: [
+                      Icon(Icons.link, size: 16, color: AppColor.primary),
+                      TextButton(
+                        style: TextButtonStyle.primary
+                            .withPadding(const EdgeInsets.all(AppSpace.xs4))
+                            .withBorderRadius(
+                              BorderRadius.circular(AppRadius.sm4),
+                            ),
+                        child: Text(
+                          url.toString(),
+                          overflow: TextOverflow.visible,
+                        ),
+                        onPressed: () => AppMover.openExternalUrl(url),
+                        // style: AppTextStyle.bodyMedium14,
+                      ),
+                    ],
+                  ),
+                if (description != null && showDescription)
+                  Text(
+                    description,
+                    style: AppTextStyle.bodyMedium14.withGray30(),
+                    overflow: TextOverflow.visible,
+                  ),
+              ],
+            ),
+          ),
+          if (onTap != null)
+            Icon(Icons.arrow_forward_ios, size: 16, color: AppColor.gray50),
+        ],
+      ),
+    );
+    if (onTap == null) {
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          color: AppColor.gray100,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(AppRadius.lg12),
+          ),
+        ),
+        child: content,
+      );
+    }
+    return Material(
+      color: AppColor.gray100,
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(AppRadius.lg12),
+      ),
       child: InkWell(
-        onTap: onTap ?? () {},
+        onTap: onTap,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(AppRadius.lg12),
         ),
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: AppSpace.lg16,
-            left: AppSpace.lg16,
-            right: AppSpace.lg16,
-            bottom: AppSpace.sm8,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: AppSpace.sm8,
-                  children: [
-                    Text(
-                      title ?? 'No Title',
-                      style: AppTextStyle.bodyLarge16,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    _buildTimeText(
-                      showDate: showDate,
-                      iconPath: iconPath,
-                      startAt: startAt,
-                      endAt: endAt,
-                    ),
-                    if (url != null && showUri)
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: AppSpace.sm8,
-                        children: [
-                          Icon(Icons.link, size: 16, color: AppColor.primary),
-                          Text(
-                            url.toString(),
-                            style: AppTextStyle.bodyMedium14.withPrimary(),
-                            overflow: TextOverflow.visible,
-                          ),
-                        ],
-                      ),
-                    if (description != null && showDescription)
-                      Text(
-                        description,
-                        style: AppTextStyle.bodyMedium14.withGray30(),
-                        overflow: TextOverflow.visible,
-                      ),
-                  ],
-                ),
-              ),
-              if (onTap != null)
-                Icon(Icons.arrow_forward_ios, size: 16, color: AppColor.gray50),
-            ],
-          ),
-        ),
+        child: content,
       ),
-    ),
-  );
+    );
+  }
 
   Widget _buildTimeText({
     required bool showDate,

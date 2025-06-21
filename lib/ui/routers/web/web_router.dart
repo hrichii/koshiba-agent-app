@@ -49,7 +49,7 @@ class WebRouter extends _$WebRouter {
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {
             GlobalContext.init(context);
-            return child;
+            return SelectionArea(child: child);
           },
           routes: $appRoutes,
         ),

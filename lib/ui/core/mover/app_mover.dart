@@ -52,4 +52,11 @@ class AppMover {
       return const mobile.CalenderRouteData().go(context ?? _rootContext);
     }
   }
+
+  static Future<void> openExternalUrl(Uri? url) async {
+    if (url != null && await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+    return;
+  }
 }
