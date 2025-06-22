@@ -38,7 +38,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
         (state) => state.data
             .where(
               (schedule) =>
-                  schedule.googleCalendarEvent?.id == googleCalendarEventId ||
+                  schedule.googleCalendarEvent?.id == googleCalendarEventId &&
                   schedule.scheduledBot?.id == scheduleId,
             )
             .firstOrNull,
