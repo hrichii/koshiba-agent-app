@@ -81,7 +81,7 @@ class CalendarPage extends HookConsumerWidget {
             .getAuthUrlForConnectGoogleServiceForWeb(fromUri: fromUri)
             .withLoaderOverlay()
             .withToastAtError()
-            .onSuccess((_, uri) => AppMover.openUrl(uri));
+            .onSuccess(AppMover.openUrl);
       }
 
       Future<void> connectToGoogleForMobile() => ref

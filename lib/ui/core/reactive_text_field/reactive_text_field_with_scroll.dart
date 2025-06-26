@@ -38,6 +38,7 @@ class ReactiveTextFieldWithScroll<T> extends HookWidget {
               globalKey.currentContext!,
               duration: const Duration(milliseconds: 200),
               curve: Curves.decelerate,
+              alignment: 0.3,
             ),
           );
         }

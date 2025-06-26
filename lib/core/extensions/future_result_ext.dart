@@ -28,17 +28,12 @@ extension FutureResultExt<T> on Future<Result<T, AppMessageCode>> {
   }
 
   Future<Result<T, AppMessageCode>> onSuccess(
-    Function(BuildContext, T) builderAtSuccess,
+    Function(T) builderAtSuccess,
   ) async {
     final result = await this;
     switch (result) {
       case ResultOk(value: final value):
-        if (GlobalContext.context.mounted) {
-          builderAtSuccess(
-            GlobalContext.context,
-            value,
-          );
-        }
+        builderAtSuccess(value);
       case ResultNg():
     }
     return result;
@@ -59,19 +54,14 @@ extension FutureResultExt<T> on Future<Result<T, AppMessageCode>> {
   }
 
   Future<Result<T, AppMessageCode>> onError(
-    Function(BuildContext, AppMessageCode) builderAtError,
+    Function(AppMessageCode) builderAtError,
   ) async {
     final result = await this;
     switch (result) {
       case ResultOk():
         break;
       case ResultNg(:final value):
-        if (GlobalContext.context.mounted) {
-          builderAtError(
-            GlobalContext.context,
-            value,
-          );
-        }
+        builderAtError(value);
     }
     return result;
   }

@@ -18,6 +18,22 @@ class AppMover {
     );
   }
 
+  static Future<void> goSignUp({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.SignInRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.SignInRouteData().go(context ?? _rootContext);
+    }
+  }
+
+  static Future<void> goSignIn({BuildContext? context}) async {
+    if (kIsWeb) {
+      return const web.SignInRouteData().go(context ?? _rootContext);
+    } else {
+      return const mobile.SignInRouteData().go(context ?? _rootContext);
+    }
+  }
+
   static Future<void> pushScheduleDetail({
     required Schedule schedule,
     BuildContext? context,
