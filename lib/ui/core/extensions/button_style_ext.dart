@@ -12,4 +12,7 @@ extension ButtonStyleExt on ButtonStyle {
       RoundedRectangleBorder(borderRadius: borderRadius),
     ),
   );
+
+  ButtonStyle withTextStyle(TextStyle textStyle) =>
+      copyWith(textStyle: WidgetStatePropertyAll<TextStyle>(textStyle));
 }

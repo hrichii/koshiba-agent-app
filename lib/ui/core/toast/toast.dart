@@ -7,6 +7,7 @@ import 'package:koshiba_agent_app/core/themes/app_radius.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/utils/global_context/global_context.dart';
+import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 
 enum _ToastEnum {
   success,
@@ -14,16 +15,16 @@ enum _ToastEnum {
   error;
 
   Color get color => switch (this) {
-        _ToastEnum.success => AppColor.success,
-        _ToastEnum.warn => AppColor.warn,
-        _ToastEnum.error => AppColor.error,
-      };
+    _ToastEnum.success => AppColor.success,
+    _ToastEnum.warn => AppColor.warn,
+    _ToastEnum.error => AppColor.error,
+  };
 
   IconData get iconData => switch (this) {
-        _ToastEnum.success => Icons.check_circle_outline,
-        _ToastEnum.warn => Icons.warning_amber_outlined,
-        _ToastEnum.error => Icons.error_outline,
-      };
+    _ToastEnum.success => Icons.check_circle_outline,
+    _ToastEnum.warn => Icons.warning_amber_outlined,
+    _ToastEnum.error => Icons.error_outline,
+  };
 }
 
 @immutable
@@ -55,17 +56,20 @@ class Toast {
 
   void showWarning(String message) {
     _show(
-      toastEntity: _ToastEntity(
-        message: message,
-        toastEnum: _ToastEnum.warn,
-      ),
+      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.warn),
     );
   }
 
   void showError(String message) {
     _show(
+      toastEntity: _ToastEntity(message: message, toastEnum: _ToastEnum.error),
+    );
+  }
+
+  void showErrorByMessagecode(AppMessageCode messageCode) {
+    _show(
       toastEntity: _ToastEntity(
-        message: message,
+        message: messageCode.localizedMessage,
         toastEnum: _ToastEnum.error,
       ),
     );
@@ -99,10 +103,7 @@ class Toast {
 }
 
 class _ToastStateful extends StatefulWidget {
-  const _ToastStateful({
-    required this.toastEntity,
-    required this.onDismiss,
-  });
+  const _ToastStateful({required this.toastEntity, required this.onDismiss});
 
   final _ToastEntity toastEntity;
   final VoidCallback onDismiss;
@@ -124,15 +125,16 @@ class _ToastStateFulState extends State<_ToastStateful>
       duration: const Duration(milliseconds: 300),
       reverseDuration: const Duration(milliseconds: 300),
     );
-    _offsetAnimation = Tween<Offset>(
-      begin: const Offset(0, -1),
-      end: const Offset(0, 0),
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
+    _offsetAnimation =
+        Tween<Offset>(
+          begin: const Offset(0, -1),
+          end: const Offset(0, 0),
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOut,
+          ),
+        );
     _animationController.forward();
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
@@ -151,21 +153,21 @@ class _ToastStateFulState extends State<_ToastStateful>
 
   @override
   Widget build(BuildContext context) => Positioned(
-        top: MediaQuery.of(context).viewPadding.top + 4,
-        left: 16,
-        right: 16,
-        child: SlideTransition(
-          position: _offsetAnimation,
-          child: Material(
-            color: Colors.transparent,
-            child: _ToastWidget(
-              iconData: widget.toastEntity.toastEnum.iconData,
-              iconColor: widget.toastEntity.toastEnum.color,
-              label: widget.toastEntity.message,
-            ),
-          ),
+    top: MediaQuery.of(context).viewPadding.top + 4,
+    left: 16,
+    right: 16,
+    child: SlideTransition(
+      position: _offsetAnimation,
+      child: Material(
+        color: Colors.transparent,
+        child: _ToastWidget(
+          iconData: widget.toastEntity.toastEnum.iconData,
+          iconColor: widget.toastEntity.toastEnum.color,
+          label: widget.toastEntity.message,
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class _ToastWidget extends StatelessWidget {
@@ -180,47 +182,44 @@ class _ToastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(AppSpace.lg16),
-        decoration: BoxDecoration(
-          color: AppColor.gray5,
-          borderRadius: BorderRadius.circular(AppRadius.md8),
-          boxShadow: [
-            BoxShadow(
-              color: AppColor.shadow,
-              spreadRadius: 0,
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
+    padding: const EdgeInsets.all(AppSpace.lg16),
+    decoration: BoxDecoration(
+      color: AppColor.gray5,
+      borderRadius: BorderRadius.circular(AppRadius.md8),
+      boxShadow: [
+        BoxShadow(
+          color: AppColor.shadow,
+          spreadRadius: 0,
+          blurRadius: 4,
+          offset: const Offset(0, 2),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      ],
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppSpace.xs4,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: AppSpace.xs4,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppSpace.xs4),
-                  child: Icon(
-                    iconData,
-                    color: iconColor,
-                  ),
+            Padding(
+              padding: const EdgeInsets.all(AppSpace.xs4),
+              child: Icon(iconData, color: iconColor),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Text(
+                  label,
+                  style: AppTextStyle.bodyLarge16.withW300().withGray100(),
+                  maxLines: 3,
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 3),
-                    child: Text(
-                      label,
-                      style: AppTextStyle.bodyLarge16.withW300().withGray100(),
-                      maxLines: 3,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),
-      );
+      ],
+    ),
+  );
 }

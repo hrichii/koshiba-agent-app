@@ -12,17 +12,19 @@ import 'package:koshiba_agent_app/logic/models/sign_in/sign_in.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/button_style_ext.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_for_password.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-class SignUpSendPage extends StatelessWidget {
-  const SignUpSendPage({
-    required this.onSignUp,
-    required this.onSignUpWithGoogle,
-    required this.onGoSignIn,
+class SignInPage extends StatelessWidget {
+  const SignInPage({
+    required this.onSignIn,
+    required this.onSignInWithGoogle,
+    required this.onGoSignUp,
     super.key,
   });
-  final Future<void> Function(SignIn) onSignUp;
-  final Future<void> Function() onSignUpWithGoogle;
-  final VoidCallback onGoSignIn;
+
+  final Future<void> Function(SignIn) onSignIn;
+  final Future<void> Function() onSignInWithGoogle;
+  final VoidCallback onGoSignUp;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +45,11 @@ class SignUpSendPage extends StatelessWidget {
                 children: [
                   _buildHeader(),
                   _buildSignInForm(
-                    onSignUp: onSignUp,
-                    onSignUpWithGoogle: onSignUpWithGoogle,
+                    onSignIn: onSignIn,
+                    onSignInWithGoogle: onSignInWithGoogle,
                   ),
                   const SizedBox(height: AppSpace.xl24),
-                  _buildSignUpLink(onGoSignIn: onGoSignIn),
+                  _buildSignUpLink(onGoSignUp: onGoSignUp),
                 ],
               ),
             ),
@@ -76,7 +78,7 @@ class SignUpSendPage extends StatelessWidget {
   Widget _buildWelcomeTexts() => Column(
     children: [
       Text(
-        AppMessage.current.common_create_new_account,
+        AppMessage.current.common_welcome,
         style: AppTextStyle.titleMedium24.copyWith(
           fontWeight: FontWeight.bold,
           color: AppColor.onSurface,
@@ -84,7 +86,7 @@ class SignUpSendPage extends StatelessWidget {
       ),
       const SizedBox(height: AppSpace.sm8),
       Text(
-        AppMessage.current.common_please_create_account,
+        AppMessage.current.common_please_sign_in_to_account,
         style: AppTextStyle.bodyMedium14.copyWith(
           color: AppColor.onSurface.withValues(alpha: 0.7),
         ),
@@ -93,8 +95,8 @@ class SignUpSendPage extends StatelessWidget {
   );
 
   Widget _buildSignInForm({
-    required Future<void> Function(SignIn) onSignUp,
-    required Future<void> Function() onSignUpWithGoogle,
+    required Future<void> Function(SignIn) onSignIn,
+    required Future<void> Function() onSignInWithGoogle,
   }) => Padding(
     padding: const EdgeInsets.all(AppSpace.xl24),
     child: SignInFormBuilder(
@@ -106,11 +108,11 @@ class SignUpSendPage extends StatelessWidget {
           const SizedBox(height: AppSpace.lg16),
           _buildPasswordField(),
           const SizedBox(height: AppSpace.xll32),
-          _buildSignInButton(onSignUp),
+          _buildSignInButton(onSignIn),
           const SizedBox(height: AppSpace.lg16),
           _buildDivider(),
           const SizedBox(height: AppSpace.lg16),
-          _buildGoogleSignInButton(onSignUpWithGoogle),
+          _buildGoogleSignInButton(onSignInWithGoogle),
         ],
       ),
     ),
@@ -169,7 +171,7 @@ class SignUpSendPage extends StatelessWidget {
           style: FilledButtonStyle.primary.withTextStyle(
             AppTextStyle.bodyLarge16,
           ),
-          child: Text(AppMessage.current.common_sign_up),
+          child: Text(AppMessage.current.common_sign_in),
         ),
       );
 
@@ -203,27 +205,27 @@ class SignUpSendPage extends StatelessWidget {
               const Icon(Icons.login, size: 20),
         ),
         label: Text(
-          AppMessage.current.common_sign_up_with_google,
+          AppMessage.current.common_sign_in_with_google,
           style: AppTextStyle.bodyLarge16.withW600(),
         ),
       );
 
-  Widget _buildSignUpLink({required VoidCallback onGoSignIn}) => Row(
+  Widget _buildSignUpLink({required VoidCallback onGoSignUp}) => Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Text(
-        AppMessage.current.common_already_have_account,
+        AppMessage.current.common_no_account_yet,
         style: AppTextStyle.bodyMedium14.copyWith(
           color: AppColor.onSurface.withValues(alpha: 0.7),
         ),
       ),
       TextButton(
-        onPressed: onGoSignIn,
+        onPressed: onGoSignUp,
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: AppSpace.sm8),
         ),
         child: Text(
-          AppMessage.current.common_sign_in,
+          AppMessage.current.common_sign_up,
           style: AppTextStyle.bodyMedium14.copyWith(
             fontWeight: FontWeight.w600,
             color: AppColor.primary,
