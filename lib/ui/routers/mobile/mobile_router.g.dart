@@ -10,7 +10,6 @@ List<RouteBase> get $appRoutes => [
   $calenderRouteData,
   $scheduleAddRoute,
   $scheduleDetailRouteData,
-  $resetPasswordSendRouteData,
   $signInRouteData,
   $signUpSendRouteData,
   $signUpVerifyRouteData,
@@ -112,34 +111,6 @@ mixin _$ScheduleDetailRouteData on GoRouteData {
   @override
   void replace(BuildContext context) =>
       context.replace(location, extra: _self.$extra);
-}
-
-RouteBase get $resetPasswordSendRouteData => GoRouteData.$route(
-  path: '/reset-password/send',
-  name: '/reset-password/send',
-
-  factory: _$ResetPasswordSendRouteData._fromState,
-);
-
-mixin _$ResetPasswordSendRouteData on GoRouteData {
-  static ResetPasswordSendRouteData _fromState(GoRouterState state) =>
-      const ResetPasswordSendRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/reset-password/send');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
 }
 
 RouteBase get $signInRouteData => GoRouteData.$route(

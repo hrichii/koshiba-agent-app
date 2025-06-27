@@ -8,12 +8,11 @@ part of 'web_router.dart';
 
 List<RouteBase> get $appRoutes => [
   $calenderRouteData,
-  $scheduleDetailRouteData,
   $scheduleAddRoute,
+  $scheduleDetailRouteData,
   $signInRouteData,
   $signUpSendRouteData,
   $signUpVerifyRouteData,
-  $resetPasswordSendRouteData,
 ];
 
 RouteBase get $calenderRouteData => GoRouteData.$route(
@@ -29,6 +28,34 @@ mixin _$CalenderRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/schedules');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $scheduleAddRoute => GoRouteData.$route(
+  path: '/schedule/add',
+  name: '/schedule/add',
+
+  factory: _$ScheduleAddRoute._fromState,
+);
+
+mixin _$ScheduleAddRoute on GoRouteData {
+  static ScheduleAddRoute _fromState(GoRouterState state) =>
+      const ScheduleAddRoute();
+
+  @override
+  String get location => GoRouteData.$location('/schedule/add');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -84,34 +111,6 @@ mixin _$ScheduleDetailRouteData on GoRouteData {
   @override
   void replace(BuildContext context) =>
       context.replace(location, extra: _self.$extra);
-}
-
-RouteBase get $scheduleAddRoute => GoRouteData.$route(
-  path: '/schedule/add',
-  name: '/schedule/add',
-
-  factory: _$ScheduleAddRoute._fromState,
-);
-
-mixin _$ScheduleAddRoute on GoRouteData {
-  static ScheduleAddRoute _fromState(GoRouterState state) =>
-      const ScheduleAddRoute();
-
-  @override
-  String get location => GoRouteData.$location('/schedule/add');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
 }
 
 RouteBase get $signInRouteData => GoRouteData.$route(
@@ -203,39 +202,11 @@ mixin _$SignUpVerifyRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $resetPasswordSendRouteData => GoRouteData.$route(
-  path: '/reset-password/send',
-  name: '/reset-password/send',
-
-  factory: _$ResetPasswordSendRouteData._fromState,
-);
-
-mixin _$ResetPasswordSendRouteData on GoRouteData {
-  static ResetPasswordSendRouteData _fromState(GoRouterState state) =>
-      const ResetPasswordSendRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/reset-password/send');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$webRouterHash() => r'574d077e3559678cefd2a4942356eb7ef13cd06b';
+String _$webRouterHash() => r'b85662b42eb8f23548dbbbb98cb2e75933ae197c';
 
 /// See also [WebRouter].
 @ProviderFor(WebRouter)

@@ -16,6 +16,7 @@ import 'package:koshiba_agent_app/logic/models/meeting/meeting_schedule_form.dar
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/reactive_text_field/reactive_text_field_with_scroll.dart';
+import 'package:koshiba_agent_app/ui/core/toast/toast.dart';
 import 'package:reactive_date_time_picker/reactive_date_time_picker.dart';
 import 'package:reactive_segmented_control/reactive_segmented_control.dart';
 
@@ -97,8 +98,10 @@ class ScheduleAddPage extends ConsumerWidget {
       .read(scheduleListUseCaseProvider.notifier)
       .registerScheduledBot(MeetingCreateRequestDto.fromScheduleForm(form))
       .withLoaderOverlay()
-      .withToastAtError()
-      .withToastAtSuccess((_) => AppMessage.current.meeting_register_success);
+      .onSuccess(
+        (_) => Toast().showSuccess(AppMessage.current.meeting_register_success),
+      )
+      .onError(Toast().showErrorByMessagecode);
 
   Widget _buildTitleView(MeetingScheduleFormForm form) => Row(
     children: [

@@ -10,5 +10,5 @@ class CalenderRouteData extends GoRouteData with _$CalenderRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const CalendarPage();
+      const ConnectedSchedulePage();
 }
