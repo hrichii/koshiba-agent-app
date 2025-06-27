@@ -16,7 +16,8 @@ import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case
 import 'package:koshiba_agent_app/logic/usecases/transcription/transcription_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
-import 'package:koshiba_agent_app/ui/pages/calender/schedule_item_widget.dart';
+import 'package:koshiba_agent_app/ui/core/toast/toast.dart';
+import 'package:koshiba_agent_app/ui/pages/schedule/schedule_item_widget.dart';
 
 class ScheduleDetailPage extends HookConsumerWidget {
   const ScheduleDetailPage({
@@ -67,10 +68,12 @@ class ScheduleDetailPage extends HookConsumerWidget {
               googleCalendarEventId: googleCalendarEventId,
             )
             .withLoaderOverlay()
-            .withToastAtError()
-            .withToastAtSuccess(
-              (_) => AppMessage.current.schedule_bot_join_success,
-            );
+            .onSuccess(
+              (_) => Toast().showSuccess(
+                AppMessage.current.schedule_bot_join_success,
+              ),
+            )
+            .onError(Toast().showErrorByMessagecode);
       } else {
         // Bot参加をキャンセルする
         await ref
@@ -79,10 +82,12 @@ class ScheduleDetailPage extends HookConsumerWidget {
               googleCalendarEventId: googleCalendarEventId,
             )
             .withLoaderOverlay()
-            .withToastAtError()
-            .withToastAtSuccess(
-              (_) => AppMessage.current.delete_bot_join_success,
-            );
+            .onSuccess(
+              (_) => Toast().showSuccess(
+                AppMessage.current.delete_bot_join_success,
+              ),
+            )
+            .onError(Toast().showErrorByMessagecode);
       }
     }
 
@@ -90,9 +95,11 @@ class ScheduleDetailPage extends HookConsumerWidget {
         .read(scheduleListUseCaseProvider.notifier)
         .deleteScheduledBot(scheduledBotId: schedule!.scheduledBot?.id)
         .withLoaderOverlay()
-        .onSuccessWithoutValue((_) => onBack())
-        .withToastAtError()
-        .withToastAtSuccess((_) => AppMessage.current.delete_bot_join_success);
+        .onSuccess((_) {
+          onBack();
+          Toast().showSuccess(AppMessage.current.delete_bot_join_success);
+        })
+        .onError(Toast().showErrorByMessagecode);
 
     return Scaffold(
       appBar: AppBar(

@@ -7,8 +7,7 @@ import 'package:koshiba_agent_app/logic/enums/app_message_code.dart';
 import 'package:koshiba_agent_app/logic/models/result/result.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
 import 'package:koshiba_agent_app/logic/models/user/user.dart';
-import 'package:koshiba_agent_app/ui/pages/calender/calender_page.dart';
-import 'package:koshiba_agent_app/ui/pages/reset_password_send/connected_reset_password_send_page.dart';
+import 'package:koshiba_agent_app/ui/pages/schedule/connected_schedule_page.dart';
 import 'package:koshiba_agent_app/ui/pages/schedule_add/schedule_add_page.dart';
 import 'package:koshiba_agent_app/ui/pages/schedule_detail/schedule_detail_page.dart';
 import 'package:koshiba_agent_app/ui/pages/sign_in/connected_sign_in_page.dart';
@@ -17,12 +16,11 @@ import 'package:koshiba_agent_app/ui/pages/sign_up_verify/connected_sign_up_veri
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'package:koshiba_agent_app/ui/routers/web/authorized/calender_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/web/authorized/schedule_detail_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/web/authorized/schedule_add_route.dart';
+part 'package:koshiba_agent_app/ui/routers/web/authorized/schedule_detail_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_in_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_up_send_route_data.dart';
 part 'package:koshiba_agent_app/ui/routers/web/unauthorized/sign_up_verify_route_data.dart';
-part 'package:koshiba_agent_app/ui/routers/web/unauthorized/reset_password_send_route_data.dart';
 part 'web_router.g.dart';
 
 @Riverpod(keepAlive: true)

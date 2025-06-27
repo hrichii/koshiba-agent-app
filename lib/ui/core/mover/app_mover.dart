@@ -53,7 +53,7 @@ class AppMover {
     }
   }
 
-  static Future<void> pushScheduleAdd(BuildContext? context) async {
+  static Future<void> pushScheduleAdd({BuildContext? context}) async {
     if (kIsWeb) {
       return const mobile.ScheduleAddRoute().push(context ?? _rootContext);
     } else {
