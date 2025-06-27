@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
+import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/core/themes/button_style/filled_button_style.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/connect_to_google/connect_to_google_status.dart';
@@ -14,6 +16,7 @@ import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
 import 'package:koshiba_agent_app/ui/core/pagination/auto_pagination_listener.dart';
 import 'package:koshiba_agent_app/ui/pages/schedule/schedule_item_widget.dart';
 import 'package:koshiba_agent_app/ui/pages/setting/account_button.dart';
+import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class SchedulePage extends StatelessWidget {
   const SchedulePage({
@@ -74,13 +77,14 @@ class SchedulePage extends StatelessWidget {
             children: [
               Image.asset(AppAssets.imagesAppHeaderLogo.value, width: 100),
               const Expanded(child: SizedBox.shrink()),
-              FilledButton(
-                style: FilledButtonStyle.primary.withPadding(
-                  const EdgeInsets.all(AppSpace.lg16),
+              if (kIsWeb)
+                FilledButton(
+                  style: FilledButtonStyle.primary.withPadding(
+                    const EdgeInsets.all(AppSpace.lg16),
+                  ),
+                  onPressed: onPushScheduleAdd,
+                  child: Text(AppMessage.current.common_invite_bot),
                 ),
-                onPressed: onPushScheduleAdd,
-                child: Text(AppMessage.current.common_invite_bot),
-              ),
               AccountButton(
                 accountResource: accountResource,
                 connectToGoogleResource: connectServiceResource,
@@ -121,23 +125,7 @@ class SchedulePage extends StatelessWidget {
                   ..._buildShimmer(canFetchPrevious),
                   ..._buildShimmer(scheduleListState.loadingPrevious),
                   ..._buildShimmer(scheduleListState.loadingInitial),
-                  ...scheduleListState.data
-                      .map(
-                        (schedule) => _buildScheduleItem(
-                          schedule: schedule,
-                          onChanged: schedule.canJoin
-                              ? (isJoined) {
-                                  onChangeBotJoin(
-                                    googleCalendarEventId:
-                                        schedule.googleCalendarEvent?.id,
-                                    isBotJoin: isJoined,
-                                  );
-                                }
-                              : null,
-                          onTap: () => onPushScheduleDetail(schedule),
-                        ),
-                      )
-                      .whereType<Widget>(),
+                  ..._buildScheduleList(context),
                   ..._buildShimmer(scheduleListState.loadingNext),
                 ]
                 .map(
@@ -155,7 +143,95 @@ class SchedulePage extends StatelessWidget {
         ),
       ),
     ),
+    floatingActionButton: kIsWeb
+        ? null
+        : FloatingActionButton(
+            onPressed: onPushScheduleAdd,
+            tooltip: AppMessage.current.common_invite_bot,
+            child: const Icon(Icons.add),
+          ),
+    floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
   );
+
+  List<Widget> _buildScheduleList(BuildContext context) {
+    final widgets = <Widget>[];
+    DateTime? previousDate;
+
+    for (int i = 0; i < scheduleListState.data.length; i++) {
+      final schedule = scheduleListState.data[i];
+      final currentDate = schedule.startAt;
+
+      // 日付が変わった場合、または最初のアイテムの場合に日付を表示
+      if (currentDate != null) {
+        final currentDateOnly = DateTime(
+          currentDate.year,
+          currentDate.month,
+          currentDate.day,
+        );
+        final previousDateOnly = previousDate != null
+            ? DateTime(previousDate.year, previousDate.month, previousDate.day)
+            : null;
+
+        if (previousDateOnly == null ||
+            !currentDateOnly.isAtSameMomentAs(previousDateOnly)) {
+          widgets.add(_buildDateHeader(currentDateOnly));
+        }
+        previousDate = currentDate;
+      }
+
+      final scheduleItem = _buildScheduleItem(
+        schedule: schedule,
+        onChanged: schedule.canJoin
+            ? (isJoined) {
+                onChangeBotJoin(
+                  googleCalendarEventId: schedule.googleCalendarEvent?.id,
+                  isBotJoin: isJoined,
+                );
+              }
+            : null,
+        onTap: () => onPushScheduleDetail(schedule),
+      );
+
+      if (scheduleItem != null) {
+        widgets.add(scheduleItem);
+      }
+    }
+
+    return widgets;
+  }
+
+  Widget _buildDateHeader(DateTime date) {
+    // 日本語の曜日を表示
+    final weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+    final weekday = weekdays[date.weekday % 7];
+    final dateText = '${date.month}月${date.day}日';
+    final weekDayText = '($weekday)';
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: AppSpace.sm8,
+          top: AppSpace.lg16,
+          bottom: AppSpace.xs4,
+        ),
+        child: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: dateText,
+                style: AppTextStyle.bodyLarge16.withW600(),
+              ),
+              const WidgetSpan(child: SizedBox(width: AppSpace.xs4)),
+              TextSpan(
+                text: weekDayText,
+                style: AppTextStyle.bodyMedium14.withW600(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   List<Widget> _buildShimmer(bool isLoading) {
     if (!isLoading) {

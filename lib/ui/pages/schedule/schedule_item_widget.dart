@@ -217,6 +217,7 @@ class _BaseScheduleItem extends StatelessWidget {
     required VoidCallback? onTap,
   }) {
     final content = Container(
+      color: Colors.transparent,
       padding: const EdgeInsets.only(
         top: AppSpace.lg16,
         left: AppSpace.lg16,
@@ -249,18 +250,20 @@ class _BaseScheduleItem extends StatelessWidget {
                     spacing: AppSpace.sm8,
                     children: [
                       Icon(Icons.link, size: 16, color: AppColor.primary),
-                      TextButton(
-                        style: TextButtonStyle.primary
-                            .withPadding(const EdgeInsets.all(AppSpace.xs4))
-                            .withBorderRadius(
-                              BorderRadius.circular(AppRadius.sm4),
-                            ),
-                        child: Text(
-                          url.toString(),
-                          overflow: TextOverflow.visible,
+                      Flexible(
+                        child: TextButton(
+                          style: TextButtonStyle.primary
+                              .withPadding(const EdgeInsets.all(AppSpace.xs4))
+                              .withBorderRadius(
+                                BorderRadius.circular(AppRadius.sm4),
+                              ),
+                          child: Text(
+                            url.toString(),
+                            overflow: TextOverflow.visible,
+                          ),
+                          onPressed: () => AppMover.openExternalUrl(url),
+                          // style: AppTextStyle.bodyMedium14,
                         ),
-                        onPressed: () => AppMover.openExternalUrl(url),
-                        // style: AppTextStyle.bodyMedium14,
                       ),
                     ],
                   ),
@@ -279,18 +282,10 @@ class _BaseScheduleItem extends StatelessWidget {
       ),
     );
     if (onTap == null) {
-      return DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppColor.gray100,
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(AppRadius.lg12),
-          ),
-        ),
-        child: content,
-      );
+      return content;
     }
     return Material(
-      color: AppColor.gray100,
+      color: Colors.transparent,
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(AppRadius.lg12),
       ),

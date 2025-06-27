@@ -189,14 +189,9 @@ class AppMessage {
     );
   }
 
-  /// `Botを会議に招待`
+  /// `会議に招待`
   String get common_invite_bot {
-    return Intl.message(
-      'Botを会議に招待',
-      name: 'common_invite_bot',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('会議に招待', name: 'common_invite_bot', desc: '', args: []);
   }
 
   /// `ホーム`

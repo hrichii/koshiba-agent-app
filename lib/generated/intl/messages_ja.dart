@@ -69,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_delete_account": MessageLookupByLibrary.simpleMessage("アカウント削除"),
     "common_disconnected": MessageLookupByLibrary.simpleMessage("未連携"),
     "common_error_fetch_failed": MessageLookupByLibrary.simpleMessage("取得失敗"),
-    "common_invite_bot": MessageLookupByLibrary.simpleMessage("Botを会議に招待"),
+    "common_invite_bot": MessageLookupByLibrary.simpleMessage("会議に招待"),
     "common_navigation_accounts": MessageLookupByLibrary.simpleMessage("アカウント"),
     "common_navigation_document": MessageLookupByLibrary.simpleMessage(
       "ドキュメント",

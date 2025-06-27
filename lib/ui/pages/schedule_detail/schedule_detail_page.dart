@@ -109,7 +109,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
         ),
         title: Text(
           schedule?.title ?? 'No Title',
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.visible,
         ),
         centerTitle: true,
         elevation: 0,
@@ -143,6 +143,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
                     Text(
                       AppMessage.current.common_transcription,
                       style: AppTextStyle.titleSmall20,
+                      overflow: TextOverflow.visible,
                     ),
                     const SizedBox(height: AppSpace.md12),
                     if (scheduleId != null)
