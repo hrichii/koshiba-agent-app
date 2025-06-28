@@ -1,78 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
 
 class AppTextTheme {
-  static const TextTheme normal = _default;
+  static TextTheme get normal => _default;
 
   static const _textOverflow = TextOverflow.visible;
   static const _fontWeight = FontWeight.w300;
   static const _textColor = AppColorPallete.gray10;
-  static const _default = TextTheme(
-    displayMedium: TextStyle(
+
+  static TextTheme get _default => TextTheme(
+    displayMedium: GoogleFonts.sawarabiGothic(
       fontSize: 48,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    titleLarge: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    titleLarge: GoogleFonts.sawarabiGothic(
       fontSize: 32,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    titleMedium: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    titleMedium: GoogleFonts.sawarabiGothic(
       fontSize: 24,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    titleSmall: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    titleSmall: GoogleFonts.sawarabiGothic(
       fontSize: 20,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    bodyLarge: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    bodyLarge: GoogleFonts.sawarabiGothic(
       fontSize: 16,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    bodyMedium: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    bodyMedium: GoogleFonts.sawarabiGothic(
       fontSize: 14,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    bodySmall: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    bodySmall: GoogleFonts.sawarabiGothic(
       fontSize: 12,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    labelLarge: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    labelLarge: GoogleFonts.sawarabiGothic(
       fontSize: 10,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    labelMedium: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    labelMedium: GoogleFonts.sawarabiGothic(
       fontSize: 8,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
-    labelSmall: TextStyle(
+    ).copyWith(overflow: _textOverflow),
+    labelSmall: GoogleFonts.sawarabiGothic(
       fontSize: 6,
-      overflow: _textOverflow,
       fontWeight: _fontWeight,
       color: _textColor,
-    ),
+    ).copyWith(overflow: _textOverflow),
   );
 }
 
 class AppTextStyle {
-  static const TextTheme _textTheme = AppTextTheme.normal;
+  static TextTheme get _textTheme => AppTextTheme.normal;
   static TextStyle get displayMedium48 => _textTheme.displayMedium!;
   static TextStyle get titleLarge32 => _textTheme.titleLarge!;
   static TextStyle get titleMedium24 => _textTheme.titleMedium!;

@@ -24,7 +24,7 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const colorScheme = AppColorScheme.light;
-    const textTheme = AppTextTheme.normal;
+    final textTheme = AppTextTheme.normal;
     return AppReactiveFormConfig(
       child: MaterialApp.router(
         title: AppEnv.appName,
