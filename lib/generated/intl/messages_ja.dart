@@ -55,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "すでにアカウントをお持ちの方は",
     ),
     "common_bot": MessageLookupByLibrary.simpleMessage("ジャービス"),
+    "common_bot_wake": MessageLookupByLibrary.simpleMessage("ジャービスに質問する"),
     "common_cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
     "common_change_password": MessageLookupByLibrary.simpleMessage("パスワード変更"),
     "common_connect_for_google": MessageLookupByLibrary.simpleMessage(
@@ -292,8 +293,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "schedule_bot_join_success": MessageLookupByLibrary.simpleMessage(
       "Bot参加を登録しました",
     ),
+    "schedule_detail_disable_action_success":
+        MessageLookupByLibrary.simpleMessage("Botアクションが無効化されました"),
     "schedule_detail_empyty_transcription":
         MessageLookupByLibrary.simpleMessage("文字起こしはありません"),
+    "schedule_detail_enable_action": MessageLookupByLibrary.simpleMessage(
+      "Botアクションの有効化",
+    ),
+    "schedule_detail_enable_action_success":
+        MessageLookupByLibrary.simpleMessage("Botアクションが有効化されました"),
     "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
       "Googleでログイン済み",
     ),

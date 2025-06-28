@@ -58,6 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_already_have_account": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
     ),
+    "common_bot": MessageLookupByLibrary.simpleMessage("Jarvis"),
+    "common_bot_wake": MessageLookupByLibrary.simpleMessage("Ask Jarvis"),
     "common_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "common_change_password": MessageLookupByLibrary.simpleMessage(
       "Change password",
@@ -321,6 +323,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "schedule_detail_empyty_transcription":
         MessageLookupByLibrary.simpleMessage("No transcription available"),
+    "schedule_detail_enable_action": MessageLookupByLibrary.simpleMessage(
+      "Enable action",
+    ),
     "sign_in_by_google_label": MessageLookupByLibrary.simpleMessage(
       "Signed in with Google",
     ),

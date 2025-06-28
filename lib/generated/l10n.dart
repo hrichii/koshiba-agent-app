@@ -119,6 +119,16 @@ class AppMessage {
     return Intl.message('ジャービス', name: 'common_bot', desc: '', args: []);
   }
 
+  /// `ジャービスに質問する`
+  String get common_bot_wake {
+    return Intl.message(
+      'ジャービスに質問する',
+      name: 'common_bot_wake',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Googleでログイン`
   String get common_sign_in_with_google {
     return Intl.message(
@@ -439,6 +449,36 @@ class AppMessage {
     return Intl.message(
       '文字起こしはありません',
       name: 'schedule_detail_empyty_transcription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botアクションの有効化`
+  String get schedule_detail_enable_action {
+    return Intl.message(
+      'Botアクションの有効化',
+      name: 'schedule_detail_enable_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botアクションが有効化されました`
+  String get schedule_detail_enable_action_success {
+    return Intl.message(
+      'Botアクションが有効化されました',
+      name: 'schedule_detail_enable_action_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Botアクションが無効化されました`
+  String get schedule_detail_disable_action_success {
+    return Intl.message(
+      'Botアクションが無効化されました',
+      name: 'schedule_detail_disable_action_success',
       desc: '',
       args: [],
     );

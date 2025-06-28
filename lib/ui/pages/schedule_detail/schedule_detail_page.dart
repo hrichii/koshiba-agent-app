@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:koshiba_agent_app/core/extensions/date_time_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/future_ext.dart';
@@ -9,9 +10,11 @@ import 'package:koshiba_agent_app/core/themes/app_color.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
+import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/logic/models/schedule/schedule.dart';
 import 'package:koshiba_agent_app/logic/models/transcription/transcription_item.dart';
 import 'package:koshiba_agent_app/logic/models/transcription/transcription_role_enum.dart';
+import 'package:koshiba_agent_app/logic/usecases/bot/bot_wake_use_case.dart';
 import 'package:koshiba_agent_app/logic/usecases/schedule/schedule_list_use_case.dart';
 import 'package:koshiba_agent_app/logic/usecases/transcription/transcription_use_case.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/list_widget_ext.dart';
@@ -91,6 +94,55 @@ class ScheduleDetailPage extends HookConsumerWidget {
       }
     }
 
+    bool enableActionToggle() {
+      if (schedule?.scheduledBot == null) {
+        return false;
+      }
+      final startAtEpoch =
+          schedule?.scheduledBot?.startAt.microsecondsSinceEpoch;
+      final nowEpoch = DateTime.now().microsecondsSinceEpoch;
+      if (startAtEpoch != null && startAtEpoch > nowEpoch) {
+        return false;
+      }
+
+      final endAtEpoch = schedule?.scheduledBot?.endAt?.microsecondsSinceEpoch;
+      if (endAtEpoch != null && endAtEpoch < nowEpoch) {
+        return false;
+      }
+      return true;
+    }
+
+    Future<void> changeActionEnabled({required bool isActionEnabled}) async {
+      final meetingId = schedule?.scheduledBot?.id;
+      if (meetingId == null) {
+        return;
+      }
+
+      if (isActionEnabled) {
+        await ref
+            .read(botWakeUseCaseProvider.notifier)
+            .activateBot(meetingId: meetingId)
+            .withLoaderOverlay()
+            .onSuccess(
+              (_) => Toast().showSuccess(
+                AppMessage.current.schedule_detail_enable_action_success,
+              ),
+            )
+            .onError(Toast().showErrorByMessagecode);
+      } else {
+        await ref
+            .read(botWakeUseCaseProvider.notifier)
+            .idleBot(meetingId: meetingId)
+            .withLoaderOverlay()
+            .onSuccess(
+              (_) => Toast().showSuccess(
+                AppMessage.current.schedule_detail_disable_action_success,
+              ),
+            )
+            .onError(Toast().showErrorByMessagecode);
+      }
+    }
+
     Future<void> deleteScheduledBot() => ref
         .read(scheduleListUseCaseProvider.notifier)
         .deleteScheduledBot(scheduledBotId: schedule!.scheduledBot?.id)
@@ -100,6 +152,21 @@ class ScheduleDetailPage extends HookConsumerWidget {
           Toast().showSuccess(AppMessage.current.delete_bot_join_success);
         })
         .onError(Toast().showErrorByMessagecode);
+
+    Future<void> getBotWake() async {
+      final meetingId = schedule?.scheduledBot?.id;
+      await ref
+          .read(botWakeUseCaseProvider.notifier)
+          .getBotWake(meetingId: meetingId);
+    }
+
+    useEffect(() {
+      Future(getBotWake);
+      return null;
+    }, []);
+
+    // BotWakeの状態からアクションの有効化状態を取得
+    final actionActiveResource = ref.watch(botWakeUseCaseProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -138,6 +205,12 @@ class ScheduleDetailPage extends HookConsumerWidget {
                             }
                           : null,
                       onDelete: deleteScheduledBot,
+                      actionActiveResource: actionActiveResource,
+                      onActionChanged: enableActionToggle()
+                          ? (enabled) {
+                              changeActionEnabled(isActionEnabled: enabled);
+                            }
+                          : null,
                     ),
                     const SizedBox(height: AppSpace.xl24),
                     Text(
@@ -202,6 +275,8 @@ class ScheduleDetailPage extends HookConsumerWidget {
     required ValueChanged<bool>? onChanged,
     required Schedule? schedule,
     required VoidCallback onDelete,
+    required Resource<bool> actionActiveResource,
+    required ValueChanged<bool>? onActionChanged,
   }) {
     final scheduledBot = schedule?.scheduledBot;
     final calendarEvent = schedule?.googleCalendarEvent;
@@ -213,6 +288,8 @@ class ScheduleDetailPage extends HookConsumerWidget {
           scheduledBot: scheduledBot,
           calendarEvent: calendarEvent,
           isJoined: isJoined,
+          actionActiveResource: actionActiveResource,
+          onActionChange: onActionChanged,
         ),
       ];
     }
@@ -223,6 +300,8 @@ class ScheduleDetailPage extends HookConsumerWidget {
           isJoined: isJoined,
           onChanged: null,
           onDelete: onDelete,
+          actionActiveResource: actionActiveResource,
+          onActionChange: onActionChanged,
         ),
       ];
     }
