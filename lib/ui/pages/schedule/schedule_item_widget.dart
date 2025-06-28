@@ -473,7 +473,6 @@ class _ScheduleItemLoading extends StatelessWidget {
 
   Widget _buildContent() => Container(
     decoration: BoxDecoration(
-      color: AppColor.gray100,
       borderRadius: BorderRadius.circular(AppRadius.lg12),
     ),
     padding: const EdgeInsets.only(
