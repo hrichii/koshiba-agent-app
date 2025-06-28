@@ -9,7 +9,7 @@ class AutoPaginationListener extends StatelessWidget {
     required this.loadingNext,
     required this.onFetchPrevious,
     required this.onFetchNext,
-    this.threshold = 1400.0,
+    this.threshold = 400.0,
     super.key,
   });
 
@@ -27,14 +27,18 @@ class AutoPaginationListener extends StatelessWidget {
         onNotification: (notification) {
           if (notification is ScrollUpdateNotification) {
             final position = notification.metrics;
+            final scrollDelta = notification.scrollDelta ?? 0.0;
 
-            // 上部余白内に入ったら前のデータを読み込み
-            if (position.pixels <= topPadding + threshold && !loadingPrevious) {
+            // 上方向にスクロールしており、上部余白内に入ったら前のデータを読み込み
+            if (scrollDelta < 0 &&
+                position.pixels <= topPadding + threshold &&
+                !loadingPrevious) {
               onFetchPrevious();
             }
 
-            // 下部に近づいたら次のデータを読み込み
-            if (position.pixels >= position.maxScrollExtent - threshold &&
+            // 下方向にスクロールしており、下部に近づいたら次のデータを読み込み
+            if (scrollDelta > 0 &&
+                position.pixels >= position.maxScrollExtent - threshold &&
                 !loadingNext) {
               onFetchNext();
             }

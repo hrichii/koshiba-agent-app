@@ -12,6 +12,7 @@ import 'package:koshiba_agent_app/generated/l10n.dart';
 import 'package:koshiba_agent_app/logic/models/calendar/calendar_event.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting.dart';
 import 'package:koshiba_agent_app/logic/models/meeting/meeting_bot_status.dart';
+import 'package:koshiba_agent_app/logic/models/resource/resource.dart';
 import 'package:koshiba_agent_app/ui/core/extensions/button_style_ext.dart';
 import 'package:koshiba_agent_app/ui/core/mover/app_mover.dart';
 import 'package:koshiba_agent_app/ui/core/shimmer/shimmer_wiget.dart';
@@ -44,6 +45,9 @@ class ScheduleItemWidget extends StatelessWidget {
       showDate: false,
       onDelete: null,
       url: calendarEvent.url,
+      showActionToggle: false,
+      actionActiveResource: const ResourceDone(value: false),
+      onActionChange: null,
     ),
   );
   factory ScheduleItemWidget.scheduledBot({
@@ -70,6 +74,9 @@ class ScheduleItemWidget extends StatelessWidget {
       showDate: false,
       onDelete: null,
       showBotStatus: false,
+      showActionToggle: false,
+      actionActiveResource: const ResourceDone(value: false),
+      onActionChange: null,
     ),
   );
 
@@ -78,6 +85,8 @@ class ScheduleItemWidget extends StatelessWidget {
     required Meeting? scheduledBot,
     required bool isJoined,
     required ValueChanged<bool>? onChanged,
+    required Resource<bool> actionActiveResource,
+    ValueChanged<bool>? onActionChange,
   }) => ScheduleItemWidget._(
     child: _BaseScheduleItem(
       title: calendarEvent.title,
@@ -97,6 +106,9 @@ class ScheduleItemWidget extends StatelessWidget {
       showBotStatus: true,
       showDate: true,
       onDelete: null,
+      showActionToggle: true,
+      actionActiveResource: actionActiveResource,
+      onActionChange: onActionChange,
     ),
   );
 
@@ -105,6 +117,8 @@ class ScheduleItemWidget extends StatelessWidget {
     required bool isJoined,
     required ValueChanged<bool>? onChanged,
     required VoidCallback? onDelete,
+    required Resource<bool> actionActiveResource,
+    ValueChanged<bool>? onActionChange,
   }) => ScheduleItemWidget._(
     child: _BaseScheduleItem(
       title: scheduledBot.title,
@@ -124,6 +138,9 @@ class ScheduleItemWidget extends StatelessWidget {
       showBotStatus: true,
       showDate: true,
       onDelete: onDelete,
+      showActionToggle: true,
+      actionActiveResource: actionActiveResource,
+      onActionChange: onActionChange,
     ),
   );
   const ScheduleItemWidget._({required this.child});
@@ -141,6 +158,7 @@ class _BaseScheduleItem extends StatelessWidget {
     required this.showDeleteButton,
     required this.showBotStatus,
     required this.showDate,
+    required this.showActionToggle,
     required this.title,
     required this.description,
     required this.url,
@@ -152,6 +170,8 @@ class _BaseScheduleItem extends StatelessWidget {
     required this.onChange,
     required this.onDelete,
     required this.onTap,
+    required this.actionActiveResource,
+    required this.onActionChange,
   });
 
   final bool showDescription;
@@ -160,6 +180,7 @@ class _BaseScheduleItem extends StatelessWidget {
   final bool showDeleteButton;
   final bool showBotStatus;
   final bool showDate;
+  final bool showActionToggle;
   final String? title;
   final String? description;
   final Uri? url;
@@ -171,6 +192,8 @@ class _BaseScheduleItem extends StatelessWidget {
   final ValueChanged<bool>? onChange;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
+  final Resource<bool> actionActiveResource;
+  final ValueChanged<bool>? onActionChange;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -200,6 +223,11 @@ class _BaseScheduleItem extends StatelessWidget {
             onChanged: onChange,
             showBotStatus: showBotStatus,
             botStatus: botStatus,
+          ),
+        if (showActionToggle)
+          _buildActionToggle(
+            actionActiveResource: actionActiveResource,
+            onChanged: onActionChange,
           ),
         if (showDeleteButton) _buildDeleteButton(onDelete: onDelete),
       ],
@@ -374,6 +402,35 @@ class _BaseScheduleItem extends StatelessWidget {
       ],
     ),
   );
+
+  Widget _buildActionToggle({
+    required Resource<bool> actionActiveResource,
+    required ValueChanged<bool>? onChanged,
+  }) => switch (actionActiveResource) {
+    ResourceDone<bool>(:final value) => Padding(
+      padding: const EdgeInsets.only(
+        top: AppSpace.sm8,
+        bottom: AppSpace.sm8,
+        left: AppSpace.lg16,
+        right: AppSpace.lg16,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        spacing: AppSpace.sm8,
+        children: [
+          Text(
+            AppMessage.current.schedule_detail_enable_action,
+            style: AppTextStyle.bodyMedium14,
+          ),
+          const Expanded(child: SizedBox.shrink()),
+          Switch(value: value, onChanged: onChanged),
+        ],
+      ),
+    ),
+    ResourceInProgress<bool>() ||
+    ResourceError<bool>() => const SizedBox.shrink(),
+  };
 
   Widget _buildDeleteButton({required VoidCallback? onDelete}) => Padding(
     padding: const EdgeInsets.only(

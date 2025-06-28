@@ -3,6 +3,7 @@ class AppEnv {
   static const appId = String.fromEnvironment('APP_ID');
   static const appName = String.fromEnvironment('APP_NAME');
   static const apiUrl = String.fromEnvironment('API_URL');
+  static const botApiUrl = String.fromEnvironment('BOT_API_URL');
   static const termsOfServiceUrl = String.fromEnvironment(
     'TERMS_OF_SERVICE_URL',
   );
