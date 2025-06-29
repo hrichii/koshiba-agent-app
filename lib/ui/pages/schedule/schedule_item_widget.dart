@@ -355,7 +355,7 @@ class _BaseScheduleItem extends StatelessWidget {
                 style: AppTextStyle.bodyMedium14.withGray30(),
                 children: [
                   TextSpan(text: startAt?.toTimeString() ?? '--:--'),
-                  const TextSpan(text: ' ~ '),
+                  const TextSpan(text: ' 〜 '),
                   if (endAt != null) TextSpan(text: endAt.toTimeString()),
                 ],
               ),
