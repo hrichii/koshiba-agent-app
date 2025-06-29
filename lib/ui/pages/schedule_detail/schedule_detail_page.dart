@@ -337,7 +337,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
     spacing: AppSpace.lg16,
     children: [
       Text(
-        item.timestamp?.toTimeString() ?? '',
+        item.timestamp?.toLocal().toTimeString() ?? '',
         style: AppTextStyle.bodyMedium14.withGray40(),
       ),
       Flexible(
