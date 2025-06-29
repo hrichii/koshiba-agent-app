@@ -11,7 +11,9 @@ _TranscriptionItem _$TranscriptionItemFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       meetingId: json['meetingId'] as String,
       role: $enumDecode(_$TranscriptionRoleEnumEnumMap, json['role']),
-      timestamp: DateTime.parse(json['timestamp'] as String),
+      timestamp: json['timestamp'] == null
+          ? null
+          : DateTime.parse(json['timestamp'] as String),
       content: json['content'] as String?,
       source: $enumDecodeNullable(
         _$TranscriptionSourceEnumEnumMap,
@@ -25,7 +27,7 @@ Map<String, dynamic> _$TranscriptionItemToJson(_TranscriptionItem instance) =>
       'id': instance.id,
       'meetingId': instance.meetingId,
       'role': _$TranscriptionRoleEnumEnumMap[instance.role]!,
-      'timestamp': instance.timestamp.toIso8601String(),
+      'timestamp': instance.timestamp?.toIso8601String(),
       'content': instance.content,
       'source': _$TranscriptionSourceEnumEnumMap[instance.source],
       'errorCode': instance.errorCode,
