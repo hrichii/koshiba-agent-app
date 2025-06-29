@@ -70,7 +70,11 @@ class SchedulePage extends StatelessWidget {
       flexibleSpace: SizedBox(
         height: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg16),
+          padding: EdgeInsets.only(
+            left: AppSpace.lg16,
+            right: AppSpace.lg16,
+            top: MediaQuery.of(context).viewPadding.top,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             spacing: AppSpace.lg16,
@@ -105,14 +109,14 @@ class SchedulePage extends StatelessWidget {
         child: Container(height: 1, color: AppColor.gray90),
       ),
     ),
-    body: RefreshIndicator(
-      onRefresh: onRefresh,
-      child: AutoPaginationListener(
-        topPadding: topPadding,
-        loadingPrevious: scheduleListState.loadingPrevious,
-        loadingNext: scheduleListState.loadingNext,
-        onFetchPrevious: onFetchPrevious,
-        onFetchNext: onFetchNext,
+    body: AutoPaginationListener(
+      topPadding: topPadding,
+      loadingPrevious: scheduleListState.loadingPrevious,
+      loadingNext: scheduleListState.loadingNext,
+      onFetchPrevious: onFetchPrevious,
+      onFetchNext: onFetchNext,
+      child: RefreshIndicator(
+        onRefresh: onRefresh,
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: AppSpace.lg16),
           physics: const AlwaysScrollableScrollPhysics(),

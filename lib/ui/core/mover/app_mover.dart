@@ -20,9 +20,9 @@ class AppMover {
 
   static Future<void> goSignUp({BuildContext? context}) async {
     if (kIsWeb) {
-      return const web.SignInRouteData().go(context ?? _rootContext);
+      return const web.SignUpSendRouteData().go(context ?? _rootContext);
     } else {
-      return const mobile.SignInRouteData().go(context ?? _rootContext);
+      return const mobile.SignUpSendRouteData().go(context ?? _rootContext);
     }
   }
 
