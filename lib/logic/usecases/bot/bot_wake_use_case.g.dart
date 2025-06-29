@@ -6,7 +6,7 @@ part of 'bot_wake_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$botWakeUseCaseHash() => r'4f84f50f7a7a1d09351f897eca554b8f47bab5b8';
+String _$botWakeUseCaseHash() => r'2a4f64acf26e99d2776648992e406a8fa357005c';
 
 /// See also [BotWakeUseCase].
 @ProviderFor(BotWakeUseCase)

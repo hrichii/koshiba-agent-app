@@ -7,6 +7,7 @@ import 'package:koshiba_agent_app/core/extensions/future_result_ext.dart';
 import 'package:koshiba_agent_app/core/extensions/text_style_extension.dart';
 import 'package:koshiba_agent_app/core/themes/app_assets.dart';
 import 'package:koshiba_agent_app/core/themes/app_color.dart';
+import 'package:koshiba_agent_app/core/themes/app_env.dart';
 import 'package:koshiba_agent_app/core/themes/app_space.dart';
 import 'package:koshiba_agent_app/core/themes/app_text_theme.dart';
 import 'package:koshiba_agent_app/generated/l10n.dart';
@@ -239,10 +240,11 @@ class ScheduleDetailPage extends HookConsumerWidget {
                                     .whereType<Widget>()
                                     .toList()
                                     .withGap(AppSpace.md12),
-                        AsyncError<List<TranscriptionItem>>() => [
+                        AsyncError<List<TranscriptionItem>>(:final error) => [
                           Center(
                             child: Text(
-                              AppMessage.current.common_error_fetch_failed,
+                              AppMessage.current.common_error_fetch_failed +
+                                  (AppEnv.env == 'dev' ? error.toString() : ''),
                             ),
                           ),
                         ],
@@ -335,7 +337,7 @@ class ScheduleDetailPage extends HookConsumerWidget {
     spacing: AppSpace.lg16,
     children: [
       Text(
-        item.timestamp.toTimeString(),
+        item.timestamp?.toTimeString() ?? '',
         style: AppTextStyle.bodyMedium14.withGray40(),
       ),
       Flexible(

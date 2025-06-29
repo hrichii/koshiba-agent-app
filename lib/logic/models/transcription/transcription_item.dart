@@ -12,7 +12,7 @@ abstract class TranscriptionItem with _$TranscriptionItem {
     required String id,
     required String meetingId,
     required TranscriptionRoleEnum role,
-    required DateTime timestamp,
+    DateTime? timestamp,
     String? content,
     TranscriptionSourceEnum? source,
     String? errorCode,
@@ -28,9 +28,14 @@ abstract class TranscriptionItem with _$TranscriptionItem {
   ) {
     final data = doc.data()!;
     data['id'] = doc.id;
-    data['timestamp'] = (data['timestamp'] as Timestamp)
-        .toDate()
-        .toIso8601String();
+    final timestamp = data['timestamp'];
+    if (timestamp == null) {
+      data['timestamp'] = null;
+    } else if (timestamp is String) {
+      data['timestamp'] = DateTime.parse(timestamp).toIso8601String();
+    } else if (timestamp is Timestamp) {
+      data['timestamp'] = timestamp.toDate().toIso8601String();
+    }
     return TranscriptionItem.fromJson(data);
   }
 }

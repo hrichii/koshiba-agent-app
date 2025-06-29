@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TranscriptionItem {
 
- String get id; String get meetingId; TranscriptionRoleEnum get role; DateTime get timestamp; String? get content; TranscriptionSourceEnum? get source; String? get errorCode;
+ String get id; String get meetingId; TranscriptionRoleEnum get role; DateTime? get timestamp; String? get content; TranscriptionSourceEnum? get source; String? get errorCode;
 /// Create a copy of TranscriptionItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $TranscriptionItemCopyWith<$Res>  {
   factory $TranscriptionItemCopyWith(TranscriptionItem value, $Res Function(TranscriptionItem) _then) = _$TranscriptionItemCopyWithImpl;
 @useResult
 $Res call({
- String id, String meetingId, TranscriptionRoleEnum role, DateTime timestamp, String? content, TranscriptionSourceEnum? source, String? errorCode
+ String id, String meetingId, TranscriptionRoleEnum role, DateTime? timestamp, String? content, TranscriptionSourceEnum? source, String? errorCode
 });
 
 
@@ -66,13 +66,13 @@ class _$TranscriptionItemCopyWithImpl<$Res>
 
 /// Create a copy of TranscriptionItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? meetingId = null,Object? role = null,Object? timestamp = null,Object? content = freezed,Object? source = freezed,Object? errorCode = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? meetingId = null,Object? role = null,Object? timestamp = freezed,Object? content = freezed,Object? source = freezed,Object? errorCode = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,meetingId: null == meetingId ? _self.meetingId : meetingId // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as TranscriptionRoleEnum,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as TranscriptionRoleEnum,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as DateTime?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as TranscriptionSourceEnum?,errorCode: freezed == errorCode ? _self.errorCode : errorCode // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -86,13 +86,13 @@ as String?,
 @JsonSerializable()
 
 class _TranscriptionItem extends TranscriptionItem {
-  const _TranscriptionItem({required this.id, required this.meetingId, required this.role, required this.timestamp, this.content, this.source, this.errorCode}): super._();
+  const _TranscriptionItem({required this.id, required this.meetingId, required this.role, this.timestamp, this.content, this.source, this.errorCode}): super._();
   factory _TranscriptionItem.fromJson(Map<String, dynamic> json) => _$TranscriptionItemFromJson(json);
 
 @override final  String id;
 @override final  String meetingId;
 @override final  TranscriptionRoleEnum role;
-@override final  DateTime timestamp;
+@override final  DateTime? timestamp;
 @override final  String? content;
 @override final  TranscriptionSourceEnum? source;
 @override final  String? errorCode;
@@ -130,7 +130,7 @@ abstract mixin class _$TranscriptionItemCopyWith<$Res> implements $Transcription
   factory _$TranscriptionItemCopyWith(_TranscriptionItem value, $Res Function(_TranscriptionItem) _then) = __$TranscriptionItemCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String meetingId, TranscriptionRoleEnum role, DateTime timestamp, String? content, TranscriptionSourceEnum? source, String? errorCode
+ String id, String meetingId, TranscriptionRoleEnum role, DateTime? timestamp, String? content, TranscriptionSourceEnum? source, String? errorCode
 });
 
 
@@ -147,13 +147,13 @@ class __$TranscriptionItemCopyWithImpl<$Res>
 
 /// Create a copy of TranscriptionItem
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? meetingId = null,Object? role = null,Object? timestamp = null,Object? content = freezed,Object? source = freezed,Object? errorCode = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? meetingId = null,Object? role = null,Object? timestamp = freezed,Object? content = freezed,Object? source = freezed,Object? errorCode = freezed,}) {
   return _then(_TranscriptionItem(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,meetingId: null == meetingId ? _self.meetingId : meetingId // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as TranscriptionRoleEnum,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as TranscriptionRoleEnum,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as DateTime?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String?,source: freezed == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
 as TranscriptionSourceEnum?,errorCode: freezed == errorCode ? _self.errorCode : errorCode // ignore: cast_nullable_to_non_nullable
 as String?,
