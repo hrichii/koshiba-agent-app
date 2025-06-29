@@ -1,4 +1,4 @@
-# KoshibaAgetnApp
+# Astar
 ## 環境
 
 - Flutter 3.29.2
